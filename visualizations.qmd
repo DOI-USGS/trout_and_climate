@@ -1,0 +1,107 @@
+---
+title: "visualizations"
+format: html
+editor: visual
+---
+
+## Set up
+
+```{r libraries, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(sbtools)
+
+```
+
+## 1. Fetch
+
+Activate ScienceBase credentials. Note, you only have to do this once to get the data the first time.
+
+1. Run the code below
+2. When prompted, enter your email address as the username
+3. Log into https://sciencebase.usgs.gov/manager/ and select "Copy API Token" from the User dropdown menu
+4. Copy the Token into the pop up dialog. If this worked, you should get a "TRUE" result in the console.
+
+```{r SB, eval=FALSE}
+sbtools::initialize_sciencebase_session()
+```
+
+Fetch data from ScienceBase.
+
+> Benjamin, J.R., Dunham, J.B., and Penn, C.A., 2023, Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model: U.S. Geological Survey data release, https://doi.org/10.5066/P9MAXBZN.
+
+```{r fetch, eval=FALSE}
+sbtools::item_file_download(sb_id = "65381be6d34ee4b6e05bba62",
+                            dest_dir = "in/sciencebase/",
+                            overwrite_file = FALSE)
+
+```
+
+Read in files to the local environment
+
+```{r, in}
+# Read all the files in the in/ folder0
+files_all <-  list.files(path = "in/sciencebase/")
+
+# select only the csvs
+files_csv <- files_all[grepl(pattern = ".csv", files_all)]
+
+# Read in and row-bind all csvs
+raw_data <- NULL
+for(file in 1:length(files_csv)){
+  # the location of this file 
+  temp_file_name <- files_csv[file]
+  temp_csv <- sprintf("in/sciencebase/%s", files_csv[file])
+  temp <- readr::read_csv(temp_csv, show_col_types = FALSE)
+  fish_size_temp <- ifelse(grepl(pattern = "10", x = temp_csv), 
+                           yes = "Size 10",
+                           no = ifelse(grepl(pattern = "150", x = temp_csv),
+                                       yes = "Size 150",
+                                       no = "Size 50"))
+  water_status_temp <- ifelse(grepl(pattern = "warm", x = temp_csv),
+                              yes = "Warm", 
+                              no = ifelse(grepl(pattern = "cold", temp_csv),
+                                          yes = "Cold", no = "Base"))
+  
+  temp <- temp |>
+    mutate(fish_size = fish_size_temp,
+           water_status = water_status_temp,
+           filename = temp_file_name)
+  
+  raw_data <- raw_data |>
+    bind_rows(temp)
+}
+```
+
+Verify that the results look right
+
+```{r verify}
+# There should be three groups of fish sizes
+table(raw_data$fish_size)
+
+# And three groups of water temperatures
+table(raw_data$water_status)
+
+# And 9 different file names
+table(raw_data$filename)
+
+```
+
+
+## 2. Process
+
+Process this for graphing
+
+```{r processing}
+
+
+```
+
+## 3. Visualize
+
+Visualize the data
+
+```{r visualization}
+
+
+```
