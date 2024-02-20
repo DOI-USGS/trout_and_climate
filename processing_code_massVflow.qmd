@@ -1,0 +1,143 @@
+---
+title: "processing data"
+format: html
+editor: source
+---
+
+## Set up
+
+```{r libraries, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(readr)
+library(quantreg)
+
+```
+
+## 1. Fetch
+
+
+```{r read, message=FALSE}
+# #Norwest, Miller Q and prosper from Roy Sando
+Sando.raw <- read.csv(file = "in/from_authors/SouthCentralOregon.csv") 
+
+###Combine csv files of missing stream lines that are not in Sando's data release#########
+    ###These are from the Miller et al. 2018? data release#########
+extras <- list.files(path = "in/from_authors/Extras/", 
+                     # Identify all csv files in folder
+                     pattern = "*.csv", full.names = TRUE) |>
+  lapply(read_csv) |>                                            
+  # Store all files in list
+   bind_rows()
+
+```
+
+## 2. Process for Figure 1
+
+Calculate stream discharge for all streams
+
+```{r processing}
+# calculate median streamflow for each site and month
+Sando.average <- Sando.raw |>
+  select(COMID, contains("Streamflow")) |>
+  group_by(COMID) |>
+  summarise(across(everything(), list(median)))
+  
+# process extras to prep for combining with Sando
+extras.clnd <- extras |> 
+  filter(Year >= 2004) |>
+  mutate(month_abb = month.abb[Month]) |>
+  select(COMID, Year, Estimated.Q, Month, month_abb)
+
+# make wide to match how Sando was imported
+extras.wide <- extras.clnd |>
+  select(-Month) |> 
+  pivot_wider(names_from = month_abb, values_from = Estimated.Q) |>
+  rename_at(vars(-COMID), ~ paste0(., 'Streamflow'))
+
+extras.average <- extras.wide |>
+  group_by(COMID) |>
+  summarise(across(everything(), list(median))) |>
+  select(-YearStreamflow_1)
+
+
+#### BIND streamflow data TOGETHER
+mean_streamflow <- bind_rows(Sando.average, extras.average)
+
+
+# Site information (within COMID)
+site.raw <- read_csv("in/from_authors/FishNorwest.csv",
+                     show_col_types = FALSE) |>
+  select(COMID, Site, AvgZwidth, SurfaceAre, AvgZArea, Dmax, AvgZmax)
+
+site.average <- site.raw |>
+  group_by(COMID, Site) |>
+  summarise(across(everything(), list(mean)))
+
+```
+
+Read in fish data and process for plotting, including estimating mass off of length.
+
+```{r fish_data}
+fish.raw <- read_csv("in/from_authors/FishData.csv",
+                     show_col_types = FALSE)
+
+# Join with site information
+fish.site <- fish.raw |> inner_join(site.average, by = "Site")
+
+# Filter for species and flag (quality)
+fish.site.trout <- fish.site |>
+  filter(Species == "RT", Flag < 10)
+
+# Calculate max length by site
+trout.max <- fish.site.trout |> 
+  group_by(Site, COMID) |>
+  summarise(MaxFishLength = max(Length, na.rm = TRUE)) |>
+  mutate(logLength = log(MaxFishLength)) 
+
+# Merge with streamflow data
+trout.streamflow <- trout.max |>
+  inner_join(mean_streamflow, by = "COMID") |>
+  # filter out when August streamflow is 0
+  filter(AugStreamflow_1 > 0)
+
+
+###### Calculate mass based on length
+# a.reg = -4.77, b.reg = 2.9 from Kunkel 1976 Thesis
+a.reg <- -4.77
+b.reg <- 2.9
+
+trout.mass <- trout.streamflow |>
+  mutate(logMass = a.reg + (b.reg * log10(MaxFishLength)),
+         massInit = 10^logMass) |>
+  # filter out fish over 600 (assume big fish are migrants)
+  filter(massInit <= 600)
+
+
+
+```
+
+Complete non-linear quantile regression with `{quantreg}` package.
+
+```{r quant_regression}
+quant_reg_out <- quantreg::nlrq(
+  formula = massInit ~ a*exp(b*log(AugStreamflow_1)),
+  data = trout.mass,
+  tau = 0.9,
+  start = list(a = 150, b = 0.9) # seed values to start
+)
+
+# predict values off of equation to create line in graph
+trout.mass$quant_reg_predicted <- 
+  quantreg::predict.nlrq(object = quant_reg_out)
+
+
+```
+
+
+```{r plot}
+ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
+  geom_point() + 
+  geom_line(aes(y = quant_reg_predicted)) +
+  scale_x_continuous(trans = 'log10') 
+```
