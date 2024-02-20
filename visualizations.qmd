@@ -1,7 +1,7 @@
 ---
 title: "visualizations"
 format: html
-editor: visual
+editor: source
 ---
 
 ## Set up
@@ -17,10 +17,10 @@ library(sbtools)
 
 Activate ScienceBase credentials. Note, you only have to do this once to get the data the first time.
 
-1. Run the code below
-2. When prompted, enter your email address as the username
-3. Log into https://sciencebase.usgs.gov/manager/ and select "Copy API Token" from the User dropdown menu
-4. Copy the Token into the pop up dialog. If this worked, you should get a "TRUE" result in the console.
+1.  Run the code below
+2.  When prompted, enter your email address as the username
+3.  Log into https://sciencebase.usgs.gov/manager/ and select "Copy API Token" from the User dropdown menu
+4.  Copy the Token into the pop up dialog. If this worked, you should get a "TRUE" result in the console.
 
 ```{r SB, eval=FALSE}
 sbtools::initialize_sciencebase_session()
@@ -75,17 +75,6 @@ for(file in 1:length(files_csv)){
 
 Verify that the results look right
 
-```{r verify}
-# There should be three groups of fish sizes
-table(raw_data$fish_size)
-
-# And three groups of water temperatures
-table(raw_data$water_status)
-
-# And 9 different file names
-table(raw_data$filename)
-
-```
 
 
 ## 2. Process

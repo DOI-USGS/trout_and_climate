@@ -6,4 +6,4 @@
 *.html
 in/*
 out/*
-visualizations_files/*
+*_files/*

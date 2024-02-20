@@ -135,9 +135,13 @@ trout.mass$quant_reg_predicted <-
 ```
 
 
+## 3. Visualize
+
 ```{r plot}
 ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
   geom_point() + 
   geom_line(aes(y = quant_reg_predicted)) +
   scale_x_continuous(trans = 'log10') 
 ```
+
+
