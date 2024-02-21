@@ -1,21 +1,45 @@
 [
     {
       "id": "name1",
-      "order": "1",
+      "order": 1,
       "image": "assets/originals/barry_0.png",
-      "text": "Baby Barry"
+      "text": "Baby Barry",
+      "alt": "alt text henny"
     },
     {
     "id": "name2",
-    "order": "2",
+    "order": 2,
     "image": "assets/originals/barrycold.png",
-    "text": "Cold Barry"
+    "text": "Cold Barry",
+    "alt": "alt text henny"
     },
     {
     "id": "name3",
-    "order": "3",
+    "order": 3,
     "image": "assets/originals/barrywarm.png",
-    "text": "Warm Barry"
+    "text": "Warm Barry",
+    "alt": "alt text henny"
+    },
+    {
+    "id": "name4",
+    "order": 4,
+    "image": "assets/originals/mikewarm.png",
+    "text": "Warm Barry",
+    "alt": "alt text henny"
+    },
+    {
+    "id": "name5",
+    "order": 5,
+    "image": "assets/originals/denice_1.png",
+    "text": "Warm Barry",
+    "alt": "alt text henny"
+    },
+    {
+    "id": "name6",
+    "order": 6,
+    "image": "assets/originals/barryneutral.png",
+    "text": "Warm Barry",
+    "alt": "alt text henny"
     }
   ]
   

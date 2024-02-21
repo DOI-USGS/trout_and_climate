@@ -1,71 +1,89 @@
 <template>
-  <div class="sticky-grid-container">
-    <div class="sticky-container">
-      <!-- sticky content goes here -->
-      <img :src="currentContent.image" alt="Scroll Triggered Content" />
-      <p>{{ currentContent.text }}</p>
+  <div class="container">
+    <div class="sticky-image-container" ref="stickyContainer">
+      <img :src="currentImage.image" :alt="currentImage.alt" />
+      <p>{{ currentImage.text }}</p>
     </div>
-    <!-- Additional content outside the sticky container can go here -->
   </div>
 </template>
 
+<script>
+import { onMounted, ref } from 'vue';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
 
+export default {
+  name: 'ScrollTriggerImage',
+  setup() {
+    const currentImage = ref({});
+    const images = ref([]);
+    const publicPath = import.meta.env.BASE_URL;
 
-<script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import axios from 'axios';
+    // Load images from JSON
+    const loadImages = async () => {
+      try {
+        const response = await fetch(publicPath + '/assets/text/content.json');
+        const data = await response.json();
+        images.value = data.sort((a, b) => a.order - b.order);
+        currentImage.value = images.value[0]; // Initialize with the first image
+      } catch (error) {
+        console.error('Failed to load images', error);
+      }
+    };
 
-const content = ref([]);
-const currentContent = ref({ id: '', order: '', image: '', text: '' });
-const publicPath = import.meta.env.BASE_URL;
+    // GSAP ScrollTrigger
+    const setupScrollTrigger = () => {
+      gsap.to({}, {
+        scrollTrigger: {
+          trigger: ".container",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+          markers: true,
+          onUpdate: self => {
+            const progress = self.progress;
+            const index = Math.min(
+              images.value.length - 1,
+              Math.floor(progress * images.value.length)
+            );
+            currentImage.value = images.value[index];
+          }
+        }
+      });
+    };
 
-const loadContent = async () => {
-  try {
-    const response = await axios.get(`${publicPath}assets/text/content.json`); // Adjust the path if necessary
-    console.log(response.data)
-    content.value = response.data;
-    currentContent.value = content.value[0]; // Initialize with the first item
-  } catch (error) {
-    console.error('Failed to load content:', error);
+    onMounted(async () => {
+      await loadImages();
+      setupScrollTrigger();
+    });
+
+    return { currentImage };
   }
 };
-
-const checkScroll = () => {
-  const scrollPosition = window.scrollY;
-  const index = Math.min(Math.floor(scrollPosition / window.innerHeight), content.value.length - 1);
-  currentContent.value = content.value[index];
-};
-
-onMounted(() => {
-  loadContent();
-  window.addEventListener('scroll', checkScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', checkScroll);
-});
 </script>
 
-<style scoped>
-.sticky-grid-container {
-  display: grid;
-  place-items: center;
-  height: 100vh; /* Full height of the viewport */
+<style>
+.container {
+  height: 200vh; /* Ensures enough scrolling length */
+}
+
+.sticky-image-container {
   position: sticky;
   top: 0;
-}
-
-.sticky-grid-item {
-  /* Adjust this as needed for content sizing and layout */
+  width: 100%;
+  height: 60vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.sticky-grid-item img {
-  max-width: 100%; /* Ensure image does not overflow container */
-  height: auto;
+.sticky-image-container img {
+  max-width: 100%;
+  max-height: 80%;
+}
+.sticky-image-container p {
+  font-size: 1.5rem;
+  text-align: center;
 }
 </style>
-
