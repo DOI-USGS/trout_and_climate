@@ -4,14 +4,16 @@
         :alt="currentImage.alt"
         :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
       <div class="sticky-image-container" ref="stickyContainer">
+        <div class="image-wrapper" ref="imageWrapper">
       <img :src="currentImage.image"  />
-      <div class="image-text">{{ currentImage.text }}</div>
+    </div>
+      <div class="image-text" ref="textWrapper">{{ currentImage.text }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import { onMounted, ref, reactive } from 'vue';
+import { onMounted, ref } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
@@ -19,6 +21,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default {
   name: 'ScrollTriggerImage',
   setup() {
+    const imageWrapper = ref(null);
+    const textWrapper = ref(null);
     const currentImage = ref({
       bknd: '',
       image: '',
@@ -75,7 +79,11 @@ export default {
             );
             const newImage = images.value[index];
             updateImagesIfDifferent(newImage);
-
+          },
+          onEnterBack: () => {
+            // Explicitly set to the first image when scrolling back past the start
+            const firstImage = images.value[0];
+            currentImage.value = { ...initialImage };
           }
         }
       });
@@ -86,7 +94,11 @@ export default {
       setupScrollTrigger();
     });
 
-    return { currentImage };
+    return { 
+      currentImage,
+      imageWrapper,
+      textWrapper 
+    };
   }
 };
 </script>

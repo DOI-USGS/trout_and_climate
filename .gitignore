@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 *.DS_Store
-*.html
+node_modules/
 in/*
 out/*
 *_files/*
