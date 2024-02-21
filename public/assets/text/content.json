@@ -1,0 +1,21 @@
+[
+    {
+      "id": "name1",
+      "order": "1",
+      "image": "assets/originals/barry_0.png",
+      "text": "Baby Barry"
+    },
+    {
+    "id": "name2",
+    "order": "2",
+    "image": "assets/originals/barrycold.png",
+    "text": "Cold Barry"
+    },
+    {
+    "id": "name3",
+    "order": "3",
+    "image": "assets/originals/barrywarm.png",
+    "text": "Warm Barry"
+    }
+  ]
+  

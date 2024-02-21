@@ -1,13 +1,13 @@
 <template>
   <section>
     <div class="parent-container">
-   <Wavy />
+   <ScrollTrigger />
   </div>
   </section>
 </template>
 
 <script setup>
-  import Wavy from '../components/Content.vue';
+  import ScrollTrigger from '../components/ScrollTrigger.vue';
 </script>
 
 <style scoped>
