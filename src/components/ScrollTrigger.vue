@@ -69,28 +69,30 @@ export default {
   display: grid;
   grid-template-areas: "overlay";
   height: 400vh; /* Sets scrolling length */
+  margin: 50px;
+  box-sizing: border-box;
+  max-width: calc(100vw - 40px); /* Subtract total horizontal margins from 100vw */
   position: relative; /* Ensure ScrollTrigger can track its position */
 }
 
 .background-image-container, .sticky-image-container {
   position: -webkit-sticky; /* For Safari */
   position: sticky;
-  top: 0;
+  top: 20px;
   grid-area: overlay;
-  height: 100vh; /* Full viewport height */
+  height: calc(100vh - 50px); /* Full viewport height */
   width: 100%; /* Full width */
   z-index: 1; /* Background image z-index */
 }
 .background-image-container {
-  height: 100vh;
   width: 100%;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   z-index: -1; /* Ensure it stays behind the foreground image */
 }
 
 .sticky-image-container {
-  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
