@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="background-image-container" :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
-    <div class="sticky-image-container" ref="stickyContainer">
+      <div class="sticky-image-container" ref="stickyContainer">
       <img :src="currentImage.image" :alt="currentImage.alt" />
       <div class="image-text">{{ currentImage.text }}</div>
     </div>
@@ -66,28 +66,36 @@ export default {
 
 <style>
 .container {
-  height: 400vh; /* sets scrolling length - higher is a slower scroll */
+  display: grid;
+  grid-template-areas: "overlay";
+  height: 400vh; /* Sets scrolling length */
+  position: relative; /* Ensure ScrollTrigger can track its position */
 }
-.background-image-container {
+
+.background-image-container, .sticky-image-container {
+  position: -webkit-sticky; /* For Safari */
   position: sticky;
   top: 0;
+  grid-area: overlay;
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full width */
+  z-index: 1; /* Background image z-index */
+}
+.background-image-container {
   height: 100vh;
   width: 100%;
   background-size: cover;
   background-position: center;
   z-index: -1; /* Ensure it stays behind the foreground image */
 }
+
 .sticky-image-container {
-  position: sticky;
-  top: 0;
+  height: 100vh;
   width: 100%;
-  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 80vw;
-  margin: auto;
-  transform: translateY(50%);
+  z-index: 2; /* Ensures it's above the background */
 }
 
 .sticky-image-container img {
@@ -97,5 +105,9 @@ export default {
 .image-text {
   margin-top: 20px;
   text-align: center;
+  position: absolute; /* Make text always visible on top */
+  bottom: 10%; /* Adjust based on your preference */
+  width: 100%; /* Ensure text is centered regardless of image width */
+  z-index: 3; /* Ensure text is above all */
 }
 </style>

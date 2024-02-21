@@ -1,4 +1,12 @@
 [
+  {
+  "id": "name1",
+  "order": 0,
+  "image": "assets/originals/barry_0.png",
+  "bknd": "assets/vectorized_pngs/alpine_landscape.png",
+  "text": "it starts my friends",
+  "alt": "alt text henny"
+},
     {
       "id": "name1",
       "order": 1,
