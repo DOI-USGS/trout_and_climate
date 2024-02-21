@@ -1,59 +1,155 @@
 [
   {
-  "id": "name1",
+  "id": "intro",
   "order": 0,
-  "image": "assets/originals/barry_0.png",
+  "image": "assets/vectorized_pngs/barry_0.png",
   "bknd": "assets/vectorized_pngs/alpine_landscape.png",
-  "text": "it starts my friends",
+  "text": "This area of the Donner und Blitzen River is near the headwaters, where the water is cold and the streams are small",
   "alt": "alt text henny"
 },
     {
-      "id": "name1",
+      "id": "smallFish",
       "order": 1,
-      "image": "assets/originals/barry_0.png",
+      "image": "assets/vectorized_pngs/barry_0.png",
       "bknd": "assets/vectorized_pngs/alpine_landscape.png",
-      "text": "Baby Barry",
+      "text": "Fish that live in small streams like this one tend to be relatively small for their species.",
       "alt": "alt text henny"
     },
     {
-    "id": "name2",
+    "id": "smallStreams",
     "order": 2,
-    "image": "assets/originals/barrycold.png",
-    "bknd": "assets/vectorized_pngs/alpine_landscape.png",
-    "text": "Cold Barry",
-    "alt": "alt text henny"
-    },
-    {
-    "id": "name3",
-    "order": 3,
-    "image": "assets/originals/barrywarm.png",
+    "image": "assets/vectorized_pngs/mike_2.png",
     "bknd": "assets/vectorized_pngs/alpine_water_view.png",
-    "text": "Warm Barry",
+    "text": "Even though they're smaller, Redband Trout that live in these small streams are cold-adapted. This means they can grow in cooler waters better than warm-adapted fish.",
     "alt": "alt text henny"
     },
     {
-    "id": "name4",
+    "id": "slowWarm",
+    "order": 3,
+    "image": "assets/vectorized_pngs/barry_1.png",
+    "bknd": "assets/vectorized_pngs/lowland_landscape.png",
+    "text": "This area of the Donner und Blitzen River is in the river valleys. The water is slower and warmer and the stream is wider than the headwaters.",
+    "alt": "alt text henny"
+    },
+    {
+    "id": "largeStreams",
     "order": 4,
-    "image": "assets/originals/mikewarm.png",
+    "image": "assets/vectorized_pngs/mikewarm.png",
     "bknd": "assets/vectorized_pngs/lowland_landscape.png",
-    "text": "Warm Barry",
+    "text": "Fish that live in large streams like this one tend to relatively large for their species.",
     "alt": "alt text henny"
     },
     {
-    "id": "name5",
+    "id": "barryBig",
     "order": 5,
-    "image": "assets/originals/denice_1.png",
-    "bknd": "assets/vectorized_pngs/lowland_landscape.png",
-    "text": "Warm Barry",
+    "image": "assets/vectorized_pngs/barry_3.png",
+    "bknd": "assets/vectorized_pngs/lowland_water_view.png",
+    "text": "Redband trout that live in these warmer, larger streams are warm-adapted. This means that they can grow in warmer waters than other cold-adapted fish.​",
     "alt": "alt text henny"
     },
     {
-    "id": "name6",
+    "id": "meetRangers",
     "order": 6,
-    "image": "assets/originals/barryneutral.png",
-    "bknd": "assets/vectorized_pngs/lowland_water_view.png",
-    "text": "Warm Barry",
+    "image": "assets/vectorized_pngs/alex_1.png",
+    "bknd": "assets/vectorized_pngs/alpine_landscape.png",
+    "text": "Park rangers work to ensure the health of the watershed. These RAD rangers have lots of tools, methods and techniques they use to keep local ecosystems healthy. ",
     "alt": "alt text henny"
-    }
+    },
+    {
+    "id": "meetMike",
+    "order": 7,
+    "image": "assets/vectorized_pngs/mike_1.png",
+    "bknd": "assets/vectorized_pngs/alpine_water_view.png",
+    "text": "Mike is cold-adapted, meaning that he is from high in the watershed, where it’s colder and harder to survive. The stream he grew up in was also pretty small, so he stayed small too! His family isn’t very large, but they enjoy living in this part of the watershed.​",
+    "alt": "alt text henny"
+    },
+    {
+    "id": "meetBarry",
+    "order": 8,
+    "image": "assets/vectorized_pngs/barry_1.png",
+    "bknd": "assets/vectorized_pngs/lowland_water_view.png",
+    "text": "Barry is warm-adapted, meaning he is from low in the watershed, where it’s warmer and resources are plentiful. The stream he grew up in was pretty large, so he had lots of room to grow. Barry’s family is huge, and they love how much space they have here!",
+    "alt": "alt text henny"
+    },
+    {
+    "id": "chooseYourOwnAdventure",
+    "order": 9,
+    "image": "assets/vectorized_pngs/mike_1.png",
+    "bknd": "assets/vectorized_pngs/lowland_water_view.png",
+    "text": "Where should they move?",
+    "alt": "alt text henny"
+    },
+    {
+    "id": "chooseHot",
+    "order": 10,
+    "image": "assets/vectorized_pngs/mike_1.png",
+    "bknd": "assets/vectorized_pngs/lowland_water_view.png",
+    "text": "Barry suggests Mike moves out to his side of the watershed – there’s plenty to eat and everything is flourishing there! Barry’s family agrees to help Mike out with the moving since their family is so big and they have plenty of folks to help out. Barry is just happy to be close to his family, and have his best friend there the whole time.​​",
+    "alt": "alt text henny"
+    },
+    {
+      "id": "chooseHot2",
+      "order": 11,
+      "image": "assets/vectorized_pngs/mike_3.png",
+      "bknd": "assets/vectorized_pngs/lowland_water_view.png",
+      "text": "After a while, Barry begins to notice that Mike is not doing well in their new home. While things are easy for Barry, Mike isn’t used to the hustle and bustle of the warm stream and is finding it very difficult to adjust - that just doesn’t feel right to Barry.​​",
+      "alt": "alt text henny"
+      },
+      {
+        "id": "rangerAlexResponds",
+        "order": 12,
+        "image": "assets/vectorized_pngs/alex_1.png",
+        "bknd": "assets/vectorized_pngs/lowland_landscape.png",
+        "text": "Ranger Alex notices that some of the fish from lower in the watershed are getting used to the warmer temperatures, but that smaller, cold-adapted trout are struggling. Unfortunately, she knows that this area of the watershed is so warm that there isn’t much she can do for the trout in this area. She decides to accept these changes, and redirects her energy into improving other parts of this ecosystem. Since the trout are still struggling though, she tells the locals who fish here that the redband trout are now off limits.​​​",
+        "alt": "alt text henny"
+        },
+        {
+          "id": "chooseWarm",
+          "order": 13,
+          "image": "assets/vectorized_pngs/mike_1.png",
+          "bknd": "assets/vectorized_pngs/midland_water_view.png",
+          "text": "Mike and Barry decide they want to go somewhere new for them both, for a fresh start. They pick out a new spot in the watershed – warmer than Mike’s old stream but cooler than Barry’s old stream. They don’t know what to expect, but they’re both excited to find out!​",
+          "alt": "alt text henny"
+          },
+          {
+            "id": "chooseWarm2",
+            "order": 14,
+            "image": "assets/vectorized_pngs/mike_1.png",
+            "bknd": "assets/vectorized_pngs/midland_water_view.png",
+            "text": "Mike loves the new stream and finds lots of food to eat, and Barry seems like he’s enjoying the stream too – but Barry notices that Mike is doing so well, and feels like he’s getting left behind.​",
+            "alt": "alt text henny"
+            },
+            {
+              "id": "rangerDeniseResponds",
+              "order": 15,
+              "image": "assets/vectorized_pngs/denice_1.png",
+              "bknd": "assets/vectorized_pngs/midland_landscape.png",
+              "text": "Ranger Denice notices that the streams near the main river are a bit warmer than they have been in the past, but that the wildlife still seems to be adapting well for the most part. To help make sure every part of the ecosystem is functioning at its best, she decides to direct her energy towards increasing the connections between parts of the watershed, to help prevent drought while still allowing the allowing the plants, animals, and fish to adapt.​​",
+              "alt": "alt text henny"
+              },
+    {
+    "id": "chooseCold",
+    "order": 16,
+    "image": "assets/vectorized_pngs/barry_1.png",
+    "bknd": "assets/vectorized_pngs/alpine_water_view.png",
+    "text": "Mike suggests Barry move out to his side of the watershed – life is simple here and it’s what he’s used to, plus Barry might enjoy how quiet things are around the headwaters. ​",
+    "alt": "alt text henny"
+    },
+    {
+      "id": "chooseCold2",
+      "order": 17,
+      "image": "assets/vectorized_pngs/barry_2.png",
+      "bknd": "assets/vectorized_pngs/alpine_water_view.png",
+      "text": "When he gets there, life is a lot harder than Barry expected. He knew it would be cold, but he didn’t think it would be this cold! He really struggles to adjust to the new area, and Mike notices how difficult this is for his friend. While Mike is just fine, he wants better for his warm-adapted friend.​​",
+      "alt": "alt text henny"
+      },
+      {
+        "id": "rangerRandyResponds",
+        "order": 18,
+        "image": "assets/vectorized_pngs/randy_1.png",
+        "bknd": "assets/vectorized_pngs/alpine_landscape.png",
+        "text": "Ranger Randy notices that the smaller trout do well here in the cold waters, but not so much in the warmer streams. The big fish don’t do as well here, but this area has always been cold – he worries that if it were to warm up too much, it would start to succumb to drought! He decides to resist these future changes by planting on the stream’s edge to make sure that the water stays shaded and cool for years to come!​​",
+        "alt": "alt text henny"
+        }
   ]
   
