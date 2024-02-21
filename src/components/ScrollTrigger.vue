@@ -44,11 +44,26 @@ export default {
           markers: true,
           onUpdate: self => {
             const progress = self.progress;
+            const maxIndex = images.value.length - 1;
             const index = Math.min(
-              images.value.length - 1,
-              Math.floor(progress * images.value.length)
+              maxIndex,
+              Math.floor(progress * (maxIndex + 1))
             );
-            currentImage.value = images.value[index];
+            const nextImage = images.value[index];
+            // Check and update the background image if different
+            if (currentImage.value.bknd !== nextImage.bknd) {
+              currentImage.value.bknd = nextImage.bknd;
+            }
+
+            // Check and update the foreground image if different
+            if (currentImage.value.image !== nextImage.image) {
+              currentImage.value.image = nextImage.image;
+            }
+
+            // Similarly, check and update the text if different
+            if (currentImage.value.text !== nextImage.text) {
+              currentImage.value.text = nextImage.text;
+            }
           }
         }
       });

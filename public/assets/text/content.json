@@ -10,7 +10,7 @@
     {
       "id": "smallFish",
       "order": 1,
-      "image": "assets/vectorized_pngs/barry_0.png",
+      "image": "assets/vectorized_pngs/barry_1.png",
       "bknd": "assets/vectorized_pngs/alpine_landscape.png",
       "text": "Fish that live in small streams like this one tend to be relatively small for their species.",
       "alt": "alt text henny"
@@ -34,7 +34,7 @@
     {
     "id": "largeStreams",
     "order": 4,
-    "image": "assets/vectorized_pngs/mikewarm.png",
+    "image": "assets/vectorized_pngs/mike_0.png",
     "bknd": "assets/vectorized_pngs/lowland_landscape.png",
     "text": "Fish that live in large streams like this one tend to relatively large for their species.",
     "alt": "alt text henny"
