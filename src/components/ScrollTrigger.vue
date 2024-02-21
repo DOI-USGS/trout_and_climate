@@ -1,8 +1,9 @@
 <template>
   <div class="container">
+      <div class="background-image-container" :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
     <div class="sticky-image-container" ref="stickyContainer">
       <img :src="currentImage.image" :alt="currentImage.alt" />
-      <p>{{ currentImage.text }}</p>
+      <div class="image-text">{{ currentImage.text }}</div>
     </div>
   </div>
 </template>
@@ -65,25 +66,36 @@ export default {
 
 <style>
 .container {
-  height: 200vh; /* Ensures enough scrolling length */
+  height: 400vh; /* sets scrolling length - higher is a slower scroll */
 }
-
+.background-image-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Ensure it stays behind the foreground image */
+}
 .sticky-image-container {
   position: sticky;
   top: 0;
   width: 100%;
-  height: 60vh;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 80vw;
+  margin: auto;
+  transform: translateY(50%);
 }
 
 .sticky-image-container img {
   max-width: 100%;
-  max-height: 80%;
+  max-height: 80vh;
 }
-.sticky-image-container p {
-  font-size: 1.5rem;
+.image-text {
+  margin-top: 20px;
   text-align: center;
 }
 </style>

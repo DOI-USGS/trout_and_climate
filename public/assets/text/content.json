@@ -3,6 +3,7 @@
       "id": "name1",
       "order": 1,
       "image": "assets/originals/barry_0.png",
+      "bknd": "assets/vectorized_pngs/alpine_landscape.png",
       "text": "Baby Barry",
       "alt": "alt text henny"
     },
@@ -10,6 +11,7 @@
     "id": "name2",
     "order": 2,
     "image": "assets/originals/barrycold.png",
+    "bknd": "assets/vectorized_pngs/alpine_landscape.png",
     "text": "Cold Barry",
     "alt": "alt text henny"
     },
@@ -17,6 +19,7 @@
     "id": "name3",
     "order": 3,
     "image": "assets/originals/barrywarm.png",
+    "bknd": "assets/vectorized_pngs/alpine_water_view.png",
     "text": "Warm Barry",
     "alt": "alt text henny"
     },
@@ -24,6 +27,7 @@
     "id": "name4",
     "order": 4,
     "image": "assets/originals/mikewarm.png",
+    "bknd": "assets/vectorized_pngs/lowland_landscape.png",
     "text": "Warm Barry",
     "alt": "alt text henny"
     },
@@ -31,6 +35,7 @@
     "id": "name5",
     "order": 5,
     "image": "assets/originals/denice_1.png",
+    "bknd": "assets/vectorized_pngs/lowland_landscape.png",
     "text": "Warm Barry",
     "alt": "alt text henny"
     },
@@ -38,6 +43,7 @@
     "id": "name6",
     "order": 6,
     "image": "assets/originals/barryneutral.png",
+    "bknd": "assets/vectorized_pngs/lowland_water_view.png",
     "text": "Warm Barry",
     "alt": "alt text henny"
     }
