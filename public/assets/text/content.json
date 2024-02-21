@@ -2,7 +2,7 @@
   {
   "id": "intro",
   "order": 0,
-  "image": "assets/vectorized_pngs/barry_0.png",
+  "image": "",
   "bknd": "assets/vectorized_pngs/alpine_landscape.png",
   "text": "This area of the Donner und Blitzen River is near the headwaters, where the water is cold and the streams are small",
   "alt": "alt text henny"
@@ -10,7 +10,7 @@
     {
       "id": "smallFish",
       "order": 1,
-      "image": "assets/vectorized_pngs/barry_1.png",
+      "image": "",
       "bknd": "assets/vectorized_pngs/alpine_landscape.png",
       "text": "Fish that live in small streams like this one tend to be relatively small for their species.",
       "alt": "alt text henny"
@@ -26,7 +26,7 @@
     {
     "id": "slowWarm",
     "order": 3,
-    "image": "assets/vectorized_pngs/barry_1.png",
+    "image": "",
     "bknd": "assets/vectorized_pngs/lowland_landscape.png",
     "text": "This area of the Donner und Blitzen River is in the river valleys. The water is slower and warmer and the stream is wider than the headwaters.",
     "alt": "alt text henny"
@@ -34,7 +34,7 @@
     {
     "id": "largeStreams",
     "order": 4,
-    "image": "assets/vectorized_pngs/mike_0.png",
+    "image": "",
     "bknd": "assets/vectorized_pngs/lowland_landscape.png",
     "text": "Fish that live in large streams like this one tend to relatively large for their species.",
     "alt": "alt text henny"

@@ -1,15 +1,17 @@
 <template>
   <div class="container">
-      <div class="background-image-container" :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
+      <div class="background-image-container" 
+        :alt="currentImage.alt"
+        :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
       <div class="sticky-image-container" ref="stickyContainer">
-      <img :src="currentImage.image" :alt="currentImage.alt" />
+      <img :src="currentImage.image"  />
       <div class="image-text">{{ currentImage.text }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, reactive } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
@@ -17,7 +19,11 @@ gsap.registerPlugin(ScrollTrigger);
 export default {
   name: 'ScrollTriggerImage',
   setup() {
-    const currentImage = ref({});
+    const currentImage = ref({
+      bknd: '',
+      image: '',
+      text: '',
+    });
     const images = ref([]);
     const publicPath = import.meta.env.BASE_URL;
 
@@ -33,6 +39,25 @@ export default {
       }
     };
 
+    // Method to update images only if they are different
+     const updateImagesIfDifferent = (newImage) => {
+      // Update background image if different
+      if (newImage.bknd && currentImage.value.bknd !== newImage.bknd) {
+        currentImage.value.bknd = newImage.bknd;
+      }
+      // Update foreground image if different and not empty
+      if (newImage.image && currentImage.value.image !== newImage.image) {
+        currentImage.value.image = newImage.image;
+      } else if (!newImage.image) {
+        // Handle empty foreground image
+        currentImage.value.image = '';
+      }
+      // Update text if different
+      if (newImage.text && currentImage.value.text !== newImage.text) {
+        currentImage.value.text = newImage.text;
+      }
+    };  
+
     // GSAP ScrollTrigger
     const setupScrollTrigger = () => {
       gsap.to({}, {
@@ -44,26 +69,13 @@ export default {
           markers: true,
           onUpdate: self => {
             const progress = self.progress;
-            const maxIndex = images.value.length - 1;
             const index = Math.min(
-              maxIndex,
-              Math.floor(progress * (maxIndex + 1))
+              images.value.length - 1,
+              Math.floor(progress * images.value.length)
             );
-            const nextImage = images.value[index];
-            // Check and update the background image if different
-            if (currentImage.value.bknd !== nextImage.bknd) {
-              currentImage.value.bknd = nextImage.bknd;
-            }
+            const newImage = images.value[index];
+            updateImagesIfDifferent(newImage);
 
-            // Check and update the foreground image if different
-            if (currentImage.value.image !== nextImage.image) {
-              currentImage.value.image = nextImage.image;
-            }
-
-            // Similarly, check and update the text if different
-            if (currentImage.value.text !== nextImage.text) {
-              currentImage.value.text = nextImage.text;
-            }
           }
         }
       });
