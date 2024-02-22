@@ -1,11 +1,19 @@
 <template>
   <div class="container">
       <div class="background-image-container" 
+        ref="backgroundWrapper"
         :alt="currentImage.alt"
         :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
-      <img :src="currentImage.image"  />
+           <!-- SVG to dynamically include images -->
+           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
+            <image v-for="(img, index) in currentImage.images" 
+                   :key="index" 
+                   :href="img.src"
+                   :x="img.x" :y="img.y" 
+                   :width="img.width" :height="img.height" />
+          </svg>
     </div>
       <div class="image-text" ref="textWrapper">{{ currentImage.text }}</div>
     </div>
@@ -16,19 +24,27 @@
 import { onMounted, ref } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
-  name: 'ScrollTriggerImage',
+  name: 'ScrollTriggerStory',
   setup() {
-    const imageWrapper = ref(null);
-    const textWrapper = ref(null);
     const currentImage = ref({
+      id: '',
+      order: '',
       bknd: '',
-      image: '',
+      images: [
+        ''
+      ],
       text: '',
+      alt: ''
     });
     const images = ref([]);
+    const stickyContainer = ref(null);
+    const imageWrapper = ref(null);
+    const backgroundWrapper = ref(null);
+    const textWrapper = ref(null);
     const publicPath = import.meta.env.BASE_URL;
 
     // Load images from JSON
@@ -37,30 +53,60 @@ export default {
         const response = await fetch(publicPath + '/assets/text/content.json');
         const data = await response.json();
         images.value = data.sort((a, b) => a.order - b.order);
-        currentImage.value = images.value[0]; // Initialize with the first image
+        currentImage.value = images.value[0]; // Initialize with the first step
       } catch (error) {
         console.error('Failed to load images', error);
       }
     };
 
-    // Method to update images only if they are different
-     const updateImagesIfDifferent = (newImage) => {
-      // Update background image if different
-      if (newImage.bknd && currentImage.value.bknd !== newImage.bknd) {
-        currentImage.value.bknd = newImage.bknd;
+    // Update images if they are different b/w steps, apply fade animation
+    const updateImagesIfDifferent = (newStep) => {
+      const isImageDifferent = JSON.stringify(currentImage.value.images) !== JSON.stringify(newStep.images);
+      const isBackgroundDifferent = currentImage.value.bknd !== newStep.bknd;
+      const isTextDifferent = currentImage.value.text !== newStep.text;
+
+      // Apply fade transition to the background if different
+      if (isBackgroundDifferent) {
+        applyFadeTransition(backgroundWrapper, newStep.bknd, (newValue) => {
+          currentImage.value.bknd = newValue;
+        });
       }
-      // Update foreground image if different and not empty
-      if (newImage.image && currentImage.value.image !== newImage.image) {
-        currentImage.value.image = newImage.image;
-      } else if (!newImage.image) {
-        // Handle empty foreground image
-        currentImage.value.image = '';
+
+      // Apply fade transition to images if different
+      if (isImageDifferent) {
+        applyFadeTransition(imageWrapper, newStep.images, (newValue) => {
+          currentImage.value.images = [...newValue];
+        });
       }
-      // Update text if different
-      if (newImage.text && currentImage.value.text !== newImage.text) {
-        currentImage.value.text = newImage.text;
+
+      // Apply fade transition to text if different
+      if (isTextDifferent) {
+        applyFadeTransition(textWrapper, newStep.text, (newValue) => {
+          currentImage.value.text = newValue;
+        });
       }
-    };  
+    };
+
+    function applyFadeTransition(elementRef, newValue, updateFunction) {
+      gsap.to(elementRef.value, {
+        opacity: 0,
+        duration: 0.25,
+        onComplete: () => {
+          // Check if there's an update function and a new value to apply
+          if (updateFunction && newValue !== undefined) {
+            updateFunction(newValue);
+          }
+          // Fade the element back in
+          gsap.to(elementRef.value, {
+            opacity: 1,
+            duration: 0.25
+          });
+        }
+      });
+    }
+
+
+
 
     // GSAP ScrollTrigger
     const setupScrollTrigger = () => {
@@ -77,13 +123,17 @@ export default {
               images.value.length - 1,
               Math.floor(progress * images.value.length)
             );
-            const newImage = images.value[index];
-            updateImagesIfDifferent(newImage);
+            const newStep = images.value[index];
+            updateImagesIfDifferent(newStep);
           },
           onEnterBack: () => {
             // Explicitly set to the first image when scrolling back past the start
             const firstImage = images.value[0];
-            currentImage.value = { ...initialImage };
+            currentImage.value = { ...firstImage };
+            gsap.to([imageWrapper.value, textWrapper.value], {
+              opacity: 1,
+              duration: 0.5
+            });
           }
         }
       });
@@ -96,8 +146,11 @@ export default {
 
     return { 
       currentImage,
+      stickyContainer,
       imageWrapper,
-      textWrapper 
+      textWrapper,
+      backgroundWrapper,
+      applyFadeTransition
     };
   }
 };
@@ -107,7 +160,7 @@ export default {
 .container {
   display: grid;
   grid-template-areas: "overlay";
-  height: 400vh; /* Sets scrolling length */
+  height: 800vh; /* Sets scrolling length */
   margin: 50px;
   box-sizing: border-box;
   max-width: calc(100vw - 40px); /* Subtract total horizontal margins from 100vw */
@@ -151,4 +204,18 @@ export default {
   width: 100%; /* Ensure text is centered regardless of image width */
   z-index: 3; /* Ensure text is above all */
 }
+
+.image-wrapper {
+  width: 100%; /* Adjust based on your layout */
+  height: auto; /* Adjust if you have a specific height in mind */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper svg {
+  max-width: 100%;
+  height: auto; /* Adjust to maintain aspect ratio or fill a specific height */
+}
+
 </style>
