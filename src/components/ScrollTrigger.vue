@@ -116,7 +116,7 @@ export default {
           onEnterBack: () => {
             // Explicitly set to the first image when scrolling back past the start
             const firstImage = images.value[0];
-            currentImage.value = { ...initialImage };
+            currentImage.value = { ...firstImage };
             gsap.to([imageWrapper.value, textWrapper.value], {
               opacity: 1,
               duration: 0.5
