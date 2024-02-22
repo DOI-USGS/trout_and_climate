@@ -6,7 +6,7 @@
         :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
-      <img :src="currentImage.image"  />
+          <img v-for="(image, index) in currentImage.images" :key="index" :src="image"  />
     </div>
       <div class="image-text" ref="textWrapper">{{ currentImage.text }}</div>
     </div>
@@ -27,7 +27,9 @@ export default {
       id: '',
       order: '',
       bknd: '',
-      image: '',
+      images: [
+        ''
+      ],
       text: '',
       alt: ''
     });
@@ -44,18 +46,18 @@ export default {
         const response = await fetch(publicPath + '/assets/text/content.json');
         const data = await response.json();
         images.value = data.sort((a, b) => a.order - b.order);
-        currentImage.value = images.value[0]; // Initialize with the first image
+        currentImage.value = images.value[0]; // Initialize with the first step
       } catch (error) {
         console.error('Failed to load images', error);
       }
     };
 
     // Update images if they are different b/w steps, apply fade animation
-    const updateImagesIfDifferent = (newImage) => {
+    const updateImagesIfDifferent = (newStep) => {
       // Check if there is any change
-      const isImageDifferent = currentImage.value.image !== newImage.image;
-      const isBackgroundDifferent = currentImage.value.bknd !== newImage.bknd;
-      const isTextDifferent = currentImage.value.text !== newImage.text;
+      const isImageDifferent = JSON.stringify(currentImage.value.images) !== JSON.stringify(newStep.image);
+      const isBackgroundDifferent = currentImage.value.bknd !== newStep.bknd;
+      const isTextDifferent = currentImage.value.text !== newStep.text;
 
       if (isImageDifferent || isBackgroundDifferent || isTextDifferent) {
         // Fade out current elements
@@ -65,19 +67,19 @@ export default {
           onComplete: () => {
             // Update elements only if they are different
             if (isImageDifferent) {
-              currentImage.value.image = newImage.image || ''; // Handle empty images
+              currentImage.value.images = [...newStep.images]; 
             }
             if (isBackgroundDifferent) {
-              currentImage.value.bknd = newImage.bknd;
+              currentImage.value.bknd = newStep.bknd;
             }
             if (isTextDifferent) {
-              currentImage.value.text = newImage.text;
+              currentImage.value.text = newStep.text;
             }
 
             // Fade in with new content
             gsap.to([imageWrapper.value, textWrapper.value, backgroundWrapper.value], {
               opacity: 1,
-              duration: 1
+              duration: 0.5
             });
           }
         });
@@ -101,8 +103,8 @@ export default {
               images.value.length - 1,
               Math.floor(progress * images.value.length)
             );
-            const newImage = images.value[index];
-            updateImagesIfDifferent(newImage);
+            const newStep = images.value[index];
+            updateImagesIfDifferent(newStep);
           },
           onEnterBack: () => {
             // Explicitly set to the first image when scrolling back past the start
@@ -181,4 +183,6 @@ export default {
   width: 100%; /* Ensure text is centered regardless of image width */
   z-index: 3; /* Ensure text is above all */
 }
+
+
 </style>
