@@ -9,7 +9,7 @@
     "build-beta": "vite build --mode beta_tier",
     "build-prod": "vite build --mode prod_tier",
     "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.json --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "@vue/eslint-config-prettier": "^8.0.0",
     "d3": "^7.8.5",
     "eslint": "^8.53.0",
+    "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-vue": "^9.18.1",
     "mobile-device-detect": "^0.4.3",
     "prettier": "^3.1.0",
