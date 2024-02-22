@@ -1,6 +1,7 @@
 <template>
   <div class="container">
       <div class="background-image-container" 
+        ref="backgroundWrapper"
         :alt="currentImage.alt"
         :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
       <div class="sticky-image-container" ref="stickyContainer">
@@ -16,19 +17,25 @@
 import { onMounted, ref } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
-  name: 'ScrollTriggerImage',
+  name: 'ScrollTriggerStory',
   setup() {
-    const imageWrapper = ref(null);
-    const textWrapper = ref(null);
     const currentImage = ref({
+      id: '',
+      order: '',
       bknd: '',
       image: '',
       text: '',
+      alt: ''
     });
     const images = ref([]);
+    const stickyContainer = ref(null);
+    const imageWrapper = ref(null);
+    const backgroundWrapper = ref(null);
+    const textWrapper = ref(null);
     const publicPath = import.meta.env.BASE_URL;
 
     // Load images from JSON
@@ -43,24 +50,41 @@ export default {
       }
     };
 
-    // Method to update images only if they are different
-     const updateImagesIfDifferent = (newImage) => {
-      // Update background image if different
-      if (newImage.bknd && currentImage.value.bknd !== newImage.bknd) {
-        currentImage.value.bknd = newImage.bknd;
+    // Update images if they are different b/w steps, apply fade animation
+    const updateImagesIfDifferent = (newImage) => {
+      // Check if there is any change
+      const isImageDifferent = currentImage.value.image !== newImage.image;
+      const isBackgroundDifferent = currentImage.value.bknd !== newImage.bknd;
+      const isTextDifferent = currentImage.value.text !== newImage.text;
+
+      if (isImageDifferent || isBackgroundDifferent || isTextDifferent) {
+        // Fade out current elements
+        gsap.to([imageWrapper.value, textWrapper.value, backgroundWrapper.value], {
+          opacity: 0,
+          duration: 0.5,
+          onComplete: () => {
+            // Update elements only if they are different
+            if (isImageDifferent) {
+              currentImage.value.image = newImage.image || ''; // Handle empty images
+            }
+            if (isBackgroundDifferent) {
+              currentImage.value.bknd = newImage.bknd;
+            }
+            if (isTextDifferent) {
+              currentImage.value.text = newImage.text;
+            }
+
+            // Fade in with new content
+            gsap.to([imageWrapper.value, textWrapper.value, backgroundWrapper.value], {
+              opacity: 1,
+              duration: 1
+            });
+          }
+        });
       }
-      // Update foreground image if different and not empty
-      if (newImage.image && currentImage.value.image !== newImage.image) {
-        currentImage.value.image = newImage.image;
-      } else if (!newImage.image) {
-        // Handle empty foreground image
-        currentImage.value.image = '';
-      }
-      // Update text if different
-      if (newImage.text && currentImage.value.text !== newImage.text) {
-        currentImage.value.text = newImage.text;
-      }
-    };  
+    };
+
+
 
     // GSAP ScrollTrigger
     const setupScrollTrigger = () => {
@@ -84,6 +108,10 @@ export default {
             // Explicitly set to the first image when scrolling back past the start
             const firstImage = images.value[0];
             currentImage.value = { ...initialImage };
+            gsap.to([imageWrapper.value, textWrapper.value], {
+              opacity: 1,
+              duration: 0.5
+            });
           }
         }
       });
@@ -96,8 +124,10 @@ export default {
 
     return { 
       currentImage,
+      stickyContainer,
       imageWrapper,
-      textWrapper 
+      textWrapper,
+      backgroundWrapper
     };
   }
 };
