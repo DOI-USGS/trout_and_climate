@@ -6,7 +6,14 @@
         :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
-          <img v-for="(image, index) in currentImage.images" :key="index" :src="image"  />
+           <!-- SVG to dynamically include images -->
+           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
+            <image v-for="(img, index) in currentImage.images" 
+                   :key="index" 
+                   :href="img.src"
+                   :x="img.x" :y="img.y" 
+                   :width="img.width" :height="img.height" />
+          </svg>
     </div>
       <div class="image-text" ref="textWrapper">{{ currentImage.text }}</div>
     </div>
@@ -184,5 +191,17 @@ export default {
   z-index: 3; /* Ensure text is above all */
 }
 
+.image-wrapper {
+  width: 100%; /* Adjust based on your layout */
+  height: auto; /* Adjust if you have a specific height in mind */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-wrapper svg {
+  max-width: 100%;
+  height: auto; /* Adjust to maintain aspect ratio or fill a specific height */
+}
 
 </style>
