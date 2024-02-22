@@ -31,4 +31,4 @@ export default ({mode}) => {
     },
     base: `/visualizations/${process.env.VITE_APP_TITLE}/`
   });
-}
+} 
