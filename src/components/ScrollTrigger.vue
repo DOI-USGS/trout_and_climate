@@ -61,37 +61,50 @@ export default {
 
     // Update images if they are different b/w steps, apply fade animation
     const updateImagesIfDifferent = (newStep) => {
-      // Check if there is any change
-      const isImageDifferent = JSON.stringify(currentImage.value.images) !== JSON.stringify(newStep.image);
+      const isImageDifferent = JSON.stringify(currentImage.value.images) !== JSON.stringify(newStep.images);
       const isBackgroundDifferent = currentImage.value.bknd !== newStep.bknd;
       const isTextDifferent = currentImage.value.text !== newStep.text;
 
-      if (isImageDifferent || isBackgroundDifferent || isTextDifferent) {
-        // Fade out current elements
-        gsap.to([imageWrapper.value, textWrapper.value, backgroundWrapper.value], {
-          opacity: 0,
-          duration: 0.5,
-          onComplete: () => {
-            // Update elements only if they are different
-            if (isImageDifferent) {
-              currentImage.value.images = [...newStep.images]; 
-            }
-            if (isBackgroundDifferent) {
-              currentImage.value.bknd = newStep.bknd;
-            }
-            if (isTextDifferent) {
-              currentImage.value.text = newStep.text;
-            }
+      // Apply fade transition to the background if different
+      if (isBackgroundDifferent) {
+        applyFadeTransition(backgroundWrapper, newStep.bknd, (newValue) => {
+          currentImage.value.bknd = newValue;
+        });
+      }
 
-            // Fade in with new content
-            gsap.to([imageWrapper.value, textWrapper.value, backgroundWrapper.value], {
-              opacity: 1,
-              duration: 0.5
-            });
-          }
+      // Apply fade transition to images if different
+      if (isImageDifferent) {
+        applyFadeTransition(imageWrapper, newStep.images, (newValue) => {
+          currentImage.value.images = [...newValue];
+        });
+      }
+
+      // Apply fade transition to text if different
+      if (isTextDifferent) {
+        applyFadeTransition(textWrapper, newStep.text, (newValue) => {
+          currentImage.value.text = newValue;
         });
       }
     };
+
+    function applyFadeTransition(elementRef, newValue, updateFunction) {
+      gsap.to(elementRef.value, {
+        opacity: 0,
+        duration: 0.25,
+        onComplete: () => {
+          // Check if there's an update function and a new value to apply
+          if (updateFunction && newValue !== undefined) {
+            updateFunction(newValue);
+          }
+          // Fade the element back in
+          gsap.to(elementRef.value, {
+            opacity: 1,
+            duration: 0.25
+          });
+        }
+      });
+    }
+
 
 
 
@@ -136,7 +149,8 @@ export default {
       stickyContainer,
       imageWrapper,
       textWrapper,
-      backgroundWrapper
+      backgroundWrapper,
+      applyFadeTransition
     };
   }
 };
@@ -146,7 +160,7 @@ export default {
 .container {
   display: grid;
   grid-template-areas: "overlay";
-  height: 400vh; /* Sets scrolling length */
+  height: 800vh; /* Sets scrolling length */
   margin: 50px;
   box-sizing: border-box;
   max-width: calc(100vw - 40px); /* Subtract total horizontal margins from 100vw */
