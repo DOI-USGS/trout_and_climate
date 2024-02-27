@@ -25,10 +25,9 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_2.png",
-				"x": "10%",
-				"y": "40%",
-				"width": "50%",
-				"height": "50%"
+				"x": "25%",
+				"y": "25%",
+				"width": "10%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -63,8 +62,7 @@
 				"src": "assets/vectorized_pngs/barry_3.png",
 				"x": "40%",
 				"y": "40%",
-				"width": "40%",
-				"height": "40%"
+				"width": "40%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -79,8 +77,7 @@
 				"src": "assets/vectorized_pngs/alex_1.png",
 				"x": "10%",
 				"y": "40%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			},
 			{
 				"src": "assets/vectorized_pngs/denise_1.png",
@@ -100,8 +97,7 @@
 				"src": "assets/vectorized_pngs/barry_3.png",
 				"x": "10%",
 				"y": "40%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
@@ -116,8 +112,7 @@
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -132,8 +127,7 @@
 				"src": "assets/vectorized_pngs/barry_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -148,8 +142,7 @@
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -164,8 +157,7 @@
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -180,8 +172,7 @@
 				"src": "assets/vectorized_pngs/mike_3.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -196,8 +187,7 @@
 				"src": "assets/vectorized_pngs/alex_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
@@ -212,8 +202,7 @@
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_water_view.png",
@@ -228,8 +217,7 @@
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_water_view.png",
@@ -244,8 +232,7 @@
 				"src": "assets/vectorized_pngs/denise_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "10%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_landscape.png",
@@ -260,8 +247,7 @@
 				"src": "assets/vectorized_pngs/barry_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -276,8 +262,7 @@
 				"src": "assets/vectorized_pngs/barry_2.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -292,8 +277,7 @@
 				"src": "assets/vectorized_pngs/randy_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",

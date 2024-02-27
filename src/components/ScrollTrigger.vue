@@ -13,7 +13,7 @@
                    :key="index" 
                    :href="img.src"
                    :x="img.x" :y="img.y" 
-                   :width="img.width" :height="img.height" />
+                   :width="img.width" />
           </svg>
     </div>
       <div class="image-text" ref="textWrapper">{{ currentImage.text }}</div>
