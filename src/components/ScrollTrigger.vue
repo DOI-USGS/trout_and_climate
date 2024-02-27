@@ -7,7 +7,8 @@
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
            <!-- SVG to dynamically include images -->
-           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
+           <svg id="fishSVG" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
+            
             <image v-for="(img, index) in currentImage.images" 
                    :key="index" 
                    :href="img.src"
@@ -124,6 +125,7 @@ export default {
               Math.floor(progress * images.value.length)
             );
             const newStep = images.value[index];
+            console.log(newStep.images)
             updateImagesIfDifferent(newStep);
           },
           onEnterBack: () => {
@@ -200,14 +202,14 @@ export default {
   margin-top: 20px;
   text-align: center;
   position: absolute; /* Make text always visible on top */
-  bottom: 10%; /* Adjust based on your preference */
+  bottom: 10%; 
   width: 100%; /* Ensure text is centered regardless of image width */
   z-index: 3; /* Ensure text is above all */
 }
 
 .image-wrapper {
-  width: 100%; /* Adjust based on your layout */
-  height: auto; /* Adjust if you have a specific height in mind */
+  width: 100%; 
+  height: 100%; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -215,7 +217,7 @@ export default {
 
 .image-wrapper svg {
   max-width: 100%;
-  height: auto; /* Adjust to maintain aspect ratio or fill a specific height */
+  height: 100%;
 }
 
 </style>
