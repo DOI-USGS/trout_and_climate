@@ -178,14 +178,14 @@ export default {
   position: sticky;
   top: 50px;
   height: calc(100vh - 100px); /* Full viewport height */
-  width: 100%; /* Full width */
+  width: 100%; 
   z-index: 1; /* For stacking context */
 }
 
 .background-image {
   grid-area: 1 / 1 / 2 / 2; /* Position on the grid */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  width: 100%; 
+  height: 100%; 
   object-fit: contain; /* Cover the container without losing aspect ratio */
   z-index: -1; /* Behind the sticky images */
   opacity: 0.4;
@@ -198,9 +198,6 @@ export default {
   align-items: center;
   z-index: 2; /* Ensures it's above the background */
 }
-
-/* Other styles remain unchanged */
-
 
 .sticky-image-container img {
   max-width: 100%;
@@ -225,7 +222,7 @@ export default {
 
 .image-wrapper svg {
   max-width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 </style>
