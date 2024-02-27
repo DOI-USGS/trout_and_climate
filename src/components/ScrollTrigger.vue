@@ -166,8 +166,9 @@ export default {
   align-items: center;
   height: 800vh; /* Sets scrolling length */
   margin: 50px;
-  max-width: calc(100vw - 100px); /* Subtract total horizontal margins from 100vw */
+  width: calc(100vw - 100px); /* Subtract total horizontal margins from 100vw */
   position: relative; /* Ensure ScrollTrigger can track its position */
+  max-width: 1600px;
 }
 /* These need to overlap perfectly */
 .background-image-container, .sticky-image-container {
@@ -177,6 +178,8 @@ export default {
   grid-area: overlay;
   height: calc(100vh - 100px); /* Centered with margin around the whole thing */
   width: 100%; /* Full width */
+  justify-content: center;
+  align-items: center;
 }
 .background-image-container {
   background-size: contain;
@@ -186,16 +189,12 @@ export default {
 }
 
 .sticky-image-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: 2; /* In the foreground */
 }
 
 .sticky-image-container img {
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 100%;
 }
 /* Define and organize the changing components */
 .image-text {
