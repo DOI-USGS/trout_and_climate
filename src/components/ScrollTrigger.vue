@@ -8,6 +8,7 @@
         <div class="image-wrapper" ref="imageWrapper">
            <!-- SVG to dynamically include images -->
            <svg id="fishSVG" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
+            <rect height="100%" width="100%" fill="blue" opacity="0.4" />
             
             <image v-for="(img, index) in currentImage.images" 
                    :key="index" 
@@ -160,21 +161,21 @@ export default {
 
 <style>
 .container {
-  display: grid;
-  grid-template-areas: "overlay";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 800vh; /* Sets scrolling length */
   margin: 50px;
-  box-sizing: border-box;
-  max-width: calc(100vw - 40px); /* Subtract total horizontal margins from 100vw */
+  max-width: calc(100vw - 100px); /* Subtract total horizontal margins from 100vw */
   position: relative; /* Ensure ScrollTrigger can track its position */
 }
 
 .background-image-container, .sticky-image-container {
   position: -webkit-sticky; /* For Safari */
   position: sticky;
-  top: 20px;
+  top: 50px;
   grid-area: overlay;
-  height: calc(100vh - 50px); /* Full viewport height */
+  height: calc(100vh - 100px); /* Full viewport height */
   width: 100%; /* Full width */
   z-index: 1; /* Background image z-index */
 }
@@ -184,6 +185,8 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1; /* Ensure it stays behind the foreground image */
+  background-color: yellow;
+  opacity: 0.4;
 }
 
 .sticky-image-container {
