@@ -8,7 +8,7 @@
         <div class="image-wrapper" ref="imageWrapper">
            <!-- SVG to dynamically include images -->
            <svg id="fishSVG" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
-            <rect height="100%" width="100%" fill="blue" opacity="0.4" />
+            <!-- <rect height="100%" width="100%" fill="blue" opacity="0.4" /> -->
             
             <image v-for="(img, index) in currentImage.images" 
                    :key="index" 
@@ -169,24 +169,20 @@ export default {
   max-width: calc(100vw - 100px); /* Subtract total horizontal margins from 100vw */
   position: relative; /* Ensure ScrollTrigger can track its position */
 }
-
+/* These need to overlap perfectly */
 .background-image-container, .sticky-image-container {
   position: -webkit-sticky; /* For Safari */
   position: sticky;
   top: 50px;
   grid-area: overlay;
-  height: calc(100vh - 100px); /* Full viewport height */
+  height: calc(100vh - 100px); /* Centered with margin around the whole thing */
   width: 100%; /* Full width */
-  z-index: 1; /* Background image z-index */
 }
 .background-image-container {
-  width: 100%;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1; /* Ensure it stays behind the foreground image */
-  background-color: yellow;
-  opacity: 0.4;
+  z-index: -1; /* Keep behind the foreground image */
 }
 
 .sticky-image-container {
@@ -194,13 +190,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2; /* Ensures it's above the background */
+  z-index: 2; /* In the foreground */
 }
 
 .sticky-image-container img {
   max-width: 100%;
   max-height: 80vh;
 }
+/* Define and organize the changing components */
 .image-text {
   margin-top: 20px;
   text-align: center;
