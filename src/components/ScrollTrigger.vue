@@ -1,26 +1,27 @@
 <template>
   <div class="container">
-      <div class="background-image-container" 
-        ref="backgroundWrapper"
-        :alt="currentImage.alt"
-        :style="{ backgroundImage: 'url(' + currentImage.bknd + ')' }"></div>
+    <div class="overlay-container"> <!-- New container for grid layout -->
+      <img class="background-image-container" 
+           ref="backgroundWrapper"
+           :src="currentImage.bknd" 
+           :alt="currentImage.alt">
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
-           <!-- SVG to dynamically include images -->
-           <svg id="fishSVG" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" >
-            <rect height="100%" width="100%" fill="blue" opacity="0.4" />
-            
+          <svg id="fishSVG" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect height="100%" width="100%" fill="blue" opacity="0.4"></rect>
             <image v-for="(img, index) in currentImage.images" 
                    :key="index" 
                    :href="img.src"
                    :x="img.x" :y="img.y" 
                    :width="img.width" />
           </svg>
-    </div>
-      <div class="image-text" ref="textWrapper">{{ currentImage.text }}</div>
+        </div>
+        <div class="image-text" ref="textWrapper">{{ currentImage.text }}</div>
+      </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import { onMounted, ref } from 'vue';
@@ -166,34 +167,40 @@ export default {
   align-items: center;
   height: 800vh; /* Sets scrolling length */
   margin: 50px;
-  width: calc(100vw - 100px); /* Subtract total horizontal margins from 100vw */
-  position: relative; /* Ensure ScrollTrigger can track its position */
+  width: calc(100vw - 100px); /* Adjust for margins */
+  position: relative; /* For ScrollTrigger */
   max-width: 1600px;
 }
 
-.background-image-container, .sticky-image-container {
+.overlay-container {
+  display: grid; /* Use grid to overlay images */
   position: -webkit-sticky; /* For Safari */
   position: sticky;
   top: 50px;
-  grid-area: overlay;
   height: calc(100vh - 100px); /* Full viewport height */
   width: 100%; /* Full width */
-  justify-content: center;
-  align-items: center;
+  z-index: 1; /* For stacking context */
 }
+
 .background-image-container {
-  width: 100%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: -1; /* Ensure it stays behind the foreground image */
-  background-color: yellow;
+  grid-area: 1 / 1 / 2 / 2; /* Position on the grid */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  object-fit: contain; /* Cover the container without losing aspect ratio */
+  z-index: -1; /* Behind the sticky images */
   opacity: 0.4;
 }
 
 .sticky-image-container {
-  z-index: 2; /* In the foreground */
+  grid-area: 1 / 1 / 2 / 2; /* Position on the grid */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; /* Ensures it's above the background */
 }
+
+/* Other styles remain unchanged */
+
 
 .sticky-image-container img {
   max-width: 100%;
