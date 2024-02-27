@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <div class="overlay-container"> <!-- New container for grid layout -->
-      <img class="background-image-container" 
+    <div class="overlay-container"> 
+      <img class="background-image" 
            ref="backgroundWrapper"
            :src="currentImage.bknd" 
            :alt="currentImage.alt">
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
-          <svg id="fishSVG" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <svg id="fishSVG" viewBox="0 0 16 9" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <rect height="100%" width="100%" fill="blue" opacity="0.4"></rect>
             <image v-for="(img, index) in currentImage.images" 
                    :key="index" 
@@ -182,7 +182,7 @@ export default {
   z-index: 1; /* For stacking context */
 }
 
-.background-image-container {
+.background-image {
   grid-area: 1 / 1 / 2 / 2; /* Position on the grid */
   width: 100%; /* Full width */
   height: 100%; /* Full height */
