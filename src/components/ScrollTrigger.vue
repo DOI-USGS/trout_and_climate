@@ -4,6 +4,7 @@
       <img class="background-image" 
            ref="backgroundWrapper"
            :src="currentImage.bknd" 
+           :id="currentImage.id"
            :alt="currentImage.alt">
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
@@ -16,16 +17,21 @@
                    :width="img.width" />
           </svg>
         </div>
+                   <!-- Buttons Conditionally Rendered -->
+                   <div v-if="currentImage.id === 'chooseYourOwnAdventure'" class="buttons-container">
+          <button>HOTTT</button>
+          <button>BRRR</button>
+          <button>JUST RIGHT</button>
+        </div>
       </div>
         <div class="text-container" ref="textWrapper">{{ currentImage.text }}</div>
-
     </div>
   </div>
 </template>
 
 
 <script>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, nextTick } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -120,7 +126,7 @@ export default {
           start: "top top",
           end: "bottom bottom",
           scrub: true,
-          markers: true,
+          markers: false,
           onUpdate: self => {
             const progress = self.progress;
             const index = Math.min(
@@ -128,8 +134,16 @@ export default {
               Math.floor(progress * images.value.length)
             );
             const newStep = images.value[index];
-            console.log(index)
+            if (currentImage.value.id !== newStep.id) {
+              currentImage.value = { ...newStep }; // Reassign to trigger reactivity
+            }
+            // Debugging
+            console.log("Current id:", currentImage.value.id);
+            console.log("New step:", newStep);
+            console.log("Current image before update:", currentImage.value);
             updateImagesIfDifferent(newStep);
+            console.log("Current image after update:", currentImage.value);
+
           },
           onEnterBack: () => {
             // Explicitly set to the first image when scrolling back past the start
@@ -146,6 +160,7 @@ export default {
 
     onMounted(async () => {
       await loadImages();
+      await nextTick();
       setupScrollTrigger();
     });
 
@@ -176,7 +191,7 @@ export default {
 .overlay-container {
   display: grid; /* Use grid to overlay images */
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 3fr 3fr 2fr;
   position: -webkit-sticky; /* For Safari */
   position: sticky;
   top: 50px;
