@@ -355,11 +355,29 @@
 				"src": "assets/vectorized_pngs/barry_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%"
+				"width": "30%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_barry_cold1.png",
+				"x": "52%",
+				"y": "33%",
+				"width": "10%"
+			},
+			{
+				"src": "assets/vectorized_pngs/mike_2.png",
+				"x": "20%",
+				"y": "50%",
+				"width": "20%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_mike_cold1.png",
+				"x": "22%",
+				"y": "25%",
+				"width": "20%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
-		"text": "Mike suggests Barry move out to his side of the watershed – life is simple here and it’s what he’s used to, plus Barry might enjoy how quiet things are around the headwaters. ​",
+		"text": "Mike suggests that Barry move to his part of the river, where the waters run colder than other parts of the area.",
 		"alt": "alt text henny"
 	},
 	{
@@ -370,26 +388,53 @@
 				"src": "assets/vectorized_pngs/barry_2.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%"
+				"width": "30%"
+			},
+			{
+				"src": "assets/vectorized_pngs/mike_1.png",
+				"x": "20%",
+				"y": "50%",
+				"width": "20%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_mike_cold2.png",
+				"x": "12%",
+				"y": "22%",
+				"width": "25%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
-		"text": "When he gets there, life is a lot harder than Barry expected. He knew it would be cold, but he didn’t think it would be this cold! He really struggles to adjust to the new area, and Mike notices how difficult this is for his friend. While Mike is just fine, he wants better for his warm-adapted friend.​​",
+		"text": "It doesn’t take long to notice that warm-adapted Barry can’t tolerate these cold streams, even though the cold-adapted Mike feels just fine.",
+		"alt": "alt text henny"
+	},
+	{
+		"id": "coldScience",
+		"order": 3,
+		"images": [
+			{
+				"src": "assets/vectorized_pngs/growthCold.png",
+				"x": "65%",
+				"y": "10%",
+				"width": "30%"
+			}
+		],
+		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
+		"text": "In cold waters, cold-adapted fish grow better than warm-adapted fish.",
 		"alt": "alt text henny"
 	},
 	{
 		"id": "rangerRandyResponds",
-		"order": 3,
+		"order": 4,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/randy_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
+				"x": "60%",
+				"y": "25%",
+				"width": "15%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
-		"text": "Ranger Randy notices that the smaller trout do well here in the cold waters, but not so much in the warmer streams. The big fish don’t do as well here, but this area has always been cold – he worries that if it were to warm up too much, it would start to succumb to drought! He decides to resist these future changes by planting on the stream’s edge to make sure that the water stays shaded and cool for years to come!​​",
+		"text": "Ranger Randy notices the smaller trout do well in the cold waters, but waters in the area are warming due to climate change. He decides to resist these future changes by planting trees on the stream’s edge to provide cooling shade to the river.",
 		"alt": "alt text henny"
 	}
 ]
