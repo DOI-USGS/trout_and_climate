@@ -182,10 +182,13 @@ export default {
   z-index: 1; /* For stacking context */
 }
 
-.background-image {
+.background-image, .sticky-image-container {
   grid-area: 1 / 1 / 2 / 2; /* Position on the grid */
   width: 100%; 
   height: 100%; 
+}
+
+.background-image {
   object-fit: contain; /* Cover the container without losing aspect ratio */
   z-index: -1; /* Behind the sticky images */
   opacity: 0.4;
