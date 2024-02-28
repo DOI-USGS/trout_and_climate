@@ -1,6 +1,6 @@
-[
-	{
-		"id": "intro",
+{
+	"intro": [
+		{"id": "intro",
 		"order": 0,
 		"images": [
 			{}
@@ -25,10 +25,9 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_2.png",
-				"x": "10%",
-				"y": "40%",
-				"width": "50%",
-				"height": "50%"
+				"x": "25%",
+				"y": "25%",
+				"width": "10%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -63,8 +62,7 @@
 				"src": "assets/vectorized_pngs/barry_3.png",
 				"x": "40%",
 				"y": "40%",
-				"width": "40%",
-				"height": "40%"
+				"width": "40%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -79,8 +77,7 @@
 				"src": "assets/vectorized_pngs/alex_1.png",
 				"x": "10%",
 				"y": "40%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			},
 			{
 				"src": "assets/vectorized_pngs/denise_1.png",
@@ -100,8 +97,7 @@
 				"src": "assets/vectorized_pngs/barry_3.png",
 				"x": "10%",
 				"y": "40%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
@@ -116,8 +112,7 @@
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -132,8 +127,7 @@
 				"src": "assets/vectorized_pngs/barry_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -148,24 +142,24 @@
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
 		"text": "Where should they move?",
 		"alt": "alt text henny"
-	},
+	}
+],
+"hotWater": [
 	{
 		"id": "chooseHot",
-		"order": 10,
+		"order": 1,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -174,14 +168,13 @@
 	},
 	{
 		"id": "chooseHot2",
-		"order": 11,
+		"order": 2,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_3.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -190,30 +183,30 @@
 	},
 	{
 		"id": "rangerAlexResponds",
-		"order": 12,
+		"order": 3,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/alex_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
 		"text": "Ranger Alex notices that some of the fish from lower in the watershed are getting used to the warmer temperatures, but that smaller, cold-adapted trout are struggling. Unfortunately, she knows that this area of the watershed is so warm that there isn’t much she can do for the trout in this area. She decides to accept these changes, and redirects her energy into improving other parts of this ecosystem. Since the trout are still struggling though, she tells the locals who fish here that the redband trout are now off limits.​​​",
 		"alt": "alt text henny"
-	},
+	}
+],
+"warmWater":[
 	{
 		"id": "chooseWarm",
-		"order": 13,
+		"order": 1,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_water_view.png",
@@ -222,14 +215,13 @@
 	},
 	{
 		"id": "chooseWarm2",
-		"order": 14,
+		"order": 2,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_water_view.png",
@@ -238,30 +230,30 @@
 	},
 	{
 		"id": "rangerDeniseResponds",
-		"order": 15,
+		"order": 3,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/denise_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "10%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_landscape.png",
 		"text": "Ranger Denice notices that the streams near the main river are a bit warmer than they have been in the past, but that the wildlife still seems to be adapting well for the most part. To help make sure every part of the ecosystem is functioning at its best, she decides to direct her energy towards increasing the connections between parts of the watershed, to help prevent drought while still allowing the allowing the plants, animals, and fish to adapt.​​",
 		"alt": "alt text henny"
-	},
+	}
+],
+"coldWater": [
 	{
 		"id": "chooseCold",
-		"order": 16,
+		"order": 1,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/barry_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -270,14 +262,13 @@
 	},
 	{
 		"id": "chooseCold2",
-		"order": 17,
+		"order": 2,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/barry_2.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -286,14 +277,13 @@
 	},
 	{
 		"id": "rangerRandyResponds",
-		"order": 18,
+		"order": 3,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/randy_1.png",
 				"x": "50%",
 				"y": "50%",
-				"width": "50%",
-				"height": "50%"
+				"width": "50%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
@@ -301,3 +291,4 @@
 		"alt": "alt text henny"
 	}
 ]
+}
