@@ -16,8 +16,9 @@
                    :width="img.width" />
           </svg>
         </div>
-        <div class="image-text" ref="textWrapper">{{ currentImage.text }}</div>
       </div>
+        <div class="text-container" ref="textWrapper">{{ currentImage.text }}</div>
+
     </div>
   </div>
 </template>
@@ -204,19 +205,26 @@ export default {
 }
 
 .sticky-image-container img {
+  grid-area: 1 / 1 / 3 / 4; /* Position on the grid */
   max-width: 100%;
   max-height: 100%;
 }
-.image-text {
+.sticky-image-container svg {
+  grid-area: 1 / 1 / 3 / 4; /* Position on the grid */
+  max-width: 100%;
+  max-height: 100%;
+}
+.text-container {
+  grid-area: 3 / 1 / 4 / 4; /* Position on the grid */
   width: 100%;
-  max-width: 800px; /* Aim for 50-75 characters per line */
+  max-width: 800px; /* 50-75 characters per line */
+   /* Center the text vertically and horizontally in the grid area */
   margin-left: auto;
-  margin-right: auto; /* Center the container */
-  margin-top: 20px;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
   text-align: center;
-  position: absolute; /* Make text always visible on top */
-  bottom: 20px; 
-  z-index: 3; /* Ensure text is above all */
+  z-index: 3; /* Text on top */
 }
 
 .image-wrapper {
