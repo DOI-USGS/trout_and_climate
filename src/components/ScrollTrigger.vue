@@ -8,7 +8,7 @@
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
           <svg id="fishSVG" viewBox="0 0 16 9" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <rect height="100%" width="100%" fill="blue" opacity="0.4"></rect>
+            <!-- <rect height="100%" width="100%" fill="blue" opacity="0.4"></rect> -->
             <image v-for="(img, index) in currentImage.images" 
                    :key="index" 
                    :href="img.src"
@@ -166,7 +166,7 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 800vh; /* Sets scrolling length */
-  margin: 50px;
+  margin: 50px auto;
   width: calc(100vw - 100px); /* Adjust for margins */
   position: relative; /* For ScrollTrigger */
   max-width: 1600px;
