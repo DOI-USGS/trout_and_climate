@@ -127,7 +127,7 @@ export default {
               Math.floor(progress * images.value.length)
             );
             const newStep = images.value[index];
-            console.log(newStep.images)
+            console.log(index)
             updateImagesIfDifferent(newStep);
           },
           onEnterBack: () => {
@@ -174,6 +174,8 @@ export default {
 
 .overlay-container {
   display: grid; /* Use grid to overlay images */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   position: -webkit-sticky; /* For Safari */
   position: sticky;
   top: 50px;
@@ -183,7 +185,7 @@ export default {
 }
 
 .background-image, .sticky-image-container {
-  grid-area: 1 / 1 / 2 / 2; /* Position on the grid */
+  grid-area: 1 / 1 / 3 / 4; /* Position on the grid */
   width: 100%; 
   height: 100%; 
 }
@@ -195,7 +197,7 @@ export default {
 }
 
 .sticky-image-container {
-  grid-area: 1 / 1 / 2 / 2; /* Position on the grid */
+  grid-area: 1 / 1 / 3 / 4; /* Position on the grid */
   display: flex;
   justify-content: center;
   align-items: center;
