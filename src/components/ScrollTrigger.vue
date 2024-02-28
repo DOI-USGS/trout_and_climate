@@ -17,14 +17,16 @@
                    :width="img.width" />
           </svg>
         </div>
-                   <!-- Buttons Conditionally Rendered -->
-                   <div v-if="currentImage.id === 'chooseYourOwnAdventure'" class="buttons-container">
-          <button>HOTTT</button>
-          <button>BRRR</button>
-          <button>JUST RIGHT</button>
+      </div>
+        <div class="text-container" ref="textWrapper">
+          {{ currentImage.text }}
+          <!-- Buttons Conditionally Rendered -->
+        <div v-if="currentImage.id === 'chooseYourOwnAdventure'" class="button-container">
+          <button class="CYOA" id="hot">HOT</button>
+          <button class="CYOA" id="cold">COLD</button>
+          <button class="CYOA" id="warm">WARM</button>
         </div>
       </div>
-        <div class="text-container" ref="textWrapper">{{ currentImage.text }}</div>
     </div>
   </div>
 </template>
@@ -133,16 +135,18 @@ export default {
               images.value.length - 1,
               Math.floor(progress * images.value.length)
             );
+            // Update step
             const newStep = images.value[index];
+            // Update step id
             if (currentImage.value.id !== newStep.id) {
               currentImage.value = { ...newStep }; // Reassign to trigger reactivity
             }
+            // Transition images if different from prior step
+            updateImagesIfDifferent(newStep);
+
             // Debugging
             console.log("Current id:", currentImage.value.id);
-            console.log("New step:", newStep);
-            console.log("Current image before update:", currentImage.value);
-            updateImagesIfDifferent(newStep);
-            console.log("Current image after update:", currentImage.value);
+            console.log("Current step:", currentImage.value);
 
           },
           onEnterBack: () => {
@@ -241,7 +245,16 @@ export default {
   text-align: center;
   z-index: 3; /* Text on top */
 }
-
+.button-container {
+  grid-area: 2 / 2 / 3 / 3; /* Position on the grid */
+  display: flex;
+  width: 100%;
+  margin-top:30px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index:10;
+}
 .image-wrapper {
   width: 100%; 
   height: 100%; 
@@ -255,4 +268,7 @@ export default {
   height: auto;
 }
 
+.CYOA {
+  width: 120px;
+}
 </style>
