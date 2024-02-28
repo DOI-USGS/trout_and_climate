@@ -5,15 +5,31 @@
 		"images": [
 			{}
 		],
+		"bknd": "assets/vectorized_pngs/landing_page.png",
+		"text": "Trout and Climate",
+		"alt": "alt text henny"
+	},
+	{
+		"id": "introAlpine",
+		"order": 1,
+		"images": [
+			{
+			}
+		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
-		"text": "This area of the Donner und Blitzen River is near the headwaters, where the water is cold and the streams are small",
+		"text": "This area of the Donner und Blitzen River is near the headwaters, where the water is cold and the streams are small.",
 		"alt": "alt text henny"
 	},
 	{
 		"id": "smallFish",
-		"order": 1,
+		"order": 2,
 		"images": [
-			{}
+			{
+				"src": "assets/vectorized_pngs/scatter_cold.png",
+				"x": "65%",
+				"y": "10%",
+				"width": "30%"
+			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
 		"text": "Fish that live in small streams like this one tend to be relatively small for their species.",
@@ -21,13 +37,19 @@
 	},
 	{
 		"id": "smallStreams",
-		"order": 2,
+		"order": 3,
 		"images": [
 			{
-				"src": "assets/vectorized_pngs/mike_2.png",
-				"x": "25%",
-				"y": "25%",
-				"width": "10%"
+				"src": "assets/vectorized_pngs/mike_1.png",
+				"x": "35%",
+				"y": "50%",
+				"width": "15%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_mike_intro.png",
+				"x": "50%",
+				"y": "20%",
+				"width": "30%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -36,7 +58,7 @@
 	},
 	{
 		"id": "slowWarm",
-		"order": 3,
+		"order": 4,
 		"images": [
 			{}
 		],
@@ -46,9 +68,14 @@
 	},
 	{
 		"id": "largeStreams",
-		"order": 4,
+		"order": 5,
 		"images": [
-			{}
+			{
+				"src": "assets/vectorized_pngs/scatter_warm.png",
+				"x": "65%",
+				"y": "10%",
+				"width": "30%"
+			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
 		"text": "Fish that live in large streams like this one tend to relatively large for their species.",
@@ -56,13 +83,19 @@
 	},
 	{
 		"id": "barryBig",
-		"order": 5,
+		"order": 6,
 		"images": [
 			{
-				"src": "assets/vectorized_pngs/barry_3.png",
-				"x": "40%",
+				"src": "assets/vectorized_pngs/barry_1.png",
+				"x": "50%",
 				"y": "40%",
-				"width": "40%"
+				"width": "25%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_barry_intro.png",
+				"x": "20%",
+				"y": "20%",
+				"width": "30%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
@@ -71,33 +104,25 @@
 	},
 	{
 		"id": "meetRangers",
-		"order": 6,
+		"order": 7,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/alex_1.png",
-				"x": "10%",
-				"y": "40%",
-				"width": "50%"
+				"x": "75%",
+				"y": "45%",
+				"width": "18%"
 			},
 			{
 				"src": "assets/vectorized_pngs/denise_1.png",
-				"x": "10%",
-				"y": "40%",
-				"width": "50%",
-				"height": "50%"
+				"x": "52%",
+				"y": "31%",
+				"width": "18%"
 			},
 			{
 				"src": "assets/vectorized_pngs/randy_1.png",
-				"x": "10%",
-				"y": "40%",
-				"width": "50%",
-				"height": "50%"
-			},
-			{
-				"src": "assets/vectorized_pngs/barry_3.png",
-				"x": "10%",
-				"y": "40%",
-				"width": "50%"
+				"x": "65%",
+				"y": "22%",
+				"width": "10%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
@@ -105,47 +130,124 @@
 		"alt": "alt text henny"
 	},
 	{
-		"id": "meetMike",
-		"order": 7,
-		"images": [
-			{
-				"src": "assets/vectorized_pngs/mike_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
-			}
-		],
-		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
-		"text": "Mike is cold-adapted, meaning that he is from high in the watershed, where it’s colder and harder to survive. The stream he grew up in was also pretty small, so he stayed small too! His family isn’t very large, but they enjoy living in this part of the watershed.​",
-		"alt": "alt text henny"
-	},
-	{
-		"id": "meetBarry",
+		"id": "rangersLandscape",
 		"order": 8,
 		"images": [
 			{
-				"src": "assets/vectorized_pngs/barry_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
+				"src": "assets/vectorized_pngs/alex_0.png",
+				"x": "49%",
+				"y": "34%",
+				"width": "9%"
+			},
+			{
+				"src": "assets/vectorized_pngs/denise_0.png",
+				"x": "31%",
+				"y": "29%",
+				"width": "8%"
+			},
+			{
+				"src": "assets/vectorized_pngs/randy_0.png",
+				"x": "41%",
+				"y": "31%",
+				"width": "7%"
 			}
 		],
-		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
-		"text": "Barry is warm-adapted, meaning he is from low in the watershed, where it’s warmer and resources are plentiful. The stream he grew up in was pretty large, so he had lots of room to grow. Barry’s family is huge, and they love how much space they have here!",
+		"bknd": "assets/vectorized_pngs/landscape_sidebyside.png",
+		"text": "To best manage these streams for the health of the ecosystem, these managers will be keeping an eye on the redband trout living in these rivers.",
+		"alt": "alt text henny"
+	},
+	{
+		"id": "alevins",
+		"order": 9,
+		"images": [
+			{
+				"src": "assets/vectorized_pngs/mike_0.png",
+				"x": "5%",
+				"y": "50%",
+				"width": "9%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_mike_bye.png",
+				"x": "15%",
+				"y": "25%",
+				"width": "23%"
+			},
+			{
+				"src": "assets/vectorized_pngs/barry_0.png",
+				"x": "70%",
+				"y": "55%",
+				"width": "12%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_barry_bye.png",
+				"x": "47%",
+				"y": "35%",
+				"width": "20%"
+			},
+			{
+				"src": "assets/vectorized_pngs/hot_temp.png",
+				"x": "97%",
+				"y": "65%",
+				"width": "2%"
+			},
+			{
+				"src": "assets/vectorized_pngs/cold_temp.png",
+				"x": "0%",
+				"y": "53%",
+				"width": "2%"
+			}
+		],
+		"bknd": "assets/vectorized_pngs/water_sidebyside.png",
+		"text": "Mike and Barry were born together but grew up in different streams since they were alevins (baby trout).",
+		"alt": "alt text henny"
+	},
+	{
+		"id": "alevins",
+		"order": 10,
+		"images": [
+			{
+				"src": "assets/vectorized_pngs/mike_2.png",
+				"x": "13%",
+				"y": "48%",
+				"width": "9%"
+			},
+			{
+				"src": "assets/vectorized_pngs/barry_3.png",
+				"x": "65%",
+				"y": "52%",
+				"width": "15%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_pen_pals.png",
+				"x": "18%",
+				"y": "12%",
+				"width": "53%"
+			},
+			{
+				"src": "assets/vectorized_pngs/hot_temp.png",
+				"x": "97%",
+				"y": "65%",
+				"width": "2%"
+			},
+			{
+				"src": "assets/vectorized_pngs/cold_temp.png",
+				"x": "0%",
+				"y": "53%",
+				"width": "2%"
+			}
+		],
+		"bknd": "assets/vectorized_pngs/water_sidebyside.png",
+		"text": "Now that Mike and Barry are older, they are both considering migrating to a different stream together.",
 		"alt": "alt text henny"
 	},
 	{
 		"id": "chooseYourOwnAdventure",
-		"order": 9,
+		"order": 11,
 		"images": [
 			{
-				"src": "assets/vectorized_pngs/mike_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
 			}
 		],
-		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
+		"bknd": "assets/vectorized_pngs/landscape_CYOA.png",
 		"text": "Where should they move?",
 		"alt": "alt text henny"
 	}
