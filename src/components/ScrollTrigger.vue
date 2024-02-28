@@ -22,9 +22,9 @@
           {{ currentStep.text }}
           <!-- Buttons Conditionally Rendered -->
         <div v-if="currentStep.id === 'chooseYourOwnAdventure'" class="button-container">
-          <button class="CYOA" id="hot" @click="advanceToNextStep('chooseHot')">HOT</button>
-          <button class="CYOA" id="cold" @click="advanceToNextStep('chooseCold')">COLD</button>
-          <button class="CYOA" id="warm" @click="advanceToNextStep('chooseWarm')">WARM</button>
+          <button class="CYOA" id="hot" @click="addSection('hotWater')">HOT</button>
+          <button class="CYOA" id="cold" @click="addSection('coldWater')">COLD</button>
+          <button class="CYOA" id="warm" @click="addSection('warmWater')">WARM</button>
         </div>
       </div>
     </div>
@@ -42,6 +42,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default {
   name: 'ScrollTriggerStory',
   setup() {
+    // Define a reactive property to hold the full dataset
+    const fullData = ref({});
     const currentStep = ref({
       id: '',
       order: '',
@@ -64,8 +66,14 @@ export default {
       try {
         const response = await fetch(publicPath + '/assets/text/content.json');
         const data = await response.json();
-        images.value = data.sort((a, b) => a.order - b.order);
-        currentStep.value = images.value[0]; // Initialize with the first step
+
+        // Store the fetched data in fullData
+       fullData.value = data;
+
+        images.value = data.intro.sort((a, b) => a.order - b.order); // Start with intro content only
+        console.log(images.value)
+        currentStep.value = images.value[0]; // Initialize with the first step in 'intro' array
+
       } catch (error) {
         console.error('Failed to load images', error);
       }
@@ -137,14 +145,38 @@ export default {
         const nextStep = images.value[targetIndex];
         currentStep.value = { ...nextStep };
 
-        // Optionally, manage scrolling or other actions to reflect the step change
+        // TODO: manage scrolling or other actions to reflect the step change
       }
     };
+    // Append next section when button is pressed
+    const addSection = (contentKey) => {
+      // Find the index of the current step within the images array
+      const currentStepIndex = images.value.findIndex(item => item.id === currentStep.value.id);
+      const additionalContent = fullData.value[contentKey];
 
+      if (additionalContent && additionalContent.length > 0) {
+        // Adjust the order of the new content to follow the current step's order
+        const maxCurrentOrder = currentStep.value.order;
+        const adjustedAdditionalContent = additionalContent.map(item => ({
+          ...item,
+          order: item.order + maxCurrentOrder
+        })).sort((a, b) => a.order - b.order);
 
+        // Splice the adjusted content into images array right after the current step
+        images.value.splice(currentStepIndex + 1, 0, ...adjustedAdditionalContent);
+        // Re-assign images.value to itself to ensure Vue reactivity
+        images.value = [...images.value];
+        console.log(images.value)
 
-
-
+        // Check if you're at the last step of the current content
+        if (currentStepIndex === images.value.length - adjustedAdditionalContent.length - 1) {
+          // Automatically advance to the first new step
+          currentStep.value = { ...adjustedAdditionalContent[0] };
+          // Ensure the UI updates to reflect this new step, potentially with scrolling
+          // This might involve calling a function to handle scrolling to the new current step
+        }
+      }
+    };
 
     // GSAP ScrollTrigger
     const setupScrollTrigger = () => {
@@ -195,13 +227,15 @@ export default {
     });
 
     return { 
+      fullData,
       currentStep,
       stickyContainer,
       imageWrapper,
       textWrapper,
       backgroundWrapper,
       applyFadeTransition,
-      advanceToNextStep
+      advanceToNextStep,
+      addSection
     };
   }
 };
