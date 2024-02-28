@@ -356,44 +356,83 @@
 		"order": 1,
 		"images": [
 			{
-				"src": "assets/vectorized_pngs/mike_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
+				"src": "assets/vectorized_pngs/mike_2.png",
+				"x": "28%",
+				"y": "60%",
+				"width": "13%"
+			},
+			{
+				"src": "assets/vectorized_pngs/barry_3.png",
+				"x": "59%",
+				"y": "43%",
+				"width": "18%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_both_warm1.png",
+				"x": "34%",
+				"y": "3%",
+				"width": "25%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_water_view.png",
-		"text": "Mike and Barry decide they want to go somewhere new for them both, for a fresh start. They pick out a new spot in the watershed – warmer than Mike’s old stream but cooler than Barry’s old stream. They don’t know what to expect, but they’re both excited to find out!​",
+		"text": "Mike and Barry decide they want to go somewhere new for them both, for a fresh start. They pick out a new spot in the watershed – warmer than Mike’s old stream but cooler than Barry’s old stream.",
 		"alt": "alt text henny"
 	},
 	{
-		"id": "chooseWarm2",
+		"id": "sufferWarm",
 		"order": 2,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
+				"x": "28%",
+				"y": "60%",
+				"width": "13%"
+			},
+			{
+				"src": "assets/vectorized_pngs/barry_1.png",
+				"x": "59%",
+				"y": "43%",
+				"width": "18%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_both_warm2.png",
+				"x": "36%",
+				"y": "22%",
+				"width": "23%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_water_view.png",
-		"text": "Mike loves the new stream and finds lots of food to eat, and Barry seems like he’s enjoying the stream too – but Barry notices that Mike is doing so well, and feels like he’s getting left behind.​",
+		"text": "While Mike is growing with the warmer temperature and roomier habitat, he finds that it's a bit too warm, and that Barry is not doing as well in this new habitat.",
+		"alt": "alt text henny"
+	},
+	{
+		"id": "scienceWarm",
+		"order": 3,
+		"images": [
+			{
+				"src": "assets/vectorized_pngs/growthWarm.png",
+				"x": "65%",
+				"y": "10%",
+				"width": "30%"
+			}
+		],
+		"bknd": "assets/vectorized_pngs/midland_landscape.png",
+		"text": "In these moderate temperatures, both cold-adapted and warm-adapted fish can grow, but with the larger, warmer streams the small, cold-adapted fish grow at a higher pace than larger, warm-adapted fish.",
 		"alt": "alt text henny"
 	},
 	{
 		"id": "rangerDeniseResponds",
-		"order": 3,
+		"order": 4,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/denise_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "10%"
+				"x": "35%",
+				"y": "30%",
+				"width": "20%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_landscape.png",
-		"text": "Ranger Denice notices that the streams near the main river are a bit warmer than they have been in the past, but that the wildlife still seems to be adapting well for the most part. To help make sure every part of the ecosystem is functioning at its best, she decides to direct her energy towards increasing the connections between parts of the watershed, to help prevent drought while still allowing the allowing the plants, animals, and fish to adapt.​​",
+		"text": "Ranger Denice notices that the streams near the main river are a bit warmer than they have been in the past and may not be good for all native fish. To help ensure the ecosystem is functioning well, she decides to direct her energy towards increasing the connections between parts of the river. This helps reduce impacts from drought and better allows plants, animals, and fish to adapt.",
 		"alt": "alt text henny"
 	}
 ],
@@ -432,7 +471,7 @@
 		"alt": "alt text henny"
 	},
 	{
-		"id": "chooseCold2",
+		"id": "sufferCold",
 		"order": 2,
 		"images": [
 			{
