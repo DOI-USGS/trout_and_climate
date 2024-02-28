@@ -107,16 +107,16 @@
 		"order": 7,
 		"images": [
 			{
-				"src": "assets/vectorized_pngs/alex_1.png",
+				"src": "assets/vectorized_pngs/denise_1.png",
 				"x": "75%",
 				"y": "45%",
-				"width": "18%"
+				"width": "22%"
 			},
 			{
-				"src": "assets/vectorized_pngs/denise_1.png",
+				"src": "assets/vectorized_pngs/alex_1.png",
 				"x": "52%",
 				"y": "31%",
-				"width": "18%"
+				"width": "10%"
 			},
 			{
 				"src": "assets/vectorized_pngs/randy_1.png",
@@ -126,7 +126,7 @@
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
-		"text": "Park rangers work to ensure the health of the watershed. These RAD rangers have lots of tools, methods and techniques they use to keep local ecosystems healthy. ",
+		"text": "Park rangers work to ensure the health of the watershed. These R.A.D. rangers have lots of tools, methods and techniques they use to keep local ecosystems healthy. ",
 		"alt": "alt text henny"
 	},
 	{
@@ -163,25 +163,25 @@
 			{
 				"src": "assets/vectorized_pngs/mike_0.png",
 				"x": "20%",
-				"y": "50%",
-				"width": "9%"
+				"y": "64%",
+				"width": "7%"
 			},
 			{
 				"src": "assets/vectorized_pngs/n_mike_bye.png",
 				"x": "05%",
-				"y": "15%",
+				"y": "30%",
 				"width": "23%"
 			},
 			{
 				"src": "assets/vectorized_pngs/barry_0.png",
-				"x": "70%",
-				"y": "55%",
-				"width": "12%"
+				"x": "68%",
+				"y": "62%",
+				"width": "9%"
 			},
 			{
 				"src": "assets/vectorized_pngs/n_barry_bye.png",
 				"x": "47%",
-				"y": "35%",
+				"y": "39%",
 				"width": "20%"
 			},
 			{
@@ -192,12 +192,12 @@
 			},
 			{
 				"src": "assets/vectorized_pngs/cold_temp.png",
-				"x": "0%",
-				"y": "53%",
+				"x": "06%",
+				"y": "65%",
 				"width": "2%"
 			}
 		],
-		"bknd": "assets/vectorized_pngs/water_sidebyside.png",
+		"bknd": "assets/vectorized_pngs/landscape_sidebyside.png",
 		"text": "Mike and Barry were born together but grew up in different streams since they were alevins (baby trout).",
 		"alt": "alt text henny"
 	},
@@ -208,14 +208,14 @@
 			{
 				"src": "assets/vectorized_pngs/mike_2.png",
 				"x": "13%",
-				"y": "48%",
-				"width": "9%"
+				"y": "63%",
+				"width": "7%"
 			},
 			{
 				"src": "assets/vectorized_pngs/barry_3.png",
-				"x": "65%",
-				"y": "52%",
-				"width": "15%"
+				"x": "68%",
+				"y": "62%",
+				"width": "9%"
 			},
 			{
 				"src": "assets/vectorized_pngs/n_pen_pals.png",
@@ -231,12 +231,12 @@
 			},
 			{
 				"src": "assets/vectorized_pngs/cold_temp.png",
-				"x": "0%",
-				"y": "53%",
+				"x": "06%",
+				"y": "65%",
 				"width": "2%"
 			}
 		],
-		"bknd": "assets/vectorized_pngs/water_sidebyside.png",
+		"bknd": "assets/vectorized_pngs/landscape_sidebyside.png",
 		"text": "Now that Mike and Barry are older, they are both considering migrating to a different stream together.",
 		"alt": "alt text henny"
 	},
@@ -265,14 +265,14 @@
 			},
 			{
 				"src": "assets/vectorized_pngs/barry_3.png",
-				"x": "65%",
+				"x": "62%",
 				"y": "40%",
 				"width": "20%"
 			},
 			{
 				"src": "assets/vectorized_pngs/n_barry_hot1.png",
-				"x": "42%",
-				"y": "12%",
+				"x": "40%",
+				"y": "13%",
 				"width": "25%"
 			},
 			{
@@ -298,14 +298,14 @@
 			},
 			{
 				"src": "assets/vectorized_pngs/barry_1.png",
-				"x": "65%",
+				"x": "62%",
 				"y": "40%",
 				"width": "20%"
 			},
 			{
 				"src": "assets/vectorized_pngs/n_barry_hot2.png",
-				"x": "49%",
-				"y": "12%",
+				"x": "44%",
+				"y": "11%",
 				"width": "24%"
 			},
 			{
@@ -316,7 +316,7 @@
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
-		"text": "Barry suggests that Mike move to his part of the river, where the waters run warmer than other parts of the area.",
+		"text": "Barry begins to notice that Mike is not doing well in their new home. While things are easy for Barry, Mike is finding it very difficult to adjust.",
 		"alt": "alt text henny"
 	},
 	{
@@ -346,7 +346,7 @@
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
-		"text": "Unfortunately, as waters warm from climate change, this can put a lot of stress on native fish. Range Alex decides to accept these changes, and redirects her energy into reducing native species' stress from other aspects she can control, like fishing and invasive species.",
+		"text": "Unfortunately, as waters warm from climate change, this can put a lot of stress on native fish. Range Alex decides to accept these changes, and redirects her energy into reducing native species' stress from other aspects they can control, like fishing and invasive species.",
 		"alt": "alt text henny"
 	}
 ],
@@ -357,8 +357,8 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_2.png",
-				"x": "28%",
-				"y": "60%",
+				"x": "22%",
+				"y": "52%",
 				"width": "13%"
 			},
 			{
@@ -384,8 +384,8 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_1.png",
-				"x": "28%",
-				"y": "60%",
+				"x": "22%",
+				"y": "52%",
 				"width": "13%"
 			},
 			{
@@ -519,7 +519,7 @@
 			{
 				"src": "assets/vectorized_pngs/randy_1.png",
 				"x": "60%",
-				"y": "25%",
+				"y": "28%",
 				"width": "15%"
 			}
 		],
