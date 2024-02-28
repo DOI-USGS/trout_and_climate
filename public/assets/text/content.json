@@ -162,14 +162,14 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_0.png",
-				"x": "5%",
+				"x": "20%",
 				"y": "50%",
 				"width": "9%"
 			},
 			{
 				"src": "assets/vectorized_pngs/n_mike_bye.png",
-				"x": "15%",
-				"y": "25%",
+				"x": "05%",
+				"y": "15%",
 				"width": "23%"
 			},
 			{
@@ -259,43 +259,94 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
+				"x": "22%",
+				"y": "30%",
+				"width": "13%"
+			},
+			{
+				"src": "assets/vectorized_pngs/barry_3.png",
+				"x": "65%",
+				"y": "40%",
+				"width": "20%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_barry_hot1.png",
+				"x": "42%",
+				"y": "12%",
+				"width": "25%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_mike_hot1.png",
+				"x": "16%",
+				"y": "0%",
+				"width": "25%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
-		"text": "Barry suggests Mike moves out to his side of the watershed – there’s plenty to eat and everything is flourishing there! Barry’s family agrees to help Mike out with the moving since their family is so big and they have plenty of folks to help out. Barry is just happy to be close to his family, and have his best friend there the whole time.​​",
+		"text": "Barry suggests that Mike move to his part of the river, where the waters run warmer than other parts of the area.",
 		"alt": "alt text henny"
 	},
 	{
-		"id": "chooseHot2",
+		"id": "sufferHot",
 		"order": 2,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_3.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
+				"x": "22%",
+				"y": "30%",
+				"width": "13%"
+			},
+			{
+				"src": "assets/vectorized_pngs/barry_1.png",
+				"x": "65%",
+				"y": "40%",
+				"width": "20%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_barry_hot2.png",
+				"x": "49%",
+				"y": "12%",
+				"width": "24%"
+			},
+			{
+				"src": "assets/vectorized_pngs/n_mike_hot2.png",
+				"x": "12%",
+				"y": "6%",
+				"width": "17%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_water_view.png",
-		"text": "After a while, Barry begins to notice that Mike is not doing well in their new home. While things are easy for Barry, Mike isn’t used to the hustle and bustle of the warm stream and is finding it very difficult to adjust - that just doesn’t feel right to Barry.​​",
+		"text": "Barry suggests that Mike move to his part of the river, where the waters run warmer than other parts of the area.",
+		"alt": "alt text henny"
+	},
+	{
+		"id": "hotScience",
+		"order": 3,
+		"images": [
+			{
+				"src": "assets/vectorized_pngs/growthHot.png",
+				"x": "65%",
+				"y": "10%",
+				"width": "30%"
+			}
+		],
+		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
+		"text": "In hot waters, cold-adapted fish suffer greatly and can even die.",
 		"alt": "alt text henny"
 	},
 	{
 		"id": "rangerAlexResponds",
-		"order": 3,
+		"order": 4,
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/alex_1.png",
-				"x": "50%",
-				"y": "50%",
-				"width": "50%"
+				"x": "15%",
+				"y": "19%",
+				"width": "15%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
-		"text": "Ranger Alex notices that some of the fish from lower in the watershed are getting used to the warmer temperatures, but that smaller, cold-adapted trout are struggling. Unfortunately, she knows that this area of the watershed is so warm that there isn’t much she can do for the trout in this area. She decides to accept these changes, and redirects her energy into improving other parts of this ecosystem. Since the trout are still struggling though, she tells the locals who fish here that the redband trout are now off limits.​​​",
+		"text": "Unfortunately, as waters warm from climate change, this can put a lot of stress on native fish. Range Alex decides to accept these changes, and redirects her energy into reducing native species' stress from other aspects she can control, like fishing and invasive species.",
 		"alt": "alt text henny"
 	}
 ],
