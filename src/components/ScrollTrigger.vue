@@ -7,8 +7,8 @@
            :alt="currentImage.alt">
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
-          <svg id="fishSVG" viewBox="0 0 16 9" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <!-- <rect height="100%" width="100%" fill="blue" opacity="0.4"></rect> -->
+          <svg id="fishSVG" viewBox="0 0 16 9" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <rect height="100%" width="100%" fill="blue" opacity="0.4"></rect>
             <image v-for="(img, index) in currentImage.images" 
                    :key="index" 
                    :href="img.src"
@@ -193,7 +193,6 @@ export default {
 .background-image {
   object-fit: contain; /* Cover the container without losing aspect ratio */
   z-index: -1; /* Behind the sticky images */
-  opacity: 0.4;
 }
 
 .sticky-image-container {
@@ -209,11 +208,14 @@ export default {
   max-height: 100%;
 }
 .image-text {
+  width: 100%;
+  max-width: 800px; /* Aim for 50-75 characters per line */
+  margin-left: auto;
+  margin-right: auto; /* Center the container */
   margin-top: 20px;
   text-align: center;
   position: absolute; /* Make text always visible on top */
-  bottom: 10%; 
-  width: 100%; /* Ensure text is centered regardless of image width */
+  bottom: 20px; 
   z-index: 3; /* Ensure text is above all */
 }
 
