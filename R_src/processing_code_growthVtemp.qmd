@@ -40,7 +40,7 @@ if(!file.exists("in/sciencebase/base10.csv")){
   
   
   sbtools::item_file_download(sb_id = "65381be6d34ee4b6e05bba62",
-                              dest_dir = "in/sciencebase/",
+                              dest_dir = "in/sciencebase",
                               overwrite_file = FALSE)
   
   # Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, 
@@ -56,7 +56,7 @@ if(!file.exists("in/sciencebase/base10.csv")){
   
   archive::archive_extract(
     archive = "in/second_data_release/Blitzen_PRMS_output.zip",
-    dir = "in/second_data_release/Blitzen_PRMS_output.zip")
+    dir = "in/second_data_release")
 }
 ```
 
@@ -167,7 +167,8 @@ warm_water <- '#D1ECEB'
 white <- '#FFFFFF'
 black <- '#000000'
 
-font_main <- "Just Another Hand"
+#font_main <- "Just Another Hand"
+font_main <- "Shadows Into Light"
 sysfonts::font_add_google(font_main)
 
 font_supp <- "Source Sans 3"
@@ -186,14 +187,17 @@ canvas <- grid::rectGrob(
 
 
 # Load in the dead fish
-dead_fish <- magick::image_read("in/dead_fish.png")
+dead_fish <- magick::image_read("../public/assets/vectorized_pngs/fish_bones.png")
 
 # Load in the thermometers (cold/warm/hot)
-cold_therm_pic <- magick::image_read("in/cold_temp.png")
+cold_therm_pic <- 
+  magick::image_read("../public/assets/vectorized_pngs/cold_temp.png")
 
-warm_therm_pic <- magick::image_read("in/warm_temp.png")
+warm_therm_pic <- 
+  magick::image_read("../public/assets/vectorized_pngs/warm_temp.png")
 
-hot_therm_pic <- magick::image_read("in/hot_temp.png")
+hot_therm_pic <- 
+  magick::image_read("../public/assets/vectorized_pngs/hot_temp.png")
 ```
 
 ```{r plot cold scenario, fig.height = 6, fig.width = 6}
@@ -218,7 +222,7 @@ ggplot(data = mike_and_barry,
         panel.grid = element_line(color = cold_water),
         legend.background = element_rect(fill = cold_water),
         legend.key = element_rect(fill = cold_water),
-        legend.text = element_text(lineheight = 1, family = font_main),
+        #legend.text = element_text(lineheight = 1, family = font_main),
         plot.background = element_rect(fill = cold_water, color = cold_water))
 
 ```
@@ -245,7 +249,7 @@ ggplot(data = mike_and_barry,
         panel.grid = element_line(color = cold_water),
         legend.background = element_rect(fill = cold_water),
         legend.key = element_rect(fill = cold_water),
-        legend.text = element_text(lineheight = 1, family = font_main),
+        #legend.text = element_text(lineheight = 1, family = font_main),
         plot.background = element_rect(fill = cold_water, color = cold_water))
 
 ```
@@ -272,7 +276,7 @@ ggplot(data = mike_and_barry,
         panel.grid = element_line(color = cold_water),
         legend.background = element_rect(fill = cold_water),
         legend.key = element_rect(fill = cold_water),
-        legend.text = element_text(lineheight = 1, family = font_main),
+        #legend.text = element_text(lineheight = 1, family = font_main),
         plot.background = element_rect(fill = cold_water, color = cold_water))
 
 ```
@@ -352,7 +356,7 @@ draw_line(x = c(.44, .44),
           color = mike_base,
           linewidth = 1.5)
 
-ggsave(filename = "out/20240223_test.png", width = 9, height = 9, dpi = 300)
+ggsave(filename = "../public/assets/vectorized_pngs/growthCold.png", width = 9, height = 9, dpi = 300)
 ```
 
 ```{r scenario warm stream, fig.width= 9, fig.height= 9}
@@ -420,7 +424,7 @@ draw_line(x = c(.56, .56),
           color = barry_base,
           linewidth = 1.5)
 
-ggsave(filename = "out/20240223_test_02.png", width = 9, height = 9, dpi = 300)
+ggsave(filename = "../public/assets/vectorized_pngs/growthWarm.png", width = 9, height = 9, dpi = 300)
 ```
 
 
@@ -498,5 +502,5 @@ draw_line(x = c(.68, .68),
           color = redband,
           linewidth = 1.5)
 
-ggsave(filename = "out/20240223_test_03.png", width = 9, height = 9, dpi = 300)
+ggsave(filename = "../public/assets/vectorized_pngs/growthHot.png", width = 9, height = 9, dpi = 300)
 ```
