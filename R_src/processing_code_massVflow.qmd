@@ -11,6 +11,8 @@ editor: source
 library(tidyverse)
 library(readr)
 library(quantreg)
+library(sysfonts)
+library(cowplot)
 
 ```
 
@@ -136,12 +138,104 @@ trout.mass$quant_reg_predicted <-
 
 
 ## 3. Visualize
+```{r design}
+mike_base <- '#276952'
+barry_base <- '#735E0B'
+redband <- '#7A3608'
+cold_water <- '#C3D3E8'
+warm_water <- '#D1ECEB'
+white <- '#FFFFFF'
+black <- '#000000'
 
-```{r plot}
-ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
-  geom_point() + 
-  geom_line(aes(y = quant_reg_predicted)) +
-  scale_x_continuous(trans = 'log10') 
+font_main <- "Just Another Hand"
+sysfonts::font_add_google(font_main)
+
+font_supp <- "Source Sans 3"
+sysfonts::font_add_google(font_supp)
+
+# Make a canvas to put it all on
+canvas <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = 9, height = 9,
+  gp = grid::gpar(fill = cold_water, alpha = 1, col = cold_water)
+)
 ```
 
 
+
+```{r plot}
+
+mass_streamflow_plot <-
+ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
+  geom_point(shape = 19, size = 2, aes(color = MaxFishLength)) + 
+  geom_line(aes(y = quant_reg_predicted,
+                linewidth = 1.2,
+                color = quant_reg_predicted)) +
+  xlab("August Streamflow (cfs)") +
+  ylab("Fish Mass (g)") +
+  guides(color = "none",
+         linewidth = "none") +
+  scale_x_continuous(trans = 'log10') +
+  scale_color_gradient2(low = mike_base,
+                        mid = mike_base,
+                       high = barry_base,
+                       midpoint = 100) +
+  theme(panel.background = element_rect(fill = warm_water),
+        panel.grid = element_line(color = cold_water),
+        legend.background = element_rect(fill = cold_water),
+        legend.key = element_rect(fill = cold_water),
+        legend.text = element_text(lineheight = 1, family = font_main),
+        plot.background = element_rect(fill = cold_water, color = cold_water)) 
+```
+
+```{r base cowplot, fig.width= 9, fig.height= 9}
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(mass_streamflow_plot,
+            x = 0.03,
+            y = 0.03,
+            height = 0.95,
+            width = 0.95) +
+draw_label("Tiny streams tend\nto have tiny fish!",
+             fontfamily = font_supp,
+             x = 0.22,   
+             y = 0.5,
+             size = 20,
+             hjust = 0.5,
+             vjust = 0,
+             lineheight = 1,
+             color = black) +
+draw_label("Big rivers tend\nto have big fish!",
+             fontfamily = font_supp,
+             x = 0.22,   
+             y = 0.8,
+             size = 20,
+             hjust = 0.5,
+             vjust = 0,
+             lineheight = 1,
+             color = black) +
+# Tiny arrow
+geom_curve(aes(xend = 0.18, x = 0.2,
+                 yend = 0.33, y = 0.47),
+             arrow = grid::arrow(length = unit(1, 'lines')), 
+             curvature = 0.2,
+             angle = 95,
+             color = redband,
+             lineend = 'round',
+           linewidth = 1.5) +
+# Big arrow
+geom_curve(aes(xend = 0.7, x = 0.2,
+                 yend = 0.65, y = 0.77),
+             arrow = grid::arrow(length = unit(1, 'lines')), 
+             curvature = 0.2,
+             angle = 95,
+             color = redband,
+             lineend = 'round',
+           linewidth = 1.5)
+
+ggsave(filename = "out/mass_flow_scatter.png", width = 9, height = 9, dpi = 300)
+```

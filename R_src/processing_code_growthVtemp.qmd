@@ -11,6 +11,9 @@ editor: source
 library(tidyverse)
 library(readr)
 library(archive)
+library(sysfonts)
+library(cowplot)
+library(magick)
 ```
 
 ## 1. Fetch
@@ -37,7 +40,7 @@ if(!file.exists("in/sciencebase/base10.csv")){
   
   
   sbtools::item_file_download(sb_id = "65381be6d34ee4b6e05bba62",
-                              dest_dir = "../in/sciencebase/",
+                              dest_dir = "in/sciencebase/",
                               overwrite_file = FALSE)
   
   # Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, 
@@ -48,12 +51,12 @@ if(!file.exists("in/sciencebase/base10.csv")){
   
   sbtools::item_file_download(sb_id = "644a93add34ee8d4adee04be",
                               names = "Blitzen_PRMS_output.zip",
-                              destinations = "../in/sciencebase/Blitzen_PRMS_output.zip",
+                              destinations = "in/second_data_release/Blitzen_PRMS_output.zip",
                               overwrite_file = FALSE)
   
   archive::archive_extract(
-    archive = "../in/sciencebase/Blitzen_PRMS_output.zip",
-    dir = "../in/sciencebase/Blitzen_PRMS_output.zip")
+    archive = "in/second_data_release/Blitzen_PRMS_output.zip",
+    dir = "in/second_data_release/Blitzen_PRMS_output.zip")
 }
 ```
 
@@ -62,7 +65,7 @@ Read in data for the fish growth model
 ```{r fetch_in}
 
 # Read all the files in the in/ folder0
-files_all <-  list.files(path = "../in/sciencebase/")
+files_all <-  list.files(path = "in/sciencebase/")
 
 # select only the csvs
 files_csv <- files_all[grepl(pattern = ".csv", files_all)]
@@ -75,7 +78,7 @@ fish_data <- NULL
 for(file in 1:length(fish_files_csv)){
   # the location of this file 
   temp_file_name <- fish_files_csv[file]
-  temp_csv <- sprintf("../in/sciencebase/%s", fish_files_csv[file])
+  temp_csv <- sprintf("in/sciencebase/%s", fish_files_csv[file])
   temp <- readr::read_csv(temp_csv, show_col_types = FALSE)
   fish_size_temp <- ifelse(grepl(pattern = "10", x = temp_csv), 
                            yes = "Size 10",
@@ -100,7 +103,7 @@ for(file in 1:length(fish_files_csv)){
 Read in data for stream temperature
 
 ```{r fetch_temperature}
-segment_temp <- readr::read_csv("../in/sciencebase/nsegment_summary_seg_tave_water.csv", 
+segment_temp <- readr::read_csv("in/second_data_release/nsegment_summary_seg_tave_water.csv", 
                         show_col_types = FALSE)
 
 ```
@@ -136,15 +139,364 @@ temperature_2020_long <- temperature_2020 |>
 # Combine temperature with fish growth
 fish_temperature <- fish_2020_long |>
   inner_join(temperature_2020_long, by = c("segment", "Date"))
+
+mike_and_barry <- fish_temperature |> 
+  filter(scenario %in% c("Cold-Size 10", "Warm-Size 50")) |>
+  filter(
+    (aveT <= 24 & scenario == "Cold-Size 10") |
+    (aveT <= 28 & scenario == "Warm-Size 50")
+  )
+
+cold_water_scenario <- mike_and_barry |>
+                          filter(aveT <= 13, aveT >= 8)
+
+warm_water_scenario <- mike_and_barry |>
+                          filter(aveT <= 18, aveT >= 13)
+
+hot_water_scenario <- mike_and_barry |>
+                          filter(aveT <= 23, aveT >= 18)
+
 ```
 
-```{r plot, fig.height = 12, fig.width = 6}
-ggplot(data = fish_temperature,
+```{r design}
+mike_base <- '#276952'
+barry_base <- '#735E0B'
+redband <- '#7A3608'
+cold_water <- '#C3D3E8'
+warm_water <- '#D1ECEB'
+white <- '#FFFFFF'
+black <- '#000000'
+
+font_main <- "Just Another Hand"
+sysfonts::font_add_google(font_main)
+
+font_supp <- "Source Sans 3"
+sysfonts::font_add_google(font_supp)
+
+## Fonts that don't work
+    #Shantell Sans
+    #Architects Daughter
+
+# Make a canvas to put it all on
+canvas <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = 9, height = 9,
+  gp = grid::gpar(fill = cold_water, alpha = 1, col = cold_water)
+)
+
+
+# Load in the dead fish
+dead_fish <- magick::image_read("in/dead_fish.png")
+
+# Load in the thermometers (cold/warm/hot)
+cold_therm_pic <- magick::image_read("in/cold_temp.png")
+
+warm_therm_pic <- magick::image_read("in/warm_temp.png")
+
+hot_therm_pic <- magick::image_read("in/hot_temp.png")
+```
+
+```{r plot cold scenario, fig.height = 6, fig.width = 6}
+barry_mike_cold_plot <- 
+ggplot(data = mike_and_barry,
        aes(x = aveT, y = fish_growth, group = water_status)) +
-  geom_point(aes(color = water_status)) +
-  facet_wrap(~ fish_size, ncol = 1)
+  geom_line(aes(color = water_status)) +
+  geom_line(data = cold_water_scenario, 
+             aes(x = aveT, 
+                 y = fish_growth, 
+                 color = water_status, 
+                 alpha = 0.2,
+                 linewidth = 2)) +
+  xlab("Average Temperature (°C)") +
+  ylab("Fish Growth") +
+  scale_color_manual(values = c("Warm" = barry_base, "Cold" = mike_base),
+                     labels = c("Small, Cold\nAdapted", "Large, Warm\nAdapted")) +
+  labs(color = "Fish Type") +
+  guides(alpha = "none", 
+         linewidth = "none") +
+  theme(panel.background = element_rect(fill = warm_water),
+        panel.grid = element_line(color = cold_water),
+        legend.background = element_rect(fill = cold_water),
+        legend.key = element_rect(fill = cold_water),
+        legend.text = element_text(lineheight = 1, family = font_main),
+        plot.background = element_rect(fill = cold_water, color = cold_water))
+
+```
+
+```{r plot warm scenario, fig.height = 6, fig.width = 6}
+barry_mike_warm_plot <- 
+ggplot(data = mike_and_barry,
+       aes(x = aveT, y = fish_growth, group = water_status)) +
+  geom_line(aes(color = water_status)) +
+  geom_line(data = warm_water_scenario, 
+             aes(x = aveT, 
+                 y = fish_growth, 
+                 color = water_status, 
+                 alpha = 0.2,
+                 linewidth = 2)) +
+  xlab("Average Temperature (°C)") +
+  ylab("Fish Growth") +
+  scale_color_manual(values = c("Warm" = barry_base, "Cold" = mike_base),
+                     labels = c("Small, Cold\nAdapted", "Large, Warm\nAdapted")) +
+  labs(color = "Fish Type") +
+  guides(alpha = "none", 
+         linewidth = "none") +
+  theme(panel.background = element_rect(fill = warm_water),
+        panel.grid = element_line(color = cold_water),
+        legend.background = element_rect(fill = cold_water),
+        legend.key = element_rect(fill = cold_water),
+        legend.text = element_text(lineheight = 1, family = font_main),
+        plot.background = element_rect(fill = cold_water, color = cold_water))
+
+```
+
+```{r plot hot scenario, fig.height = 6, fig.width = 6}
+barry_mike_hot_plot <- 
+ggplot(data = mike_and_barry,
+       aes(x = aveT, y = fish_growth, group = water_status)) +
+  geom_line(aes(color = water_status)) +
+  geom_line(data = hot_water_scenario, 
+             aes(x = aveT, 
+                 y = fish_growth, 
+                 color = water_status, 
+                 alpha = 0.2,
+                 linewidth = 2)) +
+  xlab("Average Temperature (°C)") +
+  ylab("Fish Growth") +
+  scale_color_manual(values = c("Warm" = barry_base, "Cold" = mike_base),
+                     labels = c("Small, Cold\nAdapted", "Large, Warm\nAdapted")) +
+  labs(color = "Fish Type") +
+  guides(alpha = "none", 
+         linewidth = "none") +
+  theme(panel.background = element_rect(fill = warm_water),
+        panel.grid = element_line(color = cold_water),
+        legend.background = element_rect(fill = cold_water),
+        legend.key = element_rect(fill = cold_water),
+        legend.text = element_text(lineheight = 1, family = font_main),
+        plot.background = element_rect(fill = cold_water, color = cold_water))
 
 ```
 
 
+```{r scenario cold stream, fig.width= 9, fig.height= 9}
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(barry_mike_cold_plot,
+            x = 0.03,
+            y = 0.03,
+            height = 0.95,
+            width = 0.95) +
+draw_image(dead_fish,
+           x = 0.72,
+           y = 0.2,
+           width = 0.15,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+draw_image(cold_therm_pic,
+           x = 0.18,
+           y = 0.15,
+           width = 0.05,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+geom_polygon(aes(x = c(.32, .32, .44, .44),
+          y = c(.08, .97, .97, .08)),
+          fill = mike_base,
+          color = NA,
+          alpha = 0.2) +
+draw_label("Mike is growing\nand thriving!",
+             fontfamily = font_supp,
+             x = 0.72,   
+             y = 0.89,
+             size = 20,
+             hjust = 0.5,
+             vjust = 0,
+             lineheight = 1,
+             color = black) +
+draw_label("Barry isn't \ndoing quite as good.",
+             fontfamily = font_main,
+             x = 0.15,   
+             y = 0.79,
+             size = 20,
+             hjust = 0.5,
+             vjust = 0,
+             lineheight = 1,
+             color = black) +
+  ##Mike arrow
+geom_curve(aes(xend = 0.48, x = 0.72,
+                 yend = 0.85, y = 0.87),
+             arrow = grid::arrow(length = unit(1, 'lines')), 
+             curvature = -0.2,
+             angle = 95,
+             color = redband,
+             lineend = 'round',
+           linewidth = 1.5) +
+  ##Barry arrow
+geom_curve(aes(xend = 0.31, x = 0.15,
+                 yend = 0.67, y = 0.77),
+             arrow = grid::arrow(length = unit(1, 'lines')), 
+             curvature = 0.2,
+             angle = 95,
+             color = redband,
+             lineend = 'round',
+           linewidth = 1.5) +
+draw_line(x = c(.32, .32),
+          y = c(.08, .97),
+          color = mike_base,
+          linewidth = 1.5) +
+draw_line(x = c(.44, .44),
+          y = c(.08, .97),
+          color = mike_base,
+          linewidth = 1.5)
 
+ggsave(filename = "out/20240223_test.png", width = 9, height = 9, dpi = 300)
+```
+
+```{r scenario warm stream, fig.width= 9, fig.height= 9}
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(barry_mike_warm_plot,
+            x = 0.03,
+            y = 0.03,
+            height = 0.95,
+            width = 0.95) +
+draw_image(dead_fish,
+           x = 0.72,
+           y = 0.2,
+           width = 0.15,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+draw_image(warm_therm_pic,
+           x = 0.18,
+           y = 0.15,
+           width = 0.05,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+geom_polygon(aes(x = c(.44, .44, .56, .56),
+          y = c(.08, .97, .97, .08)),
+          fill = barry_base,
+          color = NA,
+          alpha = 0.2) +
+draw_label("Both fish are growing,\nbut Barry feels like he's not\nkeeping up with his friend.",
+             fontfamily = font_supp,
+             x = 0.78,   
+             y = 0.85,
+             size = 20,
+             hjust = 0.5,
+             vjust = 0,
+             lineheight = 1,
+             color = black) +
+  ##Barry arrow
+geom_curve(aes(xend = 0.57, x = 0.78,
+                 yend = 0.71, y = 0.82),
+             arrow = grid::arrow(length = unit(1, 'lines')), 
+             curvature = -0.2,
+             angle = 95,
+             color = redband,
+             lineend = 'round',
+           linewidth = 1.5) +
+  ##Mike arrow
+geom_curve(aes(xend = 0.5, x = 0.78,
+                 yend = 0.9, y = 0.82),
+             arrow = grid::arrow(length = unit(1, 'lines')), 
+             curvature = -0.7,
+             angle = 95,
+             color = redband,
+             lineend = 'round',
+           linewidth = 1.5) +
+draw_line(x = c(.44, .44),
+          y = c(.08, .97),
+          color = barry_base,
+          linewidth = 1.5) +
+draw_line(x = c(.56, .56),
+          y = c(.08, .97),
+          color = barry_base,
+          linewidth = 1.5)
+
+ggsave(filename = "out/20240223_test_02.png", width = 9, height = 9, dpi = 300)
+```
+
+
+```{r scenario hot stream, fig.width= 9, fig.height= 9}
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(barry_mike_hot_plot,
+            x = 0.03,
+            y = 0.03,
+            height = 0.95,
+            width = 0.95) +
+draw_image(dead_fish,
+           x = 0.72,
+           y = 0.2,
+           width = 0.15,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+draw_image(hot_therm_pic,
+           x = 0.18,
+           y = 0.15,
+           width = 0.05,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+geom_polygon(aes(x = c(.55, .55, .68, .68),
+          y = c(.08, .97, .97, .08)),
+          fill = redband,
+          color = NA,
+          alpha = 0.2) +
+draw_label("Barry is\ndoing good!",
+             fontfamily = font_main,
+             x = 0.8,   
+             y = 0.8,
+             size = 20,
+             hjust = 0.5,
+             vjust = 0,
+             lineheight = 1,
+             color = black) +
+draw_label("Mike is having a really\nhard time keeping up.",
+             fontfamily = font_main,
+             x = 0.38,   
+             y = 0.35,
+             size = 20,
+             hjust = 0.5,
+             vjust = 0,
+             lineheight = 1,
+             color = black) +
+  ##Barry arrow
+geom_curve(aes(xend = 0.7, x = 0.8,
+                 yend = 0.68, y = 0.78),
+             arrow = grid::arrow(length = unit(1, 'lines')), 
+             curvature = -0.2,
+             angle = 95,
+             color = redband,
+             lineend = 'round',
+           linewidth = 1.5) +
+    ##Mike arrow
+geom_curve(aes(xend = 0.6, x = 0.38,
+                 yend = 0.59, y = 0.42),
+             arrow = grid::arrow(length = unit(1, 'lines')), 
+             curvature = -0.2,
+             angle = 95,
+             color = redband,
+             lineend = 'round',
+           linewidth = 1.5) +
+draw_line(x = c(.55, .55),
+          y = c(.08, .97),
+          color = redband,
+          linewidth = 1.5) +
+draw_line(x = c(.68, .68),
+          y = c(.08, .97),
+          color = redband,
+          linewidth = 1.5)
+
+ggsave(filename = "out/20240223_test_03.png", width = 9, height = 9, dpi = 300)
+```
