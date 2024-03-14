@@ -147,7 +147,7 @@ warm_water <- '#D1ECEB'
 white <- '#FFFFFF'
 black <- '#000000'
 
-font_main <- "Just Another Hand"
+font_main <- "Shadows Into Light"
 sysfonts::font_add_google(font_main)
 
 font_supp <- "Source Sans 3"
@@ -237,5 +237,5 @@ geom_curve(aes(xend = 0.7, x = 0.2,
              lineend = 'round',
            linewidth = 1.5)
 
-ggsave(filename = "out/mass_flow_scatter.png", width = 9, height = 9, dpi = 300)
+ggsave(filename = "public/assets/vectorized_pngs/scatterRaw.png", width = 9, height = 9, dpi = 300)
 ```
