@@ -37,7 +37,7 @@ if(!file.exists("in/sciencebase/base10.csv")){
   
   
   sbtools::item_file_download(sb_id = "65381be6d34ee4b6e05bba62",
-                              dest_dir = "in/sciencebase/",
+                              dest_dir = "../in/sciencebase/",
                               overwrite_file = FALSE)
   
   # Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, 
@@ -48,12 +48,12 @@ if(!file.exists("in/sciencebase/base10.csv")){
   
   sbtools::item_file_download(sb_id = "644a93add34ee8d4adee04be",
                               names = "Blitzen_PRMS_output.zip",
-                              destinations = "in/sciencebase/Blitzen_PRMS_output.zip",
+                              destinations = "../in/sciencebase/Blitzen_PRMS_output.zip",
                               overwrite_file = FALSE)
   
   archive::archive_extract(
-    archive = "in/sciencebase/Blitzen_PRMS_output.zip",
-    dir = "in/sciencebase/Blitzen_PRMS_output.zip")
+    archive = "../in/sciencebase/Blitzen_PRMS_output.zip",
+    dir = "../in/sciencebase/Blitzen_PRMS_output.zip")
 }
 ```
 
@@ -62,7 +62,7 @@ Read in data for the fish growth model
 ```{r fetch_in}
 
 # Read all the files in the in/ folder0
-files_all <-  list.files(path = "in/sciencebase/")
+files_all <-  list.files(path = "../in/sciencebase/")
 
 # select only the csvs
 files_csv <- files_all[grepl(pattern = ".csv", files_all)]
@@ -75,7 +75,7 @@ fish_data <- NULL
 for(file in 1:length(fish_files_csv)){
   # the location of this file 
   temp_file_name <- fish_files_csv[file]
-  temp_csv <- sprintf("in/sciencebase/%s", fish_files_csv[file])
+  temp_csv <- sprintf("../in/sciencebase/%s", fish_files_csv[file])
   temp <- readr::read_csv(temp_csv, show_col_types = FALSE)
   fish_size_temp <- ifelse(grepl(pattern = "10", x = temp_csv), 
                            yes = "Size 10",
@@ -100,7 +100,7 @@ for(file in 1:length(fish_files_csv)){
 Read in data for stream temperature
 
 ```{r fetch_temperature}
-segment_temp <- readr::read_csv("in/sciencebase/nsegment_summary_seg_tave_water.csv", 
+segment_temp <- readr::read_csv("../in/sciencebase/nsegment_summary_seg_tave_water.csv", 
                         show_col_types = FALSE)
 
 ```
