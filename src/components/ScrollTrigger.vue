@@ -9,7 +9,6 @@
       <div class="sticky-image-container" ref="stickyContainer">
         <div class="image-wrapper" ref="imageWrapper">
           <svg id="fishSVG" viewBox="0 0 16 9" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-           <!--  <rect height="100%" width="100%" fill="blue" opacity="0.4"></rect> -->
             <image v-for="(img, index) in currentStep.images" 
                    :key="index" 
                    :href="img.src"
@@ -22,9 +21,9 @@
           {{ currentStep.text }}
           <!-- Buttons Conditionally Rendered -->
         <div v-if="currentStep.id === 'chooseYourOwnAdventure'" class="button-container">
-          <button class="CYOA" id="hot" @click="addSection('hotWater')">HOT</button>
-          <button class="CYOA" id="cold" @click="addSection('coldWater')">COLD</button>
-          <button class="CYOA" id="warm" @click="addSection('warmWater')">WARM</button>
+          <RetroButton class="CYOA" :button-style="{ color: 'white' }" id="hot" @click="addSection('hotWater')">HOT</RetroButton>
+          <RetroButton class="CYOA" id="cold" @click="addSection('coldWater')">COLD</RetroButton>
+          <RetroButton class="CYOA" id="warm" @click="addSection('warmWater')">WARM</RetroButton>
         </div>
       </div>
     </div>
@@ -36,11 +35,15 @@
 import { onMounted, ref, nextTick } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import RetroButton from './ButtonRetro.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: 'ScrollTriggerStory',
+  components: {
+    RetroButton
+  },
   setup() {
     // Define a reactive property to hold the full dataset
     const fullData = ref({});
@@ -331,5 +334,6 @@ export default {
 
 .CYOA {
   width: 120px;
+  color: white;
 }
 </style>
