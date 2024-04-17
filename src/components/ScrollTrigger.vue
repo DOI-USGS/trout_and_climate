@@ -84,31 +84,19 @@ export default {
 
     // Update images if they are different b/w steps, apply fade animation
     const updateImagesIfDifferent = (newStep) => {
-      const isImageDifferent = JSON.stringify(currentStep.value.images) !== JSON.stringify(newStep.images);
-      const isBackgroundDifferent = currentStep.value.bknd !== newStep.bknd;
-      const isTextDifferent = currentStep.value.text !== newStep.text;
-
-      // Apply fade transition to the background if different
-      if (isBackgroundDifferent) {
-        applyFadeTransition(backgroundWrapper, newStep.bknd, (newValue) => {
-          currentStep.value.bknd = newValue;
-        });
-      }
-
-      // Apply fade transition to images if different
-      if (isImageDifferent) {
-        applyFadeTransition(imageWrapper, newStep.images, (newValue) => {
-          currentStep.value.images = [...newValue];
-        });
-      }
-
-      // Apply fade transition to text if different
-      if (isTextDifferent) {
-        applyFadeTransition(textWrapper, newStep.text, (newValue) => {
-          currentStep.value.text = newValue;
-        });
+      if (currentStep.value.id !== newStep.id) {
+        if (newStep.bknd !== currentStep.value.bknd) {
+          applyFadeTransition(backgroundWrapper, newStep.bknd, (newValue) => currentStep.value.bknd = newValue);
+        }
+        if (JSON.stringify(newStep.images) !== JSON.stringify(currentStep.value.images)) {
+          applyFadeTransition(imageWrapper, newStep.images, (newValue) => currentStep.value.images = [...newValue]);
+        }
+        if (newStep.text !== currentStep.value.text) {
+          applyFadeTransition(textWrapper, newStep.text, (newValue) => currentStep.value.text = newValue);
+        }
       }
     };
+
 
     function applyFadeTransition(elementRef, newValue, updateFunction) {
       gsap.to(elementRef.value, {
