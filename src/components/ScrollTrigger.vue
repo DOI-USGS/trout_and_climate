@@ -74,7 +74,6 @@ export default {
        fullData.value = data;
 
         images.value = data.intro.sort((a, b) => a.order - b.order); // Start with intro content only
-        console.log(images.value)
         currentStep.value = images.value[0]; // Initialize with the first step in 'intro' array
 
       } catch (error) {
@@ -136,28 +135,27 @@ export default {
         const nextStep = images.value[targetIndex];
         currentStep.value = { ...nextStep };
 
-        // TODO: manage scrolling or other actions to reflect the step change
       }
     };
     // Append next section when button is pressed
     const addSection = (contentKey) => {
+      console.log(contentKey)
       const additionalContent = fullData.value[contentKey];
-      if (additionalContent && additionalContent.length > 0) {
-        // Calculate the new starting order based on the last frame's order
-        const maxCurrentOrder = images.value.reduce((max, item) => Math.max(max, item.order), 0);
 
-        // Adjust the order of the new content
-        const adjustedAdditionalContent = additionalContent.map(item => ({
-          ...item,
-          order: item.order + maxCurrentOrder
-        })).sort((a, b) => a.order - b.order);
+      // Calculate the new starting order based on the last frame's order
+      const maxCurrentOrder = images.value.reduce((max, item) => Math.max(max, item.order), 0);
 
-        // Merge and re-sort the main images array
-        images.value = [...images.value, ...adjustedAdditionalContent].sort((a, b) => a.order - b.order);
+      // Adjust the order of the new content by adding max prior frame to added arrays, resort
+      const adjustedAdditionalContent = additionalContent.map(item => ({
+        ...item,
+        order: item.order + maxCurrentOrder
+      })).sort((a, b) => a.order - b.order);
 
-        // Update the UI by advancing to the next frame
-        advanceToNextStep(adjustedAdditionalContent[0].id);
-      }
+      // Merge and re-sort the main images array
+      images.value = [...images.value, ...adjustedAdditionalContent].sort((a, b) => a.order - b.order);
+
+      // Update the UI by advancing to the next frame
+      advanceToNextStep(adjustedAdditionalContent[0].id);
     };
 
 
@@ -186,8 +184,8 @@ export default {
             updateImagesIfDifferent(newStep);
 
             // Debugging
-            console.log("Current id:", currentStep.value.id);
-            console.log("Current step:", currentStep.value);
+            //console.log("Current id:", currentStep.value.id);
+            //console.log("Current step:", currentStep.value);
 
           },
           onEnterBack: () => {
