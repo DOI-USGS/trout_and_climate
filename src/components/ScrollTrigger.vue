@@ -71,10 +71,9 @@ export default {
         const data = await response.json();
 
         // Store the fetched data in fullData
-       fullData.value = data;
-
-        images.value = data.intro.sort((a, b) => a.order - b.order); // Start with intro content only
-        currentStep.value = images.value[0]; // Initialize with the first step in 'intro' array
+        fullData.value = data;
+        images.value = data.intro.sort((a, b) => a.order - b.order); 
+        currentStep.value = images.value[0]; // Initialize with the first step 
 
       } catch (error) {
         console.error('Failed to load images', error);
@@ -115,48 +114,50 @@ export default {
       });
     }
 
-    const advanceToNextStep = (targetId = null) => {
-      let targetIndex = -1;
-      console.log(targetId)
-
-      if (targetId) {
-        // If an ID is provided, find the index of the step with that ID
-        targetIndex = images.value.findIndex(image => image.id === targetId);
-      } else {
-        // If no ID is provided, just move to the next step in the sequence
-        const currentIndex = images.value.findIndex(image => image.id === currentStep.value.id);
-        if (currentIndex >= 0 && currentIndex < images.value.length - 1) {
-          targetIndex = currentIndex + 1;
-        }
-      }
-
-      // Update the current step if a valid target index is found
+    const advanceToNextStep = (targetId) => {
+      let targetIndex = images.value.findIndex(image => image.id === targetId);
       if (targetIndex !== -1) {
-        const nextStep = images.value[targetIndex];
+        const nextStep = images.value[targetIndex]; // Directly set to the target
         currentStep.value = { ...nextStep };
-
       }
     };
+
     // Append next section when button is pressed
-    const addSection = (contentKey) => {
-      console.log(contentKey)
+    const addSection = async (contentKey) => {
+      console.log(contentKey);
       const additionalContent = fullData.value[contentKey];
+      if (additionalContent && additionalContent.length > 0) {
+        // Calculate the new starting order based on the last frame's order
+        const maxCurrentOrder = images.value.reduce((max, item) => Math.max(max, item.order), 0);
 
-      // Calculate the new starting order based on the last frame's order
-      const maxCurrentOrder = images.value.reduce((max, item) => Math.max(max, item.order), 0);
+        // Adjust the order of the new content
+        const adjustedAdditionalContent = additionalContent.map(item => ({
+          ...item,
+          order: item.order + maxCurrentOrder
+        })).sort((a, b) => a.order - b.order);
 
-      // Adjust the order of the new content by adding max prior frame to added arrays, resort
-      const adjustedAdditionalContent = additionalContent.map(item => ({
-        ...item,
-        order: item.order + maxCurrentOrder
-      })).sort((a, b) => a.order - b.order);
+        // Merge and re-sort the main images array
+        images.value = [...images.value, ...adjustedAdditionalContent].sort((a, b) => a.order - b.order);
 
-      // Merge and re-sort the main images array
-      images.value = [...images.value, ...adjustedAdditionalContent].sort((a, b) => a.order - b.order);
+        // Find the CYOA frame
+        const cyoaFrame = images.value.find(frame => frame.id === 'chooseYourOwnAdventure');
+        if (cyoaFrame) {
+          const lastOrder = images.value[images.value.length - 1].order;
+          const cyoaFrameCopy = { ...cyoaFrame, order: lastOrder + 1 }; // Copy CYOA frame with updated order
+          images.value.push(cyoaFrameCopy);
+        }
 
-      // Update the UI by advancing to the next frame
-      advanceToNextStep(adjustedAdditionalContent[0].id);
+        // Ensure Vue reactivity
+        images.value = [...images.value]; // Ensure reactivity
+        // Refresh ScrollTrigger
+        await nextTick();
+        ScrollTrigger.refresh();
+
+        // Update the UI by advancing to the first frame of the newly added section
+        advanceToNextStep(adjustedAdditionalContent[0].id);
+      }
     };
+
 
 
     // GSAP ScrollTrigger
@@ -183,10 +184,6 @@ export default {
             // Transition images if different from prior step
             updateImagesIfDifferent(newStep);
 
-            // Debugging
-            //console.log("Current id:", currentStep.value.id);
-            //console.log("Current step:", currentStep.value);
-
           },
           onEnterBack: () => {
             // Explicitly set to the first image when scrolling back past the start
@@ -199,6 +196,7 @@ export default {
           }
         }
       });
+      ScrollTrigger.refresh();
     };
 
     onMounted(async () => {
