@@ -29,7 +29,7 @@ pipeline {
                           extensions: [],
                           gitTool: 'Default',
                           submoduleCfg: [],
-                          userRemoteConfigs: [[url: "https://code.usgs.gov/wma/vizlab/trout_and_climate.git", credentialsId: "vizlab_jenkins_bottledwater"]]
+                          userRemoteConfigs: [[url: "https://code.usgs.gov/wma/vizlab/${params.VITE_REPO_TITLE}.git", credentialsId: "vizlab_jenkins_bottledwater"]]
                         ])
                 }
         }
