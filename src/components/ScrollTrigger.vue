@@ -153,33 +153,25 @@ export default {
     };
     // Append next section when button is pressed
     const addSection = (contentKey) => {
-      // Find the index of the current step within the images array
-      const currentStepIndex = images.value.findIndex(item => item.id === currentStep.value.id);
       const additionalContent = fullData.value[contentKey];
-
       if (additionalContent && additionalContent.length > 0) {
-        // Adjust the order of the new content to follow the current step's order
-        const maxCurrentOrder = currentStep.value.order;
+        // Calculate the new starting order based on the last frame's order
+        const maxCurrentOrder = images.value.reduce((max, item) => Math.max(max, item.order), 0);
+
+        // Adjust the order of the new content
         const adjustedAdditionalContent = additionalContent.map(item => ({
           ...item,
           order: item.order + maxCurrentOrder
         })).sort((a, b) => a.order - b.order);
 
-        // Splice the adjusted content into images array right after the current step
-        images.value.splice(currentStepIndex + 1, 0, ...adjustedAdditionalContent);
-        // Re-assign images.value to itself to ensure Vue reactivity
-        images.value = [...images.value];
-        console.log(images.value)
+        // Merge and re-sort the main images array
+        images.value = [...images.value, ...adjustedAdditionalContent].sort((a, b) => a.order - b.order);
 
-        // Check if you're at the last step of the current content
-        if (currentStepIndex === images.value.length - adjustedAdditionalContent.length - 1) {
-          // Automatically advance to the first new step
-          currentStep.value = { ...adjustedAdditionalContent[0] };
-          // Ensure the UI updates to reflect this new step, potentially with scrolling
-          // This might involve calling a function to handle scrolling to the new current step
-        }
+        // Update the UI by advancing to the next frame
+        advanceToNextStep(adjustedAdditionalContent[0].id);
       }
     };
+
 
     // GSAP ScrollTrigger
     const setupScrollTrigger = () => {
