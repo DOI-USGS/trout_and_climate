@@ -21,9 +21,9 @@
           {{ currentStep.text }}
           <!-- Buttons Conditionally Rendered -->
         <div v-if="currentStep.id === 'chooseYourOwnAdventure'" class="button-container">
-          <RetroButton class="CYOA" :button-style="{ color: 'white' }" id="hot" @click="addSection('hotWater')">HOT</RetroButton>
-          <RetroButton class="CYOA" id="cold" @click="addSection('coldWater')">COLD</RetroButton>
-          <RetroButton class="CYOA" id="warm" @click="addSection('warmWater')">WARM</RetroButton>
+          <RetroButton class="CYOA" :button-style="{ color: 'white' }" id="hot" @click="addSection('hotWater')" label="HOT"/>
+          <RetroButton class="CYOA" id="cold" @click="addSection('coldWater')" label="COLD" />
+          <RetroButton class="CYOA" id="warm" @click="addSection('warmWater')" label="WARM" />
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
 import { onMounted, ref, nextTick } from 'vue';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import RetroButton from './ButtonRetro.vue';
+import RetroButton from './RetroButton.vue';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -334,6 +334,5 @@ export default {
 
 .CYOA {
   width: 120px;
-  color: white;
 }
 </style>
