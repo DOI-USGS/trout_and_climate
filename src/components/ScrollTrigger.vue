@@ -21,7 +21,7 @@
           {{ currentStep.text }}
           <!-- Buttons Conditionally Rendered -->
         <div v-if="currentStep.id === 'chooseYourOwnAdventure'" class="button-container">
-          <RetroButton class="CYOA" :button-style="{ color: 'white' }" id="hot" @click="addSection('hotWater')" label="HOT"/>
+          <RetroButton class="CYOA" id="hot" @click="addSection('hotWater')" label="HOT"/>
           <RetroButton class="CYOA" id="cold" @click="addSection('coldWater')" label="COLD" />
           <RetroButton class="CYOA" id="warm" @click="addSection('warmWater')" label="WARM" />
         </div>
@@ -124,45 +124,42 @@ export default {
 
     // Append next section when button is pressed
     const addSection = async (contentKey) => {
-      console.log(contentKey);
+      console.log("Added section:", contentKey);
       const additionalContent = fullData.value[contentKey];
+      console.log("Additional content:", additionalContent)
 
       if (additionalContent && additionalContent.length > 0) {
-        // Calculate the new starting order based on the last frame's order
-        const maxCurrentOrder = images.value.reduce((max, item) => Math.max(max, item.order), 0);
+        // Directly append additional content to images
+        images.value = [...images.value, ...additionalContent];
 
-        // Adjust the order of the new content
-        const adjustedAdditionalContent = additionalContent.map(item => ({
-          ...item,
-          order: item.order + maxCurrentOrder + 1  // +1 to place after the CYOA frame
-        })).sort((a, b) => a.order - b.order);
-
-        // Find the CYOA frame in the original array
-        const cyoaFrame = images.value.find(frame => frame.id === 'chooseYourOwnAdventure');
+        // Find the 'chooseYourOwnAdventure' frame to duplicate
+        const cyoaFrame = fullData.value.intro.find(frame => frame.id === 'chooseYourOwnAdventure');
         if (cyoaFrame) {
-          const cyoaFrameCopy = { ...cyoaFrame, order: maxCurrentOrder }; // Keep original CYOA at its current place
-          // Insert the CYOA frame before the new content
-          images.value.push(cyoaFrameCopy);
+          // Calculate the new order for the duplicated CYOA frame
+          const newOrder = images.value[images.value.length - 1].order + 1;
+
+          // Create a deep clone to avoid reference issues
+          const newCyoaFrame = { ...cyoaFrame, order: newOrder };
+
+          // Append the duplicated interactive frame
+          images.value.push(newCyoaFrame);
         }
 
-        // Append new content
-        images.value = [...images.value, ...adjustedAdditionalContent];
+        // Log to check if the interactive frame is added correctly
+        console.log("Updated images array with CYOA frame:", images.value);
 
-        // Duplicate the CYOA frame and add it at the end of the new content
-        const lastOrder = adjustedAdditionalContent[adjustedAdditionalContent.length - 1].order;
-        const newCyoaFrame = { ...cyoaFrame, order: lastOrder + 1 };
-        images.value.push(newCyoaFrame);
-
-        // Ensure reactivity and update the DOM
-        images.value = [...images.value].sort((a, b) => a.order - b.order);
+        // Wait for Vue to update the DOM
         await nextTick();
 
-        // Refresh ScrollTrigger 
+        // Optionally refresh ScrollTrigger if it's being used
         ScrollTrigger.refresh();
 
-        // Navigate to the first frame of the newly added section
-        advanceToNextStep(adjustedAdditionalContent[0].id);
+        // If you need to navigate to the first frame of the newly added section
+        if (additionalContent.length > 0) {
+          advanceToNextStep(additionalContent[0].id);
+        }
       }
+
     };
 
 
