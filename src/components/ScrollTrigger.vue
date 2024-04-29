@@ -117,7 +117,7 @@ export default {
     const advanceToNextStep = (targetId) => {
       let targetIndex = images.value.findIndex(image => image.id === targetId);
       if (targetIndex !== -1) {
-        const nextStep = images.value[targetIndex]; // Directly set to the target
+        const nextStep = images.value[targetIndex]; // Navigate to the frame
         currentStep.value = { ...nextStep };
       }
     };
@@ -126,6 +126,7 @@ export default {
     const addSection = async (contentKey) => {
       console.log(contentKey);
       const additionalContent = fullData.value[contentKey];
+
       if (additionalContent && additionalContent.length > 0) {
         // Calculate the new starting order based on the last frame's order
         const maxCurrentOrder = images.value.reduce((max, item) => Math.max(max, item.order), 0);
@@ -133,30 +134,37 @@ export default {
         // Adjust the order of the new content
         const adjustedAdditionalContent = additionalContent.map(item => ({
           ...item,
-          order: item.order + maxCurrentOrder
+          order: item.order + maxCurrentOrder + 1  // +1 to place after the CYOA frame
         })).sort((a, b) => a.order - b.order);
 
-        // Merge and re-sort the main images array
-        images.value = [...images.value, ...adjustedAdditionalContent].sort((a, b) => a.order - b.order);
-
-        // Find the CYOA frame
+        // Find the CYOA frame in the original array
         const cyoaFrame = images.value.find(frame => frame.id === 'chooseYourOwnAdventure');
         if (cyoaFrame) {
-          const lastOrder = images.value[images.value.length - 1].order;
-          const cyoaFrameCopy = { ...cyoaFrame, order: lastOrder + 1 }; // Copy CYOA frame with updated order
+          const cyoaFrameCopy = { ...cyoaFrame, order: maxCurrentOrder }; // Keep original CYOA at its current place
+          // Insert the CYOA frame before the new content
           images.value.push(cyoaFrameCopy);
         }
 
-        // Ensure Vue reactivity
-        images.value = [...images.value]; // Ensure reactivity
-        // Refresh ScrollTrigger
+        // Append new content
+        images.value = [...images.value, ...adjustedAdditionalContent];
+
+        // Duplicate the CYOA frame and add it at the end of the new content
+        const lastOrder = adjustedAdditionalContent[adjustedAdditionalContent.length - 1].order;
+        const newCyoaFrame = { ...cyoaFrame, order: lastOrder + 1 };
+        images.value.push(newCyoaFrame);
+
+        // Ensure reactivity and update the DOM
+        images.value = [...images.value].sort((a, b) => a.order - b.order);
         await nextTick();
+
+        // Refresh ScrollTrigger 
         ScrollTrigger.refresh();
 
-        // Update the UI by advancing to the first frame of the newly added section
+        // Navigate to the first frame of the newly added section
         advanceToNextStep(adjustedAdditionalContent[0].id);
       }
     };
+
 
 
 
