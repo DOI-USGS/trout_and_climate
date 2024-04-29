@@ -115,12 +115,14 @@ export default {
     }
 
     const advanceToNextStep = (targetId) => {
-      let targetIndex = images.value.findIndex(image => image.id === targetId);
+      const targetIndex = images.value.findIndex(image => image.id === targetId);
       if (targetIndex !== -1) {
-        const nextStep = images.value[targetIndex]; // Navigate to the frame
-        currentStep.value = { ...nextStep };
+        currentStep.value = { ...images.value[targetIndex] }; // Navigate directly to the targeted frame
+      } else {
+        console.error("Frame with ID", targetId, "not found");
       }
     };
+
 
     // Append next section when button is pressed
     const addSection = async (contentKey) => {
@@ -138,7 +140,7 @@ export default {
           // Calculate the new order for the duplicated CYOA frame
           const newOrder = images.value[images.value.length - 1].order + 1;
 
-          // Create a deep clone to avoid reference issues
+          // Create duplicate avoid reference issues
           const newCyoaFrame = { ...cyoaFrame, order: newOrder };
 
           // Append the duplicated interactive frame
@@ -150,8 +152,6 @@ export default {
 
         // Wait for Vue to update the DOM
         await nextTick();
-
-        // Optionally refresh ScrollTrigger if it's being used
         ScrollTrigger.refresh();
 
         // If you need to navigate to the first frame of the newly added section
