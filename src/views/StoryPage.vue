@@ -1,39 +1,80 @@
-
 <template>
-    <div>
-        <h1>{{ chapterData.id }}</h1>
-        <p>{{ chapterData.text }}</p>
-        <button v-if="nextChapter" @click="goToNextChapter">Next</button>
-        <div v-for="image in chapterData.images" :key="image.src" :style="{ backgroundImage: 'url(' + image.src + ')', position: 'absolute', top: image.y, left: image.x, width: image.width }">
+    <div class="home">
+      <h1>Trout and Climate</h1>
+      <div v-if="currentChapter">
+        <h2>{{ currentChapter.text }}</h2>
+        <div v-for="image in currentChapter.images" :key="image.src" :style="imageStyle(image)">
+          <!-- Images -->
+        </div>
+        <button @click="prevChapter" :disabled="currentIndex <= 0">Previous</button>
+        <button @click="nextChapter" :disabled="currentIndex >= chapters.length - 1">Next</button>
+      </div>
     </div>
-    </div>
-</template>
+  </template>
+  
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { store } from '@/stores/index.js';
 
 export default {
     setup() {
-        const route = useRoute();
-        const router = useRouter();
+        const currentIndex = ref(0);
         const chapters = store.chapters; 
-        const chapterData = computed(() => {
-            return chapters.find(chapter => chapter.id === route.params.chapterId);
-            console.log('Chapters:', store.chapters);
+        const currentChapter = computed(() => {
+            return chapters[currentIndex.value];
         });
-        const nextChapter = computed(() => {
-        const currentIndex = chapters.indexOf(chapterData.value);
-            return chapters[currentIndex + 1] || null;
-        });
-
-        const goToNextChapter = () => {
-            if (nextChapter.value) {
-                router.push(`/${nextChapter.value.id}`);
+        function nextChapter() {
+            if (currentIndex.value < chapters.length - 1) {
+                currentIndex.value++;
             }
-        };
-    return { chapters, chapterData, nextChapter, goToNextChapter }
+        }
+
+            function prevChapter() {
+            if (currentIndex.value > 0) {
+                currentIndex.value--;
+            }
+        }
+
+            function imageStyle(image) {
+            return {
+                backgroundImage: `url(${image.src})`,
+                position: 'absolute',
+                top: image.y,
+                left: image.x,
+                width: image.width
+            };
+        }
+
+        return { chapters, currentChapter, nextChapter, prevChapter, currentIndex, imageStyle };
+
     }
 }
 </script>
+<style scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+button:not(:disabled):hover {
+  background-color: #0056b3;
+}
+</style>

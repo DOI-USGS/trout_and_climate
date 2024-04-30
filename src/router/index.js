@@ -7,17 +7,16 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'VisualizationContent',
-      component: VisualizationView
+      redirect: '/0',
     },
     {
       path: '/index.html',
       name: 'Index',
-      component: VisualizationView
+      redirect: '/0',
     },
     {
-      path: '/:chapterId',
-      name: 'StoryPage',
+      path: '/:index',
+      name: 'Chapter',
       component: StoryPage,
       props: true
     }
