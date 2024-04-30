@@ -3,29 +3,15 @@
     <h1>Trout and Climate</h1>
     <div v-if="currentChapter">
       <h3>{{ currentChapter.text }}</h3>
-      <div v-for="image in currentChapter.images" :key="image.src" :style="imageStyle(image)">
-        <!-- Images -->
-      </div>
-      <router-link 
-        :to="`/chapter/${currentIndex - 1}`" 
-        :disabled="currentIndex <= 0"
-        custom
-        >
+      <!-- Only navigation logic -->
+      <router-link :to="`/chapter/${currentIndex - 1}`" v-if="currentIndex > 0" custom>
         <template #default="{ navigate }">
-          <button @click="navigate" :disabled="currentIndex <= 0">
-            Previous
-          </button>
+          <button @click="navigate">Previous</button>
         </template>
       </router-link>
-      <router-link 
-        :to="`/chapter/${currentIndex + 1}`" 
-        :disabled="currentIndex >= chapters.length - 1"
-        custom
-        >
+      <router-link :to="`/chapter/${currentIndex + 1}`" v-if="currentIndex < chapters.length - 1" custom>
         <template #default="{ navigate }">
-          <button @click="navigate" :disabled="currentIndex >= chapters.length - 1">
-            Next
-          </button>
+          <button @click="navigate">Next</button>
         </template>
       </router-link>
     </div>
@@ -40,32 +26,41 @@ import { store } from '@/stores/index.js';
 export default {
   setup() {
     const route = useRoute();
-    const currentIndex = ref(parseInt(route.params.index));
+    const currentIndex = ref(parseInt(route.params.index) || 0);
     const chapters = store.chapters;
 
     const currentChapter = computed(() => {
-      return chapters[currentIndex.value];
+      return chapters[currentIndex.value] || chapters[0];
     });
 
-    function imageStyle(image) {
-      return {
-        backgroundImage: `url(${image.src})`,
-        position: 'absolute',
-        top: image.y,
-        left: image.x,
-        width: image.width
-      };
-    }
-
-    return { currentChapter, currentIndex, imageStyle };
+    return { currentChapter, currentIndex };
   }
 }
 </script>
 
 <style scoped>
-.section-header {
-  color: var(--dodger-blue);
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+button {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
+button:disabled {
+  background-color: #ccc;
+}
+
+button:not(:disabled):hover {
+  background-color: #0056b3;
+}
 </style>
