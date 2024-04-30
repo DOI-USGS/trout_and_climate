@@ -18,6 +18,7 @@
   import WorkInProgressWarning from "./components/WorkInProgressWarning.vue";
   import FooterUSGS from './components/FooterUSGS.vue';
   import { useWindowSizeStore } from './stores/WindowSizeStore';
+  import chaptersData from '@/assets/content.json';
 
   const windowSizeStore = useWindowSizeStore();
   const typeOfEnv = import.meta.env.VITE_APP_TIER;

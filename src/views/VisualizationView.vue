@@ -10,11 +10,13 @@
 </template>
 
 <script>
+import { store } from '@/stores/index.js';
+
 export default {
-  data() {
-    return {
-      chapters: this.$root.chapters
-    };
+  setup() {
+    const chapters = store.chapters;
+    return { chapters };
+    console.log('Chapters:', store.chapters);
   }
 }
 </script>
