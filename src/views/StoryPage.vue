@@ -10,39 +10,26 @@
 <script>
 import { computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { nextTick } from 'vue';
 
 export default {
     setup() {
-        const route = useRoute()
-        const router = useRouter()
-        const chapter = computed(() => {
-            const chapterId = route.params.chapter
-            // Fetch or compute chapter data based onchapterId
-            return fetchChapterData(chapterId)
-        })
+        const route = useRoute();
+        const router = useRouter();
+        const chapters = this.$root.chapters; 
+        const chapterData = computed(() => {
+            return chapters.find(chapter => chapter.id === route.params.chapterId);
+        });
         const nextChapter = computed(() => {
-            // Determine next chapter based on current
-            returndetermineNextChapter(chapter.value.id)
-        })
-        function goToNextChapter() {
-            router.push(`/${nextChapter.value}`)
-        }
-        function fetchChapterData(chapterId) {
-      // Placeholder for fetching chapter data
-      return {
-        id: chapterId,
-        title: `Chapter ${chapterId}`,
-        content: `Content of Chapter ${chapterId}`
-      }
-    }
+        const currentIndex = chapters.indexOf(chapterData.value);
+            return chapters[currentIndex + 1] || null;
+        });
 
-    function determineNextChapter(currentChapterId) {
-      // Example logic to find next chapter
-      return parseInt(currentChapterId) + 1
-    }
-
-    return { chapter, nextChapter, goToNextChapter }
+        const goToNextChapter = () => {
+            if (nextChapter.value) {
+                router.push(`/${nextChapter.value.id}`);
+            }
+        };
+    return { chapterData, nextChapter, goToNextChapter }
     }
 }
 </script>

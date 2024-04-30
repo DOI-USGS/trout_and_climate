@@ -1,10 +1,9 @@
 <template>
   <div class="home">
-    <h1>Welcome to Our Story</h1>
-    <p>Select a chapter to begin:</p>
+    <h1>Trout and Climate</h1>
     <ul>
       <li v-for="chapter in chapters" :key="chapter.id">
-        <router-link :to="`/${chapter.id}`">{{ chapter.title }}</router-link>
+        <router-link :to="`/${chapter.id}`">{{ chapter.id }}</router-link>
       </li>
     </ul>
   </div>
@@ -14,11 +13,7 @@
 export default {
   data() {
     return {
-      chapters: [
-        { id: 1, title: "Chapter 1: The Beginning" },
-        { id: 2, title: "Chapter 2: The Journey" },
-        // Add more chapters as needed
-      ]
+      chapters: this.$root.chapters
     };
   }
 }

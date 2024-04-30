@@ -16,7 +16,7 @@ const router = createRouter({
       component: VisualizationView
     },
     {
-      path: '/:chapter',
+      path: '/:chapterId',
       name: 'StoryPage',
       component: StoryPage,
       props: true
