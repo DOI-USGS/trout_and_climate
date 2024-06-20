@@ -64,8 +64,7 @@ export default {
 
         return { chapters, currentChapter, nextChapter, prevChapter, currentIndex, imageStyle };
 
-    },
-    methods: {}
+    }
 }
 </script>
 <style scoped>
