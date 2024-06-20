@@ -39,6 +39,7 @@ export default {
                 let nextIndexNumeric = currentIndex.value + 1
                 let index = nextIndexNumeric.toString()
                 // use the router to navigate to the next chapter page
+                // passed object must be named `index`
                 router.push({ name: 'Chapter', params: { index } })
             }
         }
@@ -48,6 +49,7 @@ export default {
                 let prevIndexNumeric = currentIndex.value - 1
                 let index = prevIndexNumeric.toString()
                 // use the router to navigate to the previous chapter page
+                // passed object must be named `index`
                 router.push({ name: 'Chapter', params: { index } })
             }
         }
