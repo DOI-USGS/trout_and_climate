@@ -14,30 +14,47 @@
   
 
 <script>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { store } from '@/stores/index.js';
 
 export default {
     setup() {
-        const currentIndex = ref(0);
+        const route = useRoute()
+        const router = useRouter()
+
+        const currentIndex = ref(parseInt(route.params.index))
         const chapters = store.chapters; 
         const currentChapter = computed(() => {
             return chapters[currentIndex.value];
         });
+
+        // watch the router params for changes, and update currentIndex accordingly
+        watch(route, () => {
+          currentIndex.value = parseInt(route.params.index)
+        })
+
         function nextChapter() {
             if (currentIndex.value < chapters.length - 1) {
-                currentIndex.value++;
+                let nextIndexNumeric = currentIndex.value + 1
+                let index = nextIndexNumeric.toString()
+                // use the router to navigate to the next chapter page
+                // passed object must be named `index`
+                router.push({ name: 'Chapter', params: { index } })
             }
         }
 
-            function prevChapter() {
+        function prevChapter() {
             if (currentIndex.value > 0) {
-                currentIndex.value--;
+                let prevIndexNumeric = currentIndex.value - 1
+                let index = prevIndexNumeric.toString()
+                // use the router to navigate to the previous chapter page
+                // passed object must be named `index`
+                router.push({ name: 'Chapter', params: { index } })
             }
         }
 
-            function imageStyle(image) {
+        function imageStyle(image) {
             return {
                 backgroundImage: `url(${image.src})`,
                 position: 'absolute',
