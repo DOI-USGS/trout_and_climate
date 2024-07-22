@@ -9,11 +9,11 @@
         </div>
       </div>
       <button v-if="!isLastIntroChapter" @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
-      <button v-if="!isLastIntroChapter" @click="nextChapter" :disabled="store.currentIndex >= store.chapters.length - 1">Next</button>
+      <button v-if="!isLastIntroChapter" @click="nextChapter">Next</button>
       <div v-if="isLastIntroChapter">
-        <button @click="chooseAdventure('hotWater')">Hot</button>
-        <button @click="chooseAdventure('warmWater')">Warm</button>
-        <button @click="chooseAdventure('coldWater')">Cold</button>
+        <button @click="chooseAdventure('hotWater')" :disabled="store.selectedOptions.includes('hotWater')">Hot</button>
+        <button @click="chooseAdventure('warmWater')" :disabled="store.selectedOptions.includes('warmWater')">Warm</button>
+        <button @click="chooseAdventure('coldWater')" :disabled="store.selectedOptions.includes('coldWater')">Cold</button>
       </div>
     </div>
   </div>
@@ -38,17 +38,20 @@ export default {
     );
 
     const currentChapter = computed(() => {
-      return store.chapters[store.currentIndex];
+      return store.allChapters[store.currentIndex];
     });
 
     const isLastIntroChapter = computed(() => {
-      return store.currentType === 'intro' && store.currentIndex === store.chapters.length - 1;
+      return store.currentType === 'intro' && store.currentIndex === store.lastIntroIndex;
     });
 
     function nextChapter() {
-      if (store.currentIndex < store.chapters.length - 1) {
+      if (store.currentIndex < store.allChapters.length - 1) {
         store.nextChapter();
         router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
+      } else if (store.currentType !== 'intro') {
+        store.resetToIntro();
+        router.push({ name: 'Chapter', params: { index: store.lastIntroIndex.toString() } });
       }
     }
 
@@ -60,8 +63,10 @@ export default {
     }
 
     function chooseAdventure(newType) {
-      store.setTypeAndIndex(newType, 0);
-      router.push({ name: 'Chapter', params: { index: '0' } });
+      const nextIndex = store.allChapters.length;
+      store.selectedOptions.push(newType);
+      store.setTypeAndIndex(newType, nextIndex);
+      router.push({ name: 'Chapter', params: { index: nextIndex.toString() } });
     }
 
     function imageStyle(image) {
