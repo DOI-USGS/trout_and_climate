@@ -9,19 +9,35 @@
         </div>
       </div>
       <div class="navigation-buttons">
-        <RetroButton
-          label="Previous"
-          :buttonStyle="prevButtonStyle"
-          @click="prevChapter"
-          :isDisabled="store.currentIndex <= 0"
-        />
-        <RetroButton
-          v-if="store.currentIndex < store.allChapters.length"
-          label="Next"
-          :buttonStyle="nextButtonStyle"
-          @click="nextChapter"
-          :isDisabled="isLastIntroChapter || isLastOutroChapter"
-        />
+        <div class="navigation-buttons-main">
+          <RetroButton
+            label="Previous"
+            :buttonStyle="prevButtonStyle"
+            @click="prevChapter"
+            :isDisabled="store.currentIndex <= 0"
+          />
+          <RetroButton
+            label="Go to start"
+            :buttonStyle="introButtonStyle"
+            @click="navigateToStart"
+            :isDisabled="store.currentIndex <= 0"
+          />
+        </div>
+        <div class="navigation-buttons-main">
+          <RetroButton
+            v-if="store.currentIndex < store.allChapters.length"
+            label="Next"
+            :buttonStyle="nextButtonStyle"
+            @click="nextChapter"
+            :isDisabled="isLastIntroChapter || isLastOutroChapter"
+          />
+          <RetroButton
+            label="Go to end"
+            :buttonStyle="outroButtonStyle"
+            @click="navigateToOutro"
+            :isDisabled="isLastOutroChapter || store.currentIndex <= 0"
+          />
+        </div>
       </div>
       <div v-if="isLastIntroChapter" class="choose-adventure">
         <RetroButton
@@ -43,12 +59,6 @@
           :isDisabled="store.selectedOptions.includes('coldWater')"
         />
       </div>
-      <RetroButton
-        label="Go to end"
-        :buttonStyle="outroButtonStyle"
-        @click="navigateToOutro"
-        :isDisabled="isLastOutroChapter || store.currentIndex <= 0"
-      />
     </div>
   </div>
 </template>
@@ -128,6 +138,12 @@ export default {
       router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
     }
 
+    function navigateToStart() {
+      store.currentIndex = 0;
+      store.currentType = 'intro';
+      router.push({ name: 'Chapter', params: { index: '0' } });
+    }
+
     function imageStyle(image) {
       return {
         position: 'absolute',
@@ -150,6 +166,10 @@ export default {
       backgroundColor: '#808080'
     };
 
+    const introButtonStyle = {
+      backgroundColor: '#ff9933'
+    };
+
     const chooseButtonStyle = {
       backgroundColor: '#d66853'
     };
@@ -165,9 +185,11 @@ export default {
       isLastOutroChapter,
       chooseAdventure,
       navigateToOutro,
+      navigateToStart,
       prevButtonStyle,
       nextButtonStyle,
       outroButtonStyle,
+      introButtonStyle,
       chooseButtonStyle
     };
   }
@@ -231,7 +253,14 @@ html, body {
   bottom: 20px; /* Adjust as needed */
   width: 100%;
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navigation-buttons-main {
+  display: flex;
   justify-content: space-between;
+  width: 100%;
   padding: 0 20px;
 }
 
