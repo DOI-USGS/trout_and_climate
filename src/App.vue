@@ -63,6 +63,9 @@ html, body, #app, .app-container {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  min-width: 720px;
+  max-width: 1000px;
+  margin:0 auto;
 }
 
 header, footer {
