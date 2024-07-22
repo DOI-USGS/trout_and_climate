@@ -1,16 +1,18 @@
 <template>
   <div class="home">
     <h1>Trout and Climate</h1>
-    <div v-if="currentChapter">
+    <div v-if="currentChapter" class="chapter-container">
       <h2>{{ currentChapter.text }}</h2>
       <div class="images-container" :style="{ backgroundImage: `url(${currentChapter.bknd})` }">
         <div v-for="image in currentChapter.images" :key="image.src" :style="imageStyle(image)">
           <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
         </div>
       </div>
-      <button @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
-      <button v-if="!isLastIntroChapter && !isOutroChapter" @click="nextChapter">Next</button>
-      <div v-if="isLastIntroChapter">
+      <div class="navigation-buttons">
+        <button @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
+        <button v-if="!isLastIntroChapter && !isOutroChapter" @click="nextChapter">Next</button>
+      </div>
+      <div v-if="isLastIntroChapter" class="choose-adventure">
         <button @click="chooseAdventure('hotWater')" :disabled="store.selectedOptions.includes('hotWater')">Hot</button>
         <button @click="chooseAdventure('warmWater')" :disabled="store.selectedOptions.includes('warmWater')">Warm</button>
         <button @click="chooseAdventure('coldWater')" :disabled="store.selectedOptions.includes('coldWater')">Cold</button>
@@ -108,12 +110,23 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.chapter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 .images-container {
   position: relative;
   width: 100%;
-  height: 400px; /* Adjust as needed */
+  height: 70%; /* Adjust as needed */
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -125,8 +138,18 @@ export default {
   max-height: 100%;
 }
 
+.navigation-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.choose-adventure {
+  display: flex;
+  gap: 10px;
+}
+
 button {
-  margin: 10px;
   padding: 8px 16px;
   border: none;
   background-color: #007bff;
