@@ -10,10 +10,10 @@
       </div>
       <div class="navigation-buttons">
         <RetroButton
-          v-if="store.currentIndex > 0"
           label="Previous"
           :buttonStyle="prevButtonStyle"
           @click="prevChapter"
+          :isDisabled="store.currentIndex <= 0"
         />
         <RetroButton
           v-if="store.currentIndex < store.allChapters.length"
@@ -47,7 +47,7 @@
         label="Go to end"
         :buttonStyle="outroButtonStyle"
         @click="navigateToOutro"
-        :isDisabled="isLastOutroChapter"
+        :isDisabled="isLastOutroChapter || store.currentIndex <= 0"
       />
     </div>
   </div>
