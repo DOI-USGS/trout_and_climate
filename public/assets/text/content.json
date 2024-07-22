@@ -527,5 +527,22 @@
 		"text": "Ranger Randy notices the smaller trout do well in the cold waters, but waters in the area are warming due to climate change. He decides to resist these future changes by planting trees on the stream’s edge to provide cooling shade to the river.",
 		"alt": "alt text henny"
 	}
+],
+"outro":	[
+	{
+		"id": "theEnd",
+		"order": 1,
+		"images":[
+			{
+				"src": "",
+				"x": "",
+				"y": "",
+				"width": ""
+			}
+		],
+		"bknd": "assets/vectorized_pngs/landing_page.png",
+		"text": "The END",
+		"alt": "this is the end of the story"
+	}
 ]
 }
