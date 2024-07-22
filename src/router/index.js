@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import VisualizationView from '../views/VisualizationView.vue'
 import StoryPage from '../views/StoryPage.vue'
 
 const router = createRouter({

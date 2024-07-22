@@ -8,14 +8,19 @@
           <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
         </div>
       </div>
-      <button @click="prevChapter" :disabled="currentIndex <= 0">Previous</button>
-      <button @click="nextChapter" :disabled="currentIndex >= chapters.length - 1">Next</button>
+      <button v-if="!isLastIntroChapter" @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
+      <button v-if="!isLastIntroChapter" @click="nextChapter" :disabled="store.currentIndex >= store.chapters.length - 1">Next</button>
+      <div v-if="isLastIntroChapter">
+        <button @click="chooseAdventure('hotWater')">Hot</button>
+        <button @click="chooseAdventure('warmWater')">Warm</button>
+        <button @click="chooseAdventure('coldWater')">Cold</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, ref, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { store } from '@/stores/index.js';
 
@@ -24,46 +29,39 @@ export default {
     const route = useRoute();
     const router = useRouter();
 
-    const currentIndex = ref(parseInt(route.params.index) || 0);
-    const chapters = store.chapters;
-
-    // Check if chapters are being loaded correctly
-    console.log("Chapters:", chapters);
+    watch(
+      () => route.params.index,
+      (newIndex) => {
+        store.currentIndex = parseInt(newIndex) || 0;
+      },
+      { immediate: true }
+    );
 
     const currentChapter = computed(() => {
-      // Log current index and chapter length
-      console.log("Current Index:", currentIndex.value);
-      console.log("Total Chapters:", chapters.length);
-      // Check if index is within bounds
-      if (currentIndex.value >= 0 && currentIndex.value < chapters.length) {
-        const chapter = chapters[currentIndex.value];
-        console.log("Current Chapter:", chapter);
-        return chapter;
-      }
-      console.log("Current Chapter: undefined");
-      return undefined;
+      return store.chapters[store.currentIndex];
     });
 
-    watch(route, () => {
-      const newIndex = parseInt(route.params.index) || 0;
-      console.log("Route params changed. New index:", newIndex);
-      currentIndex.value = newIndex;
+    const isLastIntroChapter = computed(() => {
+      return store.currentType === 'intro' && store.currentIndex === store.chapters.length - 1;
     });
 
     function nextChapter() {
-      if (currentIndex.value < chapters.length - 1) {
-        let nextIndexNumeric = currentIndex.value + 1;
-        let index = nextIndexNumeric.toString();
-        router.push({ name: 'Chapter', params: { index } });
+      if (store.currentIndex < store.chapters.length - 1) {
+        store.nextChapter();
+        router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
       }
     }
 
     function prevChapter() {
-      if (currentIndex.value > 0) {
-        let prevIndexNumeric = currentIndex.value - 1;
-        let index = prevIndexNumeric.toString();
-        router.push({ name: 'Chapter', params: { index } });
+      if (store.currentIndex > 0) {
+        store.prevChapter();
+        router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
       }
+    }
+
+    function chooseAdventure(newType) {
+      store.setTypeAndIndex(newType, 0);
+      router.push({ name: 'Chapter', params: { index: '0' } });
     }
 
     function imageStyle(image) {
@@ -76,7 +74,7 @@ export default {
       };
     }
 
-    return { chapters, currentChapter, nextChapter, prevChapter, currentIndex, imageStyle };
+    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, chooseAdventure };
   }
 };
 </script>
