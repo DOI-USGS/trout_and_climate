@@ -1,39 +1,54 @@
 <template>
-    <button :class="buttonClass" :style="buttonStyle" @click="onClick">
-      {{ label }}
-    </button>
-  </template>
-  
-  <script>
-  export default {
-    name: 'RetroButton',
-    props: {
-      label: String,
-      buttonClass: {
-        type: String,
-        default: 'default-button-class'
-      },
-      buttonStyle: Object,
-      onClick: Function
+  <button :class="buttonClass" :style="computedStyle" @click="onClick" :disabled="isDisabled">
+    {{ label }}
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'RetroButton',
+  props: {
+    label: String,
+    buttonClass: {
+      type: String,
+      default: 'default-button-class'
     },
-    emits: ['click'],
-    setup(props, { emit }) {
-      const onClick = () => {
-        emit('click');
-      };
-  
-      return { onClick };
+    buttonStyle: Object,
+    onClick: Function,
+    isDisabled: {
+      type: Boolean,
+      default: false
     }
-  };
-  </script>
-  
-<style lang="scss">
+  },
+  emits: ['click'],
+  computed: {
+    computedStyle() {
+      if (this.isDisabled) {
+        return {
+          ...this.buttonStyle,
+          backgroundColor: 'grey',
+          cursor: 'not-allowed'
+        };
+      }
+      return this.buttonStyle;
+    }
+  },
+  setup(props, { emit }) {
+    const onClick = () => {
+      if (!props.isDisabled) {
+        emit('click');
+      }
+    };
 
+    return { onClick };
+  }
+};
+</script>
 
+<style scoped lang="scss">
 button {
   color: white;
   align-items: center;
-  background-color: #d66853;
   border: 2px solid hsl(0, 0%, 7%);
   border-radius: 8px;
   box-sizing: border-box;
@@ -47,6 +62,7 @@ button {
   font-weight: 800;
   text-align: center;
   touch-action: manipulation;
+  transition: transform 0.2s ease-out;
 }
 
 button:after {
@@ -58,24 +74,33 @@ button:after {
   left: 0;
   width: 100%;
   position: absolute;
-  top: -2px;
+  top: -5px;
   transform: translate(8px, 8px);
-  transition: transform .2s ease-out;
+  transition: transform 0.2s ease-out;
   z-index: -1;
 }
 
 button:hover:after {
-  transform: translate(0, 0);
-}
-
-button:active {
-  color: white;
-  background-color: #d66853;
-  outline: 0;
+  transform: translate(20px, 20px);
 }
 
 button:hover {
   outline: 0;
 }
-  </style>
-  
+
+button:active {
+  transform: translate(4px, 4px);
+  outline: 0;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  border-color: #999;
+  color: #ccc;
+}
+
+button:disabled:after {
+  background-color: #ccc;
+}
+</style>

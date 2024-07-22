@@ -1,24 +1,65 @@
 <template>
   <div class="home">
     <h1>Trout and Climate</h1>
-    <div v-if="currentChapter">
+    <div v-if="currentChapter" class="chapter-container">
       <h2>{{ currentChapter.text }}</h2>
       <div class="images-container" :style="{ backgroundImage: `url(${currentChapter.bknd})` }">
         <div v-for="image in currentChapter.images" :key="image.src" :style="imageStyle(image)">
           <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
         </div>
       </div>
-      <button @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
-      <button v-if="!isLastIntroChapter && !isOutroChapter" @click="nextChapter">Next</button>
-      <div v-if="isLastIntroChapter">
-        <button @click="chooseAdventure('hotWater')" :disabled="store.selectedOptions.includes('hotWater')">Hot</button>
-        <button @click="chooseAdventure('warmWater')" :disabled="store.selectedOptions.includes('warmWater')">Warm</button>
-        <button @click="chooseAdventure('coldWater')" :disabled="store.selectedOptions.includes('coldWater')">Cold</button>
+      <div class="navigation-buttons">
+        <div class="navigation-buttons-main">
+          <RetroButton
+            label="Previous"
+            :buttonStyle="prevButtonStyle"
+            @click="prevChapter"
+            :isDisabled="store.currentIndex <= 0"
+          />
+          <RetroButton
+            label="Go to start"
+            :buttonStyle="introButtonStyle"
+            @click="navigateToStart"
+            :isDisabled="store.currentIndex <= 0"
+          />
+        </div>
+        <div class="navigation-buttons-main">
+          <RetroButton
+            v-if="store.currentIndex < store.allChapters.length"
+            label="Next"
+            :buttonStyle="nextButtonStyle"
+            @click="nextChapter"
+            :isDisabled="isLastIntroChapter || isLastOutroChapter"
+          />
+          <RetroButton
+            label="Go to end"
+            :buttonStyle="outroButtonStyle"
+            @click="navigateToOutro"
+            :isDisabled="isLastOutroChapter"
+          />
+        </div>
       </div>
-      <button class="outro-button" @click="navigateToOutro">Go to Outro</button>
-    </div>
-    <div v-else>
-      <p>Loading...</p>
+      <div v-if="isLastIntroChapter" class="choose-adventure">
+        <RetroButton
+          label="Hot"
+          :buttonStyle="chooseButtonStyle"
+          @click="chooseAdventure('hotWater')"
+          :isDisabled="store.selectedOptions.includes('hotWater')"
+        />
+        <RetroButton
+          label="Warm"
+          :buttonStyle="chooseButtonStyle"
+          @click="chooseAdventure('warmWater')"
+          :isDisabled="store.selectedOptions.includes('warmWater')"
+        />
+        <RetroButton
+          label="Cold"
+          :buttonStyle="chooseButtonStyle"
+          @click="chooseAdventure('coldWater')"
+          :isDisabled="store.selectedOptions.includes('coldWater')"
+        />
+      </div>
+      <ReferencesSection v-if="isLastOutroChapter" />
     </div>
   </div>
 </template>
@@ -27,8 +68,14 @@
 import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { store } from '@/stores/index.js';
+import RetroButton from '@/components/RetroButton.vue';
+import ReferencesSection from '@/components/ReferencesSection.vue';
 
 export default {
+  components: {
+    RetroButton,
+    ReferencesSection
+  },
   setup() {
     const route = useRoute();
     const router = useRouter();
@@ -37,6 +84,9 @@ export default {
       () => route.params.index,
       (newIndex) => {
         store.currentIndex = parseInt(newIndex) || 0;
+        if (window.innerWidth <= 600) {
+          document.querySelector('.app-container').classList.add('scroll-locked');
+        }
       },
       { immediate: true }
     );
@@ -51,6 +101,10 @@ export default {
 
     const isOutroChapter = computed(() => {
       return store.currentType === 'outro';
+    });
+
+    const isLastOutroChapter = computed(() => {
+      return store.currentType === 'outro' && store.currentIndex === store.allChapters.length - 1;
     });
 
     function nextChapter() {
@@ -87,6 +141,12 @@ export default {
       router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
     }
 
+    function navigateToStart() {
+      store.currentIndex = 0;
+      store.currentType = 'intro';
+      router.push({ name: 'Chapter', params: { index: '0' } });
+    }
+
     function imageStyle(image) {
       return {
         position: 'absolute',
@@ -97,23 +157,89 @@ export default {
       };
     }
 
-    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, isOutroChapter, chooseAdventure, navigateToOutro };
+    const prevButtonStyle = {
+      backgroundColor: '#7d4e57'
+    };
+
+    const nextButtonStyle = {
+      backgroundColor: '#7d4e57'
+    };
+
+    const outroButtonStyle = {
+      backgroundColor: '#808080'
+    };
+
+    const introButtonStyle = {
+      backgroundColor: '#ff9933'
+    };
+
+    const chooseButtonStyle = {
+      backgroundColor: '#d66853'
+    };
+
+    return {
+      store,
+      currentChapter,
+      nextChapter,
+      prevChapter,
+      imageStyle,
+      isLastIntroChapter,
+      isOutroChapter,
+      isLastOutroChapter,
+      chooseAdventure,
+      navigateToOutro,
+      navigateToStart,
+      prevButtonStyle,
+      nextButtonStyle,
+      outroButtonStyle,
+      introButtonStyle,
+      chooseButtonStyle
+    };
   }
 };
 </script>
 
 <style scoped>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
 .home {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 80px); /* Adjust for header/footer */
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .images-container {
   position: relative;
   width: 100%;
-  height: 400px; /* Adjust as needed */
+  height: 60%; /* Adjust as needed */
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -125,30 +251,30 @@ export default {
   max-height: 100%;
 }
 
-button {
-  margin: 10px;
-  padding: 8px 16px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+.navigation-buttons {
+  position: absolute;
+  bottom: 20px; /* Adjust as needed */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-button:disabled {
-  background-color: #ccc;
+.navigation-buttons-main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
 }
 
-button:not(:disabled):hover {
-  background-color: #0056b3;
+.choose-adventure {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.outro-button {
-  margin-top: 20px;
-  background-color: #28a745;
-}
-
-.outro-button:hover {
-  background-color: #218838;
+.navigation-buttons RetroButton {
+  flex: 1;
+  margin: 0 10px;
 }
 </style>
