@@ -8,13 +8,14 @@
           <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
         </div>
       </div>
-      <button v-if="!isLastIntroChapter && !isOutroChapter" @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
+      <button @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
       <button v-if="!isLastIntroChapter && !isOutroChapter" @click="nextChapter">Next</button>
       <div v-if="isLastIntroChapter">
         <button @click="chooseAdventure('hotWater')" :disabled="store.selectedOptions.includes('hotWater')">Hot</button>
         <button @click="chooseAdventure('warmWater')" :disabled="store.selectedOptions.includes('warmWater')">Warm</button>
         <button @click="chooseAdventure('coldWater')" :disabled="store.selectedOptions.includes('coldWater')">Cold</button>
       </div>
+      <button class="outro-button" @click="navigateToOutro">Go to Outro</button>
     </div>
     <div v-else>
       <p>Loading...</p>
@@ -81,6 +82,11 @@ export default {
       router.push({ name: 'Chapter', params: { index: nextIndex.toString() } });
     }
 
+    function navigateToOutro() {
+      store.navigateToOutro();
+      router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
+    }
+
     function imageStyle(image) {
       return {
         position: 'absolute',
@@ -91,7 +97,7 @@ export default {
       };
     }
 
-    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, isOutroChapter, chooseAdventure };
+    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, isOutroChapter, chooseAdventure, navigateToOutro };
   }
 };
 </script>
@@ -135,5 +141,14 @@ button:disabled {
 
 button:not(:disabled):hover {
   background-color: #0056b3;
+}
+
+.outro-button {
+  margin-top: 20px;
+  background-color: #28a745;
+}
+
+.outro-button:hover {
+  background-color: #218838;
 }
 </style>
