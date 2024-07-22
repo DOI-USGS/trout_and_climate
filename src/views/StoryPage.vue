@@ -8,13 +8,16 @@
           <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
         </div>
       </div>
-      <button v-if="!isLastIntroChapter" @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
-      <button v-if="!isLastIntroChapter" @click="nextChapter">Next</button>
+      <button v-if="!isLastIntroChapter && !isOutroChapter" @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
+      <button v-if="!isLastIntroChapter && !isOutroChapter" @click="nextChapter">Next</button>
       <div v-if="isLastIntroChapter">
         <button @click="chooseAdventure('hotWater')" :disabled="store.selectedOptions.includes('hotWater')">Hot</button>
         <button @click="chooseAdventure('warmWater')" :disabled="store.selectedOptions.includes('warmWater')">Warm</button>
         <button @click="chooseAdventure('coldWater')" :disabled="store.selectedOptions.includes('coldWater')">Cold</button>
       </div>
+    </div>
+    <div v-else>
+      <p>Loading...</p>
     </div>
   </div>
 </template>
@@ -45,13 +48,22 @@ export default {
       return store.currentType === 'intro' && store.currentIndex === store.lastIntroIndex;
     });
 
+    const isOutroChapter = computed(() => {
+      return store.currentType === 'outro';
+    });
+
     function nextChapter() {
       if (store.currentIndex < store.allChapters.length - 1) {
         store.nextChapter();
         router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
       } else if (store.currentType !== 'intro') {
-        store.resetToIntro();
-        router.push({ name: 'Chapter', params: { index: store.lastIntroIndex.toString() } });
+        if (store.allOptionsChosen()) {
+          store.navigateToOutro();
+          router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
+        } else {
+          store.resetToIntro();
+          router.push({ name: 'Chapter', params: { index: store.lastIntroIndex.toString() } });
+        }
       }
     }
 
@@ -63,8 +75,8 @@ export default {
     }
 
     function chooseAdventure(newType) {
-      const nextIndex = store.allChapters.length;
       store.selectedOptions.push(newType);
+      const nextIndex = store.allChapters.length;
       store.setTypeAndIndex(newType, nextIndex);
       router.push({ name: 'Chapter', params: { index: nextIndex.toString() } });
     }
@@ -79,7 +91,7 @@ export default {
       };
     }
 
-    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, chooseAdventure };
+    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, isOutroChapter, chooseAdventure };
   }
 };
 </script>
