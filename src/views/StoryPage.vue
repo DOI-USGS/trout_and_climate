@@ -35,7 +35,7 @@
             label="Go to end"
             :buttonStyle="outroButtonStyle"
             @click="navigateToOutro"
-            :isDisabled="isLastOutroChapter || store.currentIndex <= 0"
+            :isDisabled="isLastOutroChapter"
           />
         </div>
       </div>
@@ -59,6 +59,7 @@
           :isDisabled="store.selectedOptions.includes('coldWater')"
         />
       </div>
+      <ReferencesSection v-if="isLastOutroChapter" />
     </div>
   </div>
 </template>
@@ -68,10 +69,12 @@ import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { store } from '@/stores/index.js';
 import RetroButton from '@/components/RetroButton.vue';
+import ReferencesSection from '@/components/ReferencesSection.vue';
 
 export default {
   components: {
-    RetroButton
+    RetroButton,
+    ReferencesSection
   },
   setup() {
     const route = useRoute();
