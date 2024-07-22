@@ -139,15 +139,15 @@ export default {
     }
 
     const prevButtonStyle = {
-      backgroundColor: '#00264c'
+      backgroundColor: '#7d4e57'
     };
 
     const nextButtonStyle = {
-      backgroundColor: '#00264c'
+      backgroundColor: '#7d4e57'
     };
 
     const outroButtonStyle = {
-      backgroundColor: '#00264c'
+      backgroundColor: '#7d4e57'
     };
 
     const chooseButtonStyle = {
@@ -175,6 +175,20 @@ export default {
 </script>
 
 <style scoped>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
 .home {
   display: flex;
   flex-direction: column;
@@ -183,6 +197,7 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .chapter-container {
@@ -190,15 +205,16 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: calc(100vh - 80px); /* Adjust for header/footer */
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .images-container {
   position: relative;
   width: 100%;
-  height: 70%; /* Adjust as needed */
+  height: 60%; /* Adjust as needed */
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -222,11 +238,11 @@ export default {
 .choose-adventure {
   display: flex;
   gap: 10px;
+  margin-top: 10px;
 }
 
 .navigation-buttons RetroButton {
   flex: 1;
   margin: 0 10px;
 }
-
 </style>
