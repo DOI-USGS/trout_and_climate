@@ -538,11 +538,11 @@
 		"alt": "this is the end of the story"
 	  },
 	  {
-		"id": "theEnd2",
+		"id": "References",
 		"order": 2,
 		"images": [],
 		"bknd": "assets/vectorized_pngs/landing_page.png",
-		"text": "The END",
+		"text": "References",
 		"alt": "this is the end of the story"
 	  }
 	]

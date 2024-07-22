@@ -9,15 +9,46 @@
         </div>
       </div>
       <div class="navigation-buttons">
-        <RetroButton label="Previous" :buttonStyle="prevButtonStyle" @click="prevChapter" :isDisabled="store.currentIndex <= 0" />
-        <RetroButton v-if="!isLastIntroChapter && !isOutroChapter" label="Next" :buttonStyle="nextButtonStyle" @click="nextChapter" />
+        <RetroButton
+          v-if="store.currentIndex > 0"
+          label="Previous"
+          :buttonStyle="prevButtonStyle"
+          @click="prevChapter"
+        />
+        <RetroButton
+          v-if="store.currentIndex < store.allChapters.length"
+          label="Next"
+          :buttonStyle="nextButtonStyle"
+          @click="nextChapter"
+          :isDisabled="isLastIntroChapter || isLastOutroChapter"
+        />
       </div>
       <div v-if="isLastIntroChapter" class="choose-adventure">
-        <RetroButton label="Hot" :buttonStyle="chooseButtonStyle" @click="chooseAdventure('hotWater')" :isDisabled="store.selectedOptions.includes('hotWater')" />
-        <RetroButton label="Warm" :buttonStyle="chooseButtonStyle" @click="chooseAdventure('warmWater')" :isDisabled="store.selectedOptions.includes('warmWater')" />
-        <RetroButton label="Cold" :buttonStyle="chooseButtonStyle" @click="chooseAdventure('coldWater')" :isDisabled="store.selectedOptions.includes('coldWater')" />
+        <RetroButton
+          label="Hot"
+          :buttonStyle="chooseButtonStyle"
+          @click="chooseAdventure('hotWater')"
+          :isDisabled="store.selectedOptions.includes('hotWater')"
+        />
+        <RetroButton
+          label="Warm"
+          :buttonStyle="chooseButtonStyle"
+          @click="chooseAdventure('warmWater')"
+          :isDisabled="store.selectedOptions.includes('warmWater')"
+        />
+        <RetroButton
+          label="Cold"
+          :buttonStyle="chooseButtonStyle"
+          @click="chooseAdventure('coldWater')"
+          :isDisabled="store.selectedOptions.includes('coldWater')"
+        />
       </div>
-      <RetroButton label="Go to end" :buttonStyle="outroButtonStyle" @click="navigateToOutro" />
+      <RetroButton
+        label="Go to end"
+        :buttonStyle="outroButtonStyle"
+        @click="navigateToOutro"
+        :isDisabled="isLastOutroChapter"
+      />
     </div>
   </div>
 </template>
@@ -57,6 +88,10 @@ export default {
 
     const isOutroChapter = computed(() => {
       return store.currentType === 'outro';
+    });
+
+    const isLastOutroChapter = computed(() => {
+      return store.currentType === 'outro' && store.currentIndex === store.allChapters.length - 1;
     });
 
     function nextChapter() {
@@ -119,7 +154,22 @@ export default {
       backgroundColor: '#d66853'
     };
 
-    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, isOutroChapter, chooseAdventure, navigateToOutro, prevButtonStyle, nextButtonStyle, outroButtonStyle, chooseButtonStyle };
+    return {
+      store,
+      currentChapter,
+      nextChapter,
+      prevChapter,
+      imageStyle,
+      isLastIntroChapter,
+      isOutroChapter,
+      isLastOutroChapter,
+      chooseAdventure,
+      navigateToOutro,
+      prevButtonStyle,
+      nextButtonStyle,
+      outroButtonStyle,
+      chooseButtonStyle
+    };
   }
 };
 </script>
