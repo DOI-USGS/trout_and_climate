@@ -19,6 +19,7 @@
   import FooterUSGS from './components/FooterUSGS.vue';
   import { useWindowSizeStore } from './stores/WindowSizeStore';
 
+
   const windowSizeStore = useWindowSizeStore();
   const typeOfEnv = import.meta.env.VITE_APP_TIER;
 
@@ -163,50 +164,5 @@ a:hover {
 a:active {
   color: #032a56;
 }
-button {
-  align-items: center;
-  background-color: $linkcolor;
-  border: 2px solid hsl(0, 0%, 7%);
-  border-radius: 8px;
-  box-sizing: border-box;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  height: 48px;
-  justify-content: center;
-  max-width: 100%;
-  padding: 0 15px;
-  position: relative;
-  font-weight: 800;
-  text-align: center;
-  touch-action: manipulation;
-}
 
-button:after {
-  background-color: #111;
-  border-radius: 8px;
-  content: '';
-  display: block;
-  height: 48px;
-  left: 0;
-  width: 100%;
-  position: absolute;
-  top: -2px;
-  transform: translate(8px, 8px);
-  transition: transform .2s ease-out;
-  z-index: -1;
-}
-
-button:hover:after {
-  transform: translate(0, 0);
-}
-
-button:active {
-  background-color: $linkcolor;
-  outline: 0;
-}
-
-button:hover {
-  outline: 0;
-}
 </style>

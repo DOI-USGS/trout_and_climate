@@ -21,7 +21,7 @@
           {{ currentStep.text }}
           <!-- Buttons Conditionally Rendered -->
         <div v-if="currentStep.id === 'chooseYourOwnAdventure'" class="button-container">
-          <RetroButton class="CYOA" :button-style="{ color: 'white' }" id="hot" @click="addSection('hotWater')" label="HOT"/>
+          <RetroButton class="CYOA" id="hot" @click="addSection('hotWater')" label="HOT"/>
           <RetroButton class="CYOA" id="cold" @click="addSection('coldWater')" label="COLD" />
           <RetroButton class="CYOA" id="warm" @click="addSection('warmWater')" label="WARM" />
         </div>
@@ -71,11 +71,9 @@ export default {
         const data = await response.json();
 
         // Store the fetched data in fullData
-       fullData.value = data;
-
-        images.value = data.intro.sort((a, b) => a.order - b.order); // Start with intro content only
-        console.log(images.value)
-        currentStep.value = images.value[0]; // Initialize with the first step in 'intro' array
+        fullData.value = data;
+        images.value = data.intro.sort((a, b) => a.order - b.order); 
+        currentStep.value = images.value[0]; // Initialize with the first step 
 
       } catch (error) {
         console.error('Failed to load images', error);
@@ -84,31 +82,19 @@ export default {
 
     // Update images if they are different b/w steps, apply fade animation
     const updateImagesIfDifferent = (newStep) => {
-      const isImageDifferent = JSON.stringify(currentStep.value.images) !== JSON.stringify(newStep.images);
-      const isBackgroundDifferent = currentStep.value.bknd !== newStep.bknd;
-      const isTextDifferent = currentStep.value.text !== newStep.text;
-
-      // Apply fade transition to the background if different
-      if (isBackgroundDifferent) {
-        applyFadeTransition(backgroundWrapper, newStep.bknd, (newValue) => {
-          currentStep.value.bknd = newValue;
-        });
-      }
-
-      // Apply fade transition to images if different
-      if (isImageDifferent) {
-        applyFadeTransition(imageWrapper, newStep.images, (newValue) => {
-          currentStep.value.images = [...newValue];
-        });
-      }
-
-      // Apply fade transition to text if different
-      if (isTextDifferent) {
-        applyFadeTransition(textWrapper, newStep.text, (newValue) => {
-          currentStep.value.text = newValue;
-        });
+      if (currentStep.value.id !== newStep.id) {
+        if (newStep.bknd !== currentStep.value.bknd) {
+          applyFadeTransition(backgroundWrapper, newStep.bknd, (newValue) => currentStep.value.bknd = newValue);
+        }
+        if (JSON.stringify(newStep.images) !== JSON.stringify(currentStep.value.images)) {
+          applyFadeTransition(imageWrapper, newStep.images, (newValue) => currentStep.value.images = [...newValue]);
+        }
+        if (newStep.text !== currentStep.value.text) {
+          applyFadeTransition(textWrapper, newStep.text, (newValue) => currentStep.value.text = newValue);
+        }
       }
     };
+
 
     function applyFadeTransition(elementRef, newValue, updateFunction) {
       gsap.to(elementRef.value, {
@@ -128,58 +114,56 @@ export default {
       });
     }
 
-    const advanceToNextStep = (targetId = null) => {
-      let targetIndex = -1;
-      console.log(targetId)
-
-      if (targetId) {
-        // If an ID is provided, find the index of the step with that ID
-        targetIndex = images.value.findIndex(image => image.id === targetId);
-      } else {
-        // If no ID is provided, just move to the next step in the sequence
-        const currentIndex = images.value.findIndex(image => image.id === currentStep.value.id);
-        if (currentIndex >= 0 && currentIndex < images.value.length - 1) {
-          targetIndex = currentIndex + 1;
-        }
-      }
-
-      // Update the current step if a valid target index is found
+    const advanceToNextStep = (targetId) => {
+      const targetIndex = images.value.findIndex(image => image.id === targetId);
       if (targetIndex !== -1) {
-        const nextStep = images.value[targetIndex];
-        currentStep.value = { ...nextStep };
-
-        // TODO: manage scrolling or other actions to reflect the step change
+        currentStep.value = { ...images.value[targetIndex] }; // Navigate directly to the targeted frame
+      } else {
+        console.error("Frame with ID", targetId, "not found");
       }
     };
+
+
     // Append next section when button is pressed
-    const addSection = (contentKey) => {
-      // Find the index of the current step within the images array
-      const currentStepIndex = images.value.findIndex(item => item.id === currentStep.value.id);
+    const addSection = async (contentKey) => {
+      console.log("Added section:", contentKey);
       const additionalContent = fullData.value[contentKey];
+      console.log("Additional content:", additionalContent)
 
       if (additionalContent && additionalContent.length > 0) {
-        // Adjust the order of the new content to follow the current step's order
-        const maxCurrentOrder = currentStep.value.order;
-        const adjustedAdditionalContent = additionalContent.map(item => ({
-          ...item,
-          order: item.order + maxCurrentOrder
-        })).sort((a, b) => a.order - b.order);
+        // Directly append additional content to images
+        images.value = [...images.value, ...additionalContent];
 
-        // Splice the adjusted content into images array right after the current step
-        images.value.splice(currentStepIndex + 1, 0, ...adjustedAdditionalContent);
-        // Re-assign images.value to itself to ensure Vue reactivity
-        images.value = [...images.value];
-        console.log(images.value)
+        // Find the 'chooseYourOwnAdventure' frame to duplicate
+        const cyoaFrame = fullData.value.intro.find(frame => frame.id === 'chooseYourOwnAdventure');
+        if (cyoaFrame) {
+          // Calculate the new order for the duplicated CYOA frame
+          const newOrder = images.value[images.value.length - 1].order + 1;
 
-        // Check if you're at the last step of the current content
-        if (currentStepIndex === images.value.length - adjustedAdditionalContent.length - 1) {
-          // Automatically advance to the first new step
-          currentStep.value = { ...adjustedAdditionalContent[0] };
-          // Ensure the UI updates to reflect this new step, potentially with scrolling
-          // This might involve calling a function to handle scrolling to the new current step
+          // Create duplicate avoid reference issues
+          const newCyoaFrame = { ...cyoaFrame, order: newOrder };
+
+          // Append the duplicated interactive frame
+          images.value.push(newCyoaFrame);
+        }
+
+        // Log to check if the interactive frame is added correctly
+        console.log("Updated images array with CYOA frame:", images.value);
+
+        // Wait for Vue to update the DOM
+        await nextTick();
+        ScrollTrigger.refresh();
+
+        // If you need to navigate to the first frame of the newly added section
+        if (additionalContent.length > 0) {
+          advanceToNextStep(additionalContent[0].id);
         }
       }
+
     };
+
+
+
 
     // GSAP ScrollTrigger
     const setupScrollTrigger = () => {
@@ -205,10 +189,6 @@ export default {
             // Transition images if different from prior step
             updateImagesIfDifferent(newStep);
 
-            // Debugging
-            console.log("Current id:", currentStep.value.id);
-            console.log("Current step:", currentStep.value);
-
           },
           onEnterBack: () => {
             // Explicitly set to the first image when scrolling back past the start
@@ -221,6 +201,7 @@ export default {
           }
         }
       });
+      ScrollTrigger.refresh();
     };
 
     onMounted(async () => {
