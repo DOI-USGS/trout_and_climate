@@ -39,6 +39,9 @@ export default {
       () => route.params.index,
       (newIndex) => {
         store.currentIndex = parseInt(newIndex) || 0;
+        if (window.innerWidth <= 600) {
+          document.querySelector('.app-container').classList.add('scroll-locked');
+        }
       },
       { immediate: true }
     );
@@ -173,5 +176,17 @@ button:not(:disabled):hover {
 
 .outro-button:hover {
   background-color: #218838;
+}
+
+@media screen and (max-width: 600px) {
+  .home, .chapter-container {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.scroll-locked {
+  overflow: hidden;
+  height: 100vh;
 }
 </style>

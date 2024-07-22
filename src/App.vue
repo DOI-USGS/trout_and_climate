@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import { RouterView } from 'vue-router'
 import WindowSize from "./components/WindowSize.vue";
 import HeaderUSWDSBanner from "./components/HeaderUSWDSBanner.vue";
@@ -27,6 +27,10 @@ const typeOfEnv = import.meta.env.VITE_APP_TIER;
 onMounted(() => {
   window.addEventListener('resize', handleResize);
   handleResize();
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize);
 });
 
 function handleResize() {
@@ -45,13 +49,13 @@ html, body, #app, .app-container {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   font-family: $SourceSans;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 
 .content-container {
@@ -63,5 +67,16 @@ html, body, #app, .app-container {
 
 header, footer {
   flex-shrink: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .content-container {
+    height: 100vh;
+    overflow: auto;
+  }
+
+  .app-container {
+    height: auto;
+  }
 }
 </style>
