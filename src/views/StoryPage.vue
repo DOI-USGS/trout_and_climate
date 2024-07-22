@@ -147,7 +147,7 @@ export default {
     };
 
     const outroButtonStyle = {
-      backgroundColor: '#7d4e57'
+      backgroundColor: '#808080'
     };
 
     const chooseButtonStyle = {
