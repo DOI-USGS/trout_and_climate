@@ -8,37 +8,6 @@
           <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
         </div>
       </div>
-      <div class="navigation-buttons">
-        <div class="navigation-buttons-main">
-          <RetroButton
-            label="Previous"
-            :buttonStyle="prevButtonStyle"
-            @click="prevChapter"
-            :isDisabled="store.currentIndex <= 0"
-          />
-          <RetroButton
-            label="Go to start"
-            :buttonStyle="introButtonStyle"
-            @click="navigateToStart"
-            :isDisabled="store.currentIndex <= 0"
-          />
-        </div>
-        <div class="navigation-buttons-main">
-          <RetroButton
-            v-if="store.currentIndex < store.allChapters.length"
-            label="Next"
-            :buttonStyle="nextButtonStyle"
-            @click="nextChapter"
-            :isDisabled="isLastIntroChapter || isLastOutroChapter"
-          />
-          <RetroButton
-            label="Go to end"
-            :buttonStyle="outroButtonStyle"
-            @click="navigateToOutro"
-            :isDisabled="isLastOutroChapter"
-          />
-        </div>
-      </div>
       <div v-if="isLastIntroChapter" class="choose-adventure">
         <RetroButton
           label="Hot"
@@ -59,9 +28,42 @@
           :isDisabled="store.selectedOptions.includes('coldWater')"
         />
       </div>
+      
       <ReferencesSection v-if="isLastOutroChapter" />
     </div>
+    <div class="navigation-buttons">
+        <div class="navigation-buttons-main">
+          <RetroButton
+            label="Previous"
+            :buttonStyle="prevButtonStyle"
+            @click="prevChapter"
+            :isDisabled="store.currentIndex <= 0"
+          />
+          <RetroButton
+            v-if="store.currentIndex < store.allChapters.length"
+            label="Next"
+            :buttonStyle="nextButtonStyle"
+            @click="nextChapter"
+            :isDisabled="isLastIntroChapter || isLastOutroChapter"
+          />
+        </div>
+        <div class="navigation-buttons-main">
+          <RetroButton
+            label="Start Over"
+            :buttonStyle="introButtonStyle"
+            @click="navigateToStart"
+            :isDisabled="store.currentIndex <= 0"
+          />
+          <RetroButton
+            label="References"
+            :buttonStyle="outroButtonStyle"
+            @click="navigateToOutro"
+            :isDisabled="isLastOutroChapter"
+          />
+        </div>
+      </div>
   </div>
+  
 </template>
 
 <script>
@@ -231,7 +233,6 @@ html, body {
   align-items: center;
   justify-content: center;
   height: calc(100vh - 80px); /* Adjust for header/footer */
-  width: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -254,7 +255,7 @@ html, body {
 .navigation-buttons {
   position: absolute;
   bottom: 20px; /* Adjust as needed */
-  width: 100%;
+  width: 600px;
   display: flex;
   flex-direction: column;
   gap: 10px;
