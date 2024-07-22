@@ -9,18 +9,15 @@
         </div>
       </div>
       <div class="navigation-buttons">
-        <button @click="prevChapter" :disabled="store.currentIndex <= 0">Previous</button>
-        <button v-if="!isLastIntroChapter && !isOutroChapter" @click="nextChapter">Next</button>
+        <RetroButton label="Previous" :buttonStyle="prevButtonStyle" @click="prevChapter" :isDisabled="store.currentIndex <= 0" />
+        <RetroButton v-if="!isLastIntroChapter && !isOutroChapter" label="Next" :buttonStyle="nextButtonStyle" @click="nextChapter" />
       </div>
       <div v-if="isLastIntroChapter" class="choose-adventure">
-        <button @click="chooseAdventure('hotWater')" :disabled="store.selectedOptions.includes('hotWater')">Hot</button>
-        <button @click="chooseAdventure('warmWater')" :disabled="store.selectedOptions.includes('warmWater')">Warm</button>
-        <button @click="chooseAdventure('coldWater')" :disabled="store.selectedOptions.includes('coldWater')">Cold</button>
+        <RetroButton label="Hot" :buttonStyle="chooseButtonStyle" @click="chooseAdventure('hotWater')" :isDisabled="store.selectedOptions.includes('hotWater')" />
+        <RetroButton label="Warm" :buttonStyle="chooseButtonStyle" @click="chooseAdventure('warmWater')" :isDisabled="store.selectedOptions.includes('warmWater')" />
+        <RetroButton label="Cold" :buttonStyle="chooseButtonStyle" @click="chooseAdventure('coldWater')" :isDisabled="store.selectedOptions.includes('coldWater')" />
       </div>
-      <button class="outro-button" @click="navigateToOutro">Go to Outro</button>
-    </div>
-    <div v-else>
-      <p>Loading...</p>
+      <RetroButton label="Go to end" :buttonStyle="outroButtonStyle" @click="navigateToOutro" />
     </div>
   </div>
 </template>
@@ -29,8 +26,12 @@
 import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { store } from '@/stores/index.js';
+import RetroButton from '@/components/RetroButton.vue';
 
 export default {
+  components: {
+    RetroButton
+  },
   setup() {
     const route = useRoute();
     const router = useRouter();
@@ -102,7 +103,23 @@ export default {
       };
     }
 
-    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, isOutroChapter, chooseAdventure, navigateToOutro };
+    const prevButtonStyle = {
+      backgroundColor: '#007bff'
+    };
+
+    const nextButtonStyle = {
+      backgroundColor: '#0056b3'
+    };
+
+    const outroButtonStyle = {
+      backgroundColor: '#28a745'
+    };
+
+    const chooseButtonStyle = {
+      backgroundColor: '#d66853'
+    };
+
+    return { store, currentChapter, nextChapter, prevChapter, imageStyle, isLastIntroChapter, isOutroChapter, chooseAdventure, navigateToOutro, prevButtonStyle, nextButtonStyle, outroButtonStyle, chooseButtonStyle };
   }
 };
 </script>
@@ -150,43 +167,5 @@ export default {
 .choose-adventure {
   display: flex;
   gap: 10px;
-}
-
-button {
-  padding: 8px 16px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:disabled {
-  background-color: #ccc;
-}
-
-button:not(:disabled):hover {
-  background-color: #0056b3;
-}
-
-.outro-button {
-  margin-top: 20px;
-  background-color: #28a745;
-}
-
-.outro-button:hover {
-  background-color: #218838;
-}
-
-@media screen and (max-width: 600px) {
-  .home, .chapter-container {
-    height: 100vh;
-    overflow: hidden;
-  }
-}
-
-.scroll-locked {
-  overflow: hidden;
-  height: 100vh;
 }
 </style>
