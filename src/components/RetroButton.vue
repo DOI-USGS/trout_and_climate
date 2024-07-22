@@ -1,35 +1,37 @@
 <template>
-    <button :class="buttonClass" :style="buttonStyle" @click="onClick">
-      {{ label }}
-    </button>
-  </template>
-  
-  <script>
-  export default {
-    name: 'RetroButton',
-    props: {
-      label: String,
-      buttonClass: {
-        type: String,
-        default: 'default-button-class'
-      },
-      buttonStyle: Object,
-      onClick: Function
+  <button :class="buttonClass" :style="buttonStyle" @click="onClick" :disabled="isDisabled">
+    {{ label }}
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'RetroButton',
+  props: {
+    label: String,
+    buttonClass: {
+      type: String,
+      default: 'default-button-class'
     },
-    emits: ['click'],
-    setup(props, { emit }) {
-      const onClick = () => {
-        emit('click');
-      };
-  
-      return { onClick };
+    buttonStyle: Object,
+    onClick: Function,
+    isDisabled: {
+      type: Boolean,
+      default: false
     }
-  };
-  </script>
-  
+  },
+  emits: ['click'],
+  setup(props, { emit }) {
+    const onClick = () => {
+      emit('click');
+    };
+
+    return { onClick };
+  }
+};
+</script>
+
 <style lang="scss">
-
-
 button {
   color: white;
   align-items: center;
@@ -47,6 +49,7 @@ button {
   font-weight: 800;
   text-align: center;
   touch-action: manipulation;
+  transition: transform 0.2s ease-out;
 }
 
 button:after {
@@ -60,7 +63,7 @@ button:after {
   position: absolute;
   top: -2px;
   transform: translate(8px, 8px);
-  transition: transform .2s ease-out;
+  transition: transform 0.2s ease-out;
   z-index: -1;
 }
 
@@ -69,13 +72,18 @@ button:hover:after {
 }
 
 button:active {
-  color: white;
-  background-color: #d66853;
+  transform: translate(4px, 4px);
   outline: 0;
 }
 
-button:hover {
-  outline: 0;
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  border-color: #999;
+  color: #666;
 }
-  </style>
-  
+
+button:disabled:after {
+  background-color: #999;
+}
+</style>
