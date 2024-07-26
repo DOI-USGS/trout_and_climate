@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Trout and Climate</h1>
+    <h1>The Story of Mike & Barry</h1>
     <div v-if="currentChapter" class="chapter-container">
       <h2>{{ currentChapter.text }}</h2>
       <div class="images-container" :style="{ backgroundImage: `url(${currentChapter.bknd})` }">
@@ -242,7 +242,8 @@ html, body {
   width: 100%;
   height: 60%; /* Adjust as needed */
   overflow: hidden;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
 }
 
