@@ -1,7 +1,6 @@
 ---
 title: "processing data"
 format: html
-  keep-md: true
 editor: source
 ---
 
@@ -14,6 +13,7 @@ library(readr)
 library(quantreg)
 library(sysfonts)
 library(cowplot)
+library(xkcd)
 
 ```
 
@@ -25,13 +25,13 @@ library(cowplot)
 Sando.raw <- read.csv(file = "in/from_authors/SouthCentralOregon.csv") 
 
 ###Combine csv files of missing stream lines that are not in Sando's data release#########
-    ###These are from the Miller et al. 2018? data release#########
+###These are from the Miller et al. 2018? data release#########
 extras <- list.files(path = "in/from_authors/Extras/", 
                      # Identify all csv files in folder
                      pattern = "*.csv", full.names = TRUE) |>
   lapply(read_csv) |>                                            
   # Store all files in list
-   bind_rows()
+  bind_rows()
 
 ```
 
@@ -45,7 +45,7 @@ Sando.average <- Sando.raw |>
   select(COMID, contains("Streamflow")) |>
   group_by(COMID) |>
   summarise(across(everything(), list(median)))
-  
+
 # process extras to prep for combining with Sando
 extras.clnd <- extras |> 
   filter(Year >= 2004) |>
@@ -143,8 +143,8 @@ trout.mass$quant_reg_predicted <-
 mike_base <- '#276952'
 barry_base <- '#735E0B'
 redband <- '#7A3608'
-cold_water <- '#C3D3E8'
-warm_water <- '#D1ECEB'
+warm_water <- '#C3D3E8'
+cold_water <- '#D1ECEB'
 white <- '#FFFFFF'
 black <- '#000000'
 
@@ -155,11 +155,21 @@ font_supp <- "Source Sans Pro"
 sysfonts::font_add_google(font_supp)
 
 # Make a canvas to put it all on
-canvas <- grid::rectGrob(
+canvas_cold <- grid::rectGrob(
   x = 0, y = 0, 
   width = 9, height = 9,
-  gp = grid::gpar(fill = white, alpha = 1, col = white)
+  gp = grid::gpar(fill = cold_water, alpha = 1, col = cold_water)
 )
+canvas_warm <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = 9, height = 9,
+  gp = grid::gpar(fill = warm_water, alpha = 1, col = cold_water)
+)
+
+# load circle for cowplot
+circle_form <- 
+  magick::image_read("../public/assets/vectorized_pngs/rawcircle.png") |>
+  magick::image_colorize(opacity = 100, color = "red")
 ```
 
 
@@ -167,80 +177,64 @@ canvas <- grid::rectGrob(
 ```{r plot}
 
 (mass_streamflow_plot <-
-ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
-  geom_point(shape = 19, size = 1) + 
-  geom_line(aes(y = quant_reg_predicted),
-            linewidth = 1.4) +
-  xlab("August Streamflow") +
-  ylab("Fish Mass") +
-  guides(color = "none",
-         linewidth = "none") +
-  scale_x_continuous(trans = 'log10') +
-  scale_color_gradient2(low = mike_base,
-                        mid = mike_base,
-                       high = barry_base,
-                        midpoint = 100) +
-  xkcd::theme_xkcd() +
-  theme(axis.title = element_text(size = 40),
-        axis.text = element_text(size = 30))) 
-#+
-  # theme(panel.background = element_rect(fill = warm_water),
-  #       panel.grid = element_line(color = cold_water),
-  #       legend.background = element_rect(fill = cold_water),
-  #       legend.key = element_rect(fill = cold_water),
-  #       legend.text = element_text(lineheight = 1, family = font_main),
-  #       plot.background = element_rect(fill = cold_water, color = cold_water)) 
+   ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
+   geom_point(shape = 19, size = 1) + 
+   geom_line(aes(y = quant_reg_predicted),
+             linewidth = 1.4) +
+   xlab("August Streamflow") +
+   ylab("Fish Mass") +
+   guides(color = "none",
+          linewidth = "none") +
+   scale_x_continuous(trans = 'log10') +
+   scale_color_gradient2(low = mike_base,
+                         mid = mike_base,
+                         high = barry_base,
+                         midpoint = 100) +
+   xkcd::theme_xkcd() +
+   theme(axis.title = element_text(size = 40),
+         axis.text = element_text(size = 30),
+         panel.background = element_rect(fill = NA),
+         plot.background = element_rect(fill = NA, color = NA))) 
+
 ```
 
 ```{r base cowplot, fig.width= 9, fig.height= 9}
+
+### COLD PLOT ###
 ggdraw(ylim = c(0,1), 
        xlim = c(0,1)) +
-draw_grob(canvas,
+  draw_grob(canvas_cold,
             x = 0, y = 1,
             height = 9, width = 7,
             hjust = 0, vjust = 1) +
-draw_plot(mass_streamflow_plot,
+  draw_plot(mass_streamflow_plot,
             x = 0.05,
             y = 0.05,
             height = 0.900,
             width = 0.900) +
-  #+
-# draw_label("Tiny streams tend\nto have tiny fish!",
-#              fontfamily = font_supp,
-#              x = 0.22,   
-#              y = 0.5,
-#              size = 20,
-#              hjust = 0.5,
-#              vjust = 0,
-#              lineheight = 1,
-#              color = black) +
-# draw_label("Big rivers tend\nto have big fish!",
-#              fontfamily = font_supp,
-#              x = 0.22,   
-#              y = 0.8,
-#              size = 20,
-#              hjust = 0.5,
-#              vjust = 0,
-#              lineheight = 1,
-#              color = black) +
-# Tiny arrow
-# geom_curve(aes(xend = 0.18, x = 0.2,
-#                  yend = 0.33, y = 0.47),
-#              arrow = grid::arrow(length = unit(1, 'lines')), 
-#              curvature = 0.2,
-#              angle = 95,
-#              color = redband,
-#              lineend = 'round',
-#            linewidth = 1.5) #+
-# Big arrow
-# geom_curve(aes(xend = 0.7, x = 0.2,
-#                  yend = 0.65, y = 0.77),
-#              arrow = grid::arrow(length = unit(1, 'lines')), 
-#              curvature = 0.2,
-#              angle = 95,
-#              color = redband,
-#              lineend = 'round',
-#            linewidth = 1.5)
+  draw_image(circle_form, 
+             x = 0.2, y = -0.2,
+             width = 0.3)
 
-ggsave(filename = "../public/assets/vectorized_pngs/scatter_cold.png", width = 7, height = 7, dpi = 300)
+ggsave(filename = "../public/assets/vectorized_pngs/scatter_cold.png", 
+       width = 9, height = 7, dpi = 300)
+
+
+### WARM PLOT ###
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+  draw_grob(canvas_warm,
+            x = 0, y = 1,
+            height = 9, width = 7,
+            hjust = 0, vjust = 1) +
+  draw_plot(mass_streamflow_plot,
+            x = 0.05,
+            y = 0.05,
+            height = 0.900,
+            width = 0.900)+
+  draw_image(circle_form, 
+             x = 0.55, y = 0.2,
+             width = 0.4)
+ggsave(filename = "../public/assets/vectorized_pngs/scatter_warm.png", 
+       width = 9, height = 7, dpi = 300)
 ```
