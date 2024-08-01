@@ -5,7 +5,7 @@
     </div>
     <div class="text-container">
       <div v-for="reference in text.references" :key="reference.subTitle">
-        <p>
+        <p id="reference-text">
           <span v-html="reference.num"></span>. <span v-html="reference.authors"></span>,
           <span v-html="reference.year"></span>,
           <a :href="reference.link" target="_blank"><span v-html="reference.title"></span></a
@@ -36,5 +36,8 @@ export default {
 <style scoped lang="scss">
 button:not([disabled]):focus {
   outline: none;
+}
+#reference-text{
+  font-size: 1.7rem;
 }
 </style>

@@ -8,3 +8,6 @@ in/*
 out/*
 *_files/*
 public/assets/
+R_src/*.html
+R_src/*_files/
+R_src/in/*

@@ -1,50 +1,14 @@
 <template>
-  <div class="home">
-    <h1>Trout and Climate</h1>
-    <div v-if="currentChapter" class="chapter-container">
-      <h2>{{ currentChapter.text }}</h2>
-      <div class="images-container" :style="{ backgroundImage: `url(${currentChapter.bknd})` }">
-        <div v-for="image in currentChapter.images" :key="image.src" :style="imageStyle(image)">
-          <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
-        </div>
-      </div>
-      <div class="navigation-buttons">
-        <div class="navigation-buttons-main">
-          <RetroButton
-            label="Previous"
-            :buttonStyle="prevButtonStyle"
-            @click="prevChapter"
-            :isDisabled="store.currentIndex <= 0"
-          />
-          <RetroButton
-            label="Go to start"
-            :buttonStyle="introButtonStyle"
-            @click="navigateToStart"
-            :isDisabled="store.currentIndex <= 0"
-          />
-        </div>
-        <div class="navigation-buttons-main">
-          <RetroButton
-            v-if="store.currentIndex < store.allChapters.length"
-            label="Next"
-            :buttonStyle="nextButtonStyle"
-            @click="nextChapter"
-            :isDisabled="isLastIntroChapter || isLastOutroChapter"
-          />
-          <RetroButton
-            label="Go to end"
-            :buttonStyle="outroButtonStyle"
-            @click="navigateToOutro"
-            :isDisabled="isLastOutroChapter"
-          />
-        </div>
-      </div>
+  <div id="grid-container-viz" class="home">
+    <h1 id="page-title">The Adventures of Mike & Barry</h1>
+    <div id="chapter-text" v-if="currentChapter">
+      <p >{{ currentChapter.text }}</p>
       <div v-if="isLastIntroChapter" class="choose-adventure">
         <RetroButton
-          label="Hot"
+          label="Cold"
           :buttonStyle="chooseButtonStyle"
-          @click="chooseAdventure('hotWater')"
-          :isDisabled="store.selectedOptions.includes('hotWater')"
+          @click="chooseAdventure('coldWater')"
+          :isDisabled="store.selectedOptions.includes('coldWater')"
         />
         <RetroButton
           label="Warm"
@@ -53,14 +17,49 @@
           :isDisabled="store.selectedOptions.includes('warmWater')"
         />
         <RetroButton
-          label="Cold"
+          label="Hot"
           :buttonStyle="chooseButtonStyle"
-          @click="chooseAdventure('coldWater')"
-          :isDisabled="store.selectedOptions.includes('coldWater')"
+          @click="chooseAdventure('hotWater')"
+          :isDisabled="store.selectedOptions.includes('hotWater')"
         />
       </div>
-      <ReferencesSection v-if="isLastOutroChapter" />
     </div>
+    <div v-if="currentChapter" id="images-container" :style="{ backgroundImage: `url(${currentChapter.bknd})` }">
+      <div class="overlay-image-container" v-for="image in currentChapter.images" :key="image.src" :style="imageStyle(image)">
+        <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
+      </div>
+    </div>
+    <ReferencesSection v-if="isLastOutroChapter" />
+    <RetroButton
+      id = "prev-button"
+      label="Previous"
+      :buttonStyle="prevButtonStyle"
+      @click="prevChapter"
+      :isDisabled="store.currentIndex <= 0"
+    />
+    <RetroButton
+      id = "next-button"
+      v-if="store.currentIndex < store.allChapters.length"
+      label="Next"
+      :buttonStyle="nextButtonStyle"
+      @click="nextChapter"
+      :isDisabled="isLastIntroChapter || isLastOutroChapter"
+    />
+    <RetroButton
+      id = "start-button"
+      label="Restart"
+      :buttonStyle="introButtonStyle"
+      @click="navigateToStart"
+      :isDisabled="store.currentIndex <= 0"
+    />
+    <RetroButton
+      id = "end-button"
+      label="References"
+      :buttonStyle="outroButtonStyle"
+      @click="navigateToOutro"
+      :isDisabled="isLastOutroChapter"
+    />
+    
   </div>
 </template>
 
@@ -68,6 +67,7 @@
 import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { store } from '@/stores/index.js';
+import { isMobile } from 'mobile-device-detect';
 import RetroButton from '@/components/RetroButton.vue';
 import ReferencesSection from '@/components/ReferencesSection.vue';
 
@@ -90,6 +90,8 @@ export default {
       },
       { immediate: true }
     );
+
+    const mobileView = isMobile;
 
     const currentChapter = computed(() => {
       return store.allChapters[store.currentIndex];
@@ -158,24 +160,24 @@ export default {
     }
 
     const prevButtonStyle = {
-      backgroundColor: '#7d4e57'
+      color: 'black'
     };
 
     const nextButtonStyle = {
-      backgroundColor: '#7d4e57'
+      color: 'black'
     };
 
     const outroButtonStyle = {
-      backgroundColor: '#808080'
+      color: 'black'
     };
 
     const introButtonStyle = {
-      backgroundColor: '#ff9933'
+      color: 'black'
     };
 
     const chooseButtonStyle = {
-      backgroundColor: '#d66853'
-    };
+      color: 'black'
+    }; 
 
     return {
       store,
@@ -193,88 +195,92 @@ export default {
       nextButtonStyle,
       outroButtonStyle,
       introButtonStyle,
-      chooseButtonStyle
+      chooseButtonStyle,
+      mobileView
     };
   }
 };
 </script>
 
 <style scoped>
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
 
-.app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
+  #grid-container-viz {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto 0 auto;
+    grid-template-columns: 1fr 80% 1fr;
+    column-gap: 2%;
+    grid-template-rows: max-content auto max-content max-content;
+    row-gap: 2vh;
+    grid-template-areas:
+      "title title title"
+      "image image image"
+      "prev text next"
+      "start text end";
+    justify-content: center;
+    @media screen and (max-width: 600px) {
+      column-gap: 0%;
+      width: 95%;
+      /* height: 80%; */
+      grid-template-rows: max-content auto 15vh max-content max-content;
+      grid-template-columns: 1fr 5vw 1fr;
+      grid-template-areas: 
+        "title title title"
+        "image image image"
+        "text  text text"
+        "prev . next"
+        "start . end"
+      ;
+    }
+  }
+  #page-title {
+    grid-area: title;
+    margin: 0 auto;
+  }
+  #chapter-text {
+    grid-area: text;
+    justify-self: center;
+  }
+  #images-container {
+    grid-area: image;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: 100%;
+    text-align: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  #prev-button {
+    grid-area: prev;
+  }
+  #next-button {
+    grid-area: next;
+  }
+  #start-button {
+    grid-area: start;
+  }
+  #end-button {
+    grid-area: end;
+  }
+  #nav-button {
+    grid-area: start;
+  }
+  #references {
+    grid-area: image;
+  }
 
-.home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.chapter-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 80px); /* Adjust for header/footer */
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.images-container {
-  position: relative;
-  width: 100%;
-  height: 60%; /* Adjust as needed */
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-}
-
-.images-container img {
-  display: block;
+#images-container img {
   max-width: 100%;
   max-height: 100%;
 }
 
-.navigation-buttons {
-  position: absolute;
-  bottom: 20px; /* Adjust as needed */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.navigation-buttons-main {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 20px;
-}
-
 .choose-adventure {
+  justify-content: center;
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.navigation-buttons RetroButton {
-  flex: 1;
-  margin: 0 10px;
+  gap: 20px;
+  margin-top: 1rem;
 }
 </style>

@@ -1,0 +1,361 @@
+---
+title: "processing data"
+format: html
+editor: source
+---
+
+## Set up
+
+```{r libraries, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(readr)
+library(archive)
+library(sysfonts)
+library(cowplot)
+library(magick)
+library(xkcd)
+```
+
+## 1. Fetch
+
+Activate ScienceBase credentials. Note, you only have to do this once to get the data the first time.
+
+1.  Run the code below
+2.  When prompted, enter your email address as the username
+3.  Log into https://sciencebase.usgs.gov/manager/ and select "Copy API Token" from the User dropdown menu
+4.  Copy the Token into the pop up dialog. If this worked, you should get a "TRUE" result in the console.
+
+```{r SB, eval=FALSE}
+# if file exists, skip
+if(!file.exists("in/sciencebase/base10.csv")){
+  
+  sbtools::initialize_sciencebase_session()
+  
+  ### Fetch data from ScienceBase.
+  
+  # Benjamin, J.R., Dunham, J.B., and Penn, C.A., 2023, 
+  # Simulated growth potential of redband trout in the Donner und Blitzen River 
+  # Basin, southeastern Oregon, using a bioenergetics model: U.S. Geological 
+  # Survey data release, https://doi.org/10.5066/P9MAXBZN.
+  
+  
+  sbtools::item_file_download(sb_id = "65381be6d34ee4b6e05bba62",
+                              dest_dir = "in/sciencebase",
+                              overwrite_file = FALSE)
+  
+  # Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, 
+  # L.E., 2023, Simulated streamflow and stream temperature in the Donner und 
+  # Blitzen River Basin, southeastern Oregon, using the Precipitation-Runoff 
+  # Modeling System (PRMS): U.S. Geological Survey data release,
+  # https://doi.org/10.5066/P9WQM25Y.
+  
+  sbtools::item_file_download(sb_id = "644a93add34ee8d4adee04be",
+                              names = "Blitzen_PRMS_output.zip",
+                              destinations = "in/second_data_release/Blitzen_PRMS_output.zip",
+                              overwrite_file = FALSE)
+  
+  archive::archive_extract(
+    archive = "in/second_data_release/Blitzen_PRMS_output.zip",
+    dir = "in/second_data_release")
+}
+```
+
+Read in data for the fish growth model 
+
+```{r fetch_in}
+
+# Read all the files in the in/ folder0
+files_all <-  list.files(path = "in/sciencebase/")
+
+# select only the csvs
+files_csv <- files_all[grepl(pattern = ".csv", files_all)]
+fish_files_csv <- files_csv[grepl(pattern = "base", files_csv) |
+                              grepl(pattern = "cold", files_csv) |
+                              grepl(pattern = "warm", files_csv)]
+
+# Read in and row-bind all csvs
+fish_data <- NULL
+for(file in 1:length(fish_files_csv)){
+  # the location of this file 
+  temp_file_name <- fish_files_csv[file]
+  temp_csv <- sprintf("in/sciencebase/%s", fish_files_csv[file])
+  temp <- readr::read_csv(temp_csv, show_col_types = FALSE)
+  fish_size_temp <- ifelse(grepl(pattern = "10", x = temp_csv), 
+                           yes = "Size 10",
+                           no = ifelse(grepl(pattern = "150", x = temp_csv),
+                                       yes = "Size 150",
+                                       no = "Size 50"))
+  water_status_temp <- ifelse(grepl(pattern = "warm", x = temp_csv),
+                              yes = "Warm", 
+                              no = ifelse(grepl(pattern = "cold", temp_csv),
+                                          yes = "Cold", no = "Base"))
+  
+  temp <- temp |>
+    mutate(fish_size = fish_size_temp,
+           water_status = water_status_temp,
+           filename = temp_file_name)
+  
+  fish_data <- fish_data |>
+    bind_rows(temp)
+}
+```
+
+Read in data for stream temperature
+
+```{r fetch_temperature}
+segment_temp <- readr::read_csv("in/second_data_release/nsegment_summary_seg_tave_water.csv", 
+                        show_col_types = FALSE)
+
+```
+
+
+## 2. Process for Figure 2
+
+
+
+```{r processing}
+# Filter to 1 year
+fish_2020 <- fish_data |>
+  mutate(Date = as.Date(Date, format = "%m/%d/%Y"),
+         month = lubridate::month(Date),
+         scenario = sprintf("%s-%s", water_status, fish_size)) |>
+  filter(lubridate::year(Date) == 2020)
+
+temperature_2020 <- segment_temp |>
+  filter(lubridate::year(Date) == 2020)
+
+# make longer
+fish_2020_long <- fish_2020 |> 
+  pivot_longer(cols = contains("segment"),
+               names_to = "segment",
+               values_to = "fish_growth")
+
+temperature_2020_long <- temperature_2020 |>
+  pivot_longer(cols = c(-Date),
+               names_to = "segment",
+               values_to = "aveT") |>
+  mutate(segment = sprintf("segment_%s", segment))
+
+# Combine temperature with fish growth
+fish_temperature <- fish_2020_long |>
+  inner_join(temperature_2020_long, by = c("segment", "Date"))
+
+mike_and_barry <- fish_temperature |> 
+  filter(scenario %in% c("Cold-Size 10", "Warm-Size 50")) |>
+  filter(
+    (aveT <= 24 & scenario == "Cold-Size 10") |
+    (aveT <= 28 & scenario == "Warm-Size 50")
+  )
+
+cold_water_scenario <- mike_and_barry |>
+                          filter(aveT <= 13, aveT >= 8)
+
+warm_water_scenario <- mike_and_barry |>
+                          filter(aveT <= 18, aveT >= 13)
+
+hot_water_scenario <- mike_and_barry |>
+                          filter(aveT <= 23, aveT >= 18)
+
+```
+
+```{r design}
+mike_base <- '#276952'
+barry_base <- '#735E0B'
+redband <- '#7A3608'
+warm_water <- '#C3D3E8'
+cold_water <- '#D1ECEB'
+light_cold <- "#E0F0F0"
+dark_cold <- "#B9DFDE"
+white <- '#FFFFFF'
+black <- '#000000'
+
+#font_main <- "Just Another Hand"
+font_main <- "Shadows Into Light"
+sysfonts::font_add_google(font_main)
+
+font_supp <- "Source Sans Pro"
+sysfonts::font_add_google(font_supp)
+
+## Fonts that don't work
+    #Shantell Sans
+    #Architects Daughter
+
+# Make a canvas to put it all on
+canvas <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = 9, height = 9,
+  gp = grid::gpar(fill = light_cold, alpha = 1, col = light_cold)
+)
+
+
+# Load in the dead fish
+dead_fish <- magick::image_read("../public/assets/vectorized_pngs/fish_bones.png")
+
+# Load in the thermometers (cold/warm/hot)
+cold_therm_pic <- 
+  magick::image_read("../public/assets/vectorized_pngs/cold_temp.png")
+
+warm_therm_pic <- 
+  magick::image_read("../public/assets/vectorized_pngs/warm_temp.png")
+
+hot_therm_pic <- 
+  magick::image_read("../public/assets/vectorized_pngs/hot_temp.png")
+
+```
+
+```{r plot cold scenario, fig.height = 6, fig.width = 6}
+(barry_mike_base_plot <- 
+ggplot(data = mike_and_barry,
+       aes(x = aveT, y = fish_growth, group = water_status)) +
+  geom_line(aes(color = water_status)) +
+  annotate(geom = "text", color = mike_base,
+           label = "smaller, cold-\n   adapted fish", family = "xkcd",
+           x = 19.4, y = 0.021, size = 8, hjust = 0) +
+  annotate(geom = "text", color = barry_base,
+           label = "larger, warm-\n       adapted\n         fish", family = "xkcd",
+           x = 22.5, y = 0.013, size = 8, hjust = 0, vjust = 1) +
+  geom_hline(yintercept = 0, linetype = "longdash") +
+  xlab("Stream Temperature") +
+  xlim(c(0, 30)) +
+  ylab("Fish Growth") +
+  scale_color_manual(values = c("Warm" = barry_base, "Cold" = mike_base),
+                     labels = c("Small, Cold\nAdapted", "Large, Warm\nAdapted")) +
+  labs(color = "Fish Type") +
+  xkcd::theme_xkcd() +
+  theme(legend.position = "none",
+        axis.title = element_text(size = 40),
+        axis.text = element_text(size = 30),
+        panel.background = element_rect(fill = NA),
+        plot.background = element_rect(fill = NA, color = NA))) 
+
+cold_plot <- barry_mike_base_plot  +
+  annotate(geom = "rect", 
+           ymin = min(mike_and_barry$fish_growth) - 0.002, 
+           ymax = max(mike_and_barry$fish_growth) + 0.002, 
+           xmin = min(cold_water_scenario$aveT), 
+           xmax = max(cold_water_scenario$aveT),
+           fill = dark_cold, alpha = 0.5) +
+  geom_line(data = cold_water_scenario, 
+             aes(x = aveT, 
+                 y = fish_growth, 
+                 color = water_status), 
+                 alpha = 0.4,
+                 linewidth = 3) 
+
+warm_plot <- barry_mike_base_plot  +
+  annotate(geom = "rect", 
+           ymin = min(mike_and_barry$fish_growth) - 0.002, 
+           ymax = max(mike_and_barry$fish_growth) + 0.002, 
+           xmin = min(warm_water_scenario$aveT), 
+           xmax = max(warm_water_scenario$aveT),
+           fill = dark_cold, alpha = 0.5) +
+  geom_line(data = warm_water_scenario, 
+             aes(x = aveT, 
+                 y = fish_growth, 
+                 color = water_status), 
+                 alpha = 0.4,
+                 linewidth = 3) 
+
+hot_plot <- barry_mike_base_plot  +
+  annotate(geom = "rect", 
+           ymin = min(mike_and_barry$fish_growth) - 0.002, 
+           ymax = max(mike_and_barry$fish_growth) + 0.002, 
+           xmin = min(hot_water_scenario$aveT), 
+           xmax = max(hot_water_scenario$aveT),
+           fill = dark_cold, alpha = 0.5) +
+  geom_line(data = hot_water_scenario, 
+             aes(x = aveT, 
+                 y = fish_growth, 
+                 color = water_status), 
+                 alpha = 0.4,
+                 linewidth = 3) +
+  annotate(geom = "text", color = mike_base,
+           label = "smaller, cold-\n   adapted fish", family = "xkcd",
+           x = 19.4, y = 0.021, size = 8, hjust = 0) +
+  annotate(geom = "text", color = barry_base,
+           label = "larger, warm-\n       adapted\n         fish", family = "xkcd",
+           x = 22.5, y = 0.013, size = 8, hjust = 0, vjust = 1) 
+
+### hot plot
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(hot_plot,
+            x = 0.05,
+            y = 0.05,
+            height = 0.900,
+            width = 0.900)  +
+draw_image(dead_fish,
+           x = 0.75,
+           y = 0.25,
+           width = 0.15,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+draw_image(hot_therm_pic,
+           x = 0.67,
+           y = 0.25,
+           width = 0.05,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) 
+
+ggsave(filename = "../public/assets/vectorized_pngs/growthHot.png", width = 9, height = 7, dpi = 300)
+
+### warm plot
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(warm_plot,
+            x = 0.05,
+            y = 0.05,
+            height = 0.900,
+            width = 0.900)  +
+draw_image(dead_fish,
+           x = 0.75,
+           y = 0.25,
+           width = 0.15,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+draw_image(warm_therm_pic,
+           x = 0.55,
+           y = 0.25,
+           width = 0.05,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) 
+
+ggsave(filename = "../public/assets/vectorized_pngs/growthWarm.png", width = 9, height = 7, dpi = 300)
+
+####### cold, done
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(cold_plot,
+            x = 0.05,
+            y = 0.05,
+            height = 0.900,
+            width = 0.900)  +
+draw_image(dead_fish,
+           x = 0.75,
+           y = 0.25,
+           width = 0.15,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) +
+draw_image(cold_therm_pic,
+           x = 0.44,
+           y = 0.25,
+           width = 0.05,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) 
+
+ggsave(filename = "../public/assets/vectorized_pngs/growthCold.png", width = 9, height = 7, dpi = 300)
+```
+

@@ -11,6 +11,9 @@ editor: source
 library(tidyverse)
 library(readr)
 library(quantreg)
+library(sysfonts)
+library(cowplot)
+library(xkcd)
 
 ```
 
@@ -22,13 +25,13 @@ library(quantreg)
 Sando.raw <- read.csv(file = "in/from_authors/SouthCentralOregon.csv") 
 
 ###Combine csv files of missing stream lines that are not in Sando's data release#########
-    ###These are from the Miller et al. 2018? data release#########
+###These are from the Miller et al. 2018? data release#########
 extras <- list.files(path = "in/from_authors/Extras/", 
                      # Identify all csv files in folder
                      pattern = "*.csv", full.names = TRUE) |>
   lapply(read_csv) |>                                            
   # Store all files in list
-   bind_rows()
+  bind_rows()
 
 ```
 
@@ -42,7 +45,7 @@ Sando.average <- Sando.raw |>
   select(COMID, contains("Streamflow")) |>
   group_by(COMID) |>
   summarise(across(everything(), list(median)))
-  
+
 # process extras to prep for combining with Sando
 extras.clnd <- extras |> 
   filter(Year >= 2004) |>
@@ -136,12 +139,102 @@ trout.mass$quant_reg_predicted <-
 
 
 ## 3. Visualize
+```{r design}
+mike_base <- '#276952'
+barry_base <- '#735E0B'
+redband <- '#7A3608'
+warm_water <- '#C3D3E8'
+cold_water <- '#D1ECEB'
+white <- '#FFFFFF'
+black <- '#000000'
 
-```{r plot}
-ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
-  geom_point() + 
-  geom_line(aes(y = quant_reg_predicted)) +
-  scale_x_continuous(trans = 'log10') 
+font_main <- "Shadows Into Light"
+sysfonts::font_add_google(font_main)
+
+font_supp <- "Source Sans Pro"
+sysfonts::font_add_google(font_supp)
+
+# Make a canvas to put it all on
+canvas_cold <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = 9, height = 9,
+  gp = grid::gpar(fill = cold_water, alpha = 1, col = cold_water)
+)
+canvas_warm <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = 9, height = 9,
+  gp = grid::gpar(fill = warm_water, alpha = 1, col = cold_water)
+)
+
+# load circle for cowplot
+circle_form <- 
+  magick::image_read("../public/assets/vectorized_pngs/rawcircle.png") |>
+  magick::image_colorize(opacity = 100, color = "red")
 ```
 
 
+
+```{r plot}
+
+(mass_streamflow_plot <-
+   ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
+   geom_point(shape = 19, size = 1) + 
+   geom_line(aes(y = quant_reg_predicted),
+             linewidth = 1.4) +
+   xlab("August Streamflow") +
+   ylab("Fish Mass") +
+   guides(color = "none",
+          linewidth = "none") +
+   scale_x_continuous(trans = 'log10') +
+   scale_color_gradient2(low = mike_base,
+                         mid = mike_base,
+                         high = barry_base,
+                         midpoint = 100) +
+   xkcd::theme_xkcd() +
+   theme(axis.title = element_text(size = 40),
+         axis.text = element_text(size = 30),
+         panel.background = element_rect(fill = NA),
+         plot.background = element_rect(fill = NA, color = NA))) 
+
+```
+
+```{r base cowplot, fig.width= 9, fig.height= 9}
+
+### COLD PLOT ###
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+  draw_grob(canvas_cold,
+            x = 0, y = 1,
+            height = 9, width = 7,
+            hjust = 0, vjust = 1) +
+  draw_plot(mass_streamflow_plot,
+            x = 0.05,
+            y = 0.05,
+            height = 0.900,
+            width = 0.900) +
+  draw_image(circle_form, 
+             x = 0.2, y = -0.2,
+             width = 0.3)
+
+ggsave(filename = "../public/assets/vectorized_pngs/scatter_cold.png", 
+       width = 9, height = 7, dpi = 300)
+
+
+### WARM PLOT ###
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+  draw_grob(canvas_warm,
+            x = 0, y = 1,
+            height = 9, width = 7,
+            hjust = 0, vjust = 1) +
+  draw_plot(mass_streamflow_plot,
+            x = 0.05,
+            y = 0.05,
+            height = 0.900,
+            width = 0.900)+
+  draw_image(circle_form, 
+             x = 0.55, y = 0.2,
+             width = 0.4)
+ggsave(filename = "../public/assets/vectorized_pngs/scatter_warm.png", 
+       width = 9, height = 7, dpi = 300)
+```

@@ -46,8 +46,28 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1.8rem;
+  }
 }
 h1 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 500;
+  font-family: Skranji;
+  color: #00264C;
+  @media screen and (max-width: 600px) {
+    font-size: 1.8rem;
+  }
+}
+p {
+  font-family: Source Sans Pro;
+  color: #002646;
+  font-weight: 600;
+  font-size: 2.5rem;
+  @media screen and (max-width: 600px) {
+    font-size: 1.6rem;
+  }
 }

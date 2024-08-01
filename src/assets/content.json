@@ -6,7 +6,7 @@
 			{}
 		],
 		"bknd": "assets/vectorized_pngs/landing_page.png",
-		"text": "Trout and Climate",
+		"text": "The Adventures of Mike & Barry: A story of climate vulnerability through the eyes of redband trout",
 		"alt": "alt text henny"
 	},
 	{
@@ -26,9 +26,9 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/scatter_cold.png",
-				"x": "65%",
-				"y": "10%",
-				"width": "30%"
+				"x": "55%",
+				"y": "5%",
+				"width": "40%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
@@ -50,6 +50,12 @@
 				"x": "50%",
 				"y": "20%",
 				"width": "30%"
+			},
+			{
+				"src": "assets/vectorized_pngs/cold_temp.png",
+				"x": "10%",
+				"y": "15%",
+				"width": "25%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_water_view.png",
@@ -72,9 +78,9 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/scatter_warm.png",
-				"x": "65%",
-				"y": "10%",
-				"width": "30%"
+				"x": "55%",
+				"y": "5%",
+				"width": "40%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
@@ -93,7 +99,7 @@
 			},
 			{
 				"src": "assets/vectorized_pngs/n_barry_intro.png",
-				"x": "20%",
+				"x": "30%",
 				"y": "20%",
 				"width": "30%"
 			}
@@ -126,7 +132,7 @@
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
-		"text": "Park rangers work to ensure the health of the watershed. These R.A.D. rangers have lots of tools, methods and techniques they use to keep local ecosystems healthy. ",
+		"text": "Land managers work to ensure the health of the watershed. These R.A.D. managers have lots of tools, methods and techniques they use to keep local ecosystems healthy. ",
 		"alt": "alt text henny"
 	},
 	{
@@ -164,19 +170,19 @@
 				"src": "assets/vectorized_pngs/mike_0.png",
 				"x": "20%",
 				"y": "64%",
-				"width": "7%"
+				"width": "5.5%"
 			},
 			{
 				"src": "assets/vectorized_pngs/n_mike_bye.png",
 				"x": "05%",
-				"y": "30%",
+				"y": "20%",
 				"width": "23%"
 			},
 			{
 				"src": "assets/vectorized_pngs/barry_0.png",
 				"x": "68%",
 				"y": "62%",
-				"width": "9%"
+				"width": "8%"
 			},
 			{
 				"src": "assets/vectorized_pngs/n_barry_bye.png",
@@ -207,7 +213,7 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/mike_2.png",
-				"x": "13%",
+				"x": "20%",
 				"y": "63%",
 				"width": "7%"
 			},
@@ -219,9 +225,9 @@
 			},
 			{
 				"src": "assets/vectorized_pngs/n_pen_pals.png",
-				"x": "18%",
-				"y": "12%",
-				"width": "53%"
+				"x": "26%",
+				"y": "00%",
+				"width": "42%"
 			},
 			{
 				"src": "assets/vectorized_pngs/hot_temp.png",
@@ -325,9 +331,9 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/growthHot.png",
-				"x": "65%",
-				"y": "10%",
-				"width": "30%"
+				"x": "55%",
+				"y": "5%",
+				"width": "40%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
@@ -346,7 +352,7 @@
 			}
 		],
 		"bknd": "assets/vectorized_pngs/lowland_landscape.png",
-		"text": "Aas waters warm from climate change, this can put stress on native fish. Ranger Alex decides to accept these changes, and redirects her energy into reducing native species' stress from other aspects they can control, like fishing and invasive species.",
+		"text": "As waters warm from climate change, this can put stress on native fish. Alex decides to accept these changes, and redirects her energy into reducing stress to native species from aspects they can control, like fishing and invasive species.",
 		"alt": "alt text henny"
 	}
 ],
@@ -411,9 +417,9 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/growthWarm.png",
-				"x": "65%",
-				"y": "10%",
-				"width": "30%"
+				"x": "55%",
+				"y": "5%",
+				"width": "40%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_landscape.png",
@@ -432,7 +438,7 @@
 			}
 		],
 		"bknd": "assets/vectorized_pngs/midland_landscape.png",
-		"text": "Ranger Denice notices that the streams near the main river are a bit warmer than they have been in the past and may not be good for all native fish. To help ensure the ecosystem is functioning well, she decides to direct her energy towards increasing the connections between parts of the river. This helps reduce impacts from drought and better allows plants, animals, and fish to adapt.",
+		"text": "Denice notices some streams are warming and may not be as good for native fish. To help, she works to increase connections between parts of the river to reduce impacts from drought and help plants and animals adapt.",
 		"alt": "alt text henny"
 	}
 ],
@@ -503,9 +509,9 @@
 		"images": [
 			{
 				"src": "assets/vectorized_pngs/growthCold.png",
-				"x": "65%",
-				"y": "10%",
-				"width": "30%"
+				"x": "55%",
+				"y": "5%",
+				"width": "40%"
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
@@ -524,7 +530,7 @@
 			}
 		],
 		"bknd": "assets/vectorized_pngs/alpine_landscape.png",
-		"text": "Ranger Randy notices the smaller trout do well in the cold waters, but waters in the area are warming due to climate change. He decides to resist these future changes by planting trees on the stream’s edge to provide cooling shade to the river.",
+		"text": "Randy notices smaller trout do well in the cold waters, but waters in the area are warming due to climate change. He decides to resist these future changes by planting trees on stream edges to provide cooling shade to the river.",
 		"alt": "alt text henny"
 	}
 ],
@@ -541,8 +547,8 @@
 		"id": "References",
 		"order": 2,
 		"images": [],
-		"bknd": "assets/vectorized_pngs/landing_page.png",
-		"text": "References",
+		"bknd": "",
+		"text": "Leo Ivey led the creation of this website with contributions from Althea Archer, Cee Nell, Hayley Corson-Dosch, Elmera Azadpour, and Mandie Carr. Leo and Althea led the data visualization, illustrations, and storytelling aspects of the website. Cee and Hayley led the development of the interactive website. This website was inspired by USGS data releases and publications by Jason and Joseph.",
 		"alt": "this is the end of the story"
 	  }
 	]
