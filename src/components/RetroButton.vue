@@ -47,51 +47,66 @@ export default {
 
 <style scoped lang="scss">
 button {
-  color: white;
-  align-items: center;
-  border: 2px solid hsl(0, 0%, 7%);
-  border-radius: 8px;
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: #00264C 15px 18px 15px -18px;
   box-sizing: border-box;
   cursor: pointer;
-  display: flex;
-  height: 48px;
-  justify-content: center;
-  max-width: 100%;
-  padding: 0 15px;
-  position: relative;
-  font-weight: 800;
-  text-align: center;
+  display: inline-block;
+  font-family: Skranji, sans-serif;
+  font-size: 1.6rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
   touch-action: manipulation;
-  transition: transform 0.2s ease-out;
 }
 
-button:after {
-  color: white;
-  background-color: #111;
-  border-radius: 8px;
-  display: block;
-  height: 48px;
-  left: 0;
+/* button:after {
+  content: "";
+  background-color: #D1ECEB;
   width: 100%;
-  position: absolute;
-  top: -5px;
-  transform: translate(8px, 8px);
-  transition: transform 0.2s ease-out;
   z-index: -1;
-}
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+} */
 
 button:hover:after {
-  transform: translate(20px, 20px);
+  top: 0px;
+  left: 0px;
 }
+
+.button:focus {
+  box-shadow: #00264C 2px 8px 4px -6px;
+}
+
 
 button:hover {
-  outline: 0;
+  box-shadow: #00264C 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
 }
 
-button:active {
-  transform: translate(4px, 4px);
-  outline: 0;
-}
+// button:active {
+//   transform: translate(4px, 4px);
+//   outline: 0;
+// }
 
 button:disabled {
   background-color: #ccc;

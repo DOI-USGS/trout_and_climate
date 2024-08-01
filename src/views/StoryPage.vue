@@ -1,6 +1,6 @@
 <template>
   <div id="grid-container-viz" class="home">
-    <h1 id="page-title">The Story of Mike & Barry</h1>
+    <h1 id="page-title">The Adventures of Mike & Barry</h1>
     <div id="chapter-text" v-if="currentChapter">
       <p >{{ currentChapter.text }}</p>
       <div v-if="isLastIntroChapter" class="choose-adventure">
@@ -47,8 +47,7 @@
     />
     <RetroButton
       id = "start-button"
-      label="Start Over"
-      v-if="!mobileView"
+      label="Restart"
       :buttonStyle="introButtonStyle"
       @click="navigateToStart"
       :isDisabled="store.currentIndex <= 0"
@@ -56,27 +55,11 @@
     <RetroButton
       id = "end-button"
       label="References"
-      v-if="!mobileView"
       :buttonStyle="outroButtonStyle"
       @click="navigateToOutro"
       :isDisabled="isLastOutroChapter"
     />
-    <div v-if="mobileView" id="nav-button">
-      <RetroButton
-        id = "start-button"
-        label="Start Over"
-        :buttonStyle="introButtonStyle"
-        @click="navigateToStart"
-        :isDisabled="store.currentIndex <= 0"
-      />
-      <RetroButton
-        id = "end-button"
-        label="References"
-        :buttonStyle="outroButtonStyle"
-        @click="navigateToOutro"
-        :isDisabled="isLastOutroChapter"
-      />
-    </div>
+    
   </div>
 </template>
 
@@ -177,24 +160,24 @@ export default {
     }
 
     const prevButtonStyle = {
-      backgroundColor: '#7d4e57'
+      color: 'black'
     };
 
     const nextButtonStyle = {
-      backgroundColor: '#7d4e57'
+      color: 'black'
     };
 
     const outroButtonStyle = {
-      backgroundColor: '#808080'
+      color: 'black'
     };
 
     const introButtonStyle = {
-      backgroundColor: '#ff9933'
+      color: 'black'
     };
 
     const chooseButtonStyle = {
-      backgroundColor: '#d66853'
-    };
+      color: 'black'
+    }; 
 
     return {
       store,
@@ -237,23 +220,27 @@ export default {
       "start text end";
     justify-content: center;
     @media screen and (max-width: 600px) {
+      column-gap: 0%;
       width: 95%;
       /* height: 80%; */
-      grid-template-rows: max-content auto 15vh max-content;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: max-content auto 15vh max-content max-content;
+      grid-template-columns: 1fr 5vw 1fr;
       grid-template-areas: 
         "title title title"
         "image image image"
-        "text text text"
-        "prev start next"
+        "text  text text"
+        "prev . next"
+        "start . end"
       ;
     }
   }
   #page-title {
     grid-area: title;
+    margin: 0 auto;
   }
   #chapter-text {
     grid-area: text;
+    justify-self: center;
   }
   #images-container {
     grid-area: image;
