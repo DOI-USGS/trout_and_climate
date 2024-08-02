@@ -61,9 +61,17 @@ html, body, #app, .app-container {
 .content-container {
   min-width: 720px;
   max-width: 1000px;
+  min-height: calc(100vh - 20.4px - 85.67px - 32px - 92.33px - 2rem); /* page height - USWDS banner - USGS header - prefooter code links - USGS footer - container margin (top + bottom) */
   margin: 1rem auto;
+  padding-top: 5rem;
+  @media screen and (max-height: 770px) {
+    padding-top: 0rem;
+  }
   @media screen and (max-width: 600px) {
-    width: 95%;
+    min-height: auto;
+    min-width: 95%;
+    max-width: 95%;
+    padding-top: 0rem;
   }
 }
 </style>

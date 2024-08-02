@@ -208,7 +208,7 @@ export default {
     margin: 0 auto 0 auto;
     grid-template-columns: 1fr 80% 1fr;
     column-gap: 2%;
-    grid-template-rows: max-content auto 15vh max-content;
+    grid-template-rows: max-content auto 9vh max-content;
     row-gap: 2vh;
     grid-template-areas:
       "title title title"
@@ -216,16 +216,19 @@ export default {
       "prev text next"
       "start text end";
     justify-content: center;
+    @media screen and (max-height: 770px) {
+      grid-template-rows: max-content auto 15vh max-content;
+    }
     @media screen and (max-width: 600px) {
-      column-gap: 0%;
-      grid-template-rows: max-content auto 15vh max-content max-content;
-      grid-template-columns: 1fr 5vw 1fr;
+      column-gap: 5%;
+      grid-template-rows: max-content auto minmax(18vh, max-content) max-content max-content;
+      grid-template-columns: 1fr 1fr;
       grid-template-areas: 
-        "title title title"
-        "image image image"
-        "text  text text"
-        "prev . next"
-        "start . end"
+        "title title"
+        "image image"
+        "text text"
+        "prev next"
+        "start end"
       ;
     }
   }
@@ -265,12 +268,22 @@ export default {
   }
   #references {
     grid-area: image;
+    min-height: 567px; /* to match img */
+    @media screen and (max-height: 770px) {
+      min-height: auto;
+    }
   }
 
 #images-container img {
   max-width: 100%;
-  max-height: 60vh;
+  max-height: 562.5px; /* height of 16:9 image w/ max-width = 1000px */
   object-fit: contain;
+  @media screen and (max-height: 770px) {
+    max-height: 60vh;
+  }
+  @media screen and (max-width: 600px) {
+    height: 30vh;
+  }
 }
 
 .choose-adventure {
