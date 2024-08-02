@@ -4,6 +4,6 @@
 
 /* whole page except header fit within viewport - no scrolling */
 #app {
-  /* height: calc(100vh + 87px); 87 is the height of the USGS header */
+  /* height: max(500px, calc(100vh - 20.4px - 85.67px - 32px - 92.33px - 2rem)); /* page height - USWDS banner - USGS header - prefooter code links - USGS footer - container margin (top + bottom) */
   margin: 0 auto;
 }
