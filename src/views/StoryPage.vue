@@ -24,10 +24,8 @@
         />
       </div>
     </div>
-    <div v-if="currentChapter" id="images-container" :style="{ backgroundImage: `url(${currentChapter.bknd})` }">
-      <div class="overlay-image-container" v-for="image in currentChapter.images" :key="image.src" :style="imageStyle(image)">
-        <img v-if="image.src" :src="image.src" :alt="image.alt || 'Chapter Image'" />
-      </div>
+    <div v-if="currentChapter && !isLastOutroChapter" id="images-container" >
+      <img v-if="currentChapter.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
     </div>
     <ReferencesSection v-if="isLastOutroChapter" />
     <RetroButton
@@ -207,11 +205,10 @@ export default {
   #grid-container-viz {
     display: grid;
     width: 100%;
-    height: 100%;
     margin: 0 auto 0 auto;
     grid-template-columns: 1fr 80% 1fr;
     column-gap: 2%;
-    grid-template-rows: max-content auto max-content max-content;
+    grid-template-rows: max-content auto 9vh max-content;
     row-gap: 2vh;
     grid-template-areas:
       "title title title"
@@ -219,18 +216,19 @@ export default {
       "prev text next"
       "start text end";
     justify-content: center;
+    @media screen and (max-height: 770px) {
+      grid-template-rows: max-content auto 15vh max-content;
+    }
     @media screen and (max-width: 600px) {
-      column-gap: 0%;
-      width: 95%;
-      /* height: 80%; */
-      grid-template-rows: max-content auto 15vh max-content max-content;
-      grid-template-columns: 1fr 5vw 1fr;
+      column-gap: 5%;
+      grid-template-rows: max-content auto minmax(18vh, max-content) max-content max-content;
+      grid-template-columns: 1fr 1fr;
       grid-template-areas: 
-        "title title title"
-        "image image image"
-        "text  text text"
-        "prev . next"
-        "start . end"
+        "title title"
+        "image image"
+        "text text"
+        "prev next"
+        "start end"
       ;
     }
   }
@@ -247,34 +245,45 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    background-size: 100%;
     text-align: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
   }
   #prev-button {
     grid-area: prev;
+    align-self: start;
   }
   #next-button {
     grid-area: next;
+    align-self: start;
   }
   #start-button {
     grid-area: start;
+    align-self: start;
   }
   #end-button {
     grid-area: end;
+    align-self: start;
   }
   #nav-button {
     grid-area: start;
   }
   #references {
     grid-area: image;
+    min-height: 567px; /* to match img */
+    @media screen and (max-height: 770px) {
+      min-height: auto;
+    }
   }
 
 #images-container img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 562.5px; /* height of 16:9 image w/ max-width = 1000px */
+  object-fit: contain;
+  @media screen and (max-height: 770px) {
+    max-height: 60vh;
+  }
+  @media screen and (max-width: 600px) {
+    height: 30vh;
+  }
 }
 
 .choose-adventure {
