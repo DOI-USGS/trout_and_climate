@@ -24,7 +24,7 @@
         />
       </div>
     </div>
-    <div v-if="currentChapter" id="images-container" >
+    <div v-if="currentChapter && !isLastOutroChapter" id="images-container" >
       <img v-if="currentChapter.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
     </div>
     <ReferencesSection v-if="isLastOutroChapter" />
