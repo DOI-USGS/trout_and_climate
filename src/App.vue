@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <WindowSize v-if="typeOfEnv === '-test build-'" />
-    <HeaderUSWDSBanner v-if="typeOfEnv === '-test build-'" />
+    <HeaderUSWDSBanner v-if="typeOfEnv !== '-test build-'" />
     <HeaderUSGS />
     <WorkInProgressWarning v-if="typeOfEnv === '-beta build-'" />
     <div class="content-container" :class="{ mobile: mobileView}">
