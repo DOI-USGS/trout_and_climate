@@ -144,7 +144,9 @@ mike_base <- '#276952'
 barry_base <- '#735E0B'
 redband <- '#7A3608'
 warm_water <- '#C3D3E8'
+light_warm <- '#DBE5F1'
 cold_water <- '#D1ECEB'
+light_cold <- "#E0F0F0"
 white <- '#FFFFFF'
 black <- '#000000'
 
@@ -158,12 +160,12 @@ sysfonts::font_add_google(font_supp)
 canvas_cold <- grid::rectGrob(
   x = 0, y = 0, 
   width = 9, height = 9,
-  gp = grid::gpar(fill = cold_water, alpha = 1, col = cold_water)
+  gp = grid::gpar(fill = light_cold, alpha = 1, col = light_cold)
 )
 canvas_warm <- grid::rectGrob(
   x = 0, y = 0, 
   width = 9, height = 9,
-  gp = grid::gpar(fill = warm_water, alpha = 1, col = cold_water)
+  gp = grid::gpar(fill = light_warm, alpha = 1, col = light_warm)
 )
 
 # load circle for cowplot
@@ -176,25 +178,32 @@ circle_form <-
 
 ```{r plot}
 
+library(geomtextpath)
 (mass_streamflow_plot <-
-   ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
-   geom_point(shape = 19, size = 1) + 
-   geom_line(aes(y = quant_reg_predicted),
-             linewidth = 1.4) +
-   xlab("August Streamflow") +
-   ylab("Fish Mass") +
-   guides(color = "none",
-          linewidth = "none") +
-   scale_x_continuous(trans = 'log10') +
-   scale_color_gradient2(low = mike_base,
-                         mid = mike_base,
-                         high = barry_base,
-                         midpoint = 100) +
-   xkcd::theme_xkcd() +
-   theme(axis.title = element_text(size = 40),
-         axis.text = element_text(size = 30),
-         panel.background = element_rect(fill = NA),
-         plot.background = element_rect(fill = NA, color = NA))) 
+    ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
+    geom_point(shape = 19, size = 1, color = redband, alpha = 0.6) + 
+    geom_line(aes(y = quant_reg_predicted),
+              linewidth = 1.4) +
+    # Add annotation to historic line that follows the curve of the line
+    geomtextpath::geom_textsmooth(data = trout.mass, 
+                                  aes(x = AugStreamflow_1, y = quant_reg_predicted, 
+                                      label = "Approximate top limit on size"),
+                                  color = "black", size = 8, vjust = -.2, hjust = 0.8,
+                                  linecolor = NA, family = "xkcd") +
+    xlab("August Streamflow (cfs)") +
+    ylab("Fish Mass (g)") +
+    guides(color = "none",
+           linewidth = "none") +
+    scale_x_continuous(trans = 'log10') +
+    scale_color_gradient2(low = mike_base,
+                          mid = mike_base,
+                          high = barry_base,
+                          midpoint = 100) +
+    xkcd::theme_xkcd() +
+    theme(axis.title = element_text(size = 40),
+          axis.text = element_text(size = 30),
+          panel.background = element_rect(fill = NA),
+          plot.background = element_rect(fill = NA, color = NA))) 
 
 ```
 
@@ -213,8 +222,8 @@ ggdraw(ylim = c(0,1),
             height = 0.900,
             width = 0.900) +
   draw_image(circle_form, 
-             x = 0.2, y = -0.2,
-             width = 0.3)
+             x = 0.18, y = -0.25,
+             width = 0.2)
 
 ggsave(filename = "../public/assets/vectorized_pngs/scatter_cold.png", 
        width = 9, height = 7, dpi = 300)
@@ -233,8 +242,8 @@ ggdraw(ylim = c(0,1),
             height = 0.900,
             width = 0.900)+
   draw_image(circle_form, 
-             x = 0.55, y = 0.2,
-             width = 0.4)
+             x = 0.65, y = -0.1,
+             width = 0.28)
 ggsave(filename = "../public/assets/vectorized_pngs/scatter_warm.png", 
        width = 9, height = 7, dpi = 300)
 ```

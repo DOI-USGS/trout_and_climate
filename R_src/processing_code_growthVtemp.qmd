@@ -163,10 +163,11 @@ hot_water_scenario <- mike_and_barry |>
 mike_base <- '#276952'
 barry_base <- '#735E0B'
 redband <- '#7A3608'
-warm_water <- '#C3D3E8'
+warm_water <- '#AEC2DC'
 cold_water <- '#D1ECEB'
 light_cold <- "#E0F0F0"
 dark_cold <- "#B9DFDE"
+light_warm <- '#DBE5F1'
 white <- '#FFFFFF'
 black <- '#000000'
 
@@ -187,6 +188,12 @@ canvas <- grid::rectGrob(
   width = 9, height = 9,
   gp = grid::gpar(fill = light_cold, alpha = 1, col = light_cold)
 )
+canvas_barry <- grid::rectGrob(
+  x = 0, y = 0, 
+  width = 9, height = 9,
+  gp = grid::gpar(fill = light_warm, alpha = 1, col = light_warm)
+)
+
 
 
 # Load in the dead fish
@@ -201,6 +208,149 @@ warm_therm_pic <-
 
 hot_therm_pic <- 
   magick::image_read("../public/assets/vectorized_pngs/hot_temp.png")
+
+```
+
+```{r cold-only, fig.height = 6, fig.width = 6}
+(mike_base_plot <- 
+ggplot(data = mike_and_barry |> filter(water_status == "Cold"),
+       aes(x = aveT, y = fish_growth)) +
+  geom_line(color = mike_base) +
+  geom_hline(yintercept = 0, linetype = "longdash") +
+  xlab("Stream Temperature (Celsius)") +
+  xlim(c(0, 30)) +
+  ylab("Fish Growth (g/g/d)") +
+  labs(color = "Fish Type") +
+  xkcd::theme_xkcd() +
+  theme(legend.position = "none",
+        axis.title = element_text(size = 40),
+        axis.text = element_text(size = 30),
+        panel.background = element_rect(fill = NA),
+        plot.background = element_rect(fill = NA, color = NA))) 
+
+cold_plot_Mike <- mike_base_plot  +
+  annotate(geom = "rect", 
+           ymin = min(mike_and_barry$fish_growth) - 0.002, 
+           ymax = max(mike_and_barry$fish_growth) + 0.002, 
+           xmin = min(cold_water_scenario$aveT), 
+           xmax = max(warm_water_scenario$aveT),
+           fill = dark_cold, alpha = 0.5) +
+  geom_line(data = cold_water_scenario |> 
+              bind_rows(warm_water_scenario) |> filter(water_status == "Cold"), 
+             aes(x = aveT, 
+                 y = fish_growth), 
+                 alpha = 0.4,
+                 linewidth = 3,
+            color = mike_base) +
+  annotate(geom = "rect", 
+           ymin = min(mike_and_barry$fish_growth) - 0.002, 
+           ymax = max(mike_and_barry$fish_growth) + 0.002, 
+           xmin = min(hot_water_scenario$aveT), 
+           xmax = max(hot_water_scenario$aveT),
+           fill = barry_base, alpha = 0.5) +
+  geom_line(data = hot_water_scenario |> filter(water_status == "Cold"), 
+             aes(x = aveT, 
+                 y = fish_growth),
+            color = barry_base,
+                 alpha = 0.4,
+                 linewidth = 3) +
+  annotate(geom = "text", color = "black",
+           label = "Optimal thermal\nrange for\ncold-adapted\nredband trout",
+           family = "xkcd",
+           x = 8.5, y = 0.011, size = 7, hjust = 0) 
+
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(cold_plot_Mike,
+            x = 0.05,
+            y = 0.05,
+            height = 0.900,
+            width = 0.900)  +
+draw_image(dead_fish,
+           x = 0.75,
+           y = 0.25,
+           width = 0.15,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0) 
+
+ggsave(filename = "../public/assets/vectorized_pngs/growthMike.png", width = 9, height = 7, dpi = 300)
+
+```
+
+```{r warm-only, fig.height = 6, fig.width = 6}
+(barry_base_plot <- 
+ggplot(data = mike_and_barry |> filter(water_status != "Cold"),
+       aes(x = aveT, y = fish_growth)) +
+  geom_line(color = barry_base) +
+  geom_hline(yintercept = 0, linetype = "longdash") +
+  xlab("Stream Temperature (Celsius)") +
+  xlim(c(0, 30)) +
+  ylab("Fish Growth (g/g/d)") +
+  labs(color = "Fish Type") +
+  xkcd::theme_xkcd() +
+  theme(legend.position = "none",
+        axis.title = element_text(size = 40),
+        axis.text = element_text(size = 30),
+        panel.background = element_rect(fill = NA),
+        plot.background = element_rect(fill = NA, color = NA))) 
+
+hot_plot_Barry <- barry_base_plot  +
+  annotate(geom = "rect", 
+           ymin = min(mike_and_barry$fish_growth) - 0.002, 
+           ymax = max(mike_and_barry$fish_growth) + 0.002, 
+           xmin = min(cold_water_scenario$aveT), 
+           xmax = max(hot_water_scenario$aveT),
+           fill = warm_water, alpha = 0.5) +
+  geom_line(data = cold_water_scenario |> 
+              bind_rows(warm_water_scenario) |>
+              bind_rows(hot_water_scenario) |> filter(water_status != "Cold"), 
+             aes(x = aveT, 
+                 y = fish_growth), 
+                 alpha = 0.4,
+                 linewidth = 3,
+            color = "#63768F") +
+  annotate(geom = "text", color = "black",
+           label = "Optimal thermal\nrange for\nwarm-adapted\nredband trout",
+           family = "xkcd",
+           x = 10, y = 0.0, size = 7, hjust = 0) +
+  annotate(geom = "rect", 
+           ymin = min(mike_and_barry$fish_growth) - 0.002, 
+           ymax = max(mike_and_barry$fish_growth) + 0.002, 
+           xmin = max(hot_water_scenario$aveT), 
+           xmax = 27,
+           fill = barry_base, alpha = 0.5) +
+  geom_line(data = mike_and_barry |> filter(aveT >= max(hot_water_scenario$aveT),
+                                            aveT <= 27,
+                                            water_status != "Cold"), 
+             aes(x = aveT, 
+                 y = fish_growth),
+            color = barry_base,
+                 alpha = 0.4,
+                 linewidth = 3)
+
+ggdraw(ylim = c(0,1), 
+       xlim = c(0,1)) +
+draw_grob(canvas_barry,
+            x = 0, y = 1,
+            height = 9, width = 9,
+            hjust = 0, vjust = 1) +
+draw_plot(hot_plot_Barry,
+            x = 0.05,
+            y = 0.05,
+            height = 0.900,
+            width = 0.900)  +
+draw_image(dead_fish,
+           x = 0.85,
+           y = 0.3,
+           width = 0.1,
+           hjust = 0, vjust = 0,
+           halign = 0, valign = 0)
+
+ggsave(filename = "../public/assets/vectorized_pngs/growthBarry.png", width = 9, height = 7, dpi = 300)
 
 ```
 
