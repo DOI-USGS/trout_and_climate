@@ -2,13 +2,11 @@ import { reactive } from 'vue';
 import content from '@/assets/content.json';
 
 export const store = reactive({
-  intro: content.intro,
-  outro: content.outro || [],
+  intro: content.story,
   allChapters: [],
   currentType: 'intro',
   currentIndex: 0,
   selectedOptions: [],
-  lastIntroIndex: content.intro.length - 1,
 
   initializeAllChapters() {
     this.allChapters = [...this.intro];
@@ -21,11 +19,10 @@ export const store = reactive({
     this.allChapters.push(...newChapters);
   },
 
-  setTypeAndIndex(newType, newIndex) {
-    this.currentType = newType;
+  setIndex(newIndex) {
     this.currentIndex = newIndex;
-    if (newType !== 'intro') {
-      this.addChapters(newType);
+    if (currentIndex = this.allChapters.length) {
+      currentType = 'references'
     }
   },
 
@@ -41,18 +38,13 @@ export const store = reactive({
     }
   },
 
-  resetToIntro() {
-    this.currentType = 'intro';
-    this.currentIndex = this.lastIntroIndex;
-  },
-
   navigateToReferences() {
     const referencesStartIndex = this.allChapters.length;
-    const referencesChapter = this.outro.map((chapter, index) => {
-      return { ...chapter, globalIndex: referencesStartIndex + index };
+    const referencesChapter = this.intro.map((chapter, referencesStartIndex) => {
+      return { ...chapter, globalIndex: referencesStartIndex };
     });
     this.allChapters.push(...referencesChapter);
-    this.currentType = 'outro';
+    this.currentType = 'references';
     this.currentIndex = referencesStartIndex;
   }
 });

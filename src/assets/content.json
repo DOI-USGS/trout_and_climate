@@ -1,5 +1,5 @@
 {
-	"intro": [
+	"story": [
 		{"id": "intro",
 		"order": 0,
 		"images": [
@@ -188,12 +188,10 @@
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page18.png",
 		"text": "By working together to manage the system as a whole, all three of the approaches to land management (Resist, Accept, Direct) improve the landscape for generations to come.",
 		"alt": "xxx"
-	}
-],
-"outro": [
+	},
 	  {
 		"id": "References",
-		"order": 2,
+		"order": 20,
 		"images": [],
 		"bknd": "",
 		"text": "Leo Ivey and Althea Archer led the creation of this website with contributions from Cee Nell and Hayley Corson-Dosch. Leo and Althea led the data visualization, illustrations, and storytelling aspects of the website. Cee and Hayley led the development of the interactive website. This website was inspired by USGS data releases and publications by Jason Dunham and Joseph Benjamin.",
