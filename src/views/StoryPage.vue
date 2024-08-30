@@ -3,37 +3,17 @@
     <h1 id="page-title">The Adventures of Mike & Barry</h1>
     <div id="chapter-text" v-if="currentChapter">
       <p >{{ currentChapter.text }}</p>
-      <div v-if="isLastIntroChapter" class="choose-adventure">
-        <RetroButton
-          label="Cold"
-          :buttonStyle="chooseButtonStyle"
-          @click="chooseAdventure('coldWater')"
-          :isDisabled="store.selectedOptions.includes('coldWater')"
-        />
-        <RetroButton
-          label="Warm"
-          :buttonStyle="chooseButtonStyle"
-          @click="chooseAdventure('warmWater')"
-          :isDisabled="store.selectedOptions.includes('warmWater')"
-        />
-        <RetroButton
-          label="Hot"
-          :buttonStyle="chooseButtonStyle"
-          @click="chooseAdventure('hotWater')"
-          :isDisabled="store.selectedOptions.includes('hotWater')"
-        />
-      </div>
     </div>
-    <div v-if="currentChapter && !isLastOutroChapter" id="images-container" >
+    <div v-if="currentChapter && !isReferencesChapter" id="images-container" >
       <img v-if="currentChapter.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
     </div>
-    <ReferencesSection v-if="isLastOutroChapter" />
+    <ReferencesSection v-if="isReferencesChapter" />
     <RetroButton
       id = "prev-button"
       label="Previous"
       :buttonStyle="prevButtonStyle"
       @click="prevChapter"
-      :isDisabled="store.currentIndex <= 0"
+      :isDisabled="store.currentIndex <= 0 | isReferencesChapter"
     />
     <RetroButton
       id = "next-button"
@@ -41,7 +21,7 @@
       label="Next"
       :buttonStyle="nextButtonStyle"
       @click="nextChapter"
-      :isDisabled="isLastIntroChapter || isLastOutroChapter"
+      :isDisabled="isReferencesChapter"
     />
     <RetroButton
       id = "start-button"
@@ -53,9 +33,9 @@
     <RetroButton
       id = "end-button"
       label="References"
-      :buttonStyle="outroButtonStyle"
-      @click="navigateToOutro"
-      :isDisabled="isLastOutroChapter"
+      :buttonStyle="referencesButtonStyle"
+      @click="navigateToReferences"
+      :isDisabled="isReferencesChapter"
     />
     
   </div>
@@ -99,12 +79,8 @@ export default {
       return store.currentType === 'intro' && store.currentIndex === store.lastIntroIndex;
     });
 
-    const isOutroChapter = computed(() => {
+    const isReferencesChapter = computed(() => {
       return store.currentType === 'outro';
-    });
-
-    const isLastOutroChapter = computed(() => {
-      return store.currentType === 'outro' && store.currentIndex === store.allChapters.length - 1;
     });
 
     function nextChapter() {
@@ -112,13 +88,8 @@ export default {
         store.nextChapter();
         router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
       } else if (store.currentType !== 'intro') {
-        if (store.allOptionsChosen()) {
-          store.navigateToOutro();
-          router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
-        } else {
           store.resetToIntro();
           router.push({ name: 'Chapter', params: { index: store.lastIntroIndex.toString() } });
-        }
       }
     }
 
@@ -129,15 +100,8 @@ export default {
       }
     }
 
-    function chooseAdventure(newType) {
-      store.selectedOptions.push(newType);
-      const nextIndex = store.allChapters.length;
-      store.setTypeAndIndex(newType, nextIndex);
-      router.push({ name: 'Chapter', params: { index: nextIndex.toString() } });
-    }
-
-    function navigateToOutro() {
-      store.navigateToOutro();
+    function navigateToReferences() {
+      store.navigateToReferences();
       router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
     }
 
@@ -165,17 +129,13 @@ export default {
       color: 'black'
     };
 
-    const outroButtonStyle = {
+    const referencesButtonStyle = {
       color: 'black'
     };
 
     const introButtonStyle = {
       color: 'black'
     };
-
-    const chooseButtonStyle = {
-      color: 'black'
-    }; 
 
     return {
       store,
@@ -184,16 +144,13 @@ export default {
       prevChapter,
       imageStyle,
       isLastIntroChapter,
-      isOutroChapter,
-      isLastOutroChapter,
-      chooseAdventure,
-      navigateToOutro,
+      isReferencesChapter,
+      navigateToReferences,
       navigateToStart,
       prevButtonStyle,
       nextButtonStyle,
-      outroButtonStyle,
+      referencesButtonStyle,
       introButtonStyle,
-      chooseButtonStyle,
       mobileView
     };
   }
@@ -262,9 +219,6 @@ export default {
   #end-button {
     grid-area: end;
     align-self: start;
-  }
-  #nav-button {
-    grid-area: start;
   }
   #references {
     grid-area: image;

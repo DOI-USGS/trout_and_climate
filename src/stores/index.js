@@ -3,9 +3,6 @@ import content from '@/assets/content.json';
 
 export const store = reactive({
   intro: content.intro,
-  hotWater: content.hotWater,
-  warmWater: content.warmWater,
-  coldWater: content.coldWater,
   outro: content.outro || [],
   allChapters: [],
   currentType: 'intro',
@@ -33,14 +30,8 @@ export const store = reactive({
   },
 
   nextChapter() {
-    if (this.currentIndex < this.allChapters.length - 1) {
+    if (this.currentIndex < this.allChapters.length) {
       this.currentIndex++;
-    } else if (this.currentType !== 'intro') {
-      if (this.allOptionsChosen()) {
-        this.navigateToOutro();
-      } else {
-        this.resetToIntro();
-      }
     }
   },
 
@@ -55,18 +46,14 @@ export const store = reactive({
     this.currentIndex = this.lastIntroIndex;
   },
 
-  allOptionsChosen() {
-    return this.selectedOptions.length === 3;
-  },
-
-  navigateToOutro() {
-    const outroStartIndex = this.allChapters.length;
-    const outroChapters = this.outro.map((chapter, index) => {
-      return { ...chapter, globalIndex: outroStartIndex + index };
+  navigateToReferences() {
+    const referencesStartIndex = this.allChapters.length;
+    const referencesChapter = this.outro.map((chapter, index) => {
+      return { ...chapter, globalIndex: referencesStartIndex + index };
     });
-    this.allChapters.push(...outroChapters);
+    this.allChapters.push(...referencesChapter);
     this.currentType = 'outro';
-    this.currentIndex = outroStartIndex;
+    this.currentIndex = referencesStartIndex;
   }
 });
 
