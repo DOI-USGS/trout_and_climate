@@ -120,23 +120,13 @@
 		"alt": "xxx"
 	},
 	{
-		"id": "page11",
-		"order": 12,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page11.png",
-		"text": "This Redband Trout has taken advantage of the productive river and has grown larger than its upstream counterpart.",
-		"alt": "xxx"
-	},
-	{
 		"id": "page12",
 		"order": 13,
 		"images": [
 			{}
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page12.png",
-		"text": "It also is warm-adapted, meaning it has a wider optimal temperature range and can handle warmer summer temperatures. However, as the climate changes summer temperatures could start to get too hot even for these warm-adapteed fish, causing stress.",
+		"text": "This Redband Trout has taken advantage of the productive river and has grown larger than its upstream counterpart. It also is warm-adapted, meaning it has a wider optimal temperature range and can handle warmer summer temperatures. However, as the climate changes summer temperatures could start to get too hot even for these warm-adapted fish, causing stress.",
 		"alt": "xxx"
 	},
 	{
@@ -200,141 +190,7 @@
 		"alt": "xxx"
 	}
 ],
-"hotWater": [
-	{
-		"id": "chooseHot",
-		"order": 1,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/hot01.png",
-		"text": "Barry suggests that Mike move to his part of the river, where the waters run warmer than other parts of the area.",
-		"alt": "Close up of the warm river stream with Mike and Barry swimming in the water. Mike says, Wow, your home is really bustling with life! Barry replies, Yeah! Here in my home you will find lots of food and warmth."
-	},
-	{
-		"id": "sufferHot",
-		"order": 2,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/hot02.png",
-		"text": "Barry begins to notice that Mike is not doing well in their new home. While things are easy for Barry, Mike is finding it very difficult to adjust.",
-		"alt": "Mike looks stressed by the heat and is swimming limply. Barry looks less happy and says, Oh no Mike, you are looking green around the gills."
-	},
-	{
-		"id": "hotScience",
-		"order": 3,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/hot03.png",
-		"text": "In hot waters, cold-adapted fish suffer greatly and can even die.",
-		"alt": "Landscape view of the same river with a data visualization showing the growth rates of cold-adapted fish and warm-adapted fish. In these hot temperatures, the warm-adapted fish can grow but the cold-adapted fish suffer and can even die."
-	},
-	{
-		"id": "rangerAlexResponds",
-		"order": 4,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/hot04.png",
-		"text": "As waters warm from climate change, this can put stress on native fish. Alex decides to accept these changes, and redirects her energy into reducing stress to native species from aspects they can control, like fishing and invasive species.",
-		"alt": "Landscape view of the same river with Alex standing near the shore holding a sign that indicates a ban on fishing."
-	}
-],
-"warmWater":[
-	{
-		"id": "chooseWarm",
-		"order": 1,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/warm01.png",
-		"text": "Mike and Barry decide they want to go somewhere new for them both, for a fresh start. They pick out a new spot in the watershed – warmer than Mike’s old stream but cooler than Barry’s old stream.",
-		"alt": "Mike and Barry swimming together in a stream that is between the cold and hot streams. Mike says, So... do you like it here? Barry replies unenthusiastically, um, sure. You? Mike hesitantly replies, yeah, for sure..."
-	},
-	{
-		"id": "sufferWarm",
-		"order": 2,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/warm02.png",
-		"text": "While Mike is growing with the warmer temperature and roomier habitat, he finds that it's a bit too warm, and that Barry is not doing as well in this new habitat.",
-		"alt": "Mike and Barry both secretly thinking I miss home."
-	},
-	{
-		"id": "scienceWarm",
-		"order": 3,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/warm03.png",
-		"text": "In these moderate temperatures, both cold-adapted and warm-adapted fish can grow, but with the larger, warmer streams the small, cold-adapted fish grow at a higher pace than larger, warm-adapted fish.",
-		"alt": "Landscape view of the same river with a data visualization showing the growth rates of cold-adapted fish and warm-adapted fish. In these moderate temperatures, the both fish can survive, but the growth rate decreases slightly as temperatures warm."
-	},
-	{
-		"id": "rangerDeniseResponds",
-		"order": 4,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/warm04.png",
-		"text": "Denice notices some streams are warming and may not be as good for native fish. To help, she works to increase connections between parts of the river to reduce impacts from drought and help plants and animals adapt.",
-		"alt": "Landscape view of the same river with a cartoon Denise manager standing next to the river with a shovel and bucket of dirt. "
-	}
-],
-"coldWater": [
-	{
-		"id": "chooseCold",
-		"order": 1,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/cold01.png",
-		"text": "Mike suggests that Barry move to his part of the river, where the waters run colder than other parts of the area.",
-		"alt": "Zoomed in illustration of the cold stream with Mike and Barry swimming together. Mike says with a big grin on his face, welcome to my home, friend! Barry secretly thinks brr..."
-	},
-	{
-		"id": "sufferCold",
-		"order": 2,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/cold02.png",
-		"text": "It doesn’t take long to notice that warm-adapted Barry can’t tolerate these cold streams, even though the cold-adapted Mike feels just fine.",
-		"alt": "After they're in the stream for a while, Barry gets very cold and has put on a scarf and is shivering. Mike notices and says with a concerned expression, Yikes, Barry, you don't look so hot..."
-	},
-	{
-		"id": "coldScience",
-		"order": 3,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/cold03.png",
-		"text": "In cold waters, cold-adapted fish grow better than warm-adapted fish.",
-		"alt": "Landscape view of the same river with a data visualization showing the growth rates of cold-adapted fish and warm-adapted fish. In these cold temperatures, cold-adapted fish grow at a higher rate than warm-adapted fish."
-	},
-	{
-		"id": "rangerRandyResponds",
-		"order": 4,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/cold04.png",
-		"text": "Randy notices smaller trout do well in the cold waters, but waters in the area are warming due to climate change. He decides to resist these future changes by planting trees on stream edges to provide cooling shade to the river.",
-		"alt": "Landscape view of the same river with Randy standing near the bank with his arms crossed. He's got tree seedlings to plant along the bank with him."
-	}
-],
 "outro": [
-	  {
-		"id": "theEnd",
-		"order": 1,
-		"images": [],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/landing_page.png",
-		"text": "Mike and Barry both decide that there's no place like home, and part ways. However, they promise to keep in touch from their home streams.",
-		"alt": "Illustration of the Donner und Blitzen landscape, showing sage-brush bluffs surrounding a river valley."
-	  },
 	  {
 		"id": "References",
 		"order": 2,
