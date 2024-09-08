@@ -193,9 +193,9 @@
 		"id": "References",
 		"order": 20,
 		"images": [],
-		"bknd": "",
-		"text": "Leo Ivey and Althea Archer led the creation of this website with contributions from Cee Nell and Hayley Corson-Dosch. Leo and Althea led the data visualization, illustrations, and storytelling aspects of the website. Cee and Hayley led the development of the interactive website. This website was inspired by USGS data releases and publications by Jason Dunham and Joseph Benjamin.",
-		"alt": "End"
+		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/landing_page.png",
+		"text": "This site was created by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a>. Leo Ivey and <a href='https://www.usgs.gov/index.php/staff-profiles/althea-a-archer'>Althea Archer</a> developed the data visualizations, illustrations, and storyline as part of an internship through the <a href='https://www.usgs.gov/youth-and-education-in-science/cooperative-summer-fellowship-programs'>USGS YES Cooperative Summer Fellowship Program</a>. <a href='https://www.usgs.gov/staff-profiles/cee-nell'>Cee Nell</a> and <a href='https://www.usgs.gov/staff-profiles/hayley-corson-dosch'>Hayley Corson-Dosch</a> developed the website. The content was inspired by USGS data releases and publications by <a href='https://www.usgs.gov/staff-profiles/jason-b-dunham'>Jason Dunham</a> and <a href='https://www.usgs.gov/staff-profiles/joseph-r-benjamin'>Joseph Benjamin<a/>.",
+		"alt": "The end."
 	  }
 	]
 }

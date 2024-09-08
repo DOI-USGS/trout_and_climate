@@ -10,7 +10,7 @@
   --trout-blue: #596e6e;
   --trout-teal: #4a9177;
   --trout-green: #7c9662;
-  --trout-red: #713a17;
+  --trout-red: #882417;
 
   font-size: 62.5%;
 }
@@ -19,6 +19,7 @@
 :root {
   --color-background: var(--white-soft);
   --color-text: var(--black-soft);
+  --color-link: var(--trout-red);
   --color-title: var(--black-soft);
 }
 
@@ -84,5 +85,8 @@ p {
   }
   emph {
     font-weight: 800;
+  }
+  a {
+    color: var(--trout-red)
   }
 }
