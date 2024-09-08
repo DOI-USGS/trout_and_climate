@@ -7,6 +7,11 @@
   --black-soft: #151515;
   --dodger-blue: #1e90ff;
 
+  --trout-blue: #596e6e;
+  --trout-teal: #4a9177;
+  --trout-green: #7c9662;
+  --trout-red: #713a17;
+
   font-size: 62.5%;
 }
 
@@ -14,6 +19,7 @@
 :root {
   --color-background: var(--white-soft);
   --color-text: var(--black-soft);
+  --color-title: var(--black-soft);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -52,9 +58,9 @@ body {
 }
 h1 {
   font-size: 3.5rem;
-  font-weight: 900;
+  font-weight: 700;
   font-family: Open Sans;
-  color: #4c6cea;
+  color: var(--color-title);
   @media screen and (max-width: 600px) {
     font-size: 1.8rem;
   }

@@ -92,10 +92,6 @@ button:hover {
   transform: translate3d(0, 2px, 0);
 }
 
-// button:active {
-//   transform: translate(4px, 4px);
-//   outline: 0;
-// }
 
 button:disabled {
   background-color: #b4b2b2;
