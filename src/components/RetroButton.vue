@@ -26,7 +26,7 @@ export default {
       if (this.isDisabled) {
         return {
           ...this.buttonStyle,
-          backgroundColor: 'grey',
+          backgroundColor: '#b4b2b2',
           cursor: 'not-allowed'
         };
       }
@@ -98,13 +98,13 @@ button:hover {
 // }
 
 button:disabled {
-  background-color: #ccc;
+  background-color: #b4b2b2;
   cursor: not-allowed;
-  border-color: #999;
-  color: #ccc;
+  border-color: #b4b2b2;
+  color: #b4b2b2;
 }
 
 button:disabled:after {
-  background-color: #ccc;
+  background-color: #b4b2b2;
 }
 </style>
