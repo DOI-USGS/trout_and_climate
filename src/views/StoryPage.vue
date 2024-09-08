@@ -23,21 +23,21 @@
       @click="nextChapter"
       :isDisabled="isReferencesPage"
     />
-    <RetroButton
+<!--     <RetroButton
       id = "start-button"
       label="Restart"
       :buttonStyle="introButtonStyle"
       @click="navigateToStart"
       :isDisabled="isFirstPage"
-    />
-    <RetroButton
+    /> -->
+<!--     <RetroButton
       id = "end-button"
       v-if="!isReferencesPage"
       label="References"
       :buttonStyle="referencesButtonStyle"
       @click="navigateToReferences"
       :isDisabled="isReferencesPage"
-    />
+    /> -->
     
   </div>
 </template>
@@ -158,15 +158,15 @@ export default {
     display: grid;
     width: 100%;
     margin: 0 auto 0 auto;
+    height: 90vh;
     grid-template-columns: 1fr 80% 1fr;
-    column-gap: 2%;
-    grid-template-rows: max-content auto 9vh max-content;
+    column-gap: 0;
+    grid-template-rows: max-content auto 1fr;
     row-gap: 2vh;
     grid-template-areas:
       "title title title"
       "image image image"
-      "prev text next"
-      "start text end";
+      "prev text next";
     justify-content: center;
     @media screen and (max-height: 770px) {
       grid-template-rows: max-content auto 15vh max-content;
@@ -180,7 +180,6 @@ export default {
         "image image"
         "text text"
         "prev next"
-        "start end"
       ;
     }
   }
