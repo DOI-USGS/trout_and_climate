@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;600;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 :root {
   --white: #ffffff;
   --white-soft: #F0F0F0;
@@ -12,7 +12,7 @@
 
 /* semantic color variables for this project */
 :root {
-  --color-background: var(--white);
+  --color-background: var(--white-soft);
   --color-text: var(--black-soft);
 }
 
@@ -52,8 +52,8 @@ body {
 }
 h1 {
   font-size: 3.5rem;
-  font-weight: 500;
-  font-family: Skranji;
+  font-weight: 900;
+  font-family: Open Sans;
   color: #00264C;
   @media screen and (max-width: 600px) {
     font-size: 1.8rem;
@@ -62,8 +62,8 @@ h1 {
 p {
   font-family: Source Sans Pro;
   color: #002646;
-  font-weight: 600;
-  font-size: 2.5rem;
+  font-weight: 400;
+  font-size: 2.25rem;
   @media screen and (max-width: 600px) {
     font-size: 1.8rem;
   }
