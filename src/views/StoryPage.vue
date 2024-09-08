@@ -1,6 +1,7 @@
 <template>
   <div id="grid-container-viz" class="home">
-    <h1 id="page-title">Climate resiliency through the eyes of Redband Trout</h1>
+    <h1 id="page-title">Mangaging Redband Trout for climate resilience</h1>
+    <h2 id="page-subtitle">Redband Trout in the Donner und Blitzen River</h2>
     <div id="chapter-text" v-if="currentChapter">
       <p >{{ currentChapter.text }}</p>
     </div>

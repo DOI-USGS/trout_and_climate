@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import referencesText from '@/assets/referencesText';
+import referencesText from '@/assets/text/referencesText';
 
 export default {
   name: 'ReferencesSection',
