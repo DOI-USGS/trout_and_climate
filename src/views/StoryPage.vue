@@ -10,7 +10,7 @@
     <ReferencesSection v-if="isReferencesPage" />
     <RetroButton
       id = "prev-button"
-      label="Previous"
+      label="&#8249;"
       :buttonStyle="prevButtonStyle"
       @click="prevChapter"
       :isDisabled="isFirstPage"
@@ -18,7 +18,7 @@
     <RetroButton
       id = "next-button"
       v-if="!isReferencesPage"
-      label="Next"
+      label="&#8250;"
       :buttonStyle="nextButtonStyle"
       @click="nextChapter"
       :isDisabled="isReferencesPage"
@@ -38,8 +38,9 @@
       @click="navigateToReferences"
       :isDisabled="isReferencesPage"
     /> -->
-    
+    <br>
   </div>
+  <br>
 </template>
 
 <script>
@@ -197,6 +198,7 @@ export default {
     width: 100%;
     height: 100%;
     text-align: center;
+
   }
   #prev-button {
     grid-area: prev;
@@ -224,7 +226,7 @@ export default {
 
 #images-container img {
   max-width: 100%;
-  max-height: 562.5px; /* height of 16:9 image w/ max-width = 1000px */
+  max-height: 100%;
   object-fit: contain;
   @media screen and (max-height: 770px) {
     max-height: 60vh;

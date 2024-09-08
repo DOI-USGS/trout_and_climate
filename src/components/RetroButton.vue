@@ -61,11 +61,11 @@ button {
   cursor: pointer;
   display: inline-block;
   font-family: Open Sans, sans-serif;
-  font-size: 1.6rem;
+  font-size: 6rem;
   font-weight: 700;
   line-height: 23px;
   outline: none;
-  padding: .75rem;
+  padding: 1rem 1rem;
   text-decoration: none;
   transition: all 235ms ease-in-out;
   border-bottom-left-radius: 15px 255px;
@@ -75,6 +75,7 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  height: 100%;
 }
 
 button:hover:after {
