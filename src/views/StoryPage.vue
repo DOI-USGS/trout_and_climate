@@ -1,28 +1,31 @@
 <template>
   <div id="grid-container-viz" class="home">
     <h1 id="page-title">Mangaging Redband Trout for climate resilience</h1>
-    <div id="chapter-text" v-if="currentChapter">
-      <p >{{ currentChapter.text }}</p>
-    </div>
-    <div v-if="!isReferencesPage" id="images-container" >
-      <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
-    </div>
-    <ReferencesSection v-if="isReferencesPage" />
-    <RetroButton
+    <div id="chapter-content">
+      <RetroButton
       id = "prev-button"
       label="&#8249;"
       :buttonStyle="prevButtonStyle"
       @click="prevChapter"
       :isDisabled="isFirstPage"
-    />
-    <RetroButton
-      id = "next-button"
-      v-if="!isReferencesPage"
-      label="&#8250;"
-      :buttonStyle="nextButtonStyle"
-      @click="nextChapter"
-      :isDisabled="isReferencesPage"
-    />
+      :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
+      />
+      <div id="chapter-text" v-if="currentChapter">
+        <p >{{ currentChapter.text }}</p>
+      </div>
+      <RetroButton
+        id = "next-button"
+        label="&#8250;"
+        :buttonStyle="nextButtonStyle"
+        @click="nextChapter"
+        :isDisabled="isReferencesPage"
+        :style="{ visibility: isReferencesPage ? 'hidden' : 'visible' }"
+      />
+    </div>
+    <div v-if="!isReferencesPage" id="images-container" >
+      <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+    </div>
+    <ReferencesSection v-if="isReferencesPage" />
 <!--     <RetroButton
       id = "start-button"
       label="Restart"
@@ -38,7 +41,6 @@
       @click="navigateToReferences"
       :isDisabled="isReferencesPage"
     /> -->
-    <br>
   </div>
   <br>
 </template>
@@ -160,15 +162,14 @@ export default {
     width: 100%;
     margin: 0 auto 0 auto;
     height: 90vh;
-    grid-template-columns: 1fr 80% 1fr;
+    grid-template-columns: 1fr;
     column-gap: 0;
     grid-template-rows: max-content auto 1fr;
     row-gap: 2vh;
     grid-template-areas:
-      "title title title"
-      "image image image"
-      "prev text next";
-    justify-content: center;
+      "title"
+      "image"
+      "chapter-content";
     @media screen and (max-height: 770px) {
       grid-template-rows: max-content auto 15vh max-content;
     }
@@ -177,9 +178,9 @@ export default {
       grid-template-rows: max-content auto minmax(18vh, max-content) max-content max-content;
       grid-template-columns: 1fr 1fr;
       grid-template-areas: 
-        "title title"
-        "image image"
-        "text text"
+        "title"
+        "image"
+        "chapter-content"
         "prev next"
       ;
     }
@@ -187,10 +188,21 @@ export default {
   #page-title {
     grid-area: title;
     margin: 0 auto;
+    text-align: center;
+  }
+  #chapter-content {
+    grid-area: chapter-content;
+    display: flex; /* Use Flexbox to align buttons and text */
+    justify-content: space-between;
+    align-items: stretch; /* Ensure items stretch to fill the container height */
+    height: 100%; /* Full height of the container */
   }
   #chapter-text {
-    grid-area: text;
+    flex-grow: 1; /* Allow the text container to grow and take available space */
+    display: flex;
+    align-items: center;
     justify-self: center;
+    padding: 0 20px;
   }
   #images-container {
     grid-area: image;
@@ -200,13 +212,17 @@ export default {
     text-align: center;
 
   }
-  #prev-button {
-    grid-area: prev;
-    align-self: start;
-  }
-  #next-button {
-    grid-area: next;
-    align-self: start;
+  #prev-button, #next-button {
+    font-size: 6rem; /* Large font size for the arrows */
+    background-color: white;
+    border: none;
+    width: 10px; /* Set width for the buttons */
+    min-width: 100px;
+    height: 100%; /* Full height of the chapter-content container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
   #start-button {
     grid-area: start;
@@ -226,7 +242,7 @@ export default {
 
 #images-container img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 562.5px;
   object-fit: contain;
   @media screen and (max-height: 770px) {
     max-height: 60vh;
@@ -236,10 +252,4 @@ export default {
   }
 }
 
-.choose-adventure {
-  justify-content: center;
-  display: flex;
-  gap: 20px;
-  margin-top: 1rem;
-}
 </style>

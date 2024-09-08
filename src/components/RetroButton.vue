@@ -61,7 +61,7 @@ button {
   cursor: pointer;
   display: inline-block;
   font-family: Open Sans, sans-serif;
-  font-size: 6rem;
+  font-size: 20rem;
   font-weight: 700;
   line-height: 23px;
   outline: none;
