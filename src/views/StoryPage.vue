@@ -1,6 +1,9 @@
 <template>
   <div id="grid-container-viz" class="home">
     <h1 id="page-title">Mangaging Redband Trout for climate resilience</h1>
+    <div id="images-container" >
+      <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+    </div>
     <div id="chapter-content">
       <RetroButton
       id = "prev-button"
@@ -11,7 +14,7 @@
       :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
       />
       <div id="chapter-text" v-if="currentChapter">
-        <p >{{ currentChapter.text }}</p>
+        <p v-html="currentChapter.text"></p>
       </div>
       <RetroButton
         id = "next-button"
@@ -22,26 +25,13 @@
         :style="{ visibility: isReferencesPage ? 'hidden' : 'visible' }"
       />
     </div>
-    <div v-if="!isReferencesPage" id="images-container" >
-      <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
-    </div>
-    <ReferencesSection v-if="isReferencesPage" />
-<!--     <RetroButton
-      id = "start-button"
-      label="Restart"
-      :buttonStyle="introButtonStyle"
-      @click="navigateToStart"
-      :isDisabled="isFirstPage"
-    /> -->
-<!--     <RetroButton
-      id = "end-button"
-      v-if="!isReferencesPage"
-      label="References"
-      :buttonStyle="referencesButtonStyle"
-      @click="navigateToReferences"
-      :isDisabled="isReferencesPage"
-    /> -->
+    <ReferencesSection />
   </div>
+    <hr class="content-divider" />
+     <!-- Scrollable references section -->
+    <div id="references-container">
+      <ReferencesSection />
+    </div>
   <br>
 </template>
 
@@ -158,8 +148,9 @@ export default {
 <style scoped>
 
   #grid-container-viz {
-    display: grid;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+   /*  width: 100%;
     margin: 0 auto 0 auto;
     height: 90vh;
     grid-template-columns: 1fr;
@@ -183,7 +174,7 @@ export default {
         "chapter-content"
         "prev next"
       ;
-    }
+    } */
   }
   #page-title {
     grid-area: title;
@@ -195,7 +186,8 @@ export default {
     display: flex; /* Use Flexbox to align buttons and text */
     justify-content: space-between;
     align-items: stretch; /* Ensure items stretch to fill the container height */
-    height: 100%; /* Full height of the container */
+    height: auto; /* Full height of the container */
+    margin-top: 20px;
   }
   #chapter-text {
     flex-grow: 1; /* Allow the text container to grow and take available space */
@@ -210,6 +202,7 @@ export default {
     width: 100%;
     height: 100%;
     text-align: center;
+    margin-top: 20px;
 
   }
   #prev-button, #next-button {
@@ -233,7 +226,7 @@ export default {
     align-self: start;
   }
   #references {
-    grid-area: image;
+    margin-top: 20px;
     min-height: 567px; /* to match img */
     @media screen and (max-height: 770px) {
       min-height: auto;
@@ -251,5 +244,11 @@ export default {
     height: 30vh;
   }
 }
-
+/* Horizontal line between content and references */
+.content-divider {
+  border: 0;
+  height: 1px;
+  background: #ccc; /* Light gray color for the line */
+  margin: 40px 0; /* Add space above and below the line */
+}
 </style>
