@@ -5,7 +5,7 @@ export default {
       {
         reference: 'ref1',
         num: '1',
-        authors: 'Joseph R. Benjamin, Joseph R. Benjamin, Kara J. Anlauf-Dunn, and Erika Eliason',
+        authors: 'Benjamin, J.R., Dunham, J.B., Anlauf-Dunn, K.J., and Eliason, E.',
         year: 2023,
         title: 'Climate vulnerability for a desert fish: integrating hydrologic exposures, adaptive capacity, and growth potential.',
         link: 'https://doi.org/10.1139/cjfas-2022-0280',
@@ -15,7 +15,7 @@ export default {
       {
         reference: 'ref2',
         num: '2',
-        authors: 'Jason Dunham, Joseph R Benjamin, David J. Lawrence, and Katherine R Clifford',
+        authors: 'Dunham, J.B., Benjamin, J.R., Lawrence, D.J., and Clifford, K.R.',
         year: 2022,
         title: 'Resist, accept, and direct responses to biological invasions: A social–ecological perspective',
         link: ' https://doi.org/10.1111/fme.12574',
