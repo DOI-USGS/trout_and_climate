@@ -21,20 +21,22 @@
         label="&#8250;"
         :buttonStyle="nextButtonStyle"
         @click="nextChapter"
-        :isDisabled="isReferencesPage"
-        :style="{ visibility: isReferencesPage ? 'hidden' : 'visible' }"
+        :isDisabled="isLastPage"
+        :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
       />
     </div>
   </div>
   <br/>
     <hr class="content-divider" />
-    <br/>
     <div id="references-container">
       <ReferencesSection />
     </div>
   <hr class="content-divider" />
-    <div id="references-container">
-      <h2>Made by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a></h2>
+    <div id="authorship-container">
+      <h2>USGS Vizlab</h2>
+      <p>
+        This site was created by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a>. The content was inspired by USGS data releases and publications by <a href='https://www.usgs.gov/staff-profiles/jason-b-dunham'>Jason Dunham</a> and <a href='https://www.usgs.gov/staff-profiles/joseph-r-benjamin'>Joseph Benjamin</a>. Leo Ivey and <a href='https://www.usgs.gov/index.php/staff-profiles/althea-a-archer'>Althea Archer</a> developed the data visualizations, illustrations, and storyline as part of an internship through the <a href='https://www.usgs.gov/youth-and-education-in-science/cooperative-summer-fellowship-programs'>USGS YES Cooperative Summer Fellowship Program</a>. <a href='https://www.usgs.gov/staff-profiles/cee-nell'>Cee Nell</a> and <a href='https://www.usgs.gov/staff-profiles/hayley-corson-dosch'>Hayley Corson-Dosch</a> created the website. 
+      </p>
     </div>
 </template>
 
@@ -75,6 +77,9 @@ export default {
     const isFirstPage = computed(() => {
       return store.currentIndex === 0;
     });
+    const isLastPage = computed(() => {
+      return store.currentIndex === 18;
+    });
 
     function nextChapter() {
         store.nextChapter();
@@ -113,6 +118,7 @@ export default {
       prevChapter,
       imageStyle,
       isFirstPage,
+      isLastPage,
       prevButtonStyle,
       nextButtonStyle,
       mobileView
@@ -224,5 +230,9 @@ export default {
   height: 1px;
   background: #ccc; /* Light gray color for the line */
   margin: 20px 0 ; /* Add space above and below the line */
+}
+#authorship-container p {
+  font-size:2rem;
+  margin-bottom: 50px;
 }
 </style>

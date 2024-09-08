@@ -188,14 +188,6 @@
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page18.png",
 		"text": "By working together to manage the system as a whole, all three of the approaches to land management (Resist, Accept, Direct) improve the landscape for generations to come.",
 		"alt": "xxx"
-	},
-	  {
-		"id": "References",
-		"order": 20,
-		"images": [],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/landing_page.png",
-		"text": "This site was created by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a>. Leo Ivey and <a href='https://www.usgs.gov/index.php/staff-profiles/althea-a-archer'>Althea Archer</a> developed the data visualizations, illustrations, and storyline as part of an internship through the <a href='https://www.usgs.gov/youth-and-education-in-science/cooperative-summer-fellowship-programs'>USGS YES Cooperative Summer Fellowship Program</a>. <a href='https://www.usgs.gov/staff-profiles/cee-nell'>Cee Nell</a> and <a href='https://www.usgs.gov/staff-profiles/hayley-corson-dosch'>Hayley Corson-Dosch</a> developed the website. The content was inspired by USGS data releases and publications by <a href='https://www.usgs.gov/staff-profiles/jason-b-dunham'>Jason Dunham</a> and <a href='https://www.usgs.gov/staff-profiles/joseph-r-benjamin'>Joseph Benjamin<a/>.",
-		"alt": "The end."
-	  }
+	}
 	]
 }

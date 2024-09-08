@@ -35,6 +35,6 @@ export default {
 
 <style scoped lang="scss">
 p {
-  font-size:1.75rem;
+  font-size:2rem;
 }
 </style>
