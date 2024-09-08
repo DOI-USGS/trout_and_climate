@@ -56,12 +56,13 @@ button {
   border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
   border-style: solid;
   border-width: 2px;
-  box-shadow: #00264C 15px 18px 15px -18px;
+  box-shadow: #00264C 2px 5px 10px -5px;  
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
-  font-family: Skranji, sans-serif;
+  font-family: Open Sans, sans-serif;
   font-size: 1.6rem;
+  font-weight: 700;
   line-height: 23px;
   outline: none;
   padding: .75rem;
@@ -75,18 +76,6 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
-/* button:after {
-  content: "";
-  background-color: #D1ECEB;
-  width: 100%;
-  z-index: -1;
-  position: absolute;
-  height: 100%;
-  top: 7px;
-  left: 7px;
-  transition: 0.2s;
-} */
 
 button:hover:after {
   top: 0px;
