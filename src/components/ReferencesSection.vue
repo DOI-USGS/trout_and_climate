@@ -37,7 +37,4 @@ export default {
 button:not([disabled]):focus {
   outline: none;
 }
-#reference-text{
-  font-size: 1.7rem;
-}
 </style>
