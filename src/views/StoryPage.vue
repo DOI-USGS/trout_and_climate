@@ -25,7 +25,6 @@
         :style="{ visibility: isReferencesPage ? 'hidden' : 'visible' }"
       />
     </div>
-    <ReferencesSection />
   </div>
     <hr class="content-divider" />
      <!-- Scrollable references section -->
@@ -150,6 +149,8 @@ export default {
   #grid-container-viz {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 90vh;
    /*  width: 100%;
     margin: 0 auto 0 auto;
     height: 90vh;
@@ -177,16 +178,16 @@ export default {
     } */
   }
   #page-title {
-    grid-area: title;
     margin: 0 auto;
     text-align: center;
+    line-height:2;
   }
   #chapter-content {
-    grid-area: chapter-content;
-    display: flex; /* Use Flexbox to align buttons and text */
+    display: flex; 
+    flex-direction: row;
     justify-content: space-between;
     align-items: stretch; /* Ensure items stretch to fill the container height */
-    height: auto; /* Full height of the container */
+    height: 100%; /* Full height of the container */
     margin-top: 20px;
   }
   #chapter-text {
