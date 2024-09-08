@@ -68,9 +68,9 @@ h1 {
 }
 h2 {
   font-size: 2.5rem;
-  font-weight: 500;
+  font-weight: 700;
   font-family: Open Sans;
-  color: #4c6cea;
+  color: var(--color-title);
   @media screen and (max-width: 600px) {
     font-size: 1.5rem;
   }

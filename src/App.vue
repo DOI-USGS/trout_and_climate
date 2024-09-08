@@ -48,7 +48,6 @@ function handleResize() {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 $SourceSans: 'Source Sans Pro', sans-serif;
 $OpenSans: 'Open Sans', sans-serif;
-$textcolor: #7d4e57;
 $linkcolor: #d66853;
 
 html, body, #app, .app-container {

@@ -26,12 +26,16 @@
       />
     </div>
   </div>
+  <br/>
     <hr class="content-divider" />
-     <!-- Scrollable references section -->
+    <br/>
     <div id="references-container">
       <ReferencesSection />
     </div>
-  <br>
+  <hr class="content-divider" />
+    <div id="references-container">
+      <h2>Made by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a></h2>
+    </div>
 </template>
 
 <script>
@@ -72,10 +76,6 @@ export default {
       return store.currentIndex === 0;
     });
 
-    const isReferencesPage = computed(() => {
-      return store.currentIndex === store.allChapters.length -1;
-    });
-
     function nextChapter() {
         store.nextChapter();
         router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
@@ -86,16 +86,6 @@ export default {
         store.prevChapter();
         router.push({ name: 'Chapter', params: { index: store.currentIndex.toString() } });
       }
-    }
-
-    function navigateToReferences() {
-      store.currentIndex = store.allChapters.length -1;
-      router.push({ name: 'Chapter', params: { index: '20' } });
-    }
-
-    function navigateToStart() {
-      store.currentIndex = 0;
-      router.push({ name: 'Chapter', params: { index: '0' } });
     }
 
     function imageStyle(image) {
@@ -116,28 +106,15 @@ export default {
       color: 'black'
     };
 
-    const referencesButtonStyle = {
-      color: 'black'
-    };
-
-    const introButtonStyle = {
-      color: 'black'
-    };
-
     return {
       store,
       currentChapter,
       nextChapter,
       prevChapter,
       imageStyle,
-      isReferencesPage,
       isFirstPage,
-      navigateToReferences,
-      navigateToStart,
       prevButtonStyle,
       nextButtonStyle,
-      referencesButtonStyle,
-      introButtonStyle,
       mobileView
     };
   }
@@ -228,10 +205,6 @@ export default {
   }
   #references {
     margin-top: 20px;
-    min-height: 567px; /* to match img */
-    @media screen and (max-height: 770px) {
-      min-height: auto;
-    }
   }
 
 #images-container img {
@@ -250,6 +223,6 @@ export default {
   border: 0;
   height: 1px;
   background: #ccc; /* Light gray color for the line */
-  margin: 40px 0; /* Add space above and below the line */
+  margin: 20px 0 ; /* Add space above and below the line */
 }
 </style>
