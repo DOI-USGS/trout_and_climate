@@ -23,12 +23,6 @@
   --color-title: var(--black-soft);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--black-soft);
-    --color-text: var(--white-soft);
-  }
-} */
 
 *,
 *::before,
@@ -63,7 +57,7 @@ h1 {
   font-family: Open Sans;
   color: var(--color-title);
   @media screen and (max-width: 600px) {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
 }
 h2 {
@@ -74,7 +68,7 @@ h2 {
   padding-top:20px;
   color: var(--color-title);
   @media screen and (max-width: 600px) {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 p {
