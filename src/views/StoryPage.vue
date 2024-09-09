@@ -174,6 +174,7 @@ export default {
   align-items: stretch; 
   height: 100%;
   flex-grow: 1;
+  max-height: 300px; 
 }
 #chapter-content-mobile {
   display: flex;
