@@ -51,6 +51,7 @@
         :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
       />
       </div>
+      <br/>
     </div>
     </div>
   <br/>
@@ -156,10 +157,10 @@ export default {
 
 <style scoped>
 #grid-container-viz {
-display: flex;
-flex-direction: column;
-width: 100%;
-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 90vh;
 }
 #page-title {
   margin: 0 auto;
@@ -178,17 +179,20 @@ height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
 }
 
 #button-container-mobile {
   display: flex;
   width: 100%;
   justify-content: space-between; 
+  align-self: flex-end;
 }
 #prev-button-mobile, #next-button-mobile {
   width: 50%;
   height: auto;
-  font-size: 3rem;
+  font-size: 2rem;
+  margin:0;
 }
 #chapter-text {
   flex-grow: 1; 
@@ -222,6 +226,10 @@ height: 90vh;
   max-width: 100%;
   max-height: 562.5px;
   object-fit: contain;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: #00264C 2px 5px 10px -5px;  
 }
 
 .content-divider {
@@ -240,6 +248,7 @@ height: 90vh;
   #chapter-content {
     flex-direction: column;
     align-items: center;
+    flex-grow: 1;
   }
   #chapter-title {
     line-height: 1.2rem;
@@ -247,6 +256,7 @@ height: 90vh;
   #chapter-text {
     width: 100%; 
     padding: 10px;
+    flex-grow: 1;
   }
   #images-container {
     width: 100%;
@@ -256,9 +266,10 @@ height: 90vh;
   }
   #button-container-mobile {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    align-self: end;
   }
+  
 }
 </style>

@@ -64,7 +64,7 @@ button {
   font-size: 20rem;
   font-weight: 700;
   line-height: 23px;
-  outline: none;
+  //outline: none;
   padding: 1rem 1rem;
   text-decoration: none;
   transition: all 235ms ease-in-out;
