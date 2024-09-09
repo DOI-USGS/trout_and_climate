@@ -36,5 +36,6 @@ export default {
 <style scoped lang="scss">
 p {
   font-size:2rem;
+  padding: 0 10px;
 }
 </style>

@@ -215,6 +215,7 @@ export default {
 }
 #references {
   margin-top: 20px;
+  padding: 0 10px;
 }
 #images-container {
   width: 100%;
@@ -241,6 +242,7 @@ export default {
 #authorship-container p {
   font-size:2rem;
   margin-bottom: 50px;
+  padding: 0 10px;
 }
 
 /* Mobile-specific styles */
