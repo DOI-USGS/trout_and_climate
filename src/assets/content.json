@@ -5,8 +5,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/landing_page.png",
-		"text": "Climate resiliency through the eyes of Redband Trout",
+		"bknd": "public/assets/vectorized_pngs/page00.png",
+		"text": "Welcome to the Donner und Blitzen River in Eastern Oregon. This river system is home to Redband Trout (Oncorhynchus mykiss newberrii). These fish are prized by local Native American as a food source, enjoyed as a game fish by many people living in and visiting this river, and are used to indicate the health of the lakes and streams in which they live.",
 		"alt": "Illustration of the Donner und Blitzen landscape, showing sage-brush bluffs surrounding a river valley."
 	},
 	{
@@ -15,8 +15,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page01.png",
-		"text": "Welcome to the Donner und Blitzen River in Eastern Oregon. This is a beautiful river basin surrounded by the Blue Mountains to the north and lava plains to the south. Alpine headwater streams combine and eventually feed into the larger river in the main valley.",
+		"bknd": "public/assets/vectorized_pngs/page01.png",
+		"text": "Land managers work together to care for the natural resources in the river basin. They monitor plants and animals, fish health and behavior, and landscape conditions to help increase resiliency as the climate changes.",
 		"alt": "xxx"
 	},
 	{
@@ -25,18 +25,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page02.png",
-		"text": "Land managers like these three work together to care for the natural resources in the river basin. They monitor plants and animals, fish health and behavior, and landscape conditions to help increase resiliency as the climate changes.",
-		"alt": "xxx"
-	},
-	{
-		"id": "page02b",
-		"order": 3,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page02.png",
-		"text": "They each use different approaches to manage the land and together follow the R.A.D. framework of land management. R stands for Resist, as in resisting future climate conditions. A is for Accept, as in accepting climate change affects on plants and animals. And D is for Direct, where managers directly shape the landscape toward preferred new conditions.",
+		"bknd": "public/assets/vectorized_pngs/page02.png",
+		"text": "Land managers use different and complementary approaches to manage for climate resiliency. The R.A.D. framework leverages three approaches for decision-making when managing changing systems: Resist, Accept, and Direct. R stands for Resist, as in resisting future climate conditions. A is for Accept, as in accepting climate change affects on plants and animals. And D is for Direct, where managers directly shape the landscape toward preferred new conditions.",
 		"alt": "xxx"
 	},
 	{
@@ -45,8 +35,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page03.png",
-		"text": "Denise monitors an area of the river that is a common spawning location for Redband Trout (Oncorhynchus mykiss newberrii). Redband Trout live in the rivers of the Donner und Blitzen River basin. As they grow up, they migrate to connected streams and lakes to live. Then, as adults, they return each year to their original hatching grounds to spawn.",
+		"bknd": "public/assets/vectorized_pngs/page03.png",
+		"text": "This area of the river is a common spawning location for Redband Trout. The fish live throughout the connected network of lakes and rivers in the basin, and return each spring to breeding locations like this to spawn.",
 		"alt": "xxx"
 	},
 	{
@@ -55,8 +45,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page04.png",
-		"text": "Newly hatched Redband Trout are called alevins, with a yolk sac to keep them fed until they're bigger. These two are cousins, and they share many of the same genetic traits. They are also able to adapt to their local conditions through a process called acclimation, which is when organisms become accustom to their surroundings, such as water temperature.",
+		"bknd": "public/assets/vectorized_pngs/page04.png",
+		"text": "These two Redband Trout hatchlings, or 'alevins,' are cousins and share many of the same genetic traits. They are also able to adapt to their local conditions through a process called acclimation, which is when organisms become accustomed to their surroundings, such as water temperature.",
 		"alt": "xxx "
 	},
 	{
@@ -65,8 +55,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page05.png",
-		"text": "After they get big enough to leave the nest, these two Redband Trout migrate to other areas of the river basin to grow up. One migrates upstream to the headland waters, while the other goes downstream to the main river valley. As they grow, they acclimate to the water temperatures in their new homes.​",
+		"bknd": "public/assets/vectorized_pngs/page05.png",
+		"text": "When the trout grow large enough, they migrate from their spawning grounds to connected streams and lakes. In their new homes they acclimate to the local water temperatures.​",
 		"alt": "xxx."
 	},
 	{
@@ -75,8 +65,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page06.png",
-		"text": "Randy monitors and manages the headwaters area, where water temperature is colder than the spawning grounds. This particular headwater stream is spring-fed, rocky, and clear. This Redband Trout, which is now a fry (juvenile trout), settles into its new habitat, adjusts to the cooler temperatures, and eats a diet of water insects and nymphs.",
+		"bknd": "public/assets/vectorized_pngs/page06.png",
+		"text": "The final size that the fish grow as adults is controlled by stream size. Bigger streams with larger streamflow tend to have more resources for growth, and therefore have a higher limit on size than fish in smaller streams. In this river basin, small streams tend to be found in the cold headwaters areas and the larger streams are found at lower elevations, in the river valleys",
 		"alt": "xxx"
 	},
 	{
@@ -85,8 +75,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page07.png",
-		"text": "This young fish has grown in size and has adapted to the cold headwaters. Its adult bodysize is limited by the size of the river, as fish sizes relate to river size (less room, lower productivity, and less food than large rivers).",
+		"bknd": "public/assets/vectorized_pngs/page07.png",
+		"text": "Randy monitors and manages the headwaters area, where water temperature is colder than the spawning grounds. This young fish has grown in size and has adapted to the cold headwater temperatures. In other words, this fish is cold-adapted.",
 		"alt": "xxx."
 	},
 	{
@@ -95,8 +85,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page08.png",
-		"text": "Because it has grown up in the cold headwaters, this fish is cold-adapted. That means that it has a narrow optimal temperature range, and that it can quickly become stressed when stream temperatures increase, which is happening more often in the summers because of climate change.",
+		"bknd": "public/assets/vectorized_pngs/page08.png",
+		"text": "Cold-adapted Redband Trout have a narrow optimal temperature range compared to warm-adapted fish. Cold-adapted fish quickly become stressed when stream temperatures rise above normal, which is happening more often in the summers because of climate change.",
 		"alt": "xxx"
 	},
 	{
@@ -105,8 +95,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page09.png",
-		"text": "Randy Resists the rising summer temperatures by planting more trees along the headwater streams. This increases shade and slows down how fast the river heats up. This improves the habitat for the cold-adapted fish in these headwater streams.",
+		"bknd": "public/assets/vectorized_pngs/page09.png",
+		"text": "Randy notices the stress on the cold-adapted fish caused by increasing water temperatures.",
 		"alt": "Complex landscape illustration showing alpine river in the upper left and valley river in the lower right. Mike and Barry have both grown up into full-size fish. They're sending a letter to each other to keep in touch."
 	},
 	{
@@ -115,8 +105,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page10.png",
-		"text": "Meanwhile, the other Redband Trout fry has migrated downstream to the main river valley. This area of the river is monitored by Alex and is bustling with life. The warmer waters bring more productivity, plant life, and food for the fish in the rivers.",
+		"bknd": "public/assets/vectorized_pngs/page10.png",
+		"text": "To improve the habitat for the cold-adapted fish in these headwater streams, Randy `Resists` the rising summer temperatures by planting more trees along the headwater streams. This increases shade and slows down how fast the river heats up.",
 		"alt": "xxx"
 	},
 	{
@@ -125,8 +115,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page12.png",
-		"text": "This Redband Trout has taken advantage of the productive river and has grown larger than its upstream counterpart. It also is warm-adapted, meaning it has a wider optimal temperature range and can handle warmer summer temperatures. However, as the climate changes summer temperatures could start to get too hot even for these warm-adapted fish, causing stress.",
+		"bknd": "public/assets/vectorized_pngs/page11.png",
+		"text": "Downstream to the main river valley, other Redband Trout have migrated to larger, warmer waters. This area of the river is bustling with life and food for the fish in the rivers.",
 		"alt": "xxx"
 	},
 	{
@@ -135,8 +125,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page13.png",
-		"text": "This fish has now reached its young adult size and is getting ready to migrate back to its spawning grounds as winter turns into spring. Unfortunately, there has also been an invasion of common carp, which is a bottom feeder that uproots vegetation and creates cloudy water conditions. This stresses the native fish like this Redband Trout.",
+		"bknd": "public/assets/vectorized_pngs/page12.png",
+		"text": "These productive waters support a diversity of organisms, including the invasive of common carp. The common carp is a bottom feeder that uproots vegetation and creates cloudy water conditions. This stresses the native fish like this Redband Trout.",
 		"alt": "xxx"
 	},
 	{
@@ -145,8 +135,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page14.png",
-		"text": "While Alex Accepts that climate and ecosystems are changing, she can help reduce stress for native fish like the Redband Trout by removing invasive species, reducing harm from fishing by banning barbed hooks, and promoting catch-and-release for Redband Trout.",
+		"bknd": "public/assets/vectorized_pngs/page13.png",
+		"text": "Alex 'Accepts' that climate and ecosystems are changing. Her approach is to reduce stress for native fish like the Redband Trout by removing invasive species, reducing harm from fishing by banning barbed hooks, and promoting catch-and-release for Redband Trout.",
 		"alt": "xxx"
 	},
 	{
@@ -155,8 +145,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page15.png",
-		"text": "It is now spring, and both fish are at their adult sizes and are preparing to migrate back to the spawning grounds to spawn for the first time. Unfortunately this winter did not have as much snowfall as normal, and spring has brought lower-than-average rainfall. There is a drought, which are occurring more and more often.",
+		"bknd": "public/assets/vectorized_pngs/page14.png",
+		"text": "When the trout reach their adult sizes in the spring, they return back to their home spawning grounds to reproduce. Without enough precipitation during the winter and spring months, streamflow drought can threaten the connectivity of the streams on which the fish rely for migration.",
 		"alt": "xxx"
 	},
 	{
@@ -165,8 +155,8 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page16.png",
-		"text": "Because of the drought, some of the common waterways that Redband Trout would have used to migrate to their spawning grounds are dried up and impassable.",
+		"bknd": "public/assets/vectorized_pngs/page15.png",
+		"text": "Fortunately, Denise is monitoring the landscape and can Direct the ecosystem to become more resilient by creating more connectivity between streams, digging new channels, and removing dams. Both fish are able to return to their spawning grounds and give rise to the next generation of alevins.",
 		"alt": "xxx"
 	},
 	{
@@ -175,17 +165,7 @@
 		"images": [
 			{}
 		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page17.png",
-		"text": "Fortunately, Denise is monitoring the landscape and can Direct the ecosystem to become more resilient by creating more connectivity between streams, digging new channels, and removing dams. Both fish are able to return to their spawning grounds and give rise to the next generation of alevins.",
-		"alt": "xxx"
-	},
-	{
-		"id": "page18",
-		"order": 19,
-		"images": [
-			{}
-		],
-		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page18.png",
+		"bknd": "public/assets/vectorized_pngs/page16.png",
 		"text": "By working together to manage the system as a whole, all three of the approaches to land management (Resist, Accept, Direct) improve the landscape for generations to come.",
 		"alt": "xxx"
 	},
