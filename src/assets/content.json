@@ -66,7 +66,7 @@
 			{}
 		],
 		"bknd": "public/assets/vectorized_pngs/page06.png",
-		"text": "The final size that the fish grow as adults is controlled by stream size. Bigger streams with larger streamflow tend to have more resources for growth, and therefore have a higher limit on size than fish in smaller streams. In this river basin, small streams tend to be found in the cold headwaters areas and the larger streams are found at lower elevations, in the river valleys",
+		"text": "The final size that the fish grow as adults is controlled by stream size. Bigger streams with larger streamflow tend to have more resources for growth, and therefore have a higher limit on size than fish in smaller streams. In this river basin, small streams tend to be found in the cold headwaters areas and the larger streams are found at lower elevations, in the river valleys.",
 		"alt": "xxx"
 	},
 	{
@@ -86,7 +86,7 @@
 			{}
 		],
 		"bknd": "public/assets/vectorized_pngs/page08.png",
-		"text": "Cold-adapted Redband Trout have a narrow optimal temperature range compared to warm-adapted fish. Cold-adapted fish quickly become stressed when stream temperatures rise above normal, which is happening more often in the summers because of climate change.",
+		"text": "Cold-adapted Redband Trout have a narrow optimal temperature range compared to warm-adapted fish. Cold-adapted fish quickly become stressed when stream temperatures rise above normal in a process called `thermal stress.` Thermal stress can reduce growth and eventually lead to death.",
 		"alt": "xxx"
 	},
 	{
