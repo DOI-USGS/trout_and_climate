@@ -190,7 +190,7 @@ library(geomtextpath)
 (mass_streamflow_plot <-
     ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
     geom_point(shape = 19, aes(size = massInit), 
-               color = redband, alpha = 0.3) + 
+               color = mike_base, alpha = 0.3) + 
     geom_line(aes(y = quant_reg_predicted),
               linewidth = 1.4) +    
     # Add annotation to historic line that follows the curve of the line
@@ -198,7 +198,7 @@ library(geomtextpath)
                                   aes(x = AugStreamflow_1, y = quant_reg_predicted, 
                                       label = "Top limit on size for ~95% of Redband Trout"),
                                   color = "black", size = 8, vjust = -.2, hjust = 0.4,
-                                  linecolor = NA, family = font_supp) +
+                                  linecolor = NA, family = font_supp, fontface = "bold") +
     xlab("August Streamflow (cubic feet per second)") +
     ylab("Redband Trout Mass (g)") +
     guides(color = "none",
@@ -209,25 +209,13 @@ library(geomtextpath)
                           high = barry_base,
                           midpoint = 100) +
     theme_minimal()+
-    theme(axis.title = element_text(size = 25),
+    theme(axis.title = element_text(size = 25,
+                                    margin = margin(10,10,0,0)),
           axis.text = element_text(size = 18),
           panel.background = element_rect(fill = NA),
           plot.background = element_rect(fill = NA, color = NA),
           legend.position = "none")) 
 
-
-### COLD PLOT ###
-ggdraw(ylim = c(0,1), 
-       xlim = c(0,1)) +
-  draw_grob(canvas_cold,
-            x = 0, y = 1,
-            height = 9, width = 7,
-            hjust = 0, vjust = 1) +
-  draw_plot(mass_streamflow_plot,
-            x = 0.05,
-            y = 0.05,
-            height = 0.900,
-            width = 0.900) 
 
 ggsave(filename = "../public/assets/vectorized_pngs/page06.png", 
        width = 3000, height = 2300, dpi = 300, units = "px")
