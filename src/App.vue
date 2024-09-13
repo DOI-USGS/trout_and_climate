@@ -3,7 +3,7 @@
     <WindowSize v-if="typeOfEnv === '-test build-'" />
     <HeaderUSWDSBanner v-if="typeOfEnv !== '-test build-'" />
     <HeaderUSGS />
-    <WorkInProgressWarning v-if="typeOfEnv === '-beta build-'" />
+    <WorkInProgressWarning v-if="typeOfEnv !== ''" />
     <div class="content-container" :class="{ mobile: mobileView}">
       <RouterView />
     </div>
