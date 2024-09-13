@@ -123,16 +123,28 @@ trout.mass <- trout.streamflow |>
 Complete non-linear quantile regression with `{quantreg}` package.
 
 ```{r quant_regression}
-quant_reg_out <- quantreg::nlrq(
+quant_reg_out_mid <- quantreg::nlrq(
   formula = massInit ~ a*exp(b*log(AugStreamflow_1)),
   data = trout.mass,
-  tau = 0.9,
+  tau = 0.95,
   start = list(a = 150, b = 0.9) # seed values to start
 )
 
 # predict values off of equation to create line in graph
 trout.mass$quant_reg_predicted <- 
-  quantreg::predict.nlrq(object = quant_reg_out)
+  quantreg::predict.nlrq(object = quant_reg_out_mid)
+
+quant_reg_out_LOW <- quantreg::nlrq(
+  formula = massInit ~ a*exp(b*log(AugStreamflow_1)),
+  data = trout.mass,
+  tau = 0.025,
+  start = list(a = 150, b = 0.9) # seed values to start
+)
+
+# predict values off of equation to create line in graph
+trout.mass$quant_reg_predicted_low <- 
+  quantreg::predict.nlrq(object = quant_reg_out_LOW)
+
 
 
 ```
@@ -144,97 +156,68 @@ mike_base <- '#276952'
 barry_base <- '#735E0B'
 redband <- '#7A3608'
 warm_water <- '#C3D3E8'
+light_warm <- '#DBE5F1'
 cold_water <- '#D1ECEB'
+light_cold <- "#E0F0F0"
 white <- '#FFFFFF'
 black <- '#000000'
 
-font_main <- "Shadows Into Light"
+font_main <- "Source Sans Pro"
 sysfonts::font_add_google(font_main)
 
-font_supp <- "Source Sans Pro"
+font_supp <- "Patrick Hand"
 sysfonts::font_add_google(font_supp)
 
 # Make a canvas to put it all on
 canvas_cold <- grid::rectGrob(
   x = 0, y = 0, 
   width = 9, height = 9,
-  gp = grid::gpar(fill = cold_water, alpha = 1, col = cold_water)
-)
-canvas_warm <- grid::rectGrob(
-  x = 0, y = 0, 
-  width = 9, height = 9,
-  gp = grid::gpar(fill = warm_water, alpha = 1, col = cold_water)
+  gp = grid::gpar(fill = "white", alpha = 1, col = "white")
 )
 
 # load circle for cowplot
-circle_form <- 
-  magick::image_read("../public/assets/vectorized_pngs/rawcircle.png") |>
-  magick::image_colorize(opacity = 100, color = "red")
+mike <- 
+  magick::image_read("../public/assets/vectorized_pngs/mike_1.png")
+barry <-
+  magick::image_read("../public/assets/vectorized_pngs/barry_1.png")
 ```
 
 
 
 ```{r plot}
 
+library(geomtextpath)
 (mass_streamflow_plot <-
-   ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
-   geom_point(shape = 19, size = 1) + 
-   geom_line(aes(y = quant_reg_predicted),
-             linewidth = 1.4) +
-   xlab("August Streamflow") +
-   ylab("Fish Mass") +
-   guides(color = "none",
-          linewidth = "none") +
-   scale_x_continuous(trans = 'log10') +
-   scale_color_gradient2(low = mike_base,
-                         mid = mike_base,
-                         high = barry_base,
-                         midpoint = 100) +
-   xkcd::theme_xkcd() +
-   theme(axis.title = element_text(size = 40),
-         axis.text = element_text(size = 30),
-         panel.background = element_rect(fill = NA),
-         plot.background = element_rect(fill = NA, color = NA))) 
-
-```
-
-```{r base cowplot, fig.width= 9, fig.height= 9}
-
-### COLD PLOT ###
-ggdraw(ylim = c(0,1), 
-       xlim = c(0,1)) +
-  draw_grob(canvas_cold,
-            x = 0, y = 1,
-            height = 9, width = 7,
-            hjust = 0, vjust = 1) +
-  draw_plot(mass_streamflow_plot,
-            x = 0.05,
-            y = 0.05,
-            height = 0.900,
-            width = 0.900) +
-  draw_image(circle_form, 
-             x = 0.2, y = -0.2,
-             width = 0.3)
-
-ggsave(filename = "../public/assets/vectorized_pngs/scatter_cold.png", 
-       width = 9, height = 7, dpi = 300)
+    ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
+    geom_point(shape = 19, aes(size = massInit), 
+               color = mike_base, alpha = 0.3) + 
+    geom_line(aes(y = quant_reg_predicted),
+              linewidth = 1.4) +    
+    # Add annotation to historic line that follows the curve of the line
+    geomtextpath::geom_textsmooth(data = trout.mass, 
+                                  aes(x = AugStreamflow_1, y = quant_reg_predicted, 
+                                      label = "Top limit on size for ~95% of Redband Trout"),
+                                  color = "black", size = 8, vjust = -.2, hjust = 0.4,
+                                  linecolor = NA, family = font_supp, fontface = "bold") +
+    xlab("August Streamflow (cubic feet per second)") +
+    ylab("Redband Trout Mass (g)") +
+    guides(color = "none",
+           linewidth = "none") +
+    scale_x_continuous(trans = 'log10') +
+    scale_color_gradient2(low = mike_base,
+                          mid = mike_base,
+                          high = barry_base,
+                          midpoint = 100) +
+    theme_minimal()+
+    theme(axis.title = element_text(size = 25,
+                                    margin = margin(10,10,0,0)),
+          axis.text = element_text(size = 18),
+          panel.background = element_rect(fill = NA),
+          plot.background = element_rect(fill = NA, color = NA),
+          legend.position = "none")) 
 
 
-### WARM PLOT ###
-ggdraw(ylim = c(0,1), 
-       xlim = c(0,1)) +
-  draw_grob(canvas_warm,
-            x = 0, y = 1,
-            height = 9, width = 7,
-            hjust = 0, vjust = 1) +
-  draw_plot(mass_streamflow_plot,
-            x = 0.05,
-            y = 0.05,
-            height = 0.900,
-            width = 0.900)+
-  draw_image(circle_form, 
-             x = 0.55, y = 0.2,
-             width = 0.4)
-ggsave(filename = "../public/assets/vectorized_pngs/scatter_warm.png", 
-       width = 9, height = 7, dpi = 300)
+ggsave(filename = "../public/assets/vectorized_pngs/page06.png", 
+       width = 3000, height = 2300, dpi = 300, units = "px")
+
 ```

@@ -2,16 +2,11 @@ import { reactive } from 'vue';
 import content from '@/assets/content.json';
 
 export const store = reactive({
-  intro: content.intro,
-  hotWater: content.hotWater,
-  warmWater: content.warmWater,
-  coldWater: content.coldWater,
-  outro: content.outro || [],
+  intro: content.story,
   allChapters: [],
   currentType: 'intro',
   currentIndex: 0,
   selectedOptions: [],
-  lastIntroIndex: content.intro.length - 1,
 
   initializeAllChapters() {
     this.allChapters = [...this.intro];
@@ -24,23 +19,16 @@ export const store = reactive({
     this.allChapters.push(...newChapters);
   },
 
-  setTypeAndIndex(newType, newIndex) {
-    this.currentType = newType;
+  setIndex(newIndex) {
     this.currentIndex = newIndex;
-    if (newType !== 'intro') {
-      this.addChapters(newType);
+    if (currentIndex = this.allChapters.length) {
+      currentType = 'references'
     }
   },
 
   nextChapter() {
-    if (this.currentIndex < this.allChapters.length - 1) {
+    if (this.currentIndex < this.allChapters.length) {
       this.currentIndex++;
-    } else if (this.currentType !== 'intro') {
-      if (this.allOptionsChosen()) {
-        this.navigateToOutro();
-      } else {
-        this.resetToIntro();
-      }
     }
   },
 
@@ -50,23 +38,14 @@ export const store = reactive({
     }
   },
 
-  resetToIntro() {
-    this.currentType = 'intro';
-    this.currentIndex = this.lastIntroIndex;
-  },
-
-  allOptionsChosen() {
-    return this.selectedOptions.length === 3;
-  },
-
-  navigateToOutro() {
-    const outroStartIndex = this.allChapters.length;
-    const outroChapters = this.outro.map((chapter, index) => {
-      return { ...chapter, globalIndex: outroStartIndex + index };
+  navigateToReferences() {
+    const referencesStartIndex = this.allChapters.length;
+    const referencesChapter = this.intro.map((chapter, referencesStartIndex) => {
+      return { ...chapter, globalIndex: referencesStartIndex };
     });
-    this.allChapters.push(...outroChapters);
-    this.currentType = 'outro';
-    this.currentIndex = outroStartIndex;
+    this.allChapters.push(...referencesChapter);
+    this.currentType = 'references';
+    this.currentIndex = referencesStartIndex;
   }
 });
 
