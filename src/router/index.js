@@ -7,12 +7,9 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/0',
-    },
-    {
-      path: '/index.html',
-      name: 'Index',
-      redirect: '/0',
+      name: 'Home',
+      component: StoryPage,
+      props: { index: 0 }, // Always set index to 0 for the root path
     },
     {
       path: '/:index',
@@ -27,9 +24,14 @@ const router = createRouter({
         if (!isNaN(index) && index >= 0 && index < totalChapters) {
           next(); // Allow navigation to the specified chapter
         } else {
-          next('/0'); // Redirect to the first chapter if invalid index
+          next('/'); // Redirect to the first chapter if invalid index
         }
       }
+    },
+    {
+      // Catch-all route for any other paths (to handle paths without trailing slash)
+      path: '/:pathMatch(.*)*',
+      redirect: '/',
     }
   ]
 })

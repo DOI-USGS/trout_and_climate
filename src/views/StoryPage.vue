@@ -93,8 +93,12 @@ export default {
     const totalChapters = computed(() => store.allChapters.length);
     
     function goToChapter(index) {
+      if (index === 0) {
+        router.push('/'); // Navigate to root for Chapter 0
+      } else {
+        router.push({ name: 'Chapter', params: { index: index.toString() } });
+      }
       store.currentIndex = index;
-      router.push({ name: 'Chapter', params: { index: index.toString() } });
     }
 
     // Watch the route's index parameter and update the store's currentIndex
@@ -103,12 +107,17 @@ export default {
       (newIndex) => {
         const index = parseInt(newIndex, 10);
 
+        // If no index is provided (e.g., root path "/"), set index to 0
+        if (isNaN(index)) {
+          index = 0;
+        }
+
         // Ensure the parsed index is a valid number and within bounds
-        if (!isNaN(index) && index >= 0 && index < totalChapters.value) {
+        if (index >= 0 && index < totalChapters.value) {
           store.currentIndex = index;
         } else {
-          // Redirect to the first chapter if the index is invalid
-          router.push('/0');
+          // Redirect to the root if the index is invalid
+          router.push('/');
         }
       },
       { immediate: true }
