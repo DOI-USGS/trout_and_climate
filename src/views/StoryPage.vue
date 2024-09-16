@@ -283,8 +283,8 @@ export default {
     flex-grow: 1;
   }
   #page-title {
-    line-height: 3.2rem;
-    padding-bottom: 0px;
+    line-height: 3.5rem;
+    padding-bottom: 10px;
   }
   #chapter-text {
     width: 100%; 
