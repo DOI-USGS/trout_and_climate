@@ -3,11 +3,11 @@
     <WindowSize v-if="typeOfEnv === '-test build-'" />
     <HeaderUSWDSBanner v-if="typeOfEnv !== '-test build-'" />
     <HeaderUSGS />
-    <WorkInProgressWarning v-if="typeOfEnv === '-beta build-'" />
+    <WorkInProgressWarning v-if="typeOfEnv !== ''" />
     <div class="content-container" :class="{ mobile: mobileView}">
       <RouterView />
     </div>
-    <PreFooterCodeLinks />
+    <PreFooterCodeLinks :gitHubRepositoryLink="gitHubRepositoryLink"/>
     <FooterUSGS />
   </div>
 </template>
@@ -27,6 +27,7 @@ import { useWindowSizeStore } from './stores/WindowSizeStore';
 const windowSizeStore = useWindowSizeStore();
 const typeOfEnv = import.meta.env.VITE_APP_TIER;
 const mobileView = isMobile;
+const gitHubRepositoryLink = import.meta.env.VITE_APP_GITHUB_REPOSITORY_LINK;
 
 onMounted(() => {
   window.addEventListener('resize', handleResize);

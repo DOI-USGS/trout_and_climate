@@ -3,21 +3,21 @@
     "name": "vizlab-trout-climate",
     "organization": "U.S. Geological Survey",
     "description": "{project_description}",
-    "version": "main",
+    "version": "{version}",
     "status": "Development",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
         {
           "name": "Public Domain, CC0-1.0",
-          "URL": "https://github.com/DOI-USGS/vizlab-trout-climate/raw/main/LICENSE.md"
+          "URL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/main/LICENSE.md"
         }
       ]
     },
-    "homepageURL": "https://github.com/DOI-USGS/vizlab-trout-climate/",
-    "downloadURL": "https://github.com/DOI-USGS/vizlab-trout-climate/archive/refs/heads/main.zip",
-    "disclaimerURL": "https://github.com/DOI-USGS/vizlab-trout-climate/raw/main/DISCLAIMER.md",
-    "repositoryURL": "https://github.com/DOI-USGS/vizlab-trout-climate.git",
+    "homepageURL": "https://github.com/DOI-USGS/trout_and_climate",
+    "downloadURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/archive/main/trout_and_climate-main.zip",
+    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/main/DISCLAIMER.md",
+    "repositoryURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate.git",
     "vcs": "git",
     "laborHours": 450,
     "tags": [
