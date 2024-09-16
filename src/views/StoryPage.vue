@@ -190,7 +190,7 @@ export default {
   align-self: flex-end;
 }
 #prev-button-mobile, #next-button-mobile {
-  width: 50%;
+  width: 100%;
   height: auto;
   font-size: 2rem;
   margin:0;
@@ -205,7 +205,10 @@ export default {
 #prev-button, #next-button {
   font-size: 6rem; 
   background-color: white;
-  border: none;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: #00264C 2px 5px 10px -5px;  
   width: 100px; 
   min-width: 100px;
   height: 100%; 
@@ -271,8 +274,16 @@ export default {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    height: auto;
     align-self: end;
   }
-  
+  #button-container-mobile > * {
+    width: 50%;
+    height: 100px;
+    font-size: 7rem;
+    margin: 0;
+    text-align: center;
+    
+  }
 }
 </style>
