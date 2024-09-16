@@ -26,7 +26,7 @@
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    background-color: var(--color-code-links-background);
+    background-color: white;
     margin: 0 auto;
     padding: 0.4rem 1.5rem;
     a {

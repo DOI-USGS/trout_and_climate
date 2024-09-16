@@ -1,5 +1,5 @@
 import { reactive } from 'vue';
-import content from '@/assets/content.json';
+import content from '@/assets/text/content.json';
 
 export const store = reactive({
   intro: content.story,

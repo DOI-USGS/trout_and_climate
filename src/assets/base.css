@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;600;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 :root {
   --white: #ffffff;
   --white-soft: #F0F0F0;
@@ -7,21 +7,22 @@
   --black-soft: #151515;
   --dodger-blue: #1e90ff;
 
+  --trout-blue: #596e6e;
+  --trout-teal: #4a9177;
+  --trout-green: #7c9662;
+  --trout-red: #882417;
+
   font-size: 62.5%;
 }
 
 /* semantic color variables for this project */
 :root {
-  --color-background: var(--white);
+  --color-background: var(--white-soft);
   --color-text: var(--black-soft);
+  --color-link: var(--trout-red);
+  --color-title: var(--black-soft);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--black-soft);
-    --color-text: var(--white-soft);
-  }
-} */
 
 *,
 *::before,
@@ -52,19 +53,36 @@ body {
 }
 h1 {
   font-size: 3.5rem;
-  font-weight: 500;
-  font-family: Skranji;
-  color: #00264C;
+  font-weight: 700;
+  font-family: Open Sans;
+  color: var(--color-title);
   @media screen and (max-width: 600px) {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
+  }
+}
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: Open Sans;
+  padding-bottom: 10px;
+  padding-top:20px;
+  color: var(--color-title);
+  @media screen and (max-width: 600px) {
+    font-size: 2rem;
   }
 }
 p {
   font-family: Source Sans Pro;
   color: #002646;
-  font-weight: 600;
-  font-size: 2.5rem;
+  font-weight: 400;
+  font-size: 2.25rem;
   @media screen and (max-width: 600px) {
     font-size: 1.8rem;
+  }
+  emph {
+    font-weight: 800;
+  }
+  a {
+    color: var(--trout-red)
   }
 }

@@ -46,10 +46,9 @@ function handleResize() {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Skranji:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 $SourceSans: 'Source Sans Pro', sans-serif;
-$Skranji: 'Skranji', system-ui;
-$textcolor: #7d4e57;
+$OpenSans: 'Open Sans', sans-serif;
 $linkcolor: #d66853;
 
 html, body, #app, .app-container {

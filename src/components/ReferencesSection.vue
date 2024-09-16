@@ -1,7 +1,7 @@
 <template>
   <section id="references">
     <div class="text-container title-text">
-      <h3>{{ text.title }}</h3>
+      <h2>{{ text.title }}</h2>
     </div>
     <div class="text-container">
       <div v-for="reference in text.references" :key="reference.subTitle">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import referencesText from '@/assets/referencesText';
+import referencesText from '@/assets/text/referencesText';
 
 export default {
   name: 'ReferencesSection',
@@ -34,10 +34,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-button:not([disabled]):focus {
-  outline: none;
-}
-#reference-text{
-  font-size: 1.7rem;
+p {
+  font-size:2rem;
+  padding: 0 10px;
 }
 </style>

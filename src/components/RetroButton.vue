@@ -26,7 +26,7 @@ export default {
       if (this.isDisabled) {
         return {
           ...this.buttonStyle,
-          backgroundColor: 'grey',
+          backgroundColor: '#b4b2b2',
           cursor: 'not-allowed'
         };
       }
@@ -56,15 +56,16 @@ button {
   border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
   border-style: solid;
   border-width: 2px;
-  box-shadow: #00264C 15px 18px 15px -18px;
+  box-shadow: #00264C 2px 5px 10px -5px;  
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
-  font-family: Skranji, sans-serif;
-  font-size: 1.6rem;
+  font-family: Open Sans, sans-serif;
+  font-size: 20rem;
+  font-weight: 700;
   line-height: 23px;
-  outline: none;
-  padding: .75rem;
+  //outline: none;
+  padding: 1rem 1rem;
   text-decoration: none;
   transition: all 235ms ease-in-out;
   border-bottom-left-radius: 15px 255px;
@@ -74,19 +75,8 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-}
-
-/* button:after {
-  content: "";
-  background-color: #D1ECEB;
-  width: 100%;
-  z-index: -1;
-  position: absolute;
   height: 100%;
-  top: 7px;
-  left: 7px;
-  transition: 0.2s;
-} */
+}
 
 button:hover:after {
   top: 0px;
@@ -103,19 +93,15 @@ button:hover {
   transform: translate3d(0, 2px, 0);
 }
 
-// button:active {
-//   transform: translate(4px, 4px);
-//   outline: 0;
-// }
 
 button:disabled {
-  background-color: #ccc;
+  background-color: #b4b2b2;
   cursor: not-allowed;
-  border-color: #999;
-  color: #ccc;
+  border-color: #b4b2b2;
+  color: #b4b2b2;
 }
 
 button:disabled:after {
-  background-color: #ccc;
+  background-color: #b4b2b2;
 }
 </style>
