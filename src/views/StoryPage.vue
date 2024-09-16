@@ -97,12 +97,18 @@ export default {
       router.push({ name: 'Chapter', params: { index: index.toString() } });
     }
 
+    // Watch the route's index parameter and update the store's currentIndex
     watch(
       () => route.params.index,
       (newIndex) => {
-        store.currentIndex = parseInt(newIndex) || 0;
-        if (window.innerWidth <= 600) {
-          document.querySelector('.app-container').classList.add('scroll-locked');
+        const index = parseInt(newIndex, 10);
+
+        // Ensure the parsed index is a valid number and within bounds
+        if (!isNaN(index) && index >= 0 && index < totalChapters.value) {
+          store.currentIndex = index;
+        } else {
+          // Redirect to the first chapter if the index is invalid
+          router.push('/0');
         }
       },
       { immediate: true }
@@ -166,13 +172,6 @@ export default {
   width: 100%;
   min-height: 90vh;
 }
-
-#chapter-content-mobile, #chapter-content-desktop {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
-}
 #page-title {
   margin: 0 auto;
   text-align: center;
@@ -180,13 +179,19 @@ export default {
   padding-bottom: 10px;
 }
 #chapter-content-desktop {
+  display: flex;
   justify-content: space-between; 
   align-items: stretch; 
   height: 100%;
-  max-height: 300px; 
+  flex-grow: 1;
+  height: 300px; 
 }
 #chapter-content-mobile {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  flex-grow: 1;
+  min-height: 35vh;
 }
 
 #button-container-mobile {
@@ -284,13 +289,11 @@ export default {
   }
   #page-title {
     line-height: 3.5rem;
-    padding-bottom: 10px;
   }
   #chapter-text {
     width: 100%; 
     padding: 10px;
     flex-grow: 1;
-    max-height: 40vh;
   }
   #images-container {
     width: 100%;
