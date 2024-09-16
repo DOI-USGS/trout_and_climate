@@ -151,7 +151,9 @@ export default {
       imageStyle,
       isFirstPage,
       isLastPage,
-      mobileView
+      mobileView,
+      totalChapters,
+      goToChapter
     };
   }
 };
@@ -162,7 +164,14 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 90vh;
+  min-height: 90vh;
+}
+
+#chapter-content-mobile, #chapter-content-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
 }
 #page-title {
   margin: 0 auto;
@@ -171,18 +180,13 @@ export default {
   padding-bottom: 10px;
 }
 #chapter-content-desktop {
-  display: flex;
   justify-content: space-between; 
   align-items: stretch; 
   height: 100%;
-  flex-grow: 1;
   max-height: 300px; 
 }
 #chapter-content-mobile {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  flex-grow: 1;
 }
 
 #button-container-mobile {
@@ -251,6 +255,26 @@ export default {
   padding: 0 10px;
 }
 
+#navigation-tracker {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.tracker-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tracker-circle.active {
+  background-color: var(--trout-blue); /* Highlight color for the active chapter */
+}
+
 /* Mobile-specific styles */
 @media screen and (max-width: 600px) {
   #chapter-content {
@@ -258,13 +282,15 @@ export default {
     align-items: center;
     flex-grow: 1;
   }
-  #chapter-title {
-    line-height: 1.2rem;
+  #page-title {
+    line-height: 3.2rem;
+    padding-bottom: 0px;
   }
   #chapter-text {
     width: 100%; 
     padding: 10px;
     flex-grow: 1;
+    max-height: 40vh;
   }
   #images-container {
     width: 100%;
@@ -281,7 +307,7 @@ export default {
   }
   #button-container-mobile > * {
     width: 50%;
-    height: 100px;
+    height: 80px;
     font-size: 7rem;
     margin: 0;
     text-align: center;
