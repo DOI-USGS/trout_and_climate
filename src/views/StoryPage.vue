@@ -10,7 +10,6 @@
       <RetroButton
         id = "prev-button"
         label="&#8249;"
-        :buttonStyle="prevButtonStyle"
         @click="prevChapter"
         :isDisabled="isFirstPage"
         :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
@@ -21,7 +20,6 @@
       <RetroButton
         id = "next-button"
         label="&#8250;"
-        :buttonStyle="nextButtonStyle"
         @click="nextChapter"
         :isDisabled="isLastPage"
         :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
@@ -37,7 +35,6 @@
       <RetroButton
         id = "prev-button"
         label="&#8249;"
-        :buttonStyle="prevButtonStyle"
         @click="prevChapter"
         :isDisabled="isFirstPage"
         :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
@@ -45,15 +42,23 @@
       <RetroButton
         id = "next-button"
         label="&#8250;"
-        :buttonStyle="nextButtonStyle"
         @click="nextChapter"
         :isDisabled="isLastPage"
         :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
       />
       </div>
-      <br/>
     </div>
+    <!-- Navigation Tracker -->
+    <div id="navigation-tracker">
+      <span
+        v-for="(chapter, index) in totalChapters"
+        :key="index"
+        class="tracker-circle"
+        :class="{ active: store.currentIndex === index }"
+        @click="goToChapter(index)"
+      ></span>
     </div>
+  </div>
   <br/>
     <hr class="content-divider" />
     <div id="references-container">
@@ -85,6 +90,13 @@ export default {
     const route = useRoute();
     const router = useRouter();
 
+    const totalChapters = computed(() => store.allChapters.length);
+    
+    function goToChapter(index) {
+      store.currentIndex = index;
+      router.push({ name: 'Chapter', params: { index: index.toString() } });
+    }
+
     watch(
       () => route.params.index,
       (newIndex) => {
@@ -98,10 +110,10 @@ export default {
 
     const mobileView = isMobile;
 
+    /* navigation helpers */
     const currentChapter = computed(() => {
       return store.allChapters[store.currentIndex];
     });
-
     const isFirstPage = computed(() => {
       return store.currentIndex === 0;
     });
@@ -131,14 +143,6 @@ export default {
       };
     }
 
-    const prevButtonStyle = {
-      color: 'black'
-    };
-
-    const nextButtonStyle = {
-      color: 'black'
-    };
-
     return {
       store,
       currentChapter,
@@ -147,8 +151,6 @@ export default {
       imageStyle,
       isFirstPage,
       isLastPage,
-      prevButtonStyle,
-      nextButtonStyle,
       mobileView
     };
   }
