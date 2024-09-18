@@ -194,45 +194,42 @@ library(geomtextpath)
     # y-axis
     annotate(geom = "line", y = rep(0, 2), x = c(0.05, 100),
              linewidth = 0.8, color = "grey60") +
-    annotate(geom = "text", y = 0, x = 0.05, hjust = 1, label = "0 g ", size = 10, color = "grey60") +
+    annotate(geom = "text", y = 0, x = 0.05, hjust = 1, label = "0 g ", size = 10, color = "grey50") +
     annotate(geom = "line", y = rep(200, 2), x = c(0.1, 100),
              linewidth = 0.8, color = "grey60") +
-    annotate(geom = "text", y = 200, x = 0.1, hjust = 1, label = "200 g ", size = 10, color = "grey60") +
+    annotate(geom = "text", y = 200, x = 0.1, hjust = 1, label = "200 g ", size = 10, color = "grey50") +
     annotate(geom = "line", y = rep(400, 2), x = c(1, 100),
              linewidth = 0.8, color = "grey60") +
-    annotate(geom = "text", y = 400, x = 1.0, hjust = 1, label = "400 g ", size = 10, color = "grey60") +
+    annotate(geom = "text", y = 400, x = 1.0, hjust = 1, label = "400 g ", size = 10, color = "grey50") +
     annotate(geom = "line", y = rep(600, 2), x = c(10, 100),
              linewidth = 0.8, color = "grey60") +
-    annotate(geom = "text", y = 600, x = 10, hjust = 1, label = "600 g ", size = 10, color = "grey60") +
+    annotate(geom = "text", y = 600, x = 10, hjust = 1, label = "600 g ", size = 10, color = "grey50") +
+    # x-axis 
+    annotate(geom = "text", y = rep(-20, 4), x = c(0.1, 1.0, 10, 100), 
+             label = c("0.1", "1.0", "10", "100"), 
+             size = 10, color = "grey50", hjust = 0.5) +
+    annotate(geom = "text", label = "cubic feet per second", hjust = 0, 
+             x = 0.12, y = -20, size = 10, color = "grey50") +
+    annotate(geom = "line", y = c(-10, 10), x = rep(0.1, 2),
+             linewidth = 0.8, color = "grey60") +
+    annotate(geom = "line", y = c(-10, 10), x = rep(1, 2),
+             linewidth = 0.8, color = "grey60") +
+    annotate(geom = "line", y = c(-10, 10), x = rep(10, 2),
+             linewidth = 0.8, color = "grey60") +
+    annotate(geom = "line", y = c(-10, 10), x = rep(100, 2),
+             linewidth = 0.8, color = "grey60") +
     # limit on growth line
     geom_line(aes(y = quant_reg_predicted),
               linewidth = 2.4) +  
     # title
     annotate(geom = "text", y = 600, x = 0.05,
-             label = "Top limit on size in grams (g) for\n~95% of Redband Trout\nbased on streamflow\nin cubic feet per second (cfs)",
+             label = "Top limit on body size\nfor ~95% of Redband Trout\nbased on streamflow",
              color = "black", hjust = 0, size = 14, vjust = 1, family = font_main, fontface = "bold") +
-    # Add annotation to historic line that follows the curve of the line
-    #geomtextpath::geom_textsmooth(data = trout.mass, 
-    #                              aes(x = AugStreamflow_1, y = quant_reg_predicted, 
-    #                                  label = "Top limit on size for ~95% of Redband Trout"),
-    #                              color = "black", size = 8, vjust = -.2, hjust = 0.4,
-    #                              linecolor = NA, family = font_supp, fontface = "bold") +
-    #xlab("August Streamflow (cubic feet per second)") +
-    #ylab("Redband Trout Mass (g)") +
-    #guides(color = "none",
-    #       linewidth = "none") +
     scale_x_continuous(trans = 'log10', limits = c(0.05, 100)) +
-    ylim(c(-10, 600)) +
-    #scale_color_gradient2(low = mike_base,
-    #                      mid = mike_base,
-     #                     high = barry_base,
-     #                     midpoint = 100) +
+    ylim(c(-20, 600)) +
     theme_void()+
-    theme(#axis.title.x = element_text(size = 25,
-          #                          margin = margin(10,10,0,0)),
-          #axis.text.x = element_text(size = 18),
-          panel.background = element_rect(fill = "white"),
-          plot.background = element_rect(fill = NA, color = NA),
+    theme(panel.background = element_rect(fill = "white"),
+          plot.background = element_rect(fill = "white", color = NA),
           legend.position = "none")) 
 
 
