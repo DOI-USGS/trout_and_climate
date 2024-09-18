@@ -148,16 +148,77 @@ mike_and_barry <- fish_temperature |>
     (aveT <= 28 & scenario == "Warm-Size 50")
   )
 
-cold_water_scenario <- mike_and_barry |>
-                          filter(aveT <= 13, aveT >= 8)
+# scenario selection
+cold_fish <- mike_and_barry |> filter(water_status == "Cold", segment == "segment_111") 
+warm_fish <- mike_and_barry |> filter(water_status == "Warm", segment == "segment_111")
 
-warm_water_scenario <- mike_and_barry |>
-                          filter(aveT <= 18, aveT >= 13)
-
-hot_water_scenario <- mike_and_barry |>
-                          filter(aveT <= 23, aveT >= 18)
+cold_adapted_optimal <- cold_fish |> filter(aveT <= 19.5, aveT >= 8) 
+cold_adapted_stress <- cold_fish |> filter(aveT > 19.5)
+warm_adapted_optimal <- warm_fish |> filter(aveT <= 24, aveT >= 10)
+warm_adapted_stress <- warm_fish |> filter(aveT > 24)
 
 ```
+
+```{r page08}
+
+ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
+  # x-axis 
+  annotate(geom = "text", y = rep(0.024, 4), x = c(0, 10, 20, 30), 
+           label = c(0, 10, 20, 30), 
+           size = 10, color = "grey50", hjust = 0.5) +
+  annotate(geom = "text", label = "degrees Celsius", hjust = 0, 
+           x = 0.5, y = 0.024, size = 10, color = "grey50") +
+  annotate(geom = "line", y = c(0.022, 0.018), x = rep(0, 2),
+           linewidth = 0.8, color = "grey60") +
+  annotate(geom = "line", y = c(0.022, 0.018), x = rep(10, 2),
+           linewidth = 0.8, color = "grey60") +
+  annotate(geom = "line", y = c(0.022, 0.018), x = rep(20, 2),
+           linewidth = 0.8, color = "grey60") +
+  annotate(geom = "line", y = c(0.022, 0.018), x = rep(30, 2),
+           linewidth = 0.8, color = "grey60") +
+  # y-axis
+  annotate(geom = "line", y = rep(0, 2), x = c(-1, 30),
+           linewidth = 0.8, color = "grey60") +
+  annotate(geom = "text", label = "0 g/g/day", x = -1, y = 0, 
+           hjust = 1, size = 10, color = "grey50") +
+  annotate(geom = "line", y = rep(0.01, 2), x = c(-1, 30),
+           linewidth = 0.8, color = "grey60") +
+  annotate(geom = "text", label = "0.01 g/g/day", x = -1, y = 0.01, 
+           hjust = 1, size = 10, color = "grey50") +
+  annotate(geom = "line", y = rep(0.02, 2), x = c(-1, 30),
+           linewidth = 0.8, color = "grey60") +
+  annotate(geom = "text", label = "0.02 g/g/day", x = -1, y = 0.02, 
+           hjust = 1, size = 10, color = "grey50") +
+  # highlights
+  geom_line(data = cold_adapted_optimal, color = "white", linewidth = 12) +
+  geom_line(data = cold_adapted_stress, color = "white", linewidth = 12) +  
+  geom_line(data = warm_adapted_optimal, color = "white", linewidth = 12) +
+  geom_line(data = warm_adapted_stress, color = "white", linewidth = 12) +
+  geom_line(data = cold_fish, color = "white", linewidth = 4) +
+  geom_line(data = warm_fish, color = "white", linewidth = 4) +
+  geom_line(data = cold_adapted_optimal, alpha = 0.4, color = "green", linewidth = 10) +
+  geom_line(data = cold_adapted_stress, alpha = 0.4, color = "red", linewidth = 10) +  
+  geom_line(data = warm_adapted_optimal, alpha = 0.4, color = "green", linewidth = 10) +
+  geom_line(data = warm_adapted_stress, alpha = 0.4, color = "red", linewidth = 10) +
+  # mini bar charts
+  geom_line(data = cold_adapted_optimal, aes(y = 0.027), alpha = 0.4, color = "green", linewidth = 10) +
+  geom_line(data = cold_adapted_stress, aes(y = 0.027), alpha = 0.4, color = "red", linewidth = 10) +  
+  geom_line(data = warm_adapted_optimal, aes(y = 0.026), alpha = 0.4, color = "green", linewidth = 10) +
+  geom_line(data = warm_adapted_stress, aes(y = 0.026), alpha = 0.4, color = "red", linewidth = 10) +
+  # growth curves
+  geom_line(linewidth = 2.0) +
+  geom_line(data = warm_fish, linewidth = 2.0) +
+  ylim(c(-0.01, 0.03)) +
+  xlim(c(-4, 35)) +
+  theme_void() +
+  theme(panel.background = element_rect(fill = "white"),
+        plot.background = element_rect(fill = "white", color = NA))
+
+ggsave(filename = "../public/assets/vectorized_pngs/page08.png", 
+       width = 3000, height = 2300, dpi = 150, units = "px")
+```
+
+
 
 ```{r design}
 mike_base <- '#276952'
@@ -172,7 +233,7 @@ white <- '#FFFFFF'
 black <- '#000000'
 
 #font_main <- "Just Another Hand"
-font_main <- "Shadows Into Light"
+font_main <- "Source Sans Pro"
 sysfonts::font_add_google(font_main)
 
 font_supp <- "Source Sans Pro"
@@ -193,11 +254,14 @@ canvas_barry <- grid::rectGrob(
 ```
 
 
+
+
+
 ```{r plot, fig.height = 6, fig.width = 6}
 mike_and_barry$facet_labels <- sprintf("%s-adapted Redband Trout", mike_and_barry$water_status)
 (barry_mike_base_plot <- 
     ggplot(data = mike_and_barry,
-           aes(x = aveT, y = fish_growth)) +
+           aes(x = aveT, y = fish_growth, group = facet_labels)) +
     #add stress rectangles to both charts
     geom_rect(data = tibble(
       ymin = rep(min(mike_and_barry$fish_growth) - 0.002, 2),          
@@ -210,8 +274,8 @@ mike_and_barry$facet_labels <- sprintf("%s-adapted Redband Trout", mike_and_barr
       fill = barry_base, alpha = 0.4) +
     #add optimal rectangles to both charts
     geom_rect(data = tibble(
-      ymin = rep(min(mike_and_barry$fish_growth) - 0.002, 2),          
-      ymax = rep(max(mike_and_barry$fish_growth) + 0.002, 2),
+      ymin = rep(-0.02, 2),          
+      ymax = rep(-0.018, 2),
       xmin = c(min(cold_water_scenario$aveT), min(cold_water_scenario$aveT)),
       xmax = c(max(hot_water_scenario$aveT), min(hot_water_scenario$aveT)),
       facet_labels = c("Warm-adapted Redband Trout", "Cold-adapted Redband Trout"),
@@ -237,7 +301,6 @@ mike_and_barry$facet_labels <- sprintf("%s-adapted Redband Trout", mike_and_barr
       facet_labels = c("Warm-adapted Redband Trout", "Cold-adapted Redband Trout"),
       facet_labels2 = rep("Thermal\nstress", 2)),
       aes(label = facet_labels2), size = 6, hjust = 0, vjust = 0.50, fontface = "italic") +
-    facet_wrap(~ facet_labels, nrow = 2) +
     geom_line() +
     geom_hline(yintercept = 0, linetype = "longdash") +
     xlab("Stream Temperature (Celsius)") +
@@ -251,10 +314,10 @@ mike_and_barry$facet_labels <- sprintf("%s-adapted Redband Trout", mike_and_barr
           axis.title.x = element_text(size = 25, 
                                       margin = margin(10, 0, 0, 0)),
           axis.text = element_text(size = 18),
-          panel.background = element_rect(fill = NA),
-          plot.background = element_rect(fill = NA, color = NA),
+          panel.background = element_rect(fill = "white"),
+          plot.background = element_rect(fill = "white", color = NA),
           strip.text = element_blank())) 
 
-ggsave(filename = "../public/assets/vectorized_pngs/page08.png", 
-       width = 3000, height = 2300, dpi = 300, units = "px")
+#ggsave(filename = "../public/assets/vectorized_pngs/page08.png", 
+#       width = 3000, height = 2300, dpi = 300, units = "px")
 ```
