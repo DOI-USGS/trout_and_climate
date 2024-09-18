@@ -160,8 +160,34 @@ warm_adapted_stress <- warm_fish |> filter(aveT > 24)
 ```
 
 ```{r page08}
+#font_main <- "Just Another Hand"
+font_main <- "Source Sans Pro"
+sysfonts::font_add_google(font_main)
+
+color_cold_optimal <- "#7EACB5"
+color_cold_stress <- "#C96868"
+color_warm_optimal <- "#7EACB5"
+color_warm_stress <- "#C96868"
+
 
 ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
+  # shade ribbons
+    annotate("ribbon", ymax = rep(0.027, nrow(cold_adapted_optimal)), 
+           ymin = cold_adapted_optimal$fish_growth, 
+            alpha = 0.2, fill = color_cold_optimal, linewidth = 10,
+           x = cold_adapted_optimal$aveT) +    
+  annotate("ribbon", ymax = rep(0.027, nrow(cold_adapted_stress)), 
+           ymin = cold_adapted_stress$fish_growth, 
+            alpha = 0.2, fill = color_cold_stress, linewidth = 10,
+           x = cold_adapted_stress$aveT) +
+      annotate("ribbon", ymax = rep(0.026, nrow(warm_adapted_optimal)), 
+           ymin = warm_adapted_optimal$fish_growth, 
+            alpha = 0.2, fill = color_warm_optimal, linewidth = 10,
+           x = warm_adapted_optimal$aveT) +    
+  annotate("ribbon", ymax = rep(0.026, nrow(warm_adapted_stress)), 
+           ymin = warm_adapted_stress$fish_growth, 
+            alpha = 0.2, fill = color_warm_stress, linewidth = 10,
+           x = warm_adapted_stress$aveT) +
   # x-axis 
   annotate(geom = "text", y = rep(0.024, 4), x = c(0, 10, 20, 30), 
            label = c(0, 10, 20, 30), 
@@ -189,6 +215,10 @@ ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
            linewidth = 0.8, color = "grey60") +
   annotate(geom = "text", label = "0.02 g/g/day", x = -1, y = 0.02, 
            hjust = 1, size = 10, color = "grey50") +
+  # title
+  annotate(geom = "text", y = 0.030, x = -4,          
+           label = "Redband Trout growth rate based on stream temperature",
+           color = "black", hjust = 0.05, size = 14, vjust = 0, family = font_main, fontface = "bold") +
   # highlights
   geom_line(data = cold_adapted_optimal, color = "white", linewidth = 12) +
   geom_line(data = cold_adapted_stress, color = "white", linewidth = 12) +  
@@ -196,15 +226,31 @@ ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
   geom_line(data = warm_adapted_stress, color = "white", linewidth = 12) +
   geom_line(data = cold_fish, color = "white", linewidth = 4) +
   geom_line(data = warm_fish, color = "white", linewidth = 4) +
-  geom_line(data = cold_adapted_optimal, alpha = 0.4, color = "green", linewidth = 10) +
-  geom_line(data = cold_adapted_stress, alpha = 0.4, color = "red", linewidth = 10) +  
-  geom_line(data = warm_adapted_optimal, alpha = 0.4, color = "green", linewidth = 10) +
-  geom_line(data = warm_adapted_stress, alpha = 0.4, color = "red", linewidth = 10) +
+  geom_line(data = cold_adapted_optimal, alpha = 0.7, color = color_cold_optimal, linewidth = 10) +
+  geom_line(data = cold_adapted_stress, alpha = 0.7, color = color_cold_stress, linewidth = 10) +  
+  geom_line(data = warm_adapted_optimal, alpha = 0.7, color = color_cold_optimal, linewidth = 10) +
+  geom_line(data = warm_adapted_stress, alpha = 0.7, color = color_cold_stress, linewidth = 10) +
   # mini bar charts
-  geom_line(data = cold_adapted_optimal, aes(y = 0.027), alpha = 0.4, color = "green", linewidth = 10) +
-  geom_line(data = cold_adapted_stress, aes(y = 0.027), alpha = 0.4, color = "red", linewidth = 10) +  
-  geom_line(data = warm_adapted_optimal, aes(y = 0.026), alpha = 0.4, color = "green", linewidth = 10) +
-  geom_line(data = warm_adapted_stress, aes(y = 0.026), alpha = 0.4, color = "red", linewidth = 10) +
+  geom_line(data = cold_adapted_optimal, aes(y = 0.027), 
+            alpha = 0.7, color = color_cold_optimal, linewidth = 10) +
+  geom_line(data = cold_adapted_stress, aes(y = 0.027), alpha = 0.7, 
+            color = color_cold_stress, linewidth = 10) +  
+  geom_line(data = warm_adapted_optimal, aes(y = 0.026), 
+            alpha = 0.7, color = color_cold_optimal, linewidth = 10) +
+  geom_line(data = warm_adapted_stress, aes(y = 0.026), alpha = 0.7, 
+            color = color_cold_stress, linewidth = 10) +
+  annotate("text", label = "Optimal temperature range", color = color_cold_optimal,
+           x = 8, y = 0.0285, fontface = "bold",
+           hjust = 0, size = 10) +
+  annotate("text", label = "Thermal stress", color = color_cold_stress,
+           x = 20, y = 0.0285, fontface = "bold",
+           hjust = 0, size = 10) +
+  annotate("text", label = rep("Cold-adapted fish", 2), color = "black", 
+           y = c(-0.0083, 0.027), x = c(24.5, 0),
+           hjust = 0, size = 10, fontface = "bold") +
+  annotate("text", label = rep("Warm-adapted fish", 2), color = "black", 
+           y = c(-0.005, 0.026), x = c(29, 0),
+           hjust = 0, size = 10, fontface = "bold") +
   # growth curves
   geom_line(linewidth = 2.0) +
   geom_line(data = warm_fish, linewidth = 2.0) +
@@ -232,9 +278,7 @@ light_warm <- '#DBE5F1'
 white <- '#FFFFFF'
 black <- '#000000'
 
-#font_main <- "Just Another Hand"
-font_main <- "Source Sans Pro"
-sysfonts::font_add_google(font_main)
+
 
 font_supp <- "Source Sans Pro"
 sysfonts::font_add_google(font_supp)
