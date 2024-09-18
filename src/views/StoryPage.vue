@@ -105,7 +105,7 @@ export default {
     watch(
       () => route.params.index,
       (newIndex) => {
-        const index = parseInt(newIndex, 10);
+        let index = parseInt(newIndex, 10);
 
         // If no index is provided (e.g., root path "/"), set index to 0
         if (isNaN(index)) {
