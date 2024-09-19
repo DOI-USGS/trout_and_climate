@@ -241,8 +241,9 @@ export default {
 #prev-button-desktop, #next-button-desktop {
   display: flex;
   flex-grow: 1;
-  width: 100px;
+  width: 120px;
   height: 100%;
+  height: 60vh;
   font-size: 6rem;
   margin:0;
   align-items: center;
