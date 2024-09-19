@@ -62,6 +62,20 @@
       ></span>
     </div>
   </div>
+  <br/>
+    <hr class="content-divider" />
+    <div id="references-container">
+      <ReferencesSection />
+      </div>
+
+      <hr class="content-divider" />
+    <div id="authorship-container">
+      <h2>USGS Vizlab</h2>
+      <p>
+        This site was created by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a>. The content was inspired by USGS data releases and publications by <a href='https://www.usgs.gov/staff-profiles/jason-b-dunham'>Jason Dunham</a> and <a href='https://www.usgs.gov/staff-profiles/joseph-r-benjamin'>Joseph Benjamin</a>. Leo Ivey and <a href='https://www.usgs.gov/index.php/staff-profiles/althea-a-archer'>Althea Archer</a> developed the data visualizations, illustrations, and storyline as part of Leo's internship through the <a href='https://www.usgs.gov/youth-and-education-in-science/cooperative-summer-fellowship-programs'>USGS YES Cooperative Summer Fellowship Program</a>. <a href='https://www.usgs.gov/staff-profiles/cee-nell'>Cee Nell</a> and <a href='https://www.usgs.gov/staff-profiles/hayley-corson-dosch'>Hayley Corson-Dosch</a> created the website. 
+      </p>
+      </div>
+
 </template>
 
 
@@ -209,47 +223,51 @@ export default {
   justify-self: center;
   padding: 0 20px;
 }
-RetroButton {
-  font-size: 6rem; 
-  background-color: white;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: #00264C 2px 5px 10px -5px;  
-  width: 100px; 
-  min-width: 100px;
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
 #prev-button-mobile, #next-button-mobile {
   width: 100%;
   height: auto;
   font-size: 2rem;
   margin:0;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: #00264C 2px 5px 10px -5px;
+  cursor: pointer;
 }
 
 #prev-button-desktop, #next-button-desktop {
   display: flex;
   flex-grow: 1;
-  width: auto;
-  min-width: 7%;
+  width: 100px;
   height: 100%;
   font-size: 6rem;
   margin:0;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: #00264C 2px 5px 10px -5px;
+  cursor: pointer;
 }
 #references {
   margin-top: 20px;
   padding: 0 10px;
 }
 #images-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: auto;
+  height: 100%;
+  max-height: 60vh; 
   text-align: center;
-  margin-top: 20px;
 }
+
 #images-container img {
   max-width: 100%;
   max-height: 562.5px;
