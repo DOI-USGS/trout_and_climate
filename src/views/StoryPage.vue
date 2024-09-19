@@ -1,55 +1,56 @@
 <template>
   <div id="grid-container-viz" class="home">
-    <h1 id="page-title">Mangaging Redband Trout for climate resilience</h1>
-    <!-- Desktop Layout: Buttons on either side of text -->
+    <h1 id="page-title">Managing Redband Trout for Climate Resilience</h1>
+
+    <!-- Desktop Layout: Buttons on either side of the image -->
     <div v-if="!mobileView" id="chapter-content-desktop">
       <RetroButton
-        id = "prev-button"
+        id="prev-button"
         label="&#8249;"
         @click="prevChapter"
         :isDisabled="isFirstPage"
         :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
       />
-      <div id="images-container" >
+      <div id="images-container">
         <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
       </div>
       <RetroButton
-        id = "next-button"
+        id="next-button"
         label="&#8250;"
         @click="nextChapter"
         :isDisabled="isLastPage"
         :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
       />
     </div>
-    <div id="chapter-text" v-if="currentChapter">
-        <p v-html="currentChapter.text"></p>
-      </div>
 
-    <!-- Mobile Layout: Buttons below text -->
+    <!-- Mobile Layout: Buttons below image -->
     <div v-else id="chapter-content-mobile">
-      <div id="images-container" >
-      <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
-    </div>
-      <div id="chapter-text" v-if="currentChapter">
-        <p v-html="currentChapter.text"></p>
+      <div id="images-container">
+        <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
       </div>
       <div id="button-container-mobile">
-      <RetroButton
-        id = "prev-button"
-        label="&#8249;"
-        @click="prevChapter"
-        :isDisabled="isFirstPage"
-        :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
-      />
-      <RetroButton
-        id = "next-button"
-        label="&#8250;"
-        @click="nextChapter"
-        :isDisabled="isLastPage"
-        :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
-      />
+        <RetroButton
+          id="prev-button"
+          label="&#8249;"
+          @click="prevChapter"
+          :isDisabled="isFirstPage"
+          :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
+        />
+        <RetroButton
+          id="next-button"
+          label="&#8250;"
+          @click="nextChapter"
+          :isDisabled="isLastPage"
+          :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
+        />
       </div>
     </div>
+
+    <!-- Chapter Text for both Mobile and Desktop -->
+    <div id="chapter-text" v-if="currentChapter">
+      <p v-html="currentChapter.text"></p>
+    </div>
+
     <!-- Navigation Tracker -->
     <div id="navigation-tracker">
       <span
@@ -61,18 +62,6 @@
       ></span>
     </div>
   </div>
-  <br/>
-    <hr class="content-divider" />
-    <div id="references-container">
-      <ReferencesSection />
-    </div>
-  <hr class="content-divider" />
-    <div id="authorship-container">
-      <h2>USGS Vizlab</h2>
-      <p>
-        This site was created by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a>. The content was inspired by USGS data releases and publications by <a href='https://www.usgs.gov/staff-profiles/jason-b-dunham'>Jason Dunham</a> and <a href='https://www.usgs.gov/staff-profiles/joseph-r-benjamin'>Joseph Benjamin</a>. Leo Ivey and <a href='https://www.usgs.gov/index.php/staff-profiles/althea-a-archer'>Althea Archer</a> developed the data visualizations, illustrations, and storyline as part of Leo's internship through the <a href='https://www.usgs.gov/youth-and-education-in-science/cooperative-summer-fellowship-programs'>USGS YES Cooperative Summer Fellowship Program</a>. <a href='https://www.usgs.gov/staff-profiles/cee-nell'>Cee Nell</a> and <a href='https://www.usgs.gov/staff-profiles/hayley-corson-dosch'>Hayley Corson-Dosch</a> created the website. 
-      </p>
-    </div>
 </template>
 
 <script>
@@ -293,7 +282,8 @@ export default {
 
 /* Mobile-specific styles */
 @media screen and (max-width: 600px) {
-  #chapter-content {
+  #chapter-content-mobile {
+    display: flex;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
@@ -318,6 +308,7 @@ export default {
     width: 100%;
     height: auto;
     align-self: end;
+    padding: 10px;
   }
   #button-container-mobile > * {
     width: 50%;
