@@ -1,10 +1,6 @@
 <template>
   <div id="grid-container-viz" class="home">
     <h1 id="page-title">Mangaging Redband Trout for climate resilience</h1>
-    <div id="images-container" >
-      <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
-    </div>
-
     <!-- Desktop Layout: Buttons on either side of text -->
     <div v-if="!mobileView" id="chapter-content-desktop">
       <RetroButton
@@ -14,8 +10,8 @@
         :isDisabled="isFirstPage"
         :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
       />
-      <div id="chapter-text" v-if="currentChapter">
-        <p v-html="currentChapter.text"></p>
+      <div id="images-container" >
+        <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
       </div>
       <RetroButton
         id = "next-button"
@@ -25,9 +21,15 @@
         :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
       />
     </div>
+    <div id="chapter-text" v-if="currentChapter">
+        <p v-html="currentChapter.text"></p>
+      </div>
 
     <!-- Mobile Layout: Buttons below text -->
     <div v-else id="chapter-content-mobile">
+      <div id="images-container" >
+      <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+    </div>
       <div id="chapter-text" v-if="currentChapter">
         <p v-html="currentChapter.text"></p>
       </div>
