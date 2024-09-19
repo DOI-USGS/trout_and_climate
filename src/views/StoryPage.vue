@@ -5,17 +5,17 @@
     <!-- Desktop Layout: Buttons on either side of the image -->
     <div v-if="!mobileView" id="chapter-content-desktop">
       <RetroButton
-        id="prev-button"
+        id="prev-button-desktop"
         label="&#8249;"
         @click="prevChapter"
         :isDisabled="isFirstPage"
         :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
       />
       <div id="images-container">
-        <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+        <img v-if="currentChapter?.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
       </div>
       <RetroButton
-        id="next-button"
+        id="next-button-desktop"
         label="&#8250;"
         @click="nextChapter"
         :isDisabled="isLastPage"
@@ -26,18 +26,18 @@
     <!-- Mobile Layout: Buttons below image -->
     <div v-else id="chapter-content-mobile">
       <div id="images-container">
-        <img :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+        <img v-if="currentChapter?.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
       </div>
       <div id="button-container-mobile">
         <RetroButton
-          id="prev-button"
+          id="prev-button-mobile"
           label="&#8249;"
           @click="prevChapter"
           :isDisabled="isFirstPage"
           :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
         />
         <RetroButton
-          id="next-button"
+          id="next-button-mobile"
           label="&#8250;"
           @click="nextChapter"
           :isDisabled="isLastPage"
@@ -47,7 +47,7 @@
     </div>
 
     <!-- Chapter Text for both Mobile and Desktop -->
-    <div id="chapter-text" v-if="currentChapter">
+    <div id="chapter-text" v-if="currentChapter?.text">
       <p v-html="currentChapter.text"></p>
     </div>
 
@@ -63,6 +63,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import { computed, watch } from 'vue';
@@ -170,6 +171,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: auo;
   min-height: 90vh;
 }
 #page-title {
@@ -184,7 +186,7 @@ export default {
   align-items: stretch; 
   height: 100%;
   flex-grow: 1;
-  height: 300px; 
+  max-height: 60vh;
 }
 #chapter-content-mobile {
   display: flex;
@@ -200,12 +202,6 @@ export default {
   justify-content: space-between; 
   align-self: flex-end;
 }
-#prev-button-mobile, #next-button-mobile {
-  width: 100%;
-  height: auto;
-  font-size: 2rem;
-  margin:0;
-}
 #chapter-text {
   flex-grow: 1; 
   display: flex;
@@ -213,7 +209,7 @@ export default {
   justify-self: center;
   padding: 0 20px;
 }
-#prev-button, #next-button {
+RetroButton {
   font-size: 6rem; 
   background-color: white;
   border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
@@ -222,11 +218,27 @@ export default {
   box-shadow: #00264C 2px 5px 10px -5px;  
   width: 100px; 
   min-width: 100px;
-  height: 100%; 
   display: flex;
+  flex-grow: 1;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+#prev-button-mobile, #next-button-mobile {
+  width: 100%;
+  height: auto;
+  font-size: 2rem;
+  margin:0;
+}
+
+#prev-button-desktop, #next-button-desktop {
+  display: flex;
+  flex-grow: 1;
+  width: auto;
+  min-width: 7%;
+  height: 100%;
+  font-size: 6rem;
+  margin:0;
 }
 #references {
   margin-top: 20px;
