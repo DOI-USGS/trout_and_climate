@@ -4,7 +4,7 @@
       v-if="buttonText === 'I understand'"
       class="warning-open"
     >
-      ATTENTION! - You are viewing a prototype application that is in active development.
+      ATTENTION! - You are viewing a prototype that is in active development.
       Contents seen here are for placeholding and development only. <strong>DO NOT USE</strong> information
       contained in this application for ANY purpose.
     </p>
@@ -27,13 +27,17 @@
 
 <style scoped lang="scss">
   .usa-prose {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
     background-color: #b9c7d2;
     padding-bottom: 0.3em;
     padding-top: 0.3em;
+    text-align: center;
     p {
-      max-width: 60em;
-      text-align: center;
-      margin: 0 auto 5px 0;
+      max-width: 50em;
+      margin: 0 auto 5px auto;
     }
     button {
       display: block;
