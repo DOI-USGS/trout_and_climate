@@ -6,8 +6,13 @@
 			{}
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page00.png",
+<<<<<<< HEAD
 		"text": "Welcome to the Donner und Blitzen River in Eastern Oregon. This river system is home to Redband Trout (Oncorhynchus mykiss newberrii). These fish are prized by local Native Americans as a food source, enjoyed as a game fish by many, and are used to indicate the health of the lakes and streams in which they live. Use the arrows to learn more about the Redband Trout and how U.S.G.S. science informs management practices in changing environments.",
 		"alt": "Stylized photo of the Donner und Blitzen landscape, showing sage-brush bluffs surrounding a river valley. Atop the image are drawn lines, a drawn river, and two illustrated Redband Trout in the river."
+=======
+		"text": "Welcome to the Donner und Blitzen River in Eastern Oregon. This river system is home to Redband Trout (Oncorhynchus mykiss newberrii). These fish are prized by local Native American as a food source, enjoyed as a game fish by many people living near and visiting this river, and are used to indicate the health of the lakes and streams in which they live.",
+		"alt": "Illustration of the Donner und Blitzen landscape, showing sage-brush bluffs surrounding a river valley."
+>>>>>>> 86c9075 (design studio updates)
 	},
 	{
 		"id": "page01",
