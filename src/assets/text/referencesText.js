@@ -15,6 +15,16 @@ export default {
       {
         reference: 'ref2',
         num: '2',
+        authors: 'Cravens, A.E., Lynch, A.J., Thompson, L., Schuurman, G.',
+        year: 2022,
+        title: 'The Resist-Accept-Direct (RAD) Framework',
+        link: ' https://www.usgs.gov/programs/climate-adaptation-science-centers/science/resist-accept-direct-rad-framework',
+        type: 'USGS Website',
+        ref: ' https://www.usgs.gov/programs/climate-adaptation-science-centers/science/resist-accept-direct-rad-framework.'
+      },
+      {
+        reference: 'ref3',
+        num: '3',
         authors: 'Dunham, J.B., Benjamin, J.R., Lawrence, D.J., and Clifford, K.R.',
         year: 2022,
         title: 'Resist, accept, and direct responses to biological invasions: A social–ecological perspective',
@@ -24,7 +34,7 @@ export default {
       },
       {
         reference: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
-        num: '3',
+        num: '4',
         authors: 'Benjamin, J.R., Dunham, J.B., and Penn, C.A.',
         year: 2023,
         title: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
@@ -34,7 +44,7 @@ export default {
       },
       {
         reference: 'Simulated streamflow and stream temperature in the Donner und Blitzen River Basin, southeastern Oregon, using the Precipitation-Runoff Modeling System (PRMS)',
-        num: '4',
+        num: '5',
         authors: 'Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, L.E.',
         year: 2023,
         title: 'Simulated streamflow and stream temperature in the Donner und Blitzen River Basin, southeastern Oregon, using the Precipitation-Runoff Modeling System (PRMS)',
@@ -43,8 +53,8 @@ export default {
         ref: 'https://doi.org/10.5066/P9WQM25Y'
       },
       {
-        reference: 'ref3',
-        num: '5',
+        reference: 'ref6',
+        num: '6',
         authors: 'Sando, R.R., and Schultz, A.R.',
         year: 2022,
         title: 'Reach-scale predicted annual streamflow permanence probabilities, predicted monthly mean stream temperature for August, and predicted monthly streamflow discharge for stream reaches in the Pacific Northwest, USA (2004-2015)',
@@ -53,8 +63,8 @@ export default {
         ref: 'https://doi.org/10.5066/P94SMJKI'
       },
       {
-        reference: 'ref4',
-        num: '6',
+        reference: 'ref7',
+        num: '7',
         authors: 'Miller, M.P., Carlisle, D.M., Wolock, D.M., and Wieczorek, M.E.',
         year: 2018,
         title: 'Natural Monthly Flow Estimates for the Conterminous United States, 1950-2015',
