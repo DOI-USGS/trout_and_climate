@@ -26,9 +26,19 @@ import referencesText from '@/assets/text/referencesText';
 export default {
   name: 'ReferencesSection',
 
-  data() {
+  setup() {
+    const text = referencesText.referencesContent;
+
+    const sortReferences = () => {
+      if (text.references && Array.isArray(text.references)) {
+        text.references.sort((a, b) => a.authors.localeCompare(b.authors));
+      }
+    };
+
+    const sortedText = sortReferences(text);
+
     return {
-      text: referencesText.referencesContent
+      text  
     };
   }
 };
@@ -36,7 +46,7 @@ export default {
 
 <style scoped lang="scss">
 p {
-  font-size:2rem;
+  font-size: 2rem;
   padding: 0 10px;
 }
 </style>

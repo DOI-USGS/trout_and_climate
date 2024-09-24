@@ -13,16 +13,6 @@ export default {
         ref: 'https://doi.org/10.1139/cjfas-2022-0280'
       },
       {
-        reference: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
-        num: '4',
-        authors: 'Benjamin, J.R., Dunham, J.B., and Penn, C.A.',
-        year: 2023,
-        title: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
-        link: 'https://www.sciencebase.gov/catalog/item/65381be6d34ee4b6e05bba62',
-        type: 'USGS Data Release',
-        ref: 'https://doi.org/10.5066/P9MAXBZN'
-      },
-      {
         reference: 'ref2',
         num: '2',
         authors: 'Cravens, A.E., Lynch, A.J., Thompson, L., Schuurman, G.',
@@ -61,6 +51,16 @@ export default {
         link: 'https://doi.org/10.5066/P9WQM25Y',
         type: 'USGS Data Release',
         ref: 'https://doi.org/10.5066/P9WQM25Y'
+      },
+      {
+        reference: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
+        num: '4',
+        authors: 'Benjamin, J.R., Dunham, J.B., and Penn, C.A.',
+        year: 2023,
+        title: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
+        link: 'https://www.sciencebase.gov/catalog/item/65381be6d34ee4b6e05bba62',
+        type: 'USGS Data Release',
+        ref: 'https://doi.org/10.5066/P9MAXBZN'
       },
       {
         reference: 'ref6',
