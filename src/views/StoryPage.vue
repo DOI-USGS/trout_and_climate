@@ -185,7 +185,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auo;
+  height: auto;
   min-height: 90vh;
 }
 #page-title {
@@ -200,7 +200,7 @@ export default {
   align-items: stretch; 
   height: 100%;
   flex-grow: 1;
-  max-height: 60vh;
+  max-height: 600px;
 }
 #chapter-content-mobile {
   display: flex;
@@ -219,15 +219,15 @@ export default {
 #chapter-text {
   flex-grow: 1; 
   display: flex;
-  align-items: center;
+  align-items: top;
   justify-self: center;
-  padding: 0 20px;
+  padding: 20px 20px;
 }
 #prev-button-mobile, #next-button-mobile {
   width: 100%;
   height: auto;
   font-size: 2rem;
-  margin:0;
+  margin: 0;
   align-items: center;
   justify-content: center;
   background-color: white;
@@ -242,8 +242,9 @@ export default {
   display: flex;
   flex-grow: 1;
   width: 120px;
-  height: 100%;
   height: 60vh;
+  /*height: 60vh;*/
+  max-height: 600px;
   font-size: 6rem;
   margin:0;
   align-items: center;
@@ -263,15 +264,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  /*display: flex;*/
+  flex-grow: 1;
   width: 100%;
+  /*height: 100%;*/
   height: 100%;
-  max-height: 60vh; 
+  max-height: 600px; 
   text-align: center;
 }
 
 #images-container img {
   max-width: 100%;
-  max-height: 562.5px;
+  max-height: 600px;
   object-fit: contain;
   border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
   border-style: solid;
@@ -328,9 +332,10 @@ export default {
     flex-grow: 1;
   }
   #images-container {
+    flex-grow: 0;
     width: 100%;
     height: auto;
-    text-align: center;
+    max-height: 60vh;
     margin-top: 5px;
   }
   #button-container-mobile {
