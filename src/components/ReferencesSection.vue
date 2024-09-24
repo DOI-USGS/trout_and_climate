@@ -6,7 +6,7 @@
     <div class="text-container">
       <div v-for="reference in text.references" :key="reference.subTitle">
         <p id="reference-text">
-          <span v-html="reference.num"></span>. <span v-html="reference.authors"></span>,
+          <span v-html="reference.authors"></span>,
           <span v-html="reference.year"></span>,
           <a :href="reference.link" target="_blank"><span v-html="reference.title"></span></a
           ><span v-if="reference.type != ''">, </span><span v-html="reference.type"></span><span
@@ -25,6 +25,7 @@ import referencesText from '@/assets/text/referencesText';
 
 export default {
   name: 'ReferencesSection',
+
   data() {
     return {
       text: referencesText.referencesContent
