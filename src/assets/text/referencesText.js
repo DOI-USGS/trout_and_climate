@@ -33,14 +33,14 @@ export default {
         ref: ' https://doi.org/10.1111/fme.12574.'
       },
       {
-        reference: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
-        num: '4',
-        authors: 'Benjamin, J.R., Dunham, J.B., and Penn, C.A.',
-        year: 2023,
-        title: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
-        link: 'https://www.sciencebase.gov/catalog/item/65381be6d34ee4b6e05bba62',
+        reference: 'ref7',
+        num: '7',
+        authors: 'Miller, M.P., Carlisle, D.M., Wolock, D.M., and Wieczorek, M.E.',
+        year: 2018,
+        title: 'Natural Monthly Flow Estimates for the Conterminous United States, 1950-2015',
+        link: 'https://doi.org/10.5066/F7CC0ZMG',
         type: 'USGS Data Release',
-        ref: 'https://doi.org/10.5066/P9MAXBZN'
+        ref: 'https://doi.org/10.5066/F7CC0ZMG'
       },
       {
         reference: 'Simulated streamflow and stream temperature in the Donner und Blitzen River Basin, southeastern Oregon, using the Precipitation-Runoff Modeling System (PRMS)',
@@ -53,6 +53,16 @@ export default {
         ref: 'https://doi.org/10.5066/P9WQM25Y'
       },
       {
+        reference: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
+        num: '4',
+        authors: 'Benjamin, J.R., Dunham, J.B., and Penn, C.A.',
+        year: 2023,
+        title: 'Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model',
+        link: 'https://www.sciencebase.gov/catalog/item/65381be6d34ee4b6e05bba62',
+        type: 'USGS Data Release',
+        ref: 'https://doi.org/10.5066/P9MAXBZN'
+      },
+      {
         reference: 'ref6',
         num: '6',
         authors: 'Sando, R.R., and Schultz, A.R.',
@@ -61,16 +71,6 @@ export default {
         link: 'https://doi.org/10.5066/P94SMJKI',
         type: 'USGS Data Release',
         ref: 'https://doi.org/10.5066/P94SMJKI'
-      },
-      {
-        reference: 'ref7',
-        num: '7',
-        authors: 'Miller, M.P., Carlisle, D.M., Wolock, D.M., and Wieczorek, M.E.',
-        year: 2018,
-        title: 'Natural Monthly Flow Estimates for the Conterminous United States, 1950-2015',
-        link: 'https://doi.org/10.5066/F7CC0ZMG',
-        type: 'USGS Data Release',
-        ref: 'https://doi.org/10.5066/F7CC0ZMG'
       }
     ]
   }
