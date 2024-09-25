@@ -186,7 +186,7 @@ export default {
   flex-direction: column;
   width: 100%;
   height: auto;
-  min-height: 90vh;
+  max-height: 90vh;
 }
 #page-title {
   margin: 0 auto;
