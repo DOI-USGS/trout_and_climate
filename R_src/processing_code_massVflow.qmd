@@ -205,7 +205,7 @@ library(geomtextpath)
                                   linecolor = NA, fontface = "bold") +
     # title
     annotate(geom = "text", y = 600, x = 0.05,
-             label = "Redband Trout body size versus streamflow",
+             label = "Redband Trout body size\nversus streamflow",
              color = "black", hjust = 0, size = 18, vjust = 1, fontface = "bold") +
     scale_x_continuous(trans = 'log10', limits = c(0.05, 100)) +
     ylim(c(-20, 600)) +
