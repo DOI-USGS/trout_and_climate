@@ -266,6 +266,10 @@ export default {
   box-shadow: #00264C 2px 5px 10px -5px;
   cursor: pointer;
 }
+
+#next-button-desktop:focus, #next-button-mobile:focus, #prev-button-desktop:focus, #prev-button-mobile:focus{ /* for keyboard navigation */
+  border-width: 5px
+}
 #references {
   margin-top: 20px;
   padding: 0 10px;
