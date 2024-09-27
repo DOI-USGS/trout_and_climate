@@ -10,9 +10,13 @@
         @click="prevChapter"
         :isDisabled="isFirstPage"
         :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
+        aria-label="Previous page"
       />
       <div id="images-container">
-        <img v-if="currentChapter?.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+        <img 
+          v-if="currentChapter?.bknd" 
+          :src="currentChapter.bknd" 
+          :alt="currentChapter.alt + ' Narrative text states: ' + currentChapter.text || 'Chapter Image'" />
       </div>
       <RetroButton
         id="next-button-desktop"
@@ -20,6 +24,7 @@
         @click="nextChapter"
         :isDisabled="isLastPage"
         :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
+        aria-label="Next page"
       />
     </div>
 
@@ -35,6 +40,7 @@
           @click="prevChapter"
           :isDisabled="isFirstPage"
           :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
+          aria-label="Previous page"
         />
         <RetroButton
           id="next-button-mobile"
@@ -42,13 +48,16 @@
           @click="nextChapter"
           :isDisabled="isLastPage"
           :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
+          aria-label="Next page"
         />
       </div>
     </div>
 
     <!-- Chapter Text for both Mobile and Desktop -->
     <div id="chapter-text" v-if="currentChapter?.text">
-      <p v-html="currentChapter.text"></p>
+      <p 
+        v-html="currentChapter.text"
+        aria-hidden="true"></p>
     </div>
 
     <!-- Navigation Tracker -->
@@ -58,6 +67,7 @@
         :key="index"
         class="tracker-circle"
         :class="{ active: store.currentIndex === index }"
+        :aria-label="`Enter page ${index}`"
         @click="goToChapter(index)"
       ></span>
     </div>
@@ -317,6 +327,9 @@ export default {
 
 /* Mobile-specific styles */
 @media screen and (max-width: 600px) {
+  #grid-container-viz {
+    max-height: 120vh;
+  }
   #chapter-content-mobile {
     display: flex;
     flex-direction: column;
