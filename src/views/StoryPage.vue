@@ -53,6 +53,18 @@
       </div>
     </div>
 
+    <!-- Navigation Tracker -->
+    <div id="navigation-tracker">
+      <button
+        v-for="(chapter, index) in totalChapters"
+        :key="index"
+        class="tracker-circle"
+        :class="{ active: store.currentIndex === index }"
+        :aria-label="`Enter page ${index}`"
+        @click="goToChapter(index)"
+      ></button>
+    </div>
+
     <!-- Chapter Text for both Mobile and Desktop -->
     <div id="chapter-text" v-if="currentChapter?.text">
       <p 
@@ -60,17 +72,7 @@
         aria-hidden="true"></p>
     </div>
 
-    <!-- Navigation Tracker -->
-    <div id="navigation-tracker">
-      <span
-        v-for="(chapter, index) in totalChapters"
-        :key="index"
-        class="tracker-circle"
-        :class="{ active: store.currentIndex === index }"
-        :aria-label="`Enter page ${index}`"
-        @click="goToChapter(index)"
-      ></span>
-    </div>
+
   </div>
   <br/>
     <hr class="content-divider" />
@@ -320,13 +322,20 @@ export default {
   height: 15px;
   border-radius: 50%;
   background-color: #ccc;
+  border-color: #ccc; 
+  border-width: 0px;
   margin: 0 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  cursor: pointer;  
 }
 
 .tracker-circle.active {
   background-color: var(--trout-blue); /* Highlight color for the active chapter */
+  border-color: var(--trout-blue); 
+}
+.tracker-circle:focus-visible {
+  box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.4);
+  border-color: #ccc; 
+  border-width: 0px;
 }
 
 /* Mobile-specific styles */
@@ -370,6 +379,9 @@ export default {
     margin: 0;
     text-align: center;
     
+  }
+  .tracker-circle {
+    margin: 0 2px;
   }
 }
 </style>
