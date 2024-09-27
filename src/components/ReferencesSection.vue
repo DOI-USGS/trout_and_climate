@@ -35,7 +35,7 @@ export default {
       }
     };
 
-    const sortedText = sortReferences(text);
+    sortReferences(text);
 
     return {
       text  

@@ -31,7 +31,7 @@
     <!-- Mobile Layout: Buttons below image -->
     <div v-else id="chapter-content-mobile">
       <div id="images-container">
-        <img v-if="currentChapter?.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+        <img v-if="currentChapter?.bknd" :srcset="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
       </div>
       <div id="button-container-mobile">
         <RetroButton
