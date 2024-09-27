@@ -2,11 +2,11 @@
 
 This website uses visual storytelling to describe how climate vulnerability for Redband Trout depends on their climate-adaptation.
 
-This repo uses R and Vue.js to build a data visualization website about indicators of vulnerability to water insecurity. In R, there are scripts showing how to fetch, process, and visualize data. The rest of the files build the website. It is currently in active development.
+This repo uses R and Vue.js to build a data visualization website about indicators of vulnerability to water insecurity. In R, there are scripts showing how to fetch, process, and visualize data. The rest of the files build the website. 
 
 ## To access the data from ScienceBase in R
 
-Activate ScienceBase credentials. Note, you only have to do this once to get the data the first time. 
+Activate ScienceBase credentials. Note, you only have to do this once to get the data from each release for the first time. 
 
 1. Install the latest version of the `sbtools` package
 2. Run the code below
