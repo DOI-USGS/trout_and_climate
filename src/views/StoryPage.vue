@@ -10,9 +10,14 @@
         @click="prevChapter"
         :isDisabled="isFirstPage"
         :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
+        aria-label="Previous page"
       />
       <div id="images-container">
-        <img v-if="currentChapter?.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+        <img 
+          v-if="currentChapter?.bknd" 
+          :src="currentChapter.bknd" 
+          :alt="currentChapter.alt + ' Narrative text states: ' + currentChapter.text || 'Chapter Image'" 
+          tabindex="0"/>
       </div>
       <RetroButton
         id="next-button-desktop"
@@ -20,13 +25,14 @@
         @click="nextChapter"
         :isDisabled="isLastPage"
         :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
+        aria-label="Next page"
       />
     </div>
 
     <!-- Mobile Layout: Buttons below image -->
     <div v-else id="chapter-content-mobile">
       <div id="images-container">
-        <img v-if="currentChapter?.bknd" :src="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+        <img v-if="currentChapter?.bknd" :srcset="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
       </div>
       <div id="button-container-mobile">
         <RetroButton
@@ -35,6 +41,7 @@
           @click="prevChapter"
           :isDisabled="isFirstPage"
           :style="{ visibility: isFirstPage ? 'hidden' : 'visible' }"
+          aria-label="Previous page"
         />
         <RetroButton
           id="next-button-mobile"
@@ -42,25 +49,31 @@
           @click="nextChapter"
           :isDisabled="isLastPage"
           :style="{ visibility: isLastPage ? 'hidden' : 'visible' }"
+          aria-label="Next page"
         />
       </div>
     </div>
 
-    <!-- Chapter Text for both Mobile and Desktop -->
-    <div id="chapter-text" v-if="currentChapter?.text">
-      <p v-html="currentChapter.text"></p>
-    </div>
-
     <!-- Navigation Tracker -->
     <div id="navigation-tracker">
-      <span
+      <button
         v-for="(chapter, index) in totalChapters"
         :key="index"
         class="tracker-circle"
         :class="{ active: store.currentIndex === index }"
+        :aria-label="`Enter page ${index} of 16`"
         @click="goToChapter(index)"
-      ></span>
+      ></button>
     </div>
+
+    <!-- Chapter Text for both Mobile and Desktop -->
+    <div id="chapter-text" v-if="currentChapter?.text">
+      <p 
+        v-html="currentChapter.text"
+        aria-hidden="true"></p>
+    </div>
+
+
   </div>
   <br/>
     <hr class="content-divider" />
@@ -71,7 +84,7 @@
       <hr class="content-divider" />
     <div id="authorship-container">
       <h2>USGS Vizlab</h2>
-      <p>
+      <p tabindex="0">
         This site was created by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a>. The content was inspired by USGS data releases and publications by <a href='https://www.usgs.gov/staff-profiles/jason-b-dunham'>Jason Dunham</a> and <a href='https://www.usgs.gov/staff-profiles/joseph-r-benjamin'>Joseph Benjamin</a>. Leo Ivey and <a href='https://www.usgs.gov/index.php/staff-profiles/althea-a-archer'>Althea Archer</a> developed the data visualizations, illustrations, and storyline as part of Leo's internship through the <a href='https://www.usgs.gov/youth-and-education-in-science/cooperative-summer-fellowship-programs'>USGS YES Cooperative Summer Fellowship Program</a>. <a href='https://www.usgs.gov/staff-profiles/cee-nell'>Cee Nell</a> and <a href='https://www.usgs.gov/staff-profiles/hayley-corson-dosch'>Hayley Corson-Dosch</a> created the website. 
       </p>
       </div>
@@ -256,6 +269,10 @@ export default {
   box-shadow: #00264C 2px 5px 10px -5px;
   cursor: pointer;
 }
+
+#next-button-desktop:focus, #next-button-mobile:focus, #prev-button-desktop:focus, #prev-button-mobile:focus{ /* for keyboard navigation */
+  border-width: 5px
+}
 #references {
   margin-top: 20px;
   padding: 0 10px;
@@ -306,17 +323,27 @@ export default {
   height: 15px;
   border-radius: 50%;
   background-color: #ccc;
+  border-color: #ccc; 
+  border-width: 0px;
   margin: 0 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  cursor: pointer;  
 }
 
 .tracker-circle.active {
   background-color: var(--trout-blue); /* Highlight color for the active chapter */
+  border-color: var(--trout-blue); 
+}
+.tracker-circle:focus-visible {
+  box-shadow: 0 0 0 3px rgba(21, 156, 228, 0.4);
+  border-color: #ccc; 
+  border-width: 0px;
 }
 
 /* Mobile-specific styles */
 @media screen and (max-width: 600px) {
+  #grid-container-viz {
+    max-height: 120vh;
+  }
   #chapter-content-mobile {
     display: flex;
     flex-direction: column;
@@ -353,6 +380,9 @@ export default {
     margin: 0;
     text-align: center;
     
+  }
+  .tracker-circle {
+    margin: 0 2px;
   }
 }
 </style>

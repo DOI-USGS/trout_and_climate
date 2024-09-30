@@ -12,9 +12,8 @@ library(tidyverse)
 library(readr)
 library(archive)
 library(sysfonts)
-library(cowplot)
-library(magick)
-library(xkcd)
+library(png)
+library(webp)
 ```
 
 ## 1. Fetch
@@ -183,9 +182,9 @@ ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
   # x-axis 
   annotate(geom = "text", y = rep(0.028, 4), x = c(0, 10, 20, 30), 
            label = c(0, 10, 20, 30), 
-           size = 14, color = "grey50", hjust = 0.5) +
+           size = 16, color = "grey30", hjust = 0.5) +
   annotate(geom = "text", label = "degrees Celsius", hjust = 0, 
-           x = 0.5, y = 0.028, size = 14, color = "grey50") +
+           x = 0.5, y = 0.028, size = 16, color = "grey30") +
   annotate(geom = "line", y = c(0.027, 0.018), x = rep(0, 2),
            linewidth = 0.8, color = "grey60") +
   annotate(geom = "line", y = c(0.027, 0.018), x = rep(10, 2),
@@ -198,20 +197,19 @@ ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
   annotate(geom = "line", y = rep(0, 2), x = c(-0.5, 30),
            linewidth = 0.8, color = "grey60") +
   annotate(geom = "text", label = "0\ng/g/day", x = -0.6, y = 0, 
-           hjust = 1, size = 14, color = "grey50", lineheight = 0.8, vjust = 0.8) +
+           hjust = 1, size = 16, color = "grey30", lineheight = 0.8, vjust = 0.8) +
   annotate(geom = "line", y = rep(0.01, 2), x = c(-0.5, 30),
            linewidth = 0.8, color = "grey60") +
   annotate(geom = "text", label = "0.01\ng/g/day", x = -0.6, y = 0.01, 
-           hjust = 1, size = 14, color = "grey50", lineheight = 0.8, vjust = 0.8) +
+           hjust = 1, size = 16, color = "grey30", lineheight = 0.8, vjust = 0.8) +
   annotate(geom = "line", y = rep(0.02, 2), x = c(-0.5, 30),
            linewidth = 0.8, color = "grey60") +
   annotate(geom = "text", label = "0.02\ng/g/day", x = -0.6, y = 0.02, 
-           hjust = 1, size = 14, color = "grey50", lineheight = 0.8, vjust = 0.8) +
+           hjust = 1, size = 16, color = "grey30", lineheight = 0.8, vjust = 0.8) +
   # title
-  annotate(geom = "text", y = 0.030, x = -4,          
-           label = "Growth rate versus stream temperature for Redband Trout",
-           color = "black", hjust = 0.02, size = 18, vjust = 0, 
-           family = font_main, fontface = "bold") +
+  annotate(geom = "text", y = 0.032, x = -4,          
+           label = "Redband Trout growth rate versus stream temperature",
+           color = "black", hjust = 0.02, size = 18, vjust = 0, fontface = "bold") +
   # highlights
   geom_line(data = cold_adapted_stress, color = "white", linewidth = 12) +  
   geom_line(data = warm_adapted_stress, color = "white", linewidth = 12) +
@@ -228,34 +226,32 @@ ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
            color = color_cold_stress, linewidth = 10) +
   annotate("text", label = "Thermal stress", color = color_cold_stress,
            x = 20.8, y = 0.025, fontface = "bold",
-           hjust = 0, size = 14) +
-  #annotate("text", label = rep("Cold-adapted", 2), color = "black", 
-  #         y = c(-0.0095, 0.026), x = c(29.8, 19),
-  #         hjust = 1, size = 14, fontface = "bold") +
-  #annotate("text", label = rep("Warm-adapted", 2), color = "black", 
-  #         y = c(-0.0058, 0.0245), x = c(34.8, 19),
-  #         hjust = 1, size = 14, fontface = "bold") +
+           hjust = 0, size = 16) +
   # growth curves
   geom_line(linewidth = 2.0) +
   geom_line(data = warm_fish, linewidth = 2.0) +
   # Line label
   geomtextpath::geom_textsmooth(data = cold_fish, 
                                 aes(label = "Cold-adapted Redband Trout"),
-                                color = "black", size = 14, vjust = -.2, hjust = 000,
+                                color = "black", size = 16, vjust = -.2, hjust = 000,
                                 linecolor = NA, fontface = "bold") +
   # Line label
   geomtextpath::geom_textsmooth(data = warm_fish, 
                                 aes(label = "Warm-adapted Redband Trout"),
-                                color = "black", size = 14, vjust = -.2, hjust = 0.25,
+                                color = "black", size = 16, vjust = -.2, hjust = 0.25,
                                 linecolor = NA, fontface = "bold") +
-  ylim(c(-0.01, 0.03)) +
-  xlim(c(-4, 35)) +
+  ylim(c(-0.0085, 0.0325)) +
+  xlim(c(-4, 30)) +
   theme_void() +
   theme(panel.background = element_rect(fill = "white"),
         plot.background = element_rect(fill = "white", color = NA))
 
 ggsave(filename = "../public/assets/vectorized_pngs/page08.png", 
        width = 3000, height = 2300, dpi = 150, units = "px")
+
+# Convert to webp
+img <- png::readPNG("../public/assets/vectorized_pngs/page08.png")
+webp::write_webp(img, "../public/assets/vectorized_pngs/page08.webp")
 ```
 
 
