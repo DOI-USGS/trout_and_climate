@@ -27,7 +27,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page02.webp",
 		"text": "Land managers use different and complementary approaches to manage for climate resiliency. The R.A.D. framework leverages three equally-important approaches for decision-making when managing changing systems: Resist, Accept, and Direct. Resist, as in resisting future climate conditions. Accept, as in accepting climate change affects on plants and animals. And Direct, where managers directly shape the landscape toward preferred new conditions.",
-		"alt": "Illustration of a river basin showing an alpine landscape in the distant background surrounded by mountains and an upclose illustration in the foreground of one smaller river joining the main river valley. Atop the illustrated landscape is a large triangle labeled `The R.A.D. Framework.` The top of the triangle has the cartoon Randy near it and it says `Resist,` the lower right has Alex and the label `Accept,` the lower left has Denise and says `Direct.`"
+		"alt": "Illustration of the river basin landscape. Atop the illustrated landscape is a large triangle labeled `The R.A.D. Framework.` The top of the triangle has the cartoon Randy near it and it says `Resist,` the lower right has Alex and the label `Accept,` the lower left has Denise and says `Direct.`"
 	},
 	{
 		"id": "page03",
@@ -37,7 +37,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page03.webp",
 		"text": "This area of the river is a common spawning location for Redband Trout. The fish live throughout the connected network of lakes and rivers in the basin, and return each spring to breeding locations like this to spawn.",
-		"alt": "Illustration of a part of the river system that is located mid-way between the alpine headwaters and the main river valley. A polaroid-like image is atop the illustrated landscape and it shows a photo of a Redband Trout in someone's hand. The polaroid is labeled Redband Trout. An arrow from the polaroid to some fish swimming in the river indicates that those cartoon fish are Redband Trout."
+		"alt": "A polaroid-like image is atop the illustrated landscape and it shows a photo of a Redband Trout in someone's hand. The polaroid is labeled Redband Trout. The background illustration of the breeding grounds that are located mid-way between the alpine headwaters and the main river valley. An arrow from the polaroid to some fish swimming in the river indicates that those cartoon fish are Redband Trout."
 	},
 	{
 		"id": "page04",
@@ -47,7 +47,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page04.webp",
 		"text": "These two Redband Trout hatchlings, or 'alevins,' are cousins and share many of the same genetic traits. They are also able to adapt to their local conditions through a process called acclimation, which is when organisms become accustomed to their surroundings, such as water temperature.",
-		"alt": "Illustration of a part of the river system that is located mid-way between the alpine headwaters and the main river valley. In the river there are two cartoon baby fish near the bottom of the water. They both have large eyes and yolk sacs."
+		"alt": "Illustration of the area of the river where Redband Trout breed. In the river there are two cartoon baby fish near the bottom of the water. They both have large eyes and yolk sacs."
 	},
 	{
 		"id": "page05",
@@ -57,7 +57,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page05.webp",
 		"text": "When the trout grow large enough, they migrate from their spawning grounds to connected streams and lakes. In their new homes, the Redband Trout acclimate to the local water temperatures and grow to their adult sizes.​",
-		"alt": "Illustration of a river basin showing an alpine landscape in the distant background surrounded by mountains and an upclose illustration in the foreground of one smaller river joining the main river valley. There is one young Redband Trout cartoon fish swimming in the alpine river, and one swimming upstream in the main river channel."
+		"alt": "Landscape illustration of the full river basin. There is one young Redband Trout cartoon fish swimming upstream to the alpine river, and one swimming away from the breeding grounds in the main river channel."
 	},
 	{
 		"id": "page06",
@@ -107,7 +107,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page10.webp",
 		"text": "To improve the habitat for the cold-adapted fish in these headwater streams, Randy `Resists` the rising summer temperatures by planting more trees along the headwater streams. This increases shade and slows down how fast the river heats up.",
-		"alt": "An illustration of the alpine headwaters stream with mountains and a blazing sun in the background and dense coniferous trees. A cartoon of the land manager, Randy, stands next to the river. He has two saplings with him, indicating that he has been replanting trees in this area. One Redband Trout cartoon swims in the river. The Redband Trout is happy and healthy. The cartoon thermometer in the water shows that the water is cooler than it was without the trees."
+		"alt": "An illustration of the alpine headwaters stream, but this time with dense coniferous trees. A cartoon of the land manager, Randy, stands next to the river. He has two saplings with him, indicating that he has been replanting trees in this area. One Redband Trout cartoon swims in the river. The Redband Trout is happy and healthy. The cartoon thermometer in the water shows that the water is cooler than it was without the trees."
 	},
 	{
 		"id": "page12",
@@ -127,7 +127,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page12.webp",
 		"text": "These productive waters support a diversity of organisms, including the invasive common carp (Cyprinus carpio). The common carp is a bottom feeder that uproots vegetation and creates cloudy water conditions. This stresses the native fish like this Redband Trout.",
-		"alt": "An illustration of the main river channel, which is calm, wide, and deep compared to the smaller headwaters stream. In the river are two cartoon common carp who are both digging up the bottom sediment and plants, making the water murky and stressing the Redband Trout. Next to the river stands the land manager cartoon of Alex frowning with a thumbs down."
+		"alt": "An illustration of the main river channel. In the river are two cartoon common carp who are both digging up the bottom sediment and plants, making the water murky and stressing the Redband Trout. Next to the river stands the land manager cartoon of Alex frowning with a thumbs down."
 	},
 	{
 		"id": "page14",
@@ -137,7 +137,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page13.webp",
 		"text": "Alex 'Accepts' that climate and ecosystems are changing. Her approach is to reduce stress for native fish like the Redband Trout by removing invasive species, reducing harm from fishing by banning barbed hooks, and promoting catch-and-release for Redband Trout.",
-		"alt": "An illustration of the main river channel, which is calm, wide, and deep compared to the smaller headwaters stream. The common carp are now gone and the cartoon Redband Trout is smiling. Alex stands next to the stream holding one sign with a fish hook crossed out, indicating a ban on barbed fishing hooks. Alex has also put out a sign along the river that says No Invasives."
+		"alt": "An illustration of the main river channel. The common carp are now gone and the cartoon Redband Trout is smiling. Alex stands next to the stream holding one sign with a fish hook crossed out, indicating a ban on barbed fishing hooks. Alex has also put out a sign along the river that says No Invasives."
 	},
 	{
 		"id": "page15",
@@ -147,7 +147,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page14.webp",
 		"text": "When the trout reach their adult sizes in the spring, they return back to their home spawning grounds to reproduce. Without enough precipitation during the winter and spring months, streamflow drought can threaten the connectivity of the streams on which the fish rely for migration.",
-		"alt": "Illustration of a river basin showing an alpine landscape in the distant background surrounded by mountains and an upclose illustration in the foreground of one smaller river joining the main river valley. Denise stands at the smaller river joining the main river valley, which is meant to indicate spawning grounds. The water levels in the river have dropped substantially, and there is now a barrier of earth between the main river valley and the spawning grounds where there would typically be a channel. The redband trout in the main river valley is stressed, trying to return to the spawning grounds to reproduce."
+		"alt": "Illustration of the whole river basin. Denise stands at the smaller river joining the main river valley, which is meant to indicate spawning grounds. The water levels in the river have dropped substantially, and there is now a barrier of earth between the main river valley and the spawning grounds where there would typically be a channel. The redband trout in the main river valley is stressed, trying to return to the spawning grounds to reproduce."
 	},
 	{
 		"id": "page16",
@@ -157,7 +157,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page15.webp",
 		"text": "Fortunately, Denise is monitoring the landscape and can 'Direct' the ecosystem to become more resilient by creating more connectivity between streams, digging new channels, and removing dams. Both fish are able to return to their spawning grounds and give rise to the next generation of alevins.",
-		"alt": "Illustration of a river basin showing an alpine landscape in the distant background surrounded by mountains and an upclose illustration in the foreground of one smaller river joining the main river valley. Denise stands with a shovel and bucket at the smaller river joining the main river valley. The water levels are still low, but the earthen barrier has been removed, allowing the fish in the main river channel to get to the spawning grounds. Both Redband fish have successfully migrated back to the spawning grounds."
+		"alt": "Illustration of the whole river basin. Denise stands with a shovel and bucket at the smaller river joining the main river valley. The water levels are still low, but the earthen barrier has been removed, allowing the fish in the main river channel to get to the spawning grounds. Both Redband fish have successfully migrated back to the spawning grounds."
 	},
 	{
 		"id": "page17",
@@ -167,7 +167,7 @@
 		],
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/page16.webp",
 		"text": "By working together to manage the system as a whole, all three of the approaches to land management (Resist, Accept, Direct) improve the landscape for generations to come. The end!",
-		"alt": "Illustration of a river basin showing an alpine landscape in the distant background surrounded by mountains and an upclose illustration in the foreground of one smaller river joining the main river valley. Denise stands with a shovel and bucket at the smaller river joining the main river valley, Randy stands with his seedlings near the alpine headwaters stream, and Alex stands with her signs near the main river channel."
+		"alt": "Illustration of the whole river basin. Denise stands with a shovel and bucket at the breeding grounds, Randy stands with his seedlings near the alpine headwaters, and Alex stands with her signs near the main river channel. Atop the illustrated landscape is a large triangle labeled `The R.A.D. Framework,` with its corners labeled Resist, Accept, and Direct."
 	}
 	]
 }
