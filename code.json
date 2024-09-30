@@ -48,11 +48,11 @@
       "licenses": [
         {
           "name": "Public Domain, CC0-1.0",
-          "URL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/main/LICENSE.md"
+          "URL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/v1.0.0/main/LICENSE.md"
         }
       ]
     },
-    "homepageURL": "https://github.com/DOI-USGS/trout_and_climate",
+    "homepageURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate",
     "downloadURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/archive/v1.0.0/trout_and_climate-v1.0.0.zip",
     "disclaimerURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/v1.0.0/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate.git",
