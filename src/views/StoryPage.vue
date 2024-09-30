@@ -16,7 +16,8 @@
         <img 
           v-if="currentChapter?.bknd" 
           :src="currentChapter.bknd" 
-          :alt="currentChapter.alt + ' Narrative text states: ' + currentChapter.text || 'Chapter Image'" />
+          :alt="currentChapter.alt + ' Narrative text states: ' + currentChapter.text || 'Chapter Image'" 
+          tabindex="0"/>
       </div>
       <RetroButton
         id="next-button-desktop"
@@ -60,7 +61,7 @@
         :key="index"
         class="tracker-circle"
         :class="{ active: store.currentIndex === index }"
-        :aria-label="`Enter page ${index}`"
+        :aria-label="`Enter page ${index} of 16`"
         @click="goToChapter(index)"
       ></button>
     </div>
@@ -83,7 +84,7 @@
       <hr class="content-divider" />
     <div id="authorship-container">
       <h2>USGS Vizlab</h2>
-      <p>
+      <p tabindex="0">
         This site was created by the <a href='https://labs.waterdata.usgs.gov/visualizations/'>USGS Vizlab</a>. The content was inspired by USGS data releases and publications by <a href='https://www.usgs.gov/staff-profiles/jason-b-dunham'>Jason Dunham</a> and <a href='https://www.usgs.gov/staff-profiles/joseph-r-benjamin'>Joseph Benjamin</a>. Leo Ivey and <a href='https://www.usgs.gov/index.php/staff-profiles/althea-a-archer'>Althea Archer</a> developed the data visualizations, illustrations, and storyline as part of Leo's internship through the <a href='https://www.usgs.gov/youth-and-education-in-science/cooperative-summer-fellowship-programs'>USGS YES Cooperative Summer Fellowship Program</a>. <a href='https://www.usgs.gov/staff-profiles/cee-nell'>Cee Nell</a> and <a href='https://www.usgs.gov/staff-profiles/hayley-corson-dosch'>Hayley Corson-Dosch</a> created the website. 
       </p>
       </div>

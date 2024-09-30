@@ -1,11 +1,11 @@
 <template>
   <section id="references">
     <div class="text-container title-text">
-      <h2>{{ text.title }}</h2>
+      <h2 tabindex="0">{{ text.title }}</h2>
     </div>
     <div class="text-container">
       <div v-for="reference in text.references" :key="reference.subTitle">
-        <p id="reference-text">
+        <p id="reference-text" tabindex="0">
           <span v-html="reference.authors"></span>,
           <span v-html="reference.year"></span>,
           <a :href="reference.link" target="_blank"><span v-html="reference.title"></span></a
