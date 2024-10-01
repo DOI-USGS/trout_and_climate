@@ -3,6 +3,7 @@
 # to run:
 # chmod +x generate_responsive_images.sh
 # ./generate_responsive_images.sh
+# then the responsive_imgs directory was manually added to s3
 
 # Check if ImageMagick is installed
 if ! command -v magick &> /dev/null
