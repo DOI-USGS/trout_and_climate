@@ -12,8 +12,8 @@ then
 fi
 
 # Define the source and output directories
-src_dir="public/assets/vectorized_pngs"
-output_dir="public/assets/images/responsive_imgs"
+src_dir="src/assets/images/vectorized_pngs"
+output_dir="src/assets/images/responsive_imgs"
 
 # Remove everything in the output directory (responsive images) if it exists
 if [ -d "$output_dir" ]; then
@@ -25,7 +25,7 @@ fi
 mkdir -p "$output_dir"
 
 # Array of target widths for responsive images
-declare -a widths=(640 1920)
+declare -a widths=(640 1000)
 
 # Function to get file size in bytes
 get_file_size() {
