@@ -93,7 +93,7 @@
         :key="index"
         class="tracker-circle"
         :class="{ active: store.currentIndex === index }"
-        :aria-label="`Enter page ${index} of 16`"
+        :aria-label="`Enter page ${index + 1} of 17`"
         @click="goToChapter(index)"
       ></button>
     </div>
