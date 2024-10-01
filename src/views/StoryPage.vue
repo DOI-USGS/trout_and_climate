@@ -30,6 +30,7 @@
             :alt="currentChapter.alt + ' Narrative text states: ' + currentChapter.text || 'Chapter Image'"
             sizes="(max-width: 640px) 640px, 1000px"
             tabindex="0"
+            :loading="isFirstChapter ? 'eager' : 'lazy'"
           />
         </picture>
       </div>
@@ -141,6 +142,8 @@ export default {
     const router = useRouter();
 
     const totalChapters = computed(() => store.allChapters.length);
+    const isFirstChapter = computed(() => store.currentIndex === 0);
+
     
     function goToChapter(index) {
       if (index === 0) {
@@ -218,6 +221,7 @@ export default {
       isLastPage,
       mobileView,
       totalChapters,
+      isFirstChapter,
       goToChapter
     };
   }
