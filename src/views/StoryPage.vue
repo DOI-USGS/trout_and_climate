@@ -13,11 +13,25 @@
         aria-label="Previous page"
       />
       <div id="images-container">
-        <img 
-          v-if="currentChapter?.bknd" 
-          :src="currentChapter.bknd" 
-          :alt="currentChapter.alt + ' Narrative text states: ' + currentChapter.text || 'Chapter Image'" 
-          tabindex="0"/>
+        <picture v-if="currentChapter?.bknd">
+          <!-- WebP format for modern browsers -->
+          <source
+            :srcset="`${currentChapter.bknd}-640.webp 640w, ${currentChapter.bknd}-1000.webp 1000w`"
+            type="image/webp"
+          />
+          <!-- JPG format as a fallback -->
+          <source
+            :srcset="`${currentChapter.bknd}-640.jpg 640w, ${currentChapter.bknd}-1000.jpg 1000w`"
+            type="image/jpeg"
+          />
+          <!-- Fallback img element for non-supporting browsers -->
+          <img
+            :src="`${currentChapter.bknd}-1000.jpg`"
+            :alt="currentChapter.alt + ' Narrative text states: ' + currentChapter.text || 'Chapter Image'"
+            sizes="(max-width: 640px) 640px, 1000px"
+            tabindex="0"
+          />
+        </picture>
       </div>
       <RetroButton
         id="next-button-desktop"
@@ -32,7 +46,24 @@
     <!-- Mobile Layout: Buttons below image -->
     <div v-else id="chapter-content-mobile">
       <div id="images-container">
-        <img v-if="currentChapter?.bknd" :srcset="currentChapter.bknd" :alt="currentChapter.alt || 'Chapter Image'" />
+        <picture v-if="currentChapter?.bknd">
+          <!-- WebP format for modern browsers -->
+          <source
+            :srcset="`${currentChapter.bknd}-640.webp 640w, ${currentChapter.bknd}-1000.webp 1000w`"
+            type="image/webp"
+          />
+          <!-- JPG format as a fallback -->
+          <source
+            :srcset="`${currentChapter.bknd}-640.jpg 640w, ${currentChapter.bknd}-1000.jpg 1000w`"
+            type="image/jpeg"
+          />
+          <!-- Fallback img element for non-supporting browsers -->
+          <img
+            :src="`${currentChapter.bknd}-640.jpg`"
+            :alt="currentChapter.alt || 'Chapter Image'"
+            sizes="(max-width: 640px) 640px, 1000px"
+          />
+        </picture>
       </div>
       <div id="button-container-mobile">
         <RetroButton
