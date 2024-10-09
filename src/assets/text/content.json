@@ -18,7 +18,7 @@
 		"order": 2,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page02",
 		"text": "Land managers use different and complementary approaches to manage for climate resiliency. The <mark>R.A.D. Framework</mark> leverages three equally-important approaches for decision-making when managing changing systems: Resist, Accept, and Direct. <mark>Resist</mark>, as in resisting future climate conditions. <mark>Accept</mark>, as in accepting climate change affects on plants and animals. And <mark>Direct</mark>, where managers directly shape the landscape toward preferred new conditions.",
-		"alt": "Illustration of the river basin landscape. Atop the illustrated landscape is a large triangle labeled `The R.A.D. Framework.` The top of the triangle has the cartoon Randy near it and it says `Resist,` the lower right has Alex and the label `Accept,` the lower left has Denise and says `Direct.`"
+		"alt": "Illustration of the river basin landscape. Atop the illustrated landscape is a large triangle labeled The R.A.D. Framework. The top of the triangle has the cartoon Randy near it and it says Resist, the lower right has Alex and the label Accept, the lower left has Denise and says Direct."
 	},
 	{
 		"id": "page03",
@@ -31,7 +31,7 @@
 		"id": "page04",
 		"order": 4,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page04",
-		"text": "These two Redband Trout hatchlings, or 'alevins,' are cousins and share many of the same genetic traits. They are also able to <mark>adapt</mark> to their local conditions through a process called <mark>acclimation</mark>, which is when organisms become accustomed to their surroundings, such as water temperature.",
+		"text": "These two Redband Trout hatchlings, or alevins, are cousins and share many of the same genetic traits. They are also able to <mark>adapt</mark> to their local conditions through a process called <mark>acclimation</mark>, which is when organisms become accustomed to their surroundings, such as water temperature.",
 		"alt": "Illustration of the area of the river where Redband Trout breed. In the river there are two cartoon baby fish near the bottom of the water. They both have large eyes and yolk sacs."
 	},
 	{
