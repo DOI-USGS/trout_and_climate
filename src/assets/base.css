@@ -86,3 +86,13 @@ p {
     color: var(--trout-red)
   }
 }
+.scientificName {
+  font-style: italic;
+}
+
+mark {
+  background-color: #bed8e5;/* #add1e7;*/
+  color: black;
+  z-index: -1;
+  font-weight: 600;
+}

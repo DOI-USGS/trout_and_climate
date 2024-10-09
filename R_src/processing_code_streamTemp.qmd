@@ -163,6 +163,9 @@ ggplot(data = representative_segments,
            color = "#376D54", hjust = 0, size = 16, fontface = "bold") +
   annotate(geom = "text", y = 6, x = 6, label = "Annual values in light",
            color = "#376D54", hjust = 0, size = 16) +
+  geom_textpath(data = segment51 |> filter(year == 2007), label = "Annual values",
+            aes(y = monthly_mean_temp, x = month), size = 14,
+            linewidth = 0, color = color_warm_optimal) +
   ylim(c(-2, 34)) +
   xlim(c(-0, 12)) +
   theme_void() +

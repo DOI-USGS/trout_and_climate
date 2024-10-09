@@ -105,7 +105,6 @@
         aria-hidden="true"></p>
     </div>
 
-
   </div>
   <br/>
     <hr class="content-divider" />

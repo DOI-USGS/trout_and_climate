@@ -3,21 +3,21 @@
 		{"id": "intro",
 		"order": 0,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page00",
-		"text": "Welcome to Oregon's Great Basin. This river system is home to Redband Trout (Oncorhynchus mykiss newberrii). These fish are prized by local Native Americans as a food source, enjoyed as a game fish by many, and are used to indicate the health of the lakes and streams in which they live. Use the arrows to learn more about the Redband Trout and how U.S.G.S. science informs management practices in changing environments.",
+		"text": "Welcome to Oregon's Great Basin. This river system is home to <mark>Redband Trout</mark> (<span class='scientificName'>Oncorhynchus mykiss newberrii</span>). These fish are prized by local Native Americans as a food source, enjoyed as a game fish by many, and are used to indicate the health of the lakes and streams in which they live. <br><br>Use the arrow buttons to learn more about the Redband Trout and how USGS science informs management practices in changing environments.",
 		"alt": "Stylized photo of the Great Basin landscape, showing sage-brush bluffs surrounding a river valley. Atop the image are drawn lines, a drawn river, and two illustrated Redband Trout in the river."
 	},
 	{
 		"id": "page01",
 		"order": 1,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page01",
-		"text": "Land managers work together to care for the natural resources in the river basin. They monitor plants and animals, fish health and behavior, and landscape conditions to help increase resiliency as the climate changes.",
+		"text": "<mark>Land managers</mark> work together to care for the natural resources in the river basin. They monitor plants and animals, fish health and behavior, and landscape conditions to help increase <mark>resiliency</mark> as the climate changes.",
 		"alt": "Illustration of a river basin showing an alpine landscape in the distant background surrounded by mountains and an upclose illustration in the foreground of one smaller river joining the main river valley. Three land manager cartoons are standing near the river, Randy is near the alpine river, Denise is near the branch entering the main stem, and Alex is standing near the main river."
 	},
 	{
 		"id": "page02",
 		"order": 2,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page02",
-		"text": "Land managers use different and complementary approaches to manage for climate resiliency. The R.A.D. framework leverages three equally-important approaches for decision-making when managing changing systems: Resist, Accept, and Direct. Resist, as in resisting future climate conditions. Accept, as in accepting climate change affects on plants and animals. And Direct, where managers directly shape the landscape toward preferred new conditions.",
+		"text": "Land managers use different and complementary approaches to manage for climate resiliency. The <mark>R.A.D. Framework</mark> leverages three equally-important approaches for decision-making when managing changing systems: Resist, Accept, and Direct. <mark>Resist</mark>, as in resisting future climate conditions. <mark>Accept</mark>, as in accepting climate change affects on plants and animals. And <mark>Direct</mark>, where managers directly shape the landscape toward preferred new conditions.",
 		"alt": "Illustration of the river basin landscape. Atop the illustrated landscape is a large triangle labeled `The R.A.D. Framework.` The top of the triangle has the cartoon Randy near it and it says `Resist,` the lower right has Alex and the label `Accept,` the lower left has Denise and says `Direct.`"
 	},
 	{
@@ -31,91 +31,91 @@
 		"id": "page04",
 		"order": 4,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page04",
-		"text": "These two Redband Trout hatchlings, or 'alevins,' are cousins and share many of the same genetic traits. They are also able to adapt to their local conditions through a process called acclimation, which is when organisms become accustomed to their surroundings, such as water temperature.",
+		"text": "These two Redband Trout hatchlings, or 'alevins,' are cousins and share many of the same genetic traits. They are also able to <mark>adapt</mark> to their local conditions through a process called <mark>acclimation</mark>, which is when organisms become accustomed to their surroundings, such as water temperature.",
 		"alt": "Illustration of the area of the river where Redband Trout breed. In the river there are two cartoon baby fish near the bottom of the water. They both have large eyes and yolk sacs."
 	},
 	{
 		"id": "page05",
 		"order": 5,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page05",
-		"text": "When the trout grow large enough, they migrate from their spawning grounds to connected streams and lakes. In their new homes, the Redband Trout acclimate to the local water temperatures and grow to their adult sizes.​",
+		"text": "When the trout grow large enough, they <mark>migrate</mark> from their spawning grounds to connected streams and lakes. In their new homes, the Redband Trout acclimate to the local water temperatures and grow to their adult sizes.​",
 		"alt": "Landscape illustration of the full river basin. There is one young Redband Trout cartoon fish swimming upstream to an alpine river, and one swimming downstream from the breeding grounds to the main river channel."
 	},
 	{
 		"id": "page06",
 		"order": 6,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page06",
-		"text": "The final size that the fish grow as adults is controlled by stream size. Bigger streams with larger streamflow tend to have more resources for growth, and therefore have a higher limit on size than fish in smaller streams. In this river basin, small streams tend to be found in the cold headwaters areas and the larger streams are located downstream in the river valleys.",
+		"text": "The final size that the fish grow as adults is controlled by stream size. Bigger streams with larger <mark>streamflow</mark> tend to have more resources for growth, and therefore have a higher limit on size than fish in smaller streams. In this river basin, small streams tend to be found in the cold headwaters areas and the larger streams are located downstream in the river valleys.",
 		"alt": "A scatterplot that shows how the top limit on body size for about 95% of Redband Trout is controlled by stream size. Each dot on the scatterplot is one Redband Trout from the data releases listed in the references. A non-linear fit line shows that smaller rivers, as measured by streamflow, have smaller trout body sizes; whereas as streamflow increases, so does the top limit on body sizes."
 	},
 	{
 		"id": "page07",
 		"order": 7,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page07",
-		"text": "Randy monitors and manages the headwaters area, where water temperature is colder than other areas including the spawning grounds and the main river channel. This young fish has grown in size and has adapted to the cold headwater temperatures. In other words, this fish is cold-adapted.",
+		"text": "Randy monitors and manages the headwaters area, where water temperature is colder than other areas including the spawning grounds and the main river channel. This young fish has grown in size and has adapted to the cold headwater temperatures. In other words, this fish is <mark>cold-adapted</mark>.",
 		"alt": "An illustration of the alpine headwaters stream with mountains in the background and sparse coniferous trees. A cartoon of the land manager, Randy, stands next to the river, and one Redband Trout cartoon swims in the river. There's also a cartoon thermometer in the water showing that the temperatures in this river are low."
 	},
 	{
 		"id": "page08",
 		"order": 8,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page08",
-		"text": "Thermal stress is a concern for all Redband Trout as waters warm. However, cold-adapted fish can suffer from thermal stress at lower temperatures than warm-adapted fish. Thermal stress can reduce growth and eventually lead to death.",
+		"text": "<mark>Thermal stress</mark> is a concern for all Redband Trout as waters warm. However, cold-adapted fish can suffer from thermal stress at lower temperatures than warm-adapted fish. Thermal stress can reduce growth and eventually lead to death.",
 		"alt": "A line chart showing Redband Trout growth rates based on stream temperature. A cold-adapted fish grows rapidly at lower water temperatures and quickly enters thermal stress at temperatures around ~20 degrees Celsius. Warm-adapted fish do not enter thermal stress until about 24 degrees Celsius. The areas of thermal stress are demonstrated with red shading."
 	},
 	{
 		"id": "page09",
 		"order": 9,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page09",
-		"text": "As climates change, summer water temperatures are increasing in many areas of the river basin. Randy notices the stress on the cold-adapted Redband Trout caused by these increasing water temperatures.",
+		"text": "As climates change, summer water temperatures are increasing in many areas of the river basin. Randy notices the stress on the <mark>cold-adapted</mark> Redband Trout caused by these <mark>increasing water temperatures</mark>.",
 		"alt": "An illustration of the alpine headwaters stream with mountains and a blazing sun in the background and sparse coniferous trees. A cartoon of the land manager, Randy, stands next to the river, and one Redband Trout cartoon swims in the river. The Redband Trout is experiencing thermal stress, looks overheated and is sweating. The cartoon thermometer in the water shows that the water is very warm."
 	},
 	{
 		"id": "page10",
 		"order": 10,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page10",
-		"text": "To improve habitat for the cold adapted fish in headwater streams, Randy takes action to “Resist” warming summer temperatures by protecting intact trees or planting trees along the stream. This increases shade and slows down how fast the river heats up. Randy also notes where unusual cold spots or refuges are located and makes plans to ensure they are not disturbed.",
+		"text": "To improve habitat for the cold adapted fish in headwater streams, Randy takes action to <mark>Resist</mark> warming summer temperatures by protecting intact trees or planting trees along the stream. This increases shade and slows down how fast the river heats up. Randy also notes where unusual cold spots or refuges are located and makes plans to ensure they are not disturbed.",
 		"alt": "An illustration of the alpine headwaters stream, but this time with more dense coniferous trees. A cartoon of the land manager, Randy, stands next to the river. He has two saplings with him, indicating that he has been restoring forest cover in the area. One happy and healthy Redband Trout cartoon swims in the river. The cartoon thermometer in the water shows that the water is cooler than it was without the trees."
 	},
 	{
 		"id": "page11",
 		"order": 11,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page11",
-		"text": "Downstream to the main river valley, other Redband Trout have migrated to larger, warmer waters. This area of the river is bustling with life and food for fish. Redband Trout in this part of the river are on average larger and warmer than those in the smaller streams. These productive waters are also often home to undesirable invasive species such as the common carp (Cyprinus carpio).",
+		"text": "Downstream to the main river valley, other Redband Trout have migrated to larger, warmer waters. This area of the river is bustling with life and food for fish. Redband Trout in this part of the river are on average larger than those in the smaller streams. These productive waters are also often home to undesirable <mark>invasive species</mark> such as the common carp (<span class='scientificName'>Cyprinus carpio</span>).",
 		"alt": "An illustration of the main river channel, which is calm, wide, and deep compared to the smaller headwaters stream. It also is home to many fish, including a large Redband Trout and two invasive common carp who are digging up sediment and causing cloudy water. Next to the river stands the land manager cartoon of shrugging."
 	},
 	{
 		"id": "page12",
 		"order": 12,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page12",
-		"text": "The temperatures in this stream in the summer are so high that even warm-adapted fish get stressed. This plot shows that summer temperatures of this representative stream segment go above the thermal stress threshold for warm-adapted Redband Trout. In addition to the establishment of invasive species, this area of the river basin is becoming inhospitable for Redband Trout.",
+		"text": "The temperatures in this stream in the summer are so high that even <mark>warm-adapted</mark> fish get stressed. This plot shows that summer temperatures of this representative stream segment go above the thermal stress threshold for warm-adapted Redband Trout. In addition to the establishment of invasive species, this area of the river basin is becoming inhospitable for Redband Trout.",
 		"alt": "A line graph of mean monthly stream temperatures from 1979 to 2021. The average value across years is given in bold and the annual values are given in a light line width. The data show that stream temperatures rise above the approximately 24 degree Celsius threshold that causes thermal stress in warm-adapted fish during the summer months."
 	},
 	{
 		"id": "page13",
 		"order": 13,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page13",
-		"text": "Alex 'Accepts' that climate and ecosystems are changing. Her approach is to focus on protecting Redband Trout and the cooler temperatures in headwater streams because she believes that controlling changes in the lower river is not possible.",
+		"text": "Alex <mark>Accepts</mark> that climate and ecosystems are changing. Her approach is to focus on protecting Redband Trout and the cooler temperatures in headwater streams because she believes that controlling changes in the lower river is not possible.",
 		"alt": "An illustration of the main river channel with the common carp and Redband Trout. Alex is in the distance at an upstream river channel holding one sign with a fish hook crossed out, indicating a ban on barbed fishing hooks. Alex has also put out a sign along the river that says No Invasives."
 	},
 	{
 		"id": "page14",
 		"order": 14,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page14",
-		"text": "When the trout reach their adult sizes in the spring, they return back to their home spawning grounds to reproduce. Without enough precipitation during the winter and spring months, streamflow drought can threaten the connectivity of the streams on which the fish rely for migration.",
+		"text": "When the trout reach their adult sizes in the spring, they return back to their home spawning grounds to reproduce. Without enough precipitation during the winter and spring months, <mark>streamflow drought</mark> can threaten the connectivity of the streams on which the fish rely for migration.",
 		"alt": "Illustration of the whole river basin. Denise stands at the smaller river joining the main river valley, which is meant to indicate spawning grounds. The water levels in the river have dropped substantially, and there is now more shoreline showing between the upstream and downstream river channels. There's also an area of the river that has lost enough water to show emergent vegetation and soil. The redband trout in the main river valley is stressed and stranded."
 	},
 	{
 		"id": "page15",
 		"order": 15,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page15",
-		"text": "Fortunately Denise is monitoring the landscape and can “Direct” the ecosystem to become more resilient by providing deeper pools that allow larger fish safer passage during migration, or allow them deep water refuge during low flows or drought conditions.",
+		"text": "Fortunately Denise is monitoring the landscape and can <mark>Direct</mark> the ecosystem to become more resilient by providing deeper pools that allow larger fish safer passage during migration, or allow them deep water refuge during low flows or drought conditions.",
 		"alt": "Illustration of the whole river basin. Denise stands with a shovel and bucket at the smaller river joining the main river valley. The water levels are still low, but the channel around the Trout has been deepened, allowing the fish to have refuge during drought."
 	},
 	{
 		"id": "page16",
 		"order": 16,
 		"bknd": "https://labs.waterdata.usgs.gov/visualizations/images/trout-and-climate/responsive_imgs/page16",
-		"text": "By working together to manage the system as a whole, all three of the approaches to land management (Resist, Accept, Direct) improve the landscape for generations to come. The end!",
+		"text": "By working together to manage the system as a whole, all three of the approaches in the <mark>R.A.D. Framework</mark> of land management (Resist, Accept, Direct) increase <mark>climate resiliency</mark> and improve the landscape for generations to come.<br><br>The end.",
 		"alt": "Illustration of the whole river basin. Denise stands with a shovel and bucket at the breeding grounds, Randy stands with his seedlings near the alpine headwaters, and Alex stands shrugging near the main river channel. Atop the illustrated landscape is a large triangle labeled `The R.A.D. Framework,` with its corners labeled Resist, Accept, and Direct."
 	}
 	]
