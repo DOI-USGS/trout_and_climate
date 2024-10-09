@@ -27,7 +27,7 @@
           <!-- Fallback img element for non-supporting browsers -->
           <img
             :src="`${currentChapter.bknd}-1000.jpg`"
-            :alt="currentChapter.alt + ' Narrative text states: ' + currentChapter.text || 'Chapter Image'"
+            :alt='`${currentChapter.alt} Narrative text states: ${(currentChapter.text.replace(/<mark>|<\/mark>|<span class=|>|<\/span>|<br>/g,""))}` || "Chapter Image"'
             sizes="(max-width: 640px) 640px, 1000px"
             tabindex="0"
             :loading="isFirstChapter ? 'eager' : 'lazy'"
@@ -61,7 +61,7 @@
           <!-- Fallback img element for non-supporting browsers -->
           <img
             :src="`${currentChapter.bknd}-640.jpg`"
-            :alt="currentChapter.alt || 'Chapter Image'"
+            :alt='`${currentChapter.alt} Narrative text states: ${(currentChapter.text.replace(/<mark>|<\/mark>|<span class=|>|<\/span>|<br>/g,""))}` || "Chapter Image"'
             sizes="(max-width: 640px) 640px, 1000px"
           />
         </picture>
@@ -93,7 +93,7 @@
         :key="index"
         class="tracker-circle"
         :class="{ active: store.currentIndex === index }"
-        :aria-label="`Enter page ${index} of 16`"
+        :aria-label="`Enter page ${index + 1} of 17`"
         @click="goToChapter(index)"
       ></button>
     </div>
@@ -104,7 +104,6 @@
         v-html="currentChapter.text"
         aria-hidden="true"></p>
     </div>
-
 
   </div>
   <br/>
@@ -142,9 +141,8 @@ export default {
     const router = useRouter();
 
     const totalChapters = computed(() => store.allChapters.length);
-    const isFirstChapter = computed(() => store.currentIndex === 0);
+    const isFirstChapter = computed(() => store.currentIndex === 0); 
 
-    
     function goToChapter(index) {
       if (index === 0) {
         router.push('/'); // Navigate to root for Chapter 0
@@ -153,6 +151,7 @@ export default {
       }
       store.currentIndex = index;
     }
+
 
     // Watch the route's index parameter and update the store's currentIndex
     watch(
