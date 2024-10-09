@@ -121,8 +121,10 @@ ggplot(data = representative_segments,
   annotate(geom = "text", y = 30, x = 0.6, label = "degrees Celsius",
            size = 16, color = "grey30", hjust = 0) +
   annotate(geom = "line", y = rep(0,2), x = c(0.7,12), linewidth = 0.8, color = "grey60") +
-  annotate(geom = "line", y = rep(10,2), x = c(0.7,12), linewidth = 0.8, color = "grey60") +
-  annotate(geom = "line", y = rep(20,2), x = c(0.7,12), linewidth = 0.8, color = "grey60") +
+  annotate(geom = "line", y = rep(10,2), x = c(0.7,9.2), linewidth = 0.8, color = "grey60") +
+  annotate(geom = "line", y = rep(10,2), x = c(9.7,12), linewidth = 0.8, color = "grey60") +
+  annotate(geom = "line", y = rep(20,2), x = c(0.7,9.7), linewidth = 0.8, color = "grey60") +
+  annotate(geom = "line", y = rep(20,2), x = c(10.2,12), linewidth = 0.8, color = "grey60") +
   annotate(geom = "line", y = rep(30,2), x = c(3.7,12), linewidth = 0.8, color = "grey60") +
   # x-axis
   annotate(geom = "text", y = rep(-2, 12), x = 1:12, 
@@ -140,10 +142,6 @@ ggplot(data = representative_segments,
   annotate(geom = "line", y = c(-1,0.5), x = rep(10,2), linewidth = 0.8, color = "grey60") +
   annotate(geom = "line", y = c(-1,0.5), x = rep(11,2), linewidth = 0.8, color = "grey60") +
   annotate(geom = "line", y = c(-1,0.5), x = rep(12,2), linewidth = 0.8, color = "grey60") +
-  # annual fluctuations
-  geom_line(data = segment51,
-            aes(y = monthly_mean_temp, x = month, group = year),
-            linewidth = 0.5, color = color_warm_optimal) +  
   # thermal stress thresholds
   annotate("line", x = c(1, 12), 
            y = c(24.1, 24.1), alpha = 0.7, 
@@ -152,23 +150,27 @@ ggplot(data = representative_segments,
            color = color_cold_stress,
            x = 0.5, y = 26.2, fontface = "bold",
            hjust = 0, size = 16, lineheight = 0.8) +
+  # annual fluctuations
+  geom_line(data = segment51,
+            aes(y = monthly_mean_temp, x = month, group = year),
+            linewidth = 1, color = "white", alpha = 0.5) +  
+  geom_line(data = segment51,
+            aes(y = monthly_mean_temp, x = month, group = year),
+            linewidth = 0.5, color = color_warm_optimal) +  
   # Average across time 1979-2021
+  geom_line(linewidth = 6.5, color = "white")  +
   geom_line(linewidth = 6, color = "#458869")  +
   # title
   annotate(geom = "text", y = 32, x = 0,          
            label = "Mean monthly stream temperature from 1979-2021",
            color = "black", hjust = 0, size = 18, vjust = 0, fontface = "bold") +
   # explainer label
-  annotate(geom = "text", y = 8, x = 5, label = "1979-2021 average in bold",
-           color = "#376D54", hjust = 0, size = 16, fontface = "bold") +
-  annotate(geom = "text", y = 6, x = 6, label = "Annual values in light",
-           color = "#376D54", hjust = 0, size = 16) +
   geom_textpath(label = "Annual values",
-            size = 14, linewidth = 0, color = "#458869"", 
-            hjust = 0.36, vjust = 3.1) +
+            size = 14, linewidth = 0, color = "#458869", 
+            hjust = 0.87, vjust = 2.5) +
   geom_textpath(label = "1979-2021 average",
             size = 14, linewidth = 0, color = "#458869", 
-            hjust = 0.2, vjust = -1.5, fontface = "bold", alpha = 1) +
+            hjust = 0.81, vjust = -1.5, fontface = "bold", alpha = 1) +
   ylim(c(-2, 34)) +
   xlim(c(-0, 12)) +
   theme_void() +
