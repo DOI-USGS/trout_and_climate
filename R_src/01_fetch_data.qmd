@@ -59,7 +59,7 @@ if(!file.exists("in/sciencebase/Blitzen_PRMS_output.zip")){
   
   archive::archive_extract(
     archive = "in/sciencebase/Blitzen_PRMS_output.zip",
-    dir = "in/second_data_release")
+    dir = "in/penn2023")
 }
 
 # if file exists, skip
