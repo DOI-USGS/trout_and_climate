@@ -23,8 +23,12 @@ Read in data for the fish growth model
 
 ```{r fetch_in}
 
-# Read all the files in the in/ folder0
-files_all <-  list.files(path = "in/sciencebase/")
+# Read all the files in the in/ folder
+if(!file.exists("in/sciencebase/base10.csv")){
+  print("Data not downloaded. Use script R_src/01_fetch_data.qmd before proceeding")
+} else {
+  files_all <-  list.files(path = "in/sciencebase/")
+}
 
 # select only the csvs
 files_csv <- files_all[grepl(pattern = ".csv", files_all)]
@@ -62,8 +66,13 @@ for(file in 1:length(fish_files_csv)){
 Read in data for stream temperature from Penn et al. 2023 data release
 
 ```{r fetch_temperature}
-segment_temp <- readr::read_csv("in/penn2023/nsegment_summary_seg_tave_water.csv", 
+if(!file.exists("in/penn2023/nsegment_summary_seg_tave_water.csv")){
+  print("Data not downloaded. Use script R_src/01_fetch_data.qmd before proceeding")
+} else {
+  segment_temp <- readr::read_csv("in/penn2023/nsegment_summary_seg_tave_water.csv", 
                         show_col_types = FALSE)
+}
+
 
 ```
 
