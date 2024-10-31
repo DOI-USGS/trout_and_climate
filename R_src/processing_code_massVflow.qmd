@@ -21,23 +21,39 @@ library(webp)
 
 
 ```{r read, message=FALSE}
-# #Norwest, Miller Q and prosper from Roy Sando
-Sando.raw <- read.csv(file = "in/sciencebase/SouthCentralOregon.csv") 
+### Read csv file including stream temperatures for these sites
+# Sando et al. https://doi.org/10.5066/P94SMJKI
+if(!file.exists("in/sciencebase/SouthCentralOregon.csv")){
+  print("Data not downloaded. Use script R_src/01_fetch_data.qmd before proceeding")
+} else {
+  Sando.raw <- readr::read_csv(file = "in/sciencebase/SouthCentralOregon.csv",
+                               show_col_types = FALSE) 
+}
 
-###Combine csv files of missing stream lines that are not in Sando's data release#########
-###These are from the Miller et al. 2018? data release#########
-extras <- list.files(path = "in/sciencebase/Extras/", 
-                     # Identify all csv files in folder
-                     pattern = "*.csv", full.names = TRUE) |>
-  lapply(read_csv) |>                                            
-  # Store all files in list
-  bind_rows()
+## Read in a csv that provides site information for each fish to match to stream info in Sando et. al
+site.raw <- readr::read_csv(file = "in/from_authors/FishNorwest.csv",
+                            show_col_types = FALSE)
+
+### Read csv files of missing stream lines that are not in Sando's data release#########
+###   These are from the Miller et al., 2018 data release 
+extras <- readr::read_csv(file = "in/sciencebase/extras.csv", show_col_types = FALSE)
+
+### Read in csv that provides lengths for all fish, including Redband Trout
+#     These are from Laramie et al. https://doi.org/10.5066/P9QZGDMB
+if(!file.exists("in/sciencebase/Fish_lengths.csv")){
+  print("Data not downloaded. Use script R_src/01_fetch_data.qmd before proceeding")
+} else {
+  fish.raw <- readr::read_csv("in/sciencebase/Fish_lengths.csv",
+                     show_col_types = FALSE)
+}
+
+
 
 ```
 
 ## 2. Process for Figure 1
 
-Calculate stream discharge for all streams
+Calculate average stream discharge for all streams
 
 ```{r processing}
 # calculate median streamflow for each site and month
@@ -68,9 +84,8 @@ extras.average <- extras.wide |>
 mean_streamflow <- bind_rows(Sando.average, extras.average)
 
 
-# Site information (within COMID)
-site.raw <- read_csv("in/sciencebase/FishNorwest.csv",
-                     show_col_types = FALSE) |>
+### Get information on COMID for each stream based on site id
+site.raw <- site.raw |>
   select(COMID, Site, AvgZwidth, SurfaceAre, AvgZArea, Dmax, AvgZmax)
 
 site.average <- site.raw |>
@@ -79,11 +94,10 @@ site.average <- site.raw |>
 
 ```
 
-Read in fish data and process for plotting, including estimating mass off of length.
+Read in fish data and process for plotting, including estimating mass from length.
 
 ```{r fish_data}
-fish.raw <- read_csv("in/sciencebase/FishData.csv",
-                     show_col_types = FALSE)
+
 
 # Join with site information
 fish.site <- fish.raw |> inner_join(site.average, by = "Site")
