@@ -18,53 +18,11 @@ library(webp)
 
 ## 1. Fetch
 
-Activate ScienceBase credentials. Note, you only have to do this once to get the data the first time.
 
-1.  Run the code below
-2.  When prompted, enter your email address as the username
-3.  Log into https://sciencebase.usgs.gov/manager/ and select "Copy API Token" from the User dropdown menu
-4.  Copy the Token into the pop up dialog. If this worked, you should get a "TRUE" result in the console.
-
-```{r SB, eval=FALSE}
-# if file exists, skip
-if(!file.exists("in/sciencebase/base10.csv")){
-  
-  sbtools::initialize_sciencebase_session()
-  
-  ### Fetch data from ScienceBase.
-  
-  # Benjamin, J.R., Dunham, J.B., and Penn, C.A., 2023, 
-  # Simulated growth potential of redband trout in the Donner und Blitzen River 
-  # Basin, southeastern Oregon, using a bioenergetics model: U.S. Geological 
-  # Survey data release, https://doi.org/10.5066/P9MAXBZN.
-  
-  
-  sbtools::item_file_download(sb_id = "65381be6d34ee4b6e05bba62",
-                              dest_dir = "in/sciencebase",
-                              overwrite_file = FALSE)
-  
-  # Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, 
-  # L.E., 2023, Simulated streamflow and stream temperature in the Donner und 
-  # Blitzen River Basin, southeastern Oregon, using the Precipitation-Runoff 
-  # Modeling System (PRMS): U.S. Geological Survey data release,
-  # https://doi.org/10.5066/P9WQM25Y.
-  
-  sbtools::item_file_download(sb_id = "644a93add34ee8d4adee04be",
-                              names = "Blitzen_PRMS_output.zip",
-                              destinations = "in/second_data_release/Blitzen_PRMS_output.zip",
-                              overwrite_file = FALSE)
-  
-  archive::archive_extract(
-    archive = "in/second_data_release/Blitzen_PRMS_output.zip",
-    dir = "in/second_data_release")
-}
-```
-
-
-Read in data for stream temperature
+Read in data for stream temperature from Penn et al. 2023 data release
 
 ```{r fetch_temperature}
-segment_temp <- readr::read_csv("in/second_data_release/nsegment_summary_seg_tave_water.csv", 
+segment_temp <- readr::read_csv("in/penn2023/nsegment_summary_seg_tave_water.csv", 
                         show_col_types = FALSE)
 
 
@@ -83,21 +41,19 @@ ave_temps <- segment_temp |>
   group_by(Segment, month) |>
   summarize(mean_temp = mean(Temperature, na.rm = TRUE))
 
-representative_segments <- ave_temps |> filter(Segment %in% c(51)) #99, 65
+representative_segments <- ave_temps |> filter(Segment %in% c(51)) 
 
 segment51 <- segment_temp |> rename(segment51 = "51") |> select(segment51, Date) |>
   mutate(year = lubridate::year(Date),
          yday = lubridate::yday(Date),
          month = lubridate::month(Date)) |>
   group_by(year, month) |>
-  summarize(monthly_mean_temp = mean(segment51, na.rm = TRUE))
-  #filter(yday > 100, yday < 300) 
 
 ```
 
 ```{r page08}
 #font_main <- "Just Another Hand"
-font_main <- "Source Sans Pro"
+font_main <- "Source Sans Pro" 
 sysfonts::font_add_google(font_main)
 
 color_cold_optimal <- "#7EACB5"
