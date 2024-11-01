@@ -12,8 +12,6 @@ library(tidyverse)
 library(readr)
 library(quantreg)
 library(sysfonts)
-library(png)
-library(webp)
 
 ```
 
@@ -228,13 +226,9 @@ library(geomtextpath)
           plot.background = element_rect(fill = NA, color = NA),
           legend.position = "none")) 
 
-
+# This pngs needs to be adjusted for web-sizes using the script "generate_responsive_images.sh"
+#
 ggsave(filename = "../public/assets/vectorized_pngs/page06.png", 
        width = 3000, height = 2300, dpi = 150, units = "px")
-
-
-# Convert to webp
-img <- png::readPNG("../public/assets/vectorized_pngs/page06.png")
-webp::write_webp(img, "../public/assets/vectorized_pngs/page06.webp")
 
 ```

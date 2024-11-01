@@ -12,8 +12,6 @@ library(tidyverse)
 library(readr)
 library(archive)
 library(sysfonts)
-library(png)
-library(webp)
 ```
 
 ## 1. Fetch
@@ -127,8 +125,7 @@ warm_adapted_stress <- warm_fish |> filter(aveT > 24)
 ```
 
 ```{r page08}
-#font_main <- "Just Another Hand"
-font_main <- "Source Sans Pro"
+font_main <- "Source Sans 3"
 sysfonts::font_add_google(font_main)
 
 color_cold_optimal <- "#7EACB5"
@@ -214,12 +211,11 @@ ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
   theme(panel.background = element_rect(fill = "white"),
         plot.background = element_rect(fill = "white", color = NA))
 
+# This png needs to be adjusted for web-sizes using the script "generate_responsive_images.sh"
+#
 ggsave(filename = "../public/assets/vectorized_pngs/page08.png", 
        width = 3000, height = 2300, dpi = 150, units = "px")
 
-# Convert to webp
-img <- png::readPNG("../public/assets/vectorized_pngs/page08.png")
-webp::write_webp(img, "../public/assets/vectorized_pngs/page08.webp")
 ```
 
 
