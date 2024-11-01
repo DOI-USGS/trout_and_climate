@@ -71,6 +71,16 @@ export default {
         link: 'https://doi.org/10.5066/P94SMJKI',
         type: 'USGS Data Release',
         ref: 'https://doi.org/10.5066/P94SMJKI'
+      },
+      {
+        reference: 'Fishes of the Harney Basin revisited: A contemporary assessment of the distribution of fish fauna throughout the Harney Basin from 1990 to 2019 (ver. 2.0, April 2022)',
+        num: '8',
+        authors: 'Laramie, M.B., Mejia, F.H., Heaston, E.D., and Dunham J.B.',
+        year: 2020,
+        title: 'Fishes of the Harney Basin revisited: A contemporary assessment of the distribution of fish fauna throughout the Harney Basin from 1990 to 2019 (ver. 2.0, April 2022)',
+        link: 'https://doi.org/10.5066/P9QZGDMB',
+        type: 'USGS Data Release',
+        ref: 'https://doi.org/10.5066/P9QZGDMB'
       }
     ]
   }

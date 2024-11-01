@@ -34,6 +34,7 @@ Other data releases included to produce the figures are:
 
 > Laramie, M.B., Mejia, F.H., Heaston, E.D., and Dunham J.B., 2020, Fishes of the Harney Basin revisited: A contemporary assessment of the distribution of fish fauna throughout the Harney Basin from 1990 to 2019 (ver. 2.0, April 2022): U.S. Geological Survey data release, https://doi.org/10.5066/P9QZGDMB.
 
+> Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, L.E., 2023, Simulated streamflow and stream temperature in the Donner und Blitzen River Basin, southeastern Oregon, using the Precipitation-Runoff Modeling System (PRMS): U.S. Geological Survey data release, https://doi.org/10.5066/P9WQM25Y.
 
 ## To recreate the figures
 

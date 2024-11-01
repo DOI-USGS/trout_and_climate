@@ -1,0 +1,123 @@
+---
+title: "fetch data from SB"
+format: html
+editor: source
+---
+
+## Set up
+
+```{r libraries, message=FALSE, warning=FALSE}
+
+library(tidyverse)
+library(readr)
+library(archive)
+```
+
+## 1. Fetch
+
+Activate ScienceBase credentials. Note, you only have to do this once to get the data the first time.
+
+1.  Run the code below
+2.  When prompted, enter your email address as the username
+3.  Log into https://sciencebase.usgs.gov/manager/ and select "Copy API Token" from the User dropdown menu
+4.  Copy the Token into the pop up dialog. If this worked, you should get a "TRUE" result in the console.
+
+```{r SB}
+# if file exists, skip
+if(!file.exists("in/sciencebase/base10.csv")){
+  
+  sbtools::initialize_sciencebase_session()
+  
+  ### Fetch data from ScienceBase.
+  
+  # Benjamin, J.R., Dunham, J.B., and Penn, C.A., 2023, 
+  # Simulated growth potential of redband trout in the Donner und Blitzen River 
+  # Basin, southeastern Oregon, using a bioenergetics model: U.S. Geological 
+  # Survey data release, https://doi.org/10.5066/P9MAXBZN.
+  
+  
+  sbtools::item_file_download(sb_id = "65381be6d34ee4b6e05bba62",
+                              dest_dir = "in/sciencebase",
+                              overwrite_file = FALSE)
+}
+  
+# if file exists, skip
+if(!file.exists("in/sciencebase/Blitzen_PRMS_output.zip")){
+  
+  sbtools::initialize_sciencebase_session()
+  
+  # Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, 
+  # L.E., 2023, Simulated streamflow and stream temperature in the Donner und 
+  # Blitzen River Basin, southeastern Oregon, using the Precipitation-Runoff 
+  # Modeling System (PRMS): U.S. Geological Survey data release,
+  # https://doi.org/10.5066/P9WQM25Y.
+  
+  sbtools::item_file_download(sb_id = "644a93add34ee8d4adee04be",
+                              names = "Blitzen_PRMS_output.zip",
+                              destinations = "in/sciencebase/Blitzen_PRMS_output.zip",
+                              overwrite_file = FALSE)
+  
+  archive::archive_extract(
+    archive = "in/sciencebase/Blitzen_PRMS_output.zip",
+    dir = "in/penn2023")
+}
+
+# if file exists, skip
+if(!file.exists("in/sciencebase/SouthCentralOregon.csv")){
+  
+  sbtools::initialize_sciencebase_session()
+  
+  #Sando, R.R., and Schultz, A.R., 2022, Reach-scale predicted annual 
+  # streamflow permanence probabilities, predicted monthly mean stream temperature 
+  # for August, and predicted monthly streamflow discharge for stream reaches in 
+  # the Pacific Northwest, USA (2004-2015) (ver. 2.0, January 2023): 
+  # U.S. Geological Survey data release, https://doi.org/10.5066/P94SMJKI.
+  
+  
+    sbtools::item_file_download(sb_id = "61520513d34e0df5fb9ba045",
+                              names = "SouthCentralOregon.csv",
+                              destinations = "in/sciencebase/SouthCentralOregon.csv",
+                              overwrite_file = FALSE)
+}
+
+# if file exists, skip
+if(!file.exists("in/sciencebase/Fish_lengths.csv")){
+  
+  sbtools::initialize_sciencebase_session()
+  
+  #Laramie, M.B., Mejia, F.H., Heaston, E.D., and Dunham J.B., 2020, 
+  # Fishes of the Harney Basin revisited: A contemporary assessment of the 
+  # distribution of fish fauna throughout the Harney Basin from 1990 to 2019 
+  # (ver. 2.0, April 2022): U.S. Geological Survey data release, https://doi.org/10.5066/P9QZGDMB.
+  
+  
+  sbtools::item_file_download(sb_id = "5fad7132d34eb413d5df4694",
+                              names = "Fish_lengths.csv",
+                              destinations = "in/sciencebase/Fish_lengths.csv",
+                              overwrite_file = FALSE)
+}
+
+
+```
+
+> Miller, M.P., Carlisle, D.M., Wolock, D.M., and Wieczorek, M.E., 2018, Natural Monthly Flow Estimates for the Conterminous United States, 1950-2015: U.S. Geological Survey data release, https://doi.org/10.5066/F7CC0ZMG.
+
+Data for the Miller et al. (2018) data release were saved to gitlab. The ScienceBase data release includes stream data in over 2,600,000 csv files. This saves the streams as one combined csv that are needed for analysis. The 64 streams used in this analysis are:
+
+```{r comids}
+
+stream_comids <- c(7915025, 7915027, 7915033, 7915037, 7915049, 7915057, 7915067,
+                   7915079, 7915103, 7915105, 7915135, 7915139, 7915145,
+                   7915153, 7915173, 7915175, 7915209, 7915215, 7915227, 7915263,
+                   7915265, 7915295, 7915325, 7915337, 7915349, 7915391,
+                   7915403, 7915413, 7915415, 7915421, 7915437, 7915449, 7915467,
+                   7915473, 7915483, 7915507, 7915709, 7915747, 7915765,
+                   7915769, 7916209, 7916259, 7916265, 7916275, 7916277, 7916485,
+                   7916505, 7916587, 7916613, 7916641, 7916655, 7916681,
+                   7916689, 7916719, 7916729, 7917339, 7917341, 7917355, 7917359,
+                   7917413, 7917417, 7917471, 7917503, 7917513)
+
+```
+
+
+

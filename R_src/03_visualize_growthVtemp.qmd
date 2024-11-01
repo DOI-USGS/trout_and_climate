@@ -12,60 +12,21 @@ library(tidyverse)
 library(readr)
 library(archive)
 library(sysfonts)
-library(png)
-library(webp)
 ```
 
 ## 1. Fetch
 
-Activate ScienceBase credentials. Note, you only have to do this once to get the data the first time.
-
-1.  Run the code below
-2.  When prompted, enter your email address as the username
-3.  Log into https://sciencebase.usgs.gov/manager/ and select "Copy API Token" from the User dropdown menu
-4.  Copy the Token into the pop up dialog. If this worked, you should get a "TRUE" result in the console.
-
-```{r SB, eval=FALSE}
-# if file exists, skip
-if(!file.exists("in/sciencebase/base10.csv")){
-  
-  sbtools::initialize_sciencebase_session()
-  
-  ### Fetch data from ScienceBase.
-  
-  # Benjamin, J.R., Dunham, J.B., and Penn, C.A., 2023, 
-  # Simulated growth potential of redband trout in the Donner und Blitzen River 
-  # Basin, southeastern Oregon, using a bioenergetics model: U.S. Geological 
-  # Survey data release, https://doi.org/10.5066/P9MAXBZN.
-  
-  
-  sbtools::item_file_download(sb_id = "65381be6d34ee4b6e05bba62",
-                              dest_dir = "in/sciencebase",
-                              overwrite_file = FALSE)
-  
-  # Penn, C.A., Dunham, J.B., Markstrom, S.L., Overstreet, B.T., and Stratton, 
-  # L.E., 2023, Simulated streamflow and stream temperature in the Donner und 
-  # Blitzen River Basin, southeastern Oregon, using the Precipitation-Runoff 
-  # Modeling System (PRMS): U.S. Geological Survey data release,
-  # https://doi.org/10.5066/P9WQM25Y.
-  
-  sbtools::item_file_download(sb_id = "644a93add34ee8d4adee04be",
-                              names = "Blitzen_PRMS_output.zip",
-                              destinations = "in/second_data_release/Blitzen_PRMS_output.zip",
-                              overwrite_file = FALSE)
-  
-  archive::archive_extract(
-    archive = "in/second_data_release/Blitzen_PRMS_output.zip",
-    dir = "in/second_data_release")
-}
-```
 
 Read in data for the fish growth model 
 
 ```{r fetch_in}
 
-# Read all the files in the in/ folder0
-files_all <-  list.files(path = "in/sciencebase/")
+# Read all the files in the in/ folder
+if(!file.exists("in/sciencebase/base10.csv")){
+  print("Data not downloaded. Use script R_src/01_fetch_data.qmd before proceeding")
+} else {
+  files_all <-  list.files(path = "in/sciencebase/")
+}
 
 # select only the csvs
 files_csv <- files_all[grepl(pattern = ".csv", files_all)]
@@ -100,11 +61,16 @@ for(file in 1:length(fish_files_csv)){
 }
 ```
 
-Read in data for stream temperature
+Read in data for stream temperature from Penn et al. 2023 data release
 
 ```{r fetch_temperature}
-segment_temp <- readr::read_csv("in/second_data_release/nsegment_summary_seg_tave_water.csv", 
+if(!file.exists("in/penn2023/nsegment_summary_seg_tave_water.csv")){
+  print("Data not downloaded. Use script R_src/01_fetch_data.qmd before proceeding")
+} else {
+  segment_temp <- readr::read_csv("in/penn2023/nsegment_summary_seg_tave_water.csv", 
                         show_col_types = FALSE)
+}
+
 
 ```
 
@@ -114,7 +80,7 @@ segment_temp <- readr::read_csv("in/second_data_release/nsegment_summary_seg_tav
 
 
 ```{r processing}
-# Filter to 1 year
+# Filter to 2020 as example for visualization
 fish_2020 <- fish_data |>
   mutate(Date = as.Date(Date, format = "%m/%d/%Y"),
          month = lubridate::month(Date),
@@ -159,8 +125,7 @@ warm_adapted_stress <- warm_fish |> filter(aveT > 24)
 ```
 
 ```{r page08}
-#font_main <- "Just Another Hand"
-font_main <- "Source Sans Pro"
+font_main <- "Source Sans 3"
 sysfonts::font_add_google(font_main)
 
 color_cold_optimal <- "#7EACB5"
@@ -246,12 +211,11 @@ ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
   theme(panel.background = element_rect(fill = "white"),
         plot.background = element_rect(fill = "white", color = NA))
 
+# This png needs to be adjusted for web-sizes using the script "generate_responsive_images.sh"
+#
 ggsave(filename = "../public/assets/vectorized_pngs/page08.png", 
        width = 3000, height = 2300, dpi = 150, units = "px")
 
-# Convert to webp
-img <- png::readPNG("../public/assets/vectorized_pngs/page08.png")
-webp::write_webp(img, "../public/assets/vectorized_pngs/page08.webp")
 ```
 
 
