@@ -51,11 +51,11 @@ if(!file.exists("in/sciencebase/Fish_lengths.csv")){
 
 ## 2. Process for Figure 1
 
-Calculate average stream discharge for all streams
+Calculate median stream discharge for all streams
 
 ```{r processing}
 # calculate median streamflow for each site and month
-Sando.average <- Sando.raw |>
+Sando.median <- Sando.raw |>
   select(COMID, contains("Streamflow")) |>
   group_by(COMID) |>
   summarise(across(everything(), list(median)))
@@ -72,47 +72,47 @@ extras.wide <- extras.clnd |>
   pivot_wider(names_from = month_abb, values_from = Estimated.Q) |>
   rename_at(vars(-COMID), ~ paste0(., 'Streamflow'))
 
-extras.average <- extras.wide |>
+extras.median <- extras.wide |>
   group_by(COMID) |>
   summarise(across(everything(), list(median))) |>
   select(-YearStreamflow_1)
 
 
 #### BIND streamflow data TOGETHER
-mean_streamflow <- bind_rows(Sando.average, extras.average)
+median_streamflow <- bind_rows(Sando.median, extras.median)
 
 
 ### Get information on COMID for each stream based on site id
-site.raw <- site.raw |>
-  select(COMID, Site, AvgZwidth, SurfaceAre, AvgZArea, Dmax, AvgZmax)
-
-site.average <- site.raw |>
-  group_by(COMID, Site) |>
-  summarise(across(everything(), list(mean)))
+site.IDs <- site.raw |>
+  select(COMID, Site) |>
+  distinct() |>
+  # in addition, 6 sites are listed as matches for 2 COMIDS. Don't know 
+  # which COMID to use, so removing those sites
+  filter(! Site %in% c("Buck-002", "Chewaucan-0012", "Deep-008", 
+                       "Rock-002", "Rock-003", "Silvies-0002")) 
 
 ```
 
 Read in fish data and process for plotting, including estimating mass from length.
 
 ```{r fish_data}
-
-
 # Join with site information
-fish.site <- fish.raw |> inner_join(site.average, by = "Site")
-
-# Filter for species and flag (quality)
-fish.site.trout <- fish.site |>
-  filter(Species == "RT", Flag < 10)
+fish.site <- fish.site |>
+  # Filter for species and flag (quality)
+  filter(Species == "RT", Flag < 10) |> 
+  left_join(site.IDs, by = "Site")
 
 # Calculate max length by site
-trout.max <- fish.site.trout |> 
+trout.max <- fish.site |> 
+  # remove missing fish lengths
+  filter(! is.na(Length)) |>
   group_by(Site, COMID) |>
   summarise(MaxFishLength = max(Length, na.rm = TRUE)) |>
   mutate(logLength = log(MaxFishLength)) 
 
 # Merge with streamflow data
 trout.streamflow <- trout.max |>
-  inner_join(mean_streamflow, by = "COMID") |>
+  inner_join(median_streamflow, by = "COMID") |>
   # filter out when August streamflow is 0
   filter(AugStreamflow_1 > 0)
 
