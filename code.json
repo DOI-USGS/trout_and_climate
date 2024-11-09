@@ -1,6 +1,6 @@
 [
   {
-    "name": "trout_and_climate",
+    "name": "trout-and-climate",
     "organization": "U.S. Geological Survey",
     "description": "Managing redband trout for climate resilience",
     "version": "main",
@@ -41,7 +41,7 @@
     "name": "trout_and_climate",
     "organization": "U.S. Geological Survey",
     "description": "Managing redband trout for climate resilience",
-    "version": "v1.0.0",
+    "version": "1.0.0",
     "status": "Candidate Branch",
     "permissions": {
       "usageType": "openSource",

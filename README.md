@@ -1,4 +1,6 @@
-# Climate resiliency through the eyes of Redband Trout
+# {app_long_title}
+
+A newer version of the software may be available. See https://code.usgs.gov/wma/vizlab/{app_title}/-/releases to view all releases.
 
 This website uses visual storytelling to describe how climate vulnerability for Redband Trout depends on their climate-adaptation.
 
@@ -44,4 +46,8 @@ The code to process the data and create the data visualizations are included as 
  Clone the repo. In the directory, run `npm install` to install the required modules. Once the dependencies have been installed, run `npm run dev` to run locally from your browser.
  
  To build the website locally you'll need `npm v20` and `node v8.1` or higher installed. To manage multiple versions of `npm`, you may [try using `nvm`](https://betterprogramming.pub/how-to-change-node-js-version-between-projects-using-nvm-3ad2416bda7e).
+
+## Citation
+
+Archer, Althea, Ivey, Leo, Corson-Dosch, Hayley, and Nell, Cee. 2024. Managing redband trout for climate resilience. U.S. Geological Survey software release. Reston, VA. [https://doi.org/{doi of official software release}](https://doi.org/{doi of official software release})
 
