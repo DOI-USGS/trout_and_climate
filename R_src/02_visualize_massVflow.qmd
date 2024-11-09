@@ -12,6 +12,7 @@ library(tidyverse)
 library(readr)
 library(quantreg)
 library(sysfonts)
+library(geomtextpath)
 
 ```
 
@@ -174,7 +175,6 @@ light_cold <- "#E0F0F0"
 white <- '#FFFFFF'
 black <- '#000000'
 
-library(geomtextpath)
 (mass_streamflow_plot <-
     ggplot(data = trout.mass, aes(y = massInit, x = AugStreamflow_1)) +
     geom_point(shape = 19, aes(size = massInit), 

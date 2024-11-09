@@ -12,6 +12,7 @@ library(tidyverse)
 library(readr)
 library(archive)
 library(sysfonts)
+library(geomtextpath)
 ```
 
 ## 1. Fetch
@@ -61,11 +62,6 @@ color_cold_stress <- '#7A3608'#"#C96868"
 color_warm_optimal <- "#7EACB5"
 color_warm_stress <- '#7A3608'#"#C96868"
 
-library(geomtextpath)
-color_cold_optimal <- "#7EACB5"
-color_cold_stress <- '#7A3608'#"#C96868"
-color_warm_optimal <- "#7EACB5"
-color_warm_stress <- '#7A3608'#"#C96868"
 
 
 ggplot(data = representative_segments,  
