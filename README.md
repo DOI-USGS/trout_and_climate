@@ -49,5 +49,5 @@ The code to process the data and create the data visualizations are included as 
 
 ## Citation
 
-Archer, Althea, Ivey, Leo, Corson-Dosch, Hayley, and Nell, Cee. 2024. Managing redband trout for climate resilience. U.S. Geological Survey software release. Reston, VA. [https://doi.org/{doi of official software release}](https://doi.org/{doi of official software release})
+Archer, Althea, Ivey, Leo, Corson-Dosch, Hayley, and Nell, Cee. 2024. Managing redband trout for climate resilience. U.S. Geological Survey software release. Reston, VA. https://doi.org/10.5066/P13UMTRM.
 
