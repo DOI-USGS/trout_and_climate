@@ -42,7 +42,7 @@
     "organization": "U.S. Geological Survey",
     "description": "Managing redband trout for climate resilience",
     "version": "1.0.0",
-    "status": "Candidate Branch",
+    "status": "Release Candidate",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
