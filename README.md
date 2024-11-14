@@ -1,4 +1,4 @@
-# {app_long_title}
+# Managing Redband Trout for Climate Resilience
 
 A newer version of the software may be available. See https://code.usgs.gov/wma/vizlab/trout_and_climate/-/releases to view all releases.
 
