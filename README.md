@@ -1,6 +1,6 @@
 # {app_long_title}
 
-A newer version of the software may be available. See https://code.usgs.gov/wma/vizlab/{app_title}/-/releases to view all releases.
+A newer version of the software may be available. See https://code.usgs.gov/wma/vizlab/trout_and_climate/-/releases to view all releases.
 
 This website uses visual storytelling to describe how climate vulnerability for Redband Trout depends on their climate-adaptation.
 
