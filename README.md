@@ -1,4 +1,6 @@
-# Climate resiliency through the eyes of Redband Trout
+# Managing Redband Trout for Climate Resilience
+
+A newer version of the software may be available. See https://code.usgs.gov/wma/vizlab/trout_and_climate/-/releases to view all releases.
 
 This website uses visual storytelling to describe how climate vulnerability for Redband Trout depends on their climate-adaptation.
 
@@ -8,7 +10,7 @@ This repo uses R and Vue.js to build a data visualization website about indicato
 
 Activate ScienceBase credentials. Note, you only have to do this once to get the data from each release for the first time. 
 
-1. Install the latest version of the `sbtools` package
+1. Install the latest version of the `sbtools` package. (Requires `sbtools` v1.3.0 or newer)
 2. Run the code below
 3. When prompted, enter your email address as the username
 4. Log into https://sciencebase.usgs.gov/manager/ and select "Copy API Token" from the User dropdown menu
@@ -16,7 +18,7 @@ Activate ScienceBase credentials. Note, you only have to do this once to get the
 
 `sbtools::initialize_sciencebase_session()`
 
-Fetch data from ScienceBase. For example, to fetch data from this data release, use the following code:
+Fetch data from ScienceBase. The full code to download data for this site is listed in `R_src/01_fetch_data.qmd`. For example, to fetch data from this data release, use the following code:
 
 > Benjamin, J.R., Dunham, J.B., and Penn, C.A., 2023, Simulated growth potential of redband trout in the Donner und Blitzen River Basin, southeastern Oregon, using a bioenergetics model: U.S. Geological Survey data release, https://doi.org/10.5066/P9MAXBZN.
 
@@ -44,4 +46,8 @@ The code to process the data and create the data visualizations are included as 
  Clone the repo. In the directory, run `npm install` to install the required modules. Once the dependencies have been installed, run `npm run dev` to run locally from your browser.
  
  To build the website locally you'll need `npm v20` and `node v8.1` or higher installed. To manage multiple versions of `npm`, you may [try using `nvm`](https://betterprogramming.pub/how-to-change-node-js-version-between-projects-using-nvm-3ad2416bda7e).
+
+## Citation
+
+Archer, Althea, Ivey, Leo, Corson-Dosch, Hayley, and Nell, Cee. 2024. Managing redband trout for climate resilience. U.S. Geological Survey software release. Reston, VA. https://doi.org/10.5066/P13UMTRM.
 

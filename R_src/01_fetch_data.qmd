@@ -102,7 +102,7 @@ if(!file.exists("in/sciencebase/Fish_lengths.csv")){
 
 > Miller, M.P., Carlisle, D.M., Wolock, D.M., and Wieczorek, M.E., 2018, Natural Monthly Flow Estimates for the Conterminous United States, 1950-2015: U.S. Geological Survey data release, https://doi.org/10.5066/F7CC0ZMG.
 
-Data for the Miller et al. (2018) data release were saved to gitlab. The ScienceBase data release includes stream data in over 2,600,000 csv files. This saves the streams as one combined csv that are needed for analysis. The 64 streams used in this analysis are:
+Data for the Miller et al. (2018) data release were saved to gitlab. The ScienceBase data release includes stream data in over 2,600,000 csv files organized by Level 4 ecoregions. This repository provides the streams as one combined csv that are needed for analysis. The 64 streams used in this analysis are:
 
 ```{r comids}
 

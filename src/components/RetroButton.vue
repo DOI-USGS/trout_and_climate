@@ -14,7 +14,6 @@ export default {
       default: 'default-button-class'
     },
     buttonStyle: Object,
-    onClick: Function,
     isDisabled: {
       type: Boolean,
       default: false
