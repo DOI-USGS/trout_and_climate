@@ -232,8 +232,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auto;
-  max-height: 90vh;
+  height: 100%;
 }
 #page-title {
   margin: 0 auto;
@@ -322,6 +321,9 @@ export default {
   height: 100%;
   max-height: 600px; 
   text-align: center;
+  @media only screen and (max-height: 770px) {
+    max-height: 60vh;
+  }
 }
 
 #images-container img {
@@ -331,9 +333,11 @@ export default {
   border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
   border-style: solid;
   border-width: 2px;
-  box-shadow: #00264C 2px 5px 10px -5px;  
+  box-shadow: #00264C 2px 5px 10px -5px;
+  @media only screen and (max-height: 770px) {
+    max-height: 60vh;
+  } 
 }
-
 .content-divider {
   border: 0;
   height: 1px;
@@ -422,6 +426,7 @@ export default {
     width: 10px;
     height: 10px;
     margin: 2px;
+    padding: 0.1rem;
   }
 }
 </style>
