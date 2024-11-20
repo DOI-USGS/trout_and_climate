@@ -433,6 +433,7 @@ export default {
     width: 10px;
     height: 10px;
     margin: 2px;
+    padding: 0.1rem;
   }
 }
 </style>
