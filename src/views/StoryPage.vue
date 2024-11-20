@@ -234,7 +234,7 @@ export default {
   width: 100%;
   height: auto;
   max-height: 90vh;
-  @media only screen and (max-height: 700px) {
+  @media only screen and (max-height: 770px) {
     max-height: 100%;
   }
 }
@@ -305,7 +305,7 @@ export default {
   border-width: 2px;
   box-shadow: #00264C 2px 5px 10px -5px;
   cursor: pointer;
-  @media only screen and (max-height: 700px) {
+  @media only screen and (max-height: 770px) {
     height: 60vh;
   }
 }
@@ -328,7 +328,7 @@ export default {
   height: 100%;
   max-height: 600px; 
   text-align: center;
-  @media only screen and (max-height: 700px) {
+  @media only screen and (max-height: 770px) {
     max-height: 60vh;
   }
 }
@@ -341,7 +341,7 @@ export default {
   border-style: solid;
   border-width: 2px;
   box-shadow: #00264C 2px 5px 10px -5px;
-  @media only screen and (max-height: 700px) {
+  @media only screen and (max-height: 770px) {
     max-height: 60vh;
   } 
 }
@@ -388,7 +388,7 @@ export default {
 }
 
 /* Mobile-specific styles */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 770px) {
   #grid-container-viz {
     max-height: 120vh;
   }
