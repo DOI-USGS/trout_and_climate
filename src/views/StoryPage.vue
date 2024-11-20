@@ -305,9 +305,6 @@ export default {
   border-width: 2px;
   box-shadow: #00264C 2px 5px 10px -5px;
   cursor: pointer;
-  @media only screen and (max-height: 770px) {
-    height: 60vh;
-  }
 }
 
 #next-button-desktop:focus, #next-button-mobile:focus, #prev-button-desktop:focus, #prev-button-mobile:focus{ /* for keyboard navigation */
@@ -388,7 +385,7 @@ export default {
 }
 
 /* Mobile-specific styles */
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 600px) {
   #grid-container-viz {
     max-height: 120vh;
   }
