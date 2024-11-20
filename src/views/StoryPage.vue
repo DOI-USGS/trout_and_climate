@@ -232,11 +232,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: auto;
-  max-height: 90vh;
-  @media only screen and (max-height: 770px) {
-    max-height: 100%;
-  }
+  height: 100%;
 }
 #page-title {
   margin: 0 auto;
