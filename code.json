@@ -1,6 +1,6 @@
 [
   {
-    "name": "trout_and_climate",
+    "name": "trout-and-climate",
     "organization": "U.S. Geological Survey",
     "description": "Managing redband trout for climate resilience",
     "version": "main",
@@ -19,7 +19,7 @@
     "disclaimerURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/main/DISCLAIMER.md",
     "repositoryURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate.git",
     "vcs": "git",
-    "laborHours": 450,
+    "laborHours": 500,
     "tags": [
       "R",
       "USGS"
@@ -34,15 +34,15 @@
       "email": "aaarcher@usgs.gov"
     },
     "date": {
-      "metadataLastUpdated": "2024-09-27"
+      "metadataLastUpdated": "2024-11-13"
     }
   },
   {
     "name": "trout_and_climate",
     "organization": "U.S. Geological Survey",
     "description": "Managing redband trout for climate resilience",
-    "version": "v1.0.0",
-    "status": "Candidate Branch",
+    "version": "1.0.0",
+    "status": "Release Candidate",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
@@ -72,7 +72,7 @@
       "email": "aaarcher@usgs.gov"
     },
     "date": {
-      "metadataLastUpdated": "2024-09-27"
+      "metadataLastUpdated": "2024-11-13"
     }
   }
 ]

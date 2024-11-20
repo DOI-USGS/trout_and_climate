@@ -350,6 +350,9 @@ export default {
   display: flex;
   justify-content: center;
   padding-top: 2rem;
+  overflow-x: hidden;
+  max-width:100%;
+  box-sizing: border-box;
 }
 
 .tracker-circle {
@@ -416,7 +419,9 @@ export default {
     
   }
   .tracker-circle {
-    margin: 0 2px;
+    width: 10px;
+    height: 10px;
+    margin: 2px;
   }
 }
 </style>

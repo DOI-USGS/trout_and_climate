@@ -21,8 +21,8 @@ export const store = reactive({
 
   setIndex(newIndex) {
     this.currentIndex = newIndex;
-    if (currentIndex = this.allChapters.length) {
-      currentType = 'references'
+    if (this.currentIndex === this.allChapters.length) {
+      this.currentType = 'references'
     }
   },
 

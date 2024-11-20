@@ -12,6 +12,7 @@ library(tidyverse)
 library(readr)
 library(archive)
 library(sysfonts)
+library(geomtextpath)
 ```
 
 ## 1. Fetch
@@ -133,7 +134,6 @@ color_cold_stress <- '#7A3608'#"#C96868"
 color_warm_optimal <- "#7EACB5"
 color_warm_stress <- '#7A3608'#"#C96868"
 
-library(geomtextpath)
 ggplot(data = cold_fish, aes(y = fish_growth, x = aveT)) +
   # shade ribbons
   annotate("ribbon", ymax = rep(0.023, nrow(cold_adapted_stress) + 1), 
