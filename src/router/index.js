@@ -12,6 +12,11 @@ const router = createRouter({
       props: { index: 0 }, // Always set index to 0 for the root path
     },
     {
+      path: "/404",
+      name: "Error404",
+      component: lazyLoad('Error404Page')
+    },
+    {
       path: '/:index',
       name: 'Chapter',
       component: StoryPage,
