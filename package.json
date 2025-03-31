@@ -1,6 +1,6 @@
 {
   "name": "trout-and-climate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "vite --mode test_tier",
@@ -15,7 +15,6 @@
   "dependencies": {
     "@uswds/uswds": "^3.6.1",
     "axios": "^1.6.7",
-    "gsap": "^3.12.5",
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
     "vue-router": "^4.3.2",
