@@ -31,6 +31,7 @@ Here we track upcoming changes.
   
 - Switched to new domain
 - Use env vars more thoroughly in index.html 
+- Declare index as a prop for router navigation
  
 ### Fixed
  
