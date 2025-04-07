@@ -33,3 +33,6 @@ Here we track upcoming changes.
 - Use env vars more thoroughly in index.html 
 - Declare index as a prop for router navigation
  
+ ## [1.0.0] - 2024-10-20
+
+ ### Initial public release
