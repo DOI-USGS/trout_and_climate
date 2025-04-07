@@ -2,7 +2,7 @@
   {
     "name": "trout-and-climate",
     "organization": "U.S. Geological Survey",
-    "description": "Managing redband trout for climate resilience",
+    "description": "An illustrated story about how USGS science informs management practices in changing environments.",
     "version": "main",
     "status": "Development",
     "permissions": {
@@ -34,13 +34,13 @@
       "email": "aaarcher@usgs.gov"
     },
     "date": {
-      "metadataLastUpdated": "2024-11-13"
+      "metadataLastUpdated": "2025-04-07"
     }
   },
   {
     "name": "trout_and_climate",
     "organization": "U.S. Geological Survey",
-    "description": "Managing redband trout for climate resilience",
+    "description": "An illustrated story about how USGS science informs management practices in changing environments.",
     "version": "1.0.0",
     "status": "Release Candidate",
     "permissions": {
