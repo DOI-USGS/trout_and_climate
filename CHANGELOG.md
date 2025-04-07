@@ -33,6 +33,3 @@ Here we track upcoming changes.
 - Use env vars more thoroughly in index.html 
 - Declare index as a prop for router navigation
  
-### Fixed
- 
-- Description of fix
