@@ -1,6 +1,6 @@
 {
   "name": "trout-and-climate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "vite --mode test_tier",
@@ -15,7 +15,6 @@
   "dependencies": {
     "@uswds/uswds": "^3.6.1",
     "axios": "^1.6.7",
-    "gsap": "^3.12.5",
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
     "vue-router": "^4.3.2",
@@ -27,7 +26,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.5",
     "@rollup/plugin-replace": "5.0.5",
     "@rushstack/eslint-patch": "^1.3.3",
-    "@vitejs/plugin-vue": "^4.5.0",
+    "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^8.0.0",
     "d3": "^7.8.5",
     "eslint": "^8.56.0",
@@ -36,7 +35,7 @@
     "mobile-device-detect": "^0.4.3",
     "prettier": "^3.1.0",
     "sass": "1.69.5",
-    "vite": "^5.0.0",
+    "vite": "^6.2.0",
     "vite-plugin-ejs": "^1.7.0",
     "vite-svg-loader": "^5.1.0"
   }

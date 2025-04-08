@@ -136,6 +136,12 @@ export default {
     RetroButton,
     ReferencesSection
   },
+  props: {
+    index: {
+      type: [Number, String],
+      required: false
+    }
+  },
   setup() {
     const route = useRoute();
     const router = useRouter();
