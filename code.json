@@ -1,5 +1,81 @@
 [
   {
+    "name": "trout_and_climate",
+    "organization": "U.S. Geological Survey",
+    "description": "An illustrated story about how USGS science informs management practices in changing environments.",
+    "version": "1.1.0",
+    "status": "Production",
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain, CC0-1.0",
+          "URL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/1.1.0/LICENSE.md"
+        }
+      ]
+    },
+    "homepageURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate",
+    "downloadURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/archive/1.1.0/trout_and_climate-1.1.0.zip",
+    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/1.1.0/DISCLAIMER.md",
+    "repositoryURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate.git",
+    "vcs": "git",
+    "laborHours": 450,
+    "tags": [
+      "R",
+      "USGS"
+    ],
+    "languages": [
+      "R",
+      "Vue",
+      "JavaScript"
+    ],
+    "contact": {
+      "name": "Althea Archer",
+      "email": "aaarcher@usgs.gov"
+    },
+    "date": {
+      "metadataLastUpdated": "2025-05-07"
+    }
+  },
+  {
+    "name": "trout_and_climate",
+    "organization": "U.S. Geological Survey",
+    "description": "An illustrated story about how USGS science informs management practices in changing environments.",
+    "version": "1.0.0",
+    "status": "Archival",
+    "permissions": {
+      "usageType": "openSource",
+      "licenses": [
+        {
+          "name": "Public Domain, CC0-1.0",
+          "URL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/1.0.0/LICENSE.md"
+        }
+      ]
+    },
+    "homepageURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate",
+    "downloadURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/archive/1.0.0/trout_and_climate-1.0.0.zip",
+    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/1.0.0/DISCLAIMER.md",
+    "repositoryURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate.git",
+    "vcs": "git",
+    "laborHours": 450,
+    "tags": [
+      "R",
+      "USGS"
+    ],
+    "languages": [
+      "R",
+      "Vue",
+      "JavaScript"
+    ],
+    "contact": {
+      "name": "Althea Archer",
+      "email": "aaarcher@usgs.gov"
+    },
+    "date": {
+      "metadataLastUpdated": "2025-05-07"
+    }
+  },
+  {
     "name": "trout-and-climate",
     "organization": "U.S. Geological Survey",
     "description": "An illustrated story about how USGS science informs management practices in changing environments.",
@@ -34,45 +110,7 @@
       "email": "aaarcher@usgs.gov"
     },
     "date": {
-      "metadataLastUpdated": "2025-04-07"
-    }
-  },
-  {
-    "name": "trout_and_climate",
-    "organization": "U.S. Geological Survey",
-    "description": "An illustrated story about how USGS science informs management practices in changing environments.",
-    "version": "1.0.0",
-    "status": "Release Candidate",
-    "permissions": {
-      "usageType": "openSource",
-      "licenses": [
-        {
-          "name": "Public Domain, CC0-1.0",
-          "URL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/1.0.0/LICENSE.md"
-        }
-      ]
-    },
-    "homepageURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate",
-    "downloadURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/archive/1.0.0/trout_and_climate-1.0.0.zip",
-    "disclaimerURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate/-/raw/1.0.0/DISCLAIMER.md",
-    "repositoryURL": "https://code.usgs.gov/wma/vizlab/trout_and_climate.git",
-    "vcs": "git",
-    "laborHours": 450,
-    "tags": [
-      "R",
-      "USGS"
-    ],
-    "languages": [
-      "R",
-      "Vue",
-      "JavaScript"
-    ],
-    "contact": {
-      "name": "Althea Archer",
-      "email": "aaarcher@usgs.gov"
-    },
-    "date": {
-      "metadataLastUpdated": "2024-11-20"
+      "metadataLastUpdated": "2025-05-07"
     }
   }
 ]
