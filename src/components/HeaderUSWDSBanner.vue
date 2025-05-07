@@ -224,8 +224,7 @@
   }
   .usa-banner__content p {
     font-size: 1.6rem;
-}
-
+  }
   .usa-banner__icon {
     width: 4rem;
   }
