@@ -14,7 +14,15 @@ Here we track upcoming changes.
 ### Changed
  
 ### Fixed
- 
+
+## [1.1.1] - 2026-02-22
+
+### Changed
+- Updated dependencies - eslint
+
+### Removed
+- Dropped unused dependencies - axios, d3, rollup. This addressed DoS vulnerability
+
 ## [1.1.0] - 2025-03-31
  
 ### Added
