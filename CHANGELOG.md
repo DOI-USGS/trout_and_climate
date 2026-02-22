@@ -15,13 +15,21 @@ Here we track upcoming changes.
  
 ### Fixed
 
+## [1.1.2] - 2026-02-22
+
+### Removed
+- Removes vite-plugin-ejs due to a vulnerability with minimatch. 
+
+### Changed 
+- Reworked norobots by adding a VITE_APP_ROBOTS variable to conditionally add the robots tag per environment
+
 ## [1.1.1] - 2026-02-22
 
 ### Changed
 - Updated dependencies - eslint
 
 ### Removed
-- Dropped unused dependencies - axios, d3, rollup. This addressed DoS vulnerability
+- Dropped unused dependencies - axios, d3, rollup. This addressed DoS vulnerability  
 
 ## [1.1.0] - 2025-03-31
  
