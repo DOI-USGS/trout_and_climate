@@ -8,13 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  
 Here we track upcoming changes.
  
-### Added
-- Added a change log
- 
 ### Changed
- 
-### Fixed
- 
+- Updated dependencies - eslint
+
+### Removed
+- Dropped unused dependencies - axios, d3, rollup. This addressed DoS vulnerability  
+
 ## [1.1.0] - 2025-03-31
  
 ### Added

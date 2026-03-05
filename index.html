@@ -17,10 +17,8 @@
     <!-- USDWS-init js -->
     <script type="module" src="/node_modules/@uswds/uswds/dist/js/uswds-init.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- On beta, add robots tag to stop indexing. An empty string for VITE_APP_TIER means the 'prod' version of the application -->
-    <% if(VITE_APP_TIER !== ''){ %>
-      <meta name="robots" content="noindex,nofollow">
-    <% } %>
+    <!-- Add robots tag to stop indexing where defined by VITE_APP_ROBOTS -->
+    <meta name="robots" content="%VITE_APP_ROBOTS%">
     <title>%VITE_APP_LONG_TITLE%</title>
     <!-- Primary Meta Tags -->
     <meta name="title" content="%VITE_APP_LONG_TITLE%">
