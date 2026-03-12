@@ -35,7 +35,7 @@
         <ul class="social">
           <li class="follow">Follow</li>
           <li class="twitter">
-            <a href="https://twitter.com/usgs_datasci" target="_blank" aria-label="twitter link">
+            <a href="https://x.com/usgs_water" target="_blank" aria-label="twitter link">
               <font-awesome-icon :icon="{ prefix: 'fab', iconName: 'square-x-twitter' } " class="fa fa-square-x-twitter"><span class="only">Twitter</span></font-awesome-icon>
             </a>
           </li>
