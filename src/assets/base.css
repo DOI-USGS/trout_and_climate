@@ -12,6 +12,8 @@
   --trout-green: #7c9662;
   --trout-red: #882417;
 
+  --medium-blue: #4365A8;
+
   font-size: 62.5%;
 }
 
@@ -21,6 +23,7 @@
   --color-text: var(--black-soft);
   --color-link: var(--trout-red);
   --color-title: var(--black-soft);
+  --color-prefooter-highlight: var(--medium-blue);
 }
 
 

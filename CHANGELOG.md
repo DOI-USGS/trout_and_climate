@@ -13,6 +13,16 @@ Here we track upcoming changes.
 
 ### Removed
 - Dropped unused dependencies - axios, d3, rollup. This addressed DoS vulnerability  
+ 
+### Fixed
+ 
+## [1.1.1] - 2025-03-12
+ 
+### Added
+
+- New pre-footer code links component 
+
+>>>>>>> CHANGELOG.md
 
 ## [1.1.0] - 2025-03-31
  
