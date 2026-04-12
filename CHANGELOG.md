@@ -8,10 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  
 Here we track upcoming changes.
  
-### Added
-- Added a change log
- 
 ### Changed
+- Updated dependencies - eslint
+
+### Removed
+- Dropped unused dependencies - axios, d3, rollup. This addressed DoS vulnerability  
  
 ### Fixed
  
@@ -21,6 +22,7 @@ Here we track upcoming changes.
 
 - New pre-footer code links component 
 
+>>>>>>> CHANGELOG.md
 
 ## [1.1.0] - 2025-03-31
  
